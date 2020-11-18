@@ -11,7 +11,7 @@ namespace dotNet5781_02_9106_7647
     
     public class busstationline :busstation  
     {
-        
+
         protected double LenghtLastStation;
         public double lenghtlaststation
         {
