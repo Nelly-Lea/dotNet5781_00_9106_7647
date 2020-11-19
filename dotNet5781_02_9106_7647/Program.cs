@@ -244,8 +244,6 @@ namespace dotNet5781_02_9106_7647
                                             Console.WriteLine(e.Message);
                                         }
                                     }
-                                       
-
                                     
 
                                 }

@@ -39,7 +39,6 @@ namespace dotNet5781_02_9106_7647
 
             Latitude=r.NextDouble() * (33.3 - 31) + 31;
              Longitude = r.NextDouble() * (35.5 - 34.3) + 34.4;
-          
         }
         public busstation()
         {

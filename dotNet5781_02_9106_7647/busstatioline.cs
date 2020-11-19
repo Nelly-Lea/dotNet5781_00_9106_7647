@@ -23,6 +23,7 @@ namespace dotNet5781_02_9106_7647
             get { return TimeLastStation; }
             set { TimeLastStation = value; }
         }
+
         public busstationline(int b, Random r) : base(b,r)
         {
 

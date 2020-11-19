@@ -8,7 +8,6 @@ using System.Threading.Tasks;
 namespace dotNet5781_02_9106_7647
 {
     public interface IEnumerator<T> { }
-   
     public interface IEnumerable { }
     public class Collectionbusline: IEnumerable
     {
