@@ -97,7 +97,7 @@ namespace dotNet5781_02_9106_7647
             set => area = value;
 
         }
-
+      
         //constructors
 
         public busline(int num, busstation f, busstation l, Random r)

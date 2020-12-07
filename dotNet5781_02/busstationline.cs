@@ -78,7 +78,7 @@ namespace dotNet5781_02_9106_7647
 
         {
 
-
+         
 
             return "Bus Station Code: " + BusStationKey + ", " + Latitude + "°N " + Longitude + "°E"; ;
 
