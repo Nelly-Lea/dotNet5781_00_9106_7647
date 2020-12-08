@@ -123,15 +123,7 @@ namespace dotNet5781_03A_9106_7647
             
             
 
-          //  ShowBusLine(cbCollectionbusline.SelectedIndex);
-
-           // Console.WriteLine(currentDisplayBusLine.ToString());
-          //foreach(var item in currentDisplayBusLine.stations)
-          //  {
-          //      Console.WriteLine(item.ToString());
-          //      Console.WriteLine("lenght:{0}",item.lenghtlaststation);
-          //  }
-         
+          
         }
 
         private void cbCollectionbusline_SelectionChanged(object sender, SelectionChangedEventArgs e)
