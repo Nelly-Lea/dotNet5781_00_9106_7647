@@ -20,7 +20,7 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <Label Content="Area" Grid.Column="1" HorizontalAlignment="Left" Margin="197.6,0,0,0" VerticalAlignment="Top" Height="68" Width="198" Grid.ColumnSpan="2" FontFamily="Forte" FontSize="36" Foreground="AliceBlue" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+            <Label Content="Area" Grid.Column="1" HorizontalAlignment="Stretch" Margin="197.6,0,0,0" VerticalAlignment="Top" Height="68" Width="198" Grid.ColumnSpan="2" FontFamily="Forte" FontSize="36" Foreground="AliceBlue" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch"/>
             <ComboBox Name="cbCollectionbusline" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" SelectionChanged="cbCollectionbusline_SelectionChanged" DisplayMemberPath = "buslinenumber" Grid.ColumnSpan="3" Margin="198,0,198.2,0" FontSize="24"  >
                 <ComboBox.ItemContainerStyle>
                     <Style TargetType="ComboBoxItem">
@@ -32,9 +32,11 @@
         </Grid>
         <Label Content="Bus Line Number" HorizontalAlignment="Left" VerticalAlignment="Top" Height="68" Width="193" Margin="0,1,0,0" Grid.RowSpan="2" FontFamily="Forte" FontSize="24" Foreground="AliceBlue" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" />
         <TextBox Name="tbArea" HorizontalAlignment="Stretch" Margin="598,10,34.6,10" TextWrapping="Wrap" VerticalAlignment="Stretch" Text="{Binding Path=areap}" TextChanged="tbArea_TextChanged" FontSize="24" FontFamily="Time New Roman" Background="#FFAAD0F0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-        <ListBox Name="lbBusLineStations" HorizontalAlignment="Left" Height="542" Grid.Row="1" VerticalAlignment="Top" Width="794" Grid.ColumnSpan="2" Margin="0,0,-0.4,0" ItemsSource="{Binding}" FontFamily=" Time New Roman" FontSize="18" FontWeight="Bold" >
+        <ListBox Name="lbBusLineStations" HorizontalAlignment="Stretch" Height="542" Grid.Row="1" VerticalAlignment="Stretch" Width="794" Grid.ColumnSpan="2" Margin="0,0,-0.4,0" ItemsSource="{Binding}" FontFamily=" Time New Roman" FontSize="10" FontWeight="Bold" >
+            
             <ListBox.Background>
-                <ImageBrush ImageSource="https://diapogram.com/upload/2018/04/09/20180409171504-d2a6074c.jpg" Opacity="0.6"/>
+                <ImageBrush ImageSource="https://diapogram.com/upload/2018/04/09/20180409171504-d2a6074c.jpg" Opacity="0.6" Stretch="Fill"/>
+        
             </ListBox.Background>
         </ListBox>
     </Grid>

@@ -28,6 +28,8 @@ namespace dotNet5781_03A_9106_7647
             tbArea.DataContext = currentDisplayBusLine;
             string s = currentDisplayBusLine.areap.ToString();
             tbArea.Text = s;
+           
+           
         }
         static public int verifthereis2busline(Collectionbusline CBL, int buslinenumber)// verify if there are already 2 buses with the same line number
 
@@ -51,10 +53,7 @@ namespace dotNet5781_03A_9106_7647
                 return 0;
             else
             {
-                if (count == 1)
-                    return 1;
-                else
-                    return -1;
+                return -1;
             }
 
                 
@@ -78,38 +77,7 @@ namespace dotNet5781_03A_9106_7647
             b.busstationkey = lbs[middle].busstationkey;
             b.longitude = lbs[middle].longitude;
             b.latitude = lbs[middle].latitude;
-            if (verifthereis2busline(CBL1,buslinenumber)==1)
-            {
-                foreach(var item in CBL1.collec)
-                {
-                    if(item.buslinenumber==buslinenumber)
-                    {
-                        busstationline bsfirst = new busstationline();
-                        bsfirst =(busstationline) item.laststation;
-                        busstationline bslast = new busstationline();
-                        bslast = (busstationline)item.firststation;
-                       while(item.stations.Contains(b))
-                        {
-                            middle = rand.Next(0, 39); 
-                            b.busstationkey = lbs[middle].busstationkey;
-                            b.longitude = lbs[middle].longitude;
-                            b.latitude = lbs[middle].latitude;
 
-                        }
-                        busline bus = new busline(buslinenumber,bsfirst,bslast,rand);
-                        bus.addstation(ref bsfirst);
-                        bus.addstation(ref b);
-                        bus.addstation(ref bslast);
-                        CBL1.collec.Add(bus);
-                        break;
-
-
-                    }
-                    
-                }
-            }
-            else
-            {
                 busstationline bsf = new busstationline();
                 bsf.busstationkey = lbs[f].busstationkey;
                 bsf.longitude = lbs[f].longitude;
@@ -124,7 +92,7 @@ namespace dotNet5781_03A_9106_7647
                 bus1.addstation(ref bsl);
                 CBL1.collec.Add(bus1);
 
-            }
+          //  }
         }
         public static void createstation(ref List<busstationline> lbs,int ind, Random rand)
         {
@@ -153,9 +121,17 @@ namespace dotNet5781_03A_9106_7647
             cbCollectionbusline.DisplayMemberPath = "buslinenumber";
             cbCollectionbusline.SelectedIndex = 0;
             
-            Console.WriteLine(currentDisplayBusLine.ToString());
-           
+            
 
+          //  ShowBusLine(cbCollectionbusline.SelectedIndex);
+
+           // Console.WriteLine(currentDisplayBusLine.ToString());
+          //foreach(var item in currentDisplayBusLine.stations)
+          //  {
+          //      Console.WriteLine(item.ToString());
+          //      Console.WriteLine("lenght:{0}",item.lenghtlaststation);
+          //  }
+         
         }
 
         private void cbCollectionbusline_SelectionChanged(object sender, SelectionChangedEventArgs e)
