@@ -1,0 +1,64 @@
+﻿<Window x:Class="dotNet5781_03B_9106_7647.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:dotNet5781_03B_9106_7647"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="800" Width="1000">
+    <!--<Window.Resources>
+        <DataTemplate x:Key="MyDataTemplate"
+                      DataType="local:BUS">-->
+            
+      
+    <Grid Background="#FF7AA8CE">
+       
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0*"/>
+            <RowDefinition Height="0*"/>
+            <RowDefinition/>
+            <RowDefinition Height="0*"/>
+        </Grid.RowDefinitions>
+      
+        <Button Content="Button2" Name="btn2"  HorizontalAlignment="Left" Margin="318,106,0,0" Grid.RowSpan="3" VerticalAlignment="Top" Width="75" Click="Button_Click" />
+        <ListView Name="ListBus" HorizontalAlignment="Left" Height="569" Margin="66,106,0,0" Grid.RowSpan="3" VerticalAlignment="Top" Width="823" MouseDoubleClick="ListBus_MouseDoubleClick">
+                    <ListView.ItemBindingGroup>
+                        <BindingGroup/>
+                    </ListView.ItemBindingGroup>
+
+                    <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="number bus" DisplayMemberBinding="{Binding Num}" Width="100"/>
+                            <GridViewColumn Header="km" DisplayMemberBinding="{Binding KmBegin}" Width="100"/>
+                            <GridViewColumn Header=" Status" DisplayMemberBinding="{Binding statusp}" Width="100"/>
+                            <GridViewColumn Width="100">
+                    
+
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button Content="new travel" Width="70" VerticalAlignment="Center" Click="Button_Click_1"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+
+                                </GridViewColumn>
+                            <GridViewColumn Width="100">
+
+
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button Content="refuel" Width="50" VerticalAlignment="Center" Click="Button_Click_2"/>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+
+                            </GridViewColumn>
+                        </GridView>
+               
+            </ListView.View>
+        </ListView>
+
+
+            </Grid>
+        <!--</DataTemplate>
+    </Window.Resources>-->
+    <!--<ListBox Name="listbus" HorizontalAlignment="Left" Height="334" Margin="72,75,0,0" VerticalAlignment="Top" Width="355" Grid.RowSpan="3" ItemsSource="{Binding }" ItemTemplate="{StaticResource MyDataTemplate}"  />-->
+</Window>

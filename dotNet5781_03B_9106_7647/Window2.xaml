@@ -1,0 +1,55 @@
+﻿<Window x:Class="dotNet5781_03B_9106_7647.Window2"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:dotNet5781_03B_9106_7647"
+        mc:Ignorable="d"
+        Title="Window2" Height="800" Width="1000">
+    <Grid Background="#FFB9E8F9">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+
+        </Grid.ColumnDefinitions>
+
+        <StackPanel>
+
+            <Label Content="bus number:" Foreground="#FF272FC7" Margin="0,0,-0.2,0" Height="131" FontFamily="Forte" FontSize="24"/>
+
+            <TextBlock x:Name="tbKm" Foreground="#FF272FC7" Text="{Binding MyData2.Km}" HorizontalAlignment="Right" Margin="0,0,-508.2,0" Width="497" Height="62" FontFamily="Forte" FontSize="24" />
+
+
+
+
+
+
+        </StackPanel>
+        <TextBlock  x:Name="tbnum1" Text="{Binding MyData2.Num}" Foreground="#FF272FC7" Margin="10.2,10,-0.4,10" Height="108" Width="487" Grid.Column="1" FontFamily="Forte" FontSize="24"/>
+        <Label Content="kilometer from begining:" Foreground="#FF272FC7" HorizontalAlignment="Left" Margin="0,10,0,0" Grid.Row="1" VerticalAlignment="Top" Height="109" Width="487" FontFamily="Forte" FontSize="24"/>
+        <TextBlock x:Name="tnDatelasttreatment" Foreground="#FF272FC7" Text="{Binding MyData2.Datetr}" HorizontalAlignment="Right" Margin="0,0.2,-10.4,109.2" Width="497" RenderTransformOrigin="0.5,0.5" Grid.Row="4" Grid.RowSpan="2" Grid.Column="1" FontFamily="Forte" FontSize="24" />
+        <TextBlock x:Name="tbKmbegin" Foreground="#FF272FC7" Text="{Binding MyData2.KmBegin}" Margin="0.2,10,-0.4,9.8" RenderTransformOrigin="0.333,0.451" Grid.Column="1" Grid.Row="1" FontFamily="Forte" FontSize="24" />
+        <TextBlock x:Name="tbDateBegin" Foreground="#FF272FC7" Text="{Binding MyData2.Dates}" Grid.Column="1" Margin="0.2,0.4,9.6,0.4" Grid.Row="3" FontFamily="Forte" FontSize="24" />
+        <Label Content="kilometers since the last treatment: " Foreground="#FF272FC7" HorizontalAlignment="Left" Margin="0,2,0,0" Grid.Row="2" VerticalAlignment="Top" Height="96" Width="487" Grid.RowSpan="2" FontSize="24" FontFamily="Forte"/>
+        <Label Content="Date begin: " HorizontalAlignment="Left" Foreground="#FF272FC7" Margin="0,10.2,0,0" Grid.Row="3" VerticalAlignment="Top" Height="85" Width="497" Grid.ColumnSpan="2" FontSize="24" FontFamily="Forte"/>
+        <Label Content="Status:" HorizontalAlignment="Left" Foreground="#FF272FC7" Margin="0,0.4,0,0" Grid.Row="5" VerticalAlignment="Top" Height="128" Grid.RowSpan="2" Width="497" Grid.ColumnSpan="2" FontFamily="Forte" FontSize="24"/>
+        <Label Content="Date since the Last treatment: " Foreground="#FF272FC7" HorizontalAlignment="Left" Margin="0,95.2,0,0" Grid.Row="3" VerticalAlignment="Top" Height="98" Width="497" Grid.RowSpan="3" Grid.ColumnSpan="2" FontFamily="Forte" FontSize="24"/>
+        <Label Content="Gasoline: " HorizontalAlignment="Left" Foreground="#FF272FC7" Grid.Row="6" VerticalAlignment="Top" Height="109" Width="497" Grid.ColumnSpan="2" Margin="0,0,0,-0.2" FontFamily="Forte" FontSize="24"/>
+        <TextBlock x:Name="tbKm_Copy" Foreground="#FF272FC7" Text="{Binding MyData2.Km}" HorizontalAlignment="Right" Margin="0,0.2,-0.4,4.2" Width="492" Grid.Row="2" Grid.Column="1" FontFamily="Forte" FontSize="24" />
+        <TextBlock x:Name="tbStatus" Foreground="#FF272FC7" Text="{Binding MyData2.statusp}" Grid.Column="1" HorizontalAlignment="Left" Margin="5.2,0.8,-5.4,0" Grid.Row="5" TextWrapping="Wrap" VerticalAlignment="Top" Height="110" Grid.RowSpan="2" Width="497" FontFamily="Forte" FontSize="24"/>
+        <TextBlock Grid.Column="1" Foreground="#FF272FC7" HorizontalAlignment="Left" Margin="0.2,0.8,-0.4,0" Grid.Row="6" TextWrapping="Wrap" Text="{Binding MyData2.Gasoline}" VerticalAlignment="Top" Height="108" Width="497" FontFamily="Forte" FontSize="24"/>
+        <Button Content="Refuel" HorizontalAlignment="Left" Margin="150,17.6,0,0" Grid.Row="7" VerticalAlignment="Top" Width="152" Height="61" Click="Button_Click"/>
+        <Button Content="Do a treatment" Grid.Column="1" HorizontalAlignment="Left" Margin="148.2,17.6,0,0" Grid.Row="7" VerticalAlignment="Top" Width="139" Height="61" Click="Button_Click_3"/>
+    </Grid>
+</Window>
