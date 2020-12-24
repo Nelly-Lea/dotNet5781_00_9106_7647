@@ -35,7 +35,7 @@ namespace dotNet5781_03B_9106_7647
 
         DateTime Datetreatment;
         public DateTime Datetr { get => Datetreatment; set => Datetreatment = value; } //date since the last treatment
-        int km;  // km depuis le tipoul
+        int km;  // km from treatment
         public int Km { get => km; set => km = value; }      // number of kilometers since the last treatment
         int kmbegining;
         public int KmBegin { get => kmbegining; set => kmbegining = value; } // number of kilometers since the first activity
@@ -50,11 +50,6 @@ namespace dotNet5781_03B_9106_7647
 
         status Status;
 
-        //public event PropertyChangedEventHandler PropertyChanged;
-        //protected void OnPropertyChanged( string name)
-        //{
-        //    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
-        //}
 
         public status statusp
         {
@@ -113,8 +108,6 @@ namespace dotNet5781_03B_9106_7647
         {
             DispatcherTimer.Stop();
             statusp = (status)0;
-            
-          //  OnPropertyChanged(status);
 
 
         }
