@@ -28,7 +28,6 @@ namespace dotNet5781_03B_9106_7647
         public Window1()
         {
             InitializeComponent();
-
         }
         public BUS MyData { get; set; }
 
