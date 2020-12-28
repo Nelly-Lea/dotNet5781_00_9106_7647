@@ -14,6 +14,7 @@ namespace dotNet5781_03B_9106_7647
 {
     //public interface INotifyPropertyChanged;
 
+
     public class BUS: INotifyPropertyChanged
     {
 
