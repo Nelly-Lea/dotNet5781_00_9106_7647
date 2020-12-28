@@ -14,9 +14,17 @@ namespace dotNet5781_03B_9106_7647
 {
     //public interface INotifyPropertyChanged;
 
-    public class BUS
+    public class BUS: INotifyPropertyChanged
     {
 
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected virtual void OnPropertyChanged(string propertyname)
+        {
+            PropertyChangedEventHandler handler = PropertyChanged;
+            if (handler != null)
+                handler(this, new PropertyChangedEventArgs(propertyname));
+
+        }
         System.Windows.Threading.DispatcherTimer DispatcherTimer = new System.Windows.Threading.DispatcherTimer();
         System.Windows.Threading.DispatcherTimer DispatcherTimer1 = new System.Windows.Threading.DispatcherTimer();
         System.Windows.Threading.DispatcherTimer DispatcherTimer2 = new System.Windows.Threading.DispatcherTimer();
@@ -34,16 +42,16 @@ namespace dotNet5781_03B_9106_7647
         public DateTime Dates { get => Datebegin; set => Datebegin = value; }  // date of first activity
 
         DateTime Datetreatment;
-        public DateTime Datetr { get => Datetreatment; set => Datetreatment = value; } //date since the last treatment
+        public DateTime Datetr { get => Datetreatment; set { Datetreatment = value; OnPropertyChanged("Datetr"); } } //date since the last treatment
         int km;  // km from treatment
         public int Km { get => km; set => km = value; }      // number of kilometers since the last treatment
         int kmbegining;
-        public int KmBegin { get => kmbegining; set => kmbegining = value; } // number of kilometers since the first activity
+        public int KmBegin { get => kmbegining; set { kmbegining = value; OnPropertyChanged("KmBegin"); } } // number of kilometers since the first activity
         int gasoline = 1200;
         public int Gasoline
         {             //gasoline rate
             get => gasoline;
-            set => gasoline = value;
+            set { gasoline = value; OnPropertyChanged("Gasoline"); }
         }
 
 
@@ -51,16 +59,21 @@ namespace dotNet5781_03B_9106_7647
         status Status;
 
 
-        public status statusp
-        {
-            get => Status;
-            set => Status = value;
-        }
+        
         public BUS()
         {
             ;
         }
-        public
+       
+        public status statusp
+        {
+            get => Status;
+            set { Status = value;
+                OnPropertyChanged("statusp");
+                    }
+        }
+
+    public
            BUS(string busnumber, DateTime date, DateTime date2, int kmb, int kmlt, int stat, int gas)   // BUS constructor
         {
             numberbus = busnumber;
@@ -117,7 +130,7 @@ namespace dotNet5781_03B_9106_7647
             Datetr = DateTime.Now;
             statusp = (status)3;
             DispatcherTimer1.Tick += new EventHandler(dispatcherTimer_Tick);
-            DispatcherTimer1.Interval = new TimeSpan(0, 0, 144);// 1 day for treatment
+            DispatcherTimer1.Interval = new TimeSpan(0, 2, 24);// 1 day for treatment
             DispatcherTimer1.Start();
 
         }
