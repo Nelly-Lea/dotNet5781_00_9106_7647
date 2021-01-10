@@ -6,7 +6,12 @@ using System.Threading.Tasks;
 
 namespace DO
 {
-    class Station
+    public class Station
     {
+        public int Code { get; set; }//identifiant
+        public string Name { get; set; }
+        public double Longitude { get; set; }
+        public double Latitude { get; set; }
+        public string Address { get; set; }
     }
 }

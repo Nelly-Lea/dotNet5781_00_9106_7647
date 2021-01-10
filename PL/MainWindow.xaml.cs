@@ -24,7 +24,7 @@ namespace PL
         public MainWindow()
         {
             InitializeComponent();
-            BL.BLImp b1 = new BL.BLImp();
+            //BL.BLImp b1 = new BL.BLImp();
             bl = BLFactory.GetBL("1");
         }
     }

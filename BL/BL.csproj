@@ -41,9 +41,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BLFactory.cs" />
-    <Compile Include="Class1.cs" />
-    <Compile Include="IBL.cs" />
+    <Compile Include="BLAPI\BLFactory.cs" />
+    <Compile Include="BLImp.cs" />
+    <Compile Include="BLAPI\IBL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
