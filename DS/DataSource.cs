@@ -19,7 +19,9 @@ namespace DS
         public static int id = 0;
         public static List<User> ListUsers;
         public static List<AdjacentStations> ListAdjacentStations;
+        public static int idAdjStation = 0;
         public static List<LineStation> ListLineStations;
+        public static int idLineStation = 0;
         public static int idlinetrip = 0;
         public static List<LineTrip> ListLineTrip;
         public static List<Trip> ListTrip;
@@ -780,114 +782,133 @@ namespace DS
             {
                 new AdjacentStations
                 {
+                    id=++(idAdjStation),
                     Station1=38838,
                     Station2=38839,
 
                 },
                  new AdjacentStations
                 {
+                     id=++(idAdjStation),
                     Station1=38839,
                     Station2=38840,
 
                 },
                    new AdjacentStations
                 {
+                    id=++(idAdjStation),
                     Station1=38840,
                     Station2=38841,
 
                 },
                      new AdjacentStations
                 {
+                         id=++(idAdjStation),
                     Station1=38841,
                     Station2=38842,
 
                 },
               new AdjacentStations
                 {
+                  id=++(idAdjStation),
                     Station1=38844,
                     Station2=38845,
 
                 },
                new AdjacentStations
                 {
+                   id=++(idAdjStation),
                     Station1=38845,
                     Station2=38846,
 
                 },
                 new AdjacentStations
                 {
+                    id=++(idAdjStation),
                     Station1=38846,
                     Station2=38847,
 
                 },
                  new AdjacentStations
                 {
+                     id=++(idAdjStation),
                     Station1=38847,
                     Station2=38855,
 
                 },
                   new AdjacentStations
                 {
+                      id=++(idAdjStation),
                     Station1=38833,
                     Station2=38834,
 
                 },
                    new AdjacentStations
                 {
+                       id=++(idAdjStation),
                     Station1=38834,
                     Station2=38836,
 
                 },
                     new AdjacentStations
                 {
+                        id=++(idAdjStation),
                     Station1=38836,
                     Station2=38837,
 
                 },
                      new AdjacentStations
                 {
+                         id=++(idAdjStation),
                     Station1=38837,
                     Station2=38838,
 
                 },
                       new AdjacentStations
                 {
+                          id=++(idAdjStation),
                     Station1=38842,
                     Station2=38847,
 
                 },
              new AdjacentStations
                 {
+                 id=++(idAdjStation),
                     Station1=38834,
                     Station2=38852,
 
                 },
               new AdjacentStations
                 {
+                  id=++(idAdjStation),
                     Station1=38852,
                     Station2=38856,
 
                 },
                new AdjacentStations
                 {
+                   id=++(idAdjStation),
                     Station1=38856,
                     Station2=38873,
 
                 },
                 new AdjacentStations
                 {
+                    id=++(idAdjStation),
                     Station1=38873,
                     Station2=38875,
 
                 },
                  new AdjacentStations
                 {
+                     id=++(idAdjStation),
                     Station1=38875,
                     Station2=38876,
 
                 },
                   new AdjacentStations
                 {
+                      id=++(idAdjStation),
                     Station1=38876,
                     Station2=38872,
 
@@ -895,336 +916,392 @@ namespace DS
 
                    new AdjacentStations
                 {
+                       id=++(idAdjStation),
                     Station1=38872,
                     Station2=38870,
 
                 },
                     new AdjacentStations
                 {
+                        id=++(idAdjStation),
                     Station1=38870,
                     Station2=38869,
 
                 },
                      new AdjacentStations
                 {
+                         id=++(idAdjStation),
                     Station1=38869,
                     Station2=38867,
 
                 },
                       new AdjacentStations
                 {
+                          id=++(idAdjStation),
                     Station1=38887,
                     Station2=38888,
 
                 },
                        new AdjacentStations
                 {
+                           id=++(idAdjStation),
                     Station1=38888,
                     Station2=38889,
 
                 },
                         new AdjacentStations
                 {
+                            id=++(idAdjStation),
                     Station1=38889,
                     Station2=38890,
 
                 },
                          new AdjacentStations
                 {
+                             id=++(idAdjStation),
                     Station1=38890,
                     Station2=38891,
 
                 },
                           new AdjacentStations
                 {
+                              id=++(idAdjStation),
                     Station1=38891,
                     Station2=38892,
 
                 },
              new AdjacentStations
                 {
+                 id=++(idAdjStation),
                     Station1=38892,
                     Station2=38898,
 
                 },
               new AdjacentStations
                 {
+                  id=++(idAdjStation),
                     Station1=38898,
                     Station2=38895,
 
                 },
                new AdjacentStations
                 {
+                   id=++(idAdjStation),
                     Station1=38895,
                     Station2=38894,
 
                 },
                 new AdjacentStations
                 {
+                    id=++(idAdjStation),
                     Station1=38894,
                     Station2=38893,
 
                 },
                  new AdjacentStations
                 {
+                     id=++(idAdjStation),
                     Station1=38839,
                     Station2=38838,
 
                 },
                   new AdjacentStations
                 {
+                      id=++(idAdjStation),
                     Station1=38838,
                     Station2=38837,
 
                 },
                    new AdjacentStations
                 {
+                       id=++(idAdjStation),
                     Station1=38837,
                     Station2=38840,
 
                 },
                     new AdjacentStations
                 {
+                        id=++(idAdjStation),
                     Station1=38845,
                     Station2=38855,
 
                 },
                      new AdjacentStations
                 {
+                         id=++(idAdjStation),
                     Station1=38855,
                     Station2=38846,
 
                 },
                       new AdjacentStations
                 {
+                          id=++(idAdjStation),
                     Station1=38848,
                     Station2=38849,
 
                 },
                        new AdjacentStations
                 {
+                           id=++(idAdjStation),
                     Station1=38849,
                     Station2=38852,
 
                 },
                         new AdjacentStations
                 {
+                            id=++(idAdjStation),
                     Station1=38852,
                     Station2=38854,
 
                 },
                          new AdjacentStations
                 {
+                             id=++(idAdjStation),
                     Station1=38854,
                     Station2=38855,
 
                 },
                           new AdjacentStations
                 {
+                              id=++(idAdjStation),
                     Station1=38855,
                     Station2=38865,
 
                 },
                            new AdjacentStations
                 {
+                               id=++(idAdjStation),
                     Station1=38865,
                     Station2=38864,
 
                 },
              new AdjacentStations
                 {
+                 id=++(idAdjStation),
                     Station1=38864,
                     Station2=38861,
 
                 },
               new AdjacentStations
                 {
+                  id=++(idAdjStation),
                     Station1=38861,
                     Station2=38860,
 
                 },
                new AdjacentStations
                 {
+                   id=++(idAdjStation),
                     Station1=38860,
                     Station2=38859,
 
                 },
                 new AdjacentStations
                 {
+                    id=++(idAdjStation),
                     Station1=38881,
                     Station2=38883,
 
                 },
              new AdjacentStations
                 {
+                 id=++(idAdjStation),
                     Station1=38883,
                     Station2=38884,
 
                 },
               new AdjacentStations
                 {
+                  id=++(idAdjStation),
                     Station1=38884,
                     Station2=38885,
 
                 },
                new AdjacentStations
                 {
+                   id=++(idAdjStation),
                     Station1=38885,
                     Station2=38891,
 
                 },
                 new AdjacentStations
                 {
+                    id=++(idAdjStation),
                     Station1=38891,
                     Station2=38890,
 
                 },
                  new AdjacentStations
                 {
+                     id=++(idAdjStation),
                     Station1=38890,
                     Station2=38889,
 
                 },
                   new AdjacentStations
                 {
+                      id=++(idAdjStation),
                     Station1=38889,
                     Station2=38888,
 
                 },
                    new AdjacentStations
                 {
+                       id=++(idAdjStation),
                     Station1=38888,
                     Station2=38887,
 
                 },
                  new AdjacentStations
                 {
+                     id=++(idAdjStation),
                     Station1=38887,
                     Station2=38886,
 
                 },
                   new AdjacentStations
                 {
+                      id=++(idAdjStation),
                     Station1=38885,
                     Station2=38886,
 
                 },
                  new AdjacentStations
                 {
+                     id=++(idAdjStation),
                     Station1=38886,
                     Station2=38884,
 
                 },
                   new AdjacentStations
                 {
+                      id=++(idAdjStation),
                     Station1=38884,
                     Station2=38883,
 
                 },
                    new AdjacentStations
                 {
+                       id=++(idAdjStation),
                     Station1=38883,
                     Station2=38881,
 
                 },
                     new AdjacentStations
                 {
+                        id=++(idAdjStation),
                     Station1=38881,
                     Station2=38880,
 
                 },
                      new AdjacentStations
                 {
+                         id=++(idAdjStation),
                     Station1=38880,
                     Station2=38888,
 
                 },
              new AdjacentStations
                 {
+                 id=++(idAdjStation),
                     Station1=38852,
                     Station2=38834,
 
                 },
               new AdjacentStations
                 {
+                  id=++(idAdjStation),
                     Station1=38834,
                     Station2=38837,
 
                 },
                new AdjacentStations
                 {
+                   id=++(idAdjStation),
                     Station1=38837,
                     Station2=38831,
 
                 },
                 new AdjacentStations
                 {
+                    id=++(idAdjStation),
                     Station1=38831,
                     Station2=38836,
 
                 },
                  new AdjacentStations
                 {
+                     id=++(idAdjStation),
                     Station1=38836,
                     Station2=38854,
 
                 },
                   new AdjacentStations
                 {
+                      id=++(idAdjStation),
                     Station1=38854,
                     Station2=38859,
 
                 },
                    new AdjacentStations
                 {
+                       id=++(idAdjStation),
                     Station1=38859,
                     Station2=38860,
 
                 },
                  new AdjacentStations
                 {
+                     id=++(idAdjStation),
                     Station1=38860,
                     Station2=38861,
 
                 },
                   new AdjacentStations
                 {
+                      id=++(idAdjStation),
                     Station1=38861,
                     Station2=38856,
 
                 },
                    new AdjacentStations
                 {
+                       id=++(idAdjStation),
                     Station1=38862,
                     Station2=38861,
 
                 },
                     new AdjacentStations
                 {
+                        id=++(idAdjStation),
                     Station1=38859,
                     Station2=38863,
 
                 },
                      new AdjacentStations
                 {
+                         id=++(idAdjStation),
                     Station1=38863,
                     Station2=38869,
 
                 },
                  new AdjacentStations
                 {
+                     id=++(idAdjStation),
                     Station1=38869,
                     Station2=38867,
 
                 },
                   new AdjacentStations
                 {
+                      id=++(idAdjStation),
                     Station1=38867,
                     Station2=38866,
 
                 },
              new AdjacentStations
                 {
+                 id=++(idAdjStation),
                     Station1=38866,
                     Station2=38865,
 
@@ -1234,6 +1311,7 @@ namespace DS
             {
                 new LineStation
                 {
+                    Id=++(idLineStation),
                         LineId=1,
                         Station=38838,
                         LineStationIndex=1,
@@ -1243,6 +1321,7 @@ namespace DS
 
                 new LineStation
                 {
+                      Id=++(idLineStation),
                         LineId=1,
                         Station=38839,
                         LineStationIndex=2,
@@ -1252,6 +1331,7 @@ namespace DS
 
                 new LineStation
                 {
+                      Id=++(idLineStation),
                         LineId=1,
                         Station=38840,
                         LineStationIndex=3,
@@ -1261,6 +1341,7 @@ namespace DS
 
                 new LineStation
                 {
+                      Id=++(idLineStation),
                         LineId=1,
                         Station=38841,
                         LineStationIndex=4,
@@ -1270,6 +1351,7 @@ namespace DS
 
                 new LineStation
                 {
+                      Id=++(idLineStation),
                         LineId=1,
                         Station=38842,
                         LineStationIndex=5,
@@ -1279,6 +1361,7 @@ namespace DS
 
                 new LineStation
                 {
+                      Id=++(idLineStation),
                         LineId=1,
                         Station=38844,
                         LineStationIndex=6,
@@ -1288,6 +1371,7 @@ namespace DS
 
                 new LineStation
                 {
+                      Id=++(idLineStation),
                         LineId=1,
                         Station=38845,
                         LineStationIndex=7,
@@ -1297,6 +1381,7 @@ namespace DS
 
                 new LineStation
                 {
+                      Id=++(idLineStation),
                         LineId=1,
                         Station=38846,
                         LineStationIndex=8,
@@ -1306,6 +1391,7 @@ namespace DS
 
                 new LineStation
                 {
+                      Id=++(idLineStation),
                         LineId=1,
                         Station=38847,
                         LineStationIndex=9,
@@ -1316,6 +1402,8 @@ namespace DS
 
                 new LineStation
                 {
+                      Id=++(idLineStation),
+
                         LineId=1,
                         Station=38855,
                         LineStationIndex=10,
@@ -1325,6 +1413,7 @@ namespace DS
 
                 new LineStation
                 {
+                      Id=++(idLineStation),
                         LineId=2,
                         Station=38833,
                         LineStationIndex=1,
@@ -1334,6 +1423,7 @@ namespace DS
 
                 new LineStation
                 {
+                      Id=++(idLineStation),
                         LineId=2,
                         Station=38834,
                         LineStationIndex=2,
@@ -1343,6 +1433,7 @@ namespace DS
 
                 new LineStation
                 {
+                      Id=++(idLineStation),
                         LineId=2,
                         Station=38836,
                         LineStationIndex=3,
@@ -1352,6 +1443,7 @@ namespace DS
 
                 new LineStation
                 {
+                      Id=++(idLineStation),
                         LineId=2,
                         Station=38837,
                         LineStationIndex=4,
@@ -1361,6 +1453,7 @@ namespace DS
 
                 new LineStation
                 {
+                      Id=++(idLineStation),
                         LineId=2,
                         Station=38838,
                         LineStationIndex=5,
@@ -1370,6 +1463,7 @@ namespace DS
 
                 new LineStation
                 {
+                      Id=++(idLineStation),
                         LineId=2,
                         Station=38839,
                         LineStationIndex=6,
@@ -1379,6 +1473,7 @@ namespace DS
 
                 new LineStation
                 {
+                      Id=++(idLineStation),
                         LineId=2,
                         Station=38840,
                         LineStationIndex=7,
@@ -1388,6 +1483,7 @@ namespace DS
 
                 new LineStation
                 {
+                      Id=++(idLineStation),
                         LineId=2,
                         Station=38841,
                         LineStationIndex=8,
@@ -1397,6 +1493,7 @@ namespace DS
 
                 new LineStation
                 {
+                      Id=++(idLineStation),
                         LineId=2,
                         Station=38842,
                         LineStationIndex=9,
@@ -1406,6 +1503,7 @@ namespace DS
 
                 new LineStation
                 {
+                      Id=++(idLineStation),
                         LineId=2,
                         Station=38847,
                         LineStationIndex=10,
@@ -1415,6 +1513,7 @@ namespace DS
 
                 new LineStation
                 {
+                      Id=++(idLineStation),
                         LineId=3,
                         Station=38834,
                         LineStationIndex=1,
@@ -1424,6 +1523,7 @@ namespace DS
 
                 new LineStation
                 {
+                      Id=++(idLineStation),
                         LineId=3,
                         Station=38852,
                         LineStationIndex=2,
@@ -1433,6 +1533,7 @@ namespace DS
 
                 new LineStation
                 {
+                      Id=++(idLineStation),
                         LineId=3,
                         Station=38856,
                         LineStationIndex=3,
@@ -1442,6 +1543,7 @@ namespace DS
 
                 new LineStation
                 {
+                      Id=++(idLineStation),
                         LineId=3,
                         Station=38873,
                         LineStationIndex=4,
@@ -1450,7 +1552,7 @@ namespace DS
                 },
 
                 new LineStation
-                {
+                {  Id=++(idLineStation),
                         LineId=3,
                         Station=38875,
                         LineStationIndex=5,
@@ -1460,6 +1562,7 @@ namespace DS
 
                 new LineStation
                 {
+                      Id=++(idLineStation),
                         LineId=3,
                         Station=38876,
                         LineStationIndex=6,
@@ -1469,6 +1572,7 @@ namespace DS
 
                 new LineStation
                 {
+                      Id=++(idLineStation),
                         LineId=3,
                         Station=38872,
                         LineStationIndex=7,
@@ -1478,6 +1582,7 @@ namespace DS
 
                 new LineStation
                 {
+                      Id=++(idLineStation),
                         LineId=3,
                         Station=38870,
                         LineStationIndex=8,
@@ -1487,6 +1592,7 @@ namespace DS
 
                 new LineStation
                 {
+                      Id=++(idLineStation),
                         LineId=3,
                         Station=38869,
                         LineStationIndex=9,
@@ -1496,6 +1602,7 @@ namespace DS
 
                 new LineStation
                 {
+                      Id=++(idLineStation),
                         LineId=3,
                         Station=38867,
                         LineStationIndex=10,
@@ -1505,6 +1612,7 @@ namespace DS
 
                 new LineStation
                 {
+                      Id=++(idLineStation),
                         LineId=4,
                         Station=38887,
                         LineStationIndex=1,
@@ -1514,6 +1622,7 @@ namespace DS
 
                 new LineStation
                 {
+                      Id=++(idLineStation),
                         LineId=4,
                         Station=38888,
                         LineStationIndex=2,
@@ -1522,7 +1631,7 @@ namespace DS
                 },
 
                 new LineStation
-                {
+                {  Id=++(idLineStation),
                         LineId=4,
                         Station=38889,
                         LineStationIndex=3,
@@ -1532,6 +1641,7 @@ namespace DS
 
                 new LineStation
                 {
+                      Id=++(idLineStation),
                         LineId=4,
                         Station=38890,
                         LineStationIndex=4,
@@ -1541,6 +1651,7 @@ namespace DS
 
                 new LineStation
                 {
+                      Id=++(idLineStation),
                         LineId=4,
                         Station=38891,
                         LineStationIndex=5,
@@ -1550,6 +1661,7 @@ namespace DS
 
                 new LineStation
                 {
+                      Id=++(idLineStation),
                         LineId=4,
                         Station=38892,
                         LineStationIndex=6,
@@ -1559,6 +1671,7 @@ namespace DS
 
                 new LineStation
                 {
+                      Id=++(idLineStation),
                         LineId=4,
                         Station=38898,
                         LineStationIndex=7,
@@ -1568,6 +1681,7 @@ namespace DS
 
                 new LineStation
                 {
+                      Id=++(idLineStation),
                         LineId=4,
                         Station=38895,
                         LineStationIndex=8,
@@ -1577,6 +1691,7 @@ namespace DS
 
                 new LineStation
                 {
+                      Id=++(idLineStation),
                         LineId=4,
                         Station=38894,
                         LineStationIndex=9,
@@ -1586,6 +1701,7 @@ namespace DS
 
                 new LineStation
                 {
+                      Id=++(idLineStation),
                         LineId=4,
                         Station=38893,
                         LineStationIndex=10,
@@ -1594,6 +1710,7 @@ namespace DS
                 },
                  new LineStation
                 {
+                       Id=++(idLineStation),
                         LineId=5,
                         Station=38839,
                         LineStationIndex=1,
@@ -1602,6 +1719,7 @@ namespace DS
                 },
                  new LineStation
                 {
+                       Id=++(idLineStation),
                         LineId=5,
                         Station=38838,
                         LineStationIndex=2,
@@ -1610,6 +1728,7 @@ namespace DS
                 },
                  new LineStation
                 {
+                       Id=++(idLineStation),
                         LineId=5,
                         Station=38837,
                         LineStationIndex=3,
@@ -1618,6 +1737,7 @@ namespace DS
                 },
                  new LineStation
                 {
+                       Id=++(idLineStation),
                         LineId=5,
                         Station=38840,
                         LineStationIndex=4,
@@ -1626,6 +1746,7 @@ namespace DS
                 },
                  new LineStation
                 {
+                       Id=++(idLineStation),
                         LineId=5,
                         Station=38841,
                         LineStationIndex=5,
@@ -1634,6 +1755,7 @@ namespace DS
                 },
                  new LineStation
                 {
+                       Id=++(idLineStation),
                         LineId=5,
                         Station=38842,
                         LineStationIndex=6,
@@ -1642,6 +1764,7 @@ namespace DS
                 },
                  new LineStation
                 {
+                       Id=++(idLineStation),
                         LineId=5,
                         Station=38844,
                         LineStationIndex=7,
@@ -1650,6 +1773,7 @@ namespace DS
                 },
                  new LineStation
                 {
+                       Id=++(idLineStation),
                         LineId=5,
                         Station=38845,
                         LineStationIndex=8,
@@ -1658,6 +1782,7 @@ namespace DS
                 },
                    new LineStation
                 {
+                         Id=++(idLineStation),
                         LineId=5,
                         Station=38855,
                         LineStationIndex=9,
@@ -1666,6 +1791,7 @@ namespace DS
                 },
                      new LineStation
                 {
+                           Id=++(idLineStation),
                         LineId=5,
                         Station=38846,
                         LineStationIndex=10,
@@ -1674,6 +1800,7 @@ namespace DS
                 },
                        new LineStation
                 {
+                             Id=++(idLineStation),
                         LineId=6,
                         Station=38848,
                         LineStationIndex=1,
@@ -1682,6 +1809,7 @@ namespace DS
                 },
                          new LineStation
                 {
+                               Id=++(idLineStation),
                         LineId=6,
                         Station=38849,
                         LineStationIndex=2,
@@ -1690,6 +1818,7 @@ namespace DS
                 },
                            new LineStation
                 {
+                                 Id=++(idLineStation),
                         LineId=6,
                         Station=38852,
                         LineStationIndex=3,
@@ -1698,6 +1827,7 @@ namespace DS
                 },
                              new LineStation
                 {
+                                   Id=++(idLineStation),
                         LineId=6,
                         Station=38854,
                         LineStationIndex=4,
@@ -1706,6 +1836,7 @@ namespace DS
                 },
                                new LineStation
                 {
+                                     Id=++(idLineStation),
                         LineId=6,
                         Station=38855,
                         LineStationIndex=5,
@@ -1714,6 +1845,7 @@ namespace DS
                 },
                                  new LineStation
                 {
+                                       Id=++(idLineStation),
                         LineId=6,
                         Station=38865,
                         LineStationIndex=6,
@@ -1722,6 +1854,7 @@ namespace DS
                 },
               new LineStation
                 {
+                    Id=++(idLineStation),
                         LineId=6,
                         Station=38864,
                         LineStationIndex=7,
@@ -1730,6 +1863,7 @@ namespace DS
                 },
                 new LineStation
                 {
+                      Id=++(idLineStation),
                         LineId=6,
                         Station=38861,
                         LineStationIndex=8,
@@ -1738,6 +1872,7 @@ namespace DS
                 },
                   new LineStation
                 {
+                        Id=++(idLineStation),
                         LineId=6,
                         Station=38860,
                         LineStationIndex=9,
@@ -1746,6 +1881,7 @@ namespace DS
                 },
                     new LineStation
                 {
+                          Id=++(idLineStation),
                         LineId=6,
                         Station=38859,
                         LineStationIndex=10,
@@ -1754,6 +1890,7 @@ namespace DS
                 },
                   new LineStation
                 {
+                        Id=++(idLineStation),
                         LineId=7,
                         Station=38881,
                         LineStationIndex=1,
@@ -1762,6 +1899,7 @@ namespace DS
                 },
                     new LineStation
                 {
+                          Id=++(idLineStation),
                         LineId=7,
                         Station=38883,
                         LineStationIndex=2,
@@ -1770,6 +1908,7 @@ namespace DS
                 },
                       new LineStation
                 {
+                            Id=++(idLineStation),
                         LineId=7,
                         Station=38884,
                         LineStationIndex=3,
@@ -1778,6 +1917,7 @@ namespace DS
                 },
                         new LineStation
                 {
+                              Id=++(idLineStation),
                         LineId=7,
                         Station=38885,
                         LineStationIndex=4,
@@ -1786,6 +1926,7 @@ namespace DS
                 },
                           new LineStation
                 {
+                                Id=++(idLineStation),
                         LineId=7,
                         Station=38891,
                         LineStationIndex=5,
@@ -1794,6 +1935,7 @@ namespace DS
                 },
                             new LineStation
                 {
+                                  Id=++(idLineStation),
                         LineId=7,
                         Station=38890,
                         LineStationIndex=6,
@@ -1802,6 +1944,7 @@ namespace DS
                 },
                               new LineStation
                 {
+                                    Id=++(idLineStation),
                         LineId=7,
                         Station=38889,
                         LineStationIndex=7,
@@ -1810,6 +1953,7 @@ namespace DS
                 },
                                 new LineStation
                 {
+                                      Id=++(idLineStation),
                         LineId=7,
                         Station=38888,
                         LineStationIndex=8,
@@ -1818,6 +1962,7 @@ namespace DS
                 },
                                   new LineStation
                 {
+                                        Id=++(idLineStation),
                         LineId=7,
                         Station=38887,
                         LineStationIndex=9,
@@ -1826,6 +1971,7 @@ namespace DS
                 },
               new LineStation
                 {
+                    Id=++(idLineStation),
                         LineId=7,
                         Station=38886,
                         LineStationIndex=10,
@@ -1834,6 +1980,7 @@ namespace DS
                 },
                 new LineStation
                 {
+                      Id=++(idLineStation),
                         LineId=8,
                         Station=38885,
                         LineStationIndex=1,
@@ -1842,6 +1989,7 @@ namespace DS
                 },
                   new LineStation
                 {
+                        Id=++(idLineStation),
                         LineId=8,
                         Station=38886,
                         LineStationIndex=2,
@@ -1850,6 +1998,7 @@ namespace DS
                 },
                     new LineStation
                 {
+                          Id=++(idLineStation),
                         LineId=8,
                         Station=38884,
                         LineStationIndex=3,
@@ -1858,6 +2007,7 @@ namespace DS
                 },
                   new LineStation
                 {
+                        Id=++(idLineStation),
                         LineId=8,
                         Station=38883,
                         LineStationIndex=4,
@@ -1866,6 +2016,7 @@ namespace DS
                 },
                     new LineStation
                 {
+                          Id=++(idLineStation),
                         LineId=8,
                         Station=38881,
                         LineStationIndex=5,
@@ -1874,6 +2025,7 @@ namespace DS
                 },
                       new LineStation
                 {
+                            Id=++(idLineStation),
                         LineId=8,
                         Station=38880,
                         LineStationIndex=6,
@@ -1882,6 +2034,7 @@ namespace DS
                 },
               new LineStation
                 {
+                    Id=++(idLineStation),
                         LineId=8,
                         Station=38888,
                         LineStationIndex=7,
@@ -1890,6 +2043,7 @@ namespace DS
                 },
                 new LineStation
                 {
+                      Id=++(idLineStation),
                         LineId=8,
                         Station=38889,
                         LineStationIndex=8,
@@ -1898,6 +2052,7 @@ namespace DS
                 },
                   new LineStation
                 {
+                        Id=++(idLineStation),
                         LineId=8,
                         Station=38890,
                         LineStationIndex=9,
@@ -1906,6 +2061,7 @@ namespace DS
                 },
                     new LineStation
                 {
+                          Id=++(idLineStation),
                         LineId=8,
                         Station=38891,
                         LineStationIndex=10,
@@ -1914,6 +2070,7 @@ namespace DS
                 },
                   new LineStation
                 {
+                        Id=++(idLineStation),
                         LineId=9,
                         Station=38852,
                         LineStationIndex=1,
@@ -1922,6 +2079,7 @@ namespace DS
                 },
                     new LineStation
                 {
+                          Id=++(idLineStation),
                         LineId=9,
                         Station=38834,
                         LineStationIndex=2,
@@ -1930,6 +2088,7 @@ namespace DS
                 },
                       new LineStation
                 {
+                            Id=++(idLineStation),
                         LineId=9,
                         Station=38837,
                         LineStationIndex=3,
@@ -1938,6 +2097,7 @@ namespace DS
                 },
                         new LineStation
                 {
+                              Id=++(idLineStation),
                         LineId=9,
                         Station=38831,
                         LineStationIndex=4,
@@ -1946,6 +2106,7 @@ namespace DS
                 },
                           new LineStation
                 {
+                                Id=++(idLineStation),
                         LineId=9,
                         Station=38836,
                         LineStationIndex=5,
@@ -1954,6 +2115,7 @@ namespace DS
                 },
               new LineStation
                 {
+                    Id=++(idLineStation),
                         LineId=9,
                         Station=38854,
                         LineStationIndex=6,
@@ -1962,6 +2124,7 @@ namespace DS
                 },
                 new LineStation
                 {
+                      Id=++(idLineStation),
                         LineId=9,
                         Station=38859,
                         LineStationIndex=7,
@@ -1970,6 +2133,7 @@ namespace DS
                 },
                   new LineStation
                 {
+                        Id=++(idLineStation),
                         LineId=9,
                         Station=38860,
                         LineStationIndex=8,
@@ -1978,6 +2142,7 @@ namespace DS
                 },
                     new LineStation
                 {
+                          Id=++(idLineStation),
                         LineId=9,
                         Station=38861,
                         LineStationIndex=9,
@@ -1986,6 +2151,7 @@ namespace DS
                 },
                       new LineStation
                 {
+                            Id=++(idLineStation),
                         LineId=9,
                         Station=38856,
                         LineStationIndex=10,
@@ -1994,6 +2160,7 @@ namespace DS
                 },
                         new LineStation
                 {
+                              Id=++(idLineStation),
                         LineId=10,
                         Station=38862,
                         LineStationIndex=1,
@@ -2002,6 +2169,7 @@ namespace DS
                 },
                           new LineStation
                 {
+                                Id=++(idLineStation),
                         LineId=10,
                         Station=38861,
                         LineStationIndex=2,
@@ -2010,6 +2178,7 @@ namespace DS
                 },
                             new LineStation
                 {
+                                  Id=++(idLineStation),
                         LineId=10,
                         Station=38860,
                         LineStationIndex=3,
@@ -2018,6 +2187,7 @@ namespace DS
                 },
                               new LineStation
                 {
+                                    Id=++(idLineStation),
                         LineId=10,
                         Station=38859,
                         LineStationIndex=4,
@@ -2026,6 +2196,7 @@ namespace DS
                 },
                                 new LineStation
                 {
+                                      Id=++(idLineStation),
                         LineId=10,
                         Station=38863,
                         LineStationIndex=5,
@@ -2034,6 +2205,7 @@ namespace DS
                 },
                                   new LineStation
                 {
+                                        Id=++(idLineStation),
                         LineId=10,
                         Station=38869,
                         LineStationIndex=6,
@@ -2042,6 +2214,7 @@ namespace DS
                 },
                                     new LineStation
                 {
+                                          Id=++(idLineStation),
                         LineId=10,
                         Station=38867,
                         LineStationIndex=7,
@@ -2050,6 +2223,7 @@ namespace DS
                 },
                                       new LineStation
                 {
+                                            Id=++(idLineStation),
                         LineId=10,
                         Station=38866,
                         LineStationIndex=8,
@@ -2058,6 +2232,7 @@ namespace DS
                 },
                                         new LineStation
                 {
+                                              Id=++(idLineStation),
                         LineId=10,
                         Station=38865,
                         LineStationIndex=9,
@@ -2066,6 +2241,7 @@ namespace DS
                 },
               new LineStation
                 {
+                    Id=++(idLineStation),
                         LineId=10,
                         Station=38864,
                         LineStationIndex=10,
