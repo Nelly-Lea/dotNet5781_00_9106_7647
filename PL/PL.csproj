@@ -99,6 +99,10 @@
       <Project>{9fe89b50-1819-410a-bb6e-7cddd11c0b35}</Project>
       <Name>BL</Name>
     </ProjectReference>
+    <ProjectReference Include="..\DLAPI\DLAPI.csproj">
+      <Project>{4CA6B381-E613-4E64-8F3D-85871967C6A0}</Project>
+      <Name>DLAPI</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="PO\" />

@@ -26,9 +26,12 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution items", "Solution items", "{9B79C58D-0D06-43EF-92FD-85FB541F331C}"
 	ProjectSection(SolutionItems) = preProject
 		config.xml = config.xml
+		StationXml.xml = StationXml.xml
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DLXML", "DLXML\DLXML.csproj", "{7809E3B4-04CE-4B1E-B68E-D87C04DE7F33}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UI", "UI\UI.csproj", "{7C8BD06B-BB61-495C-A671-804C0FE0666F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -80,6 +83,10 @@ Global
 		{7809E3B4-04CE-4B1E-B68E-D87C04DE7F33}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7809E3B4-04CE-4B1E-B68E-D87C04DE7F33}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7809E3B4-04CE-4B1E-B68E-D87C04DE7F33}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7C8BD06B-BB61-495C-A671-804C0FE0666F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7C8BD06B-BB61-495C-A671-804C0FE0666F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7C8BD06B-BB61-495C-A671-804C0FE0666F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7C8BD06B-BB61-495C-A671-804C0FE0666F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

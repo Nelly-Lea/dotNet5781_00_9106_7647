@@ -4,13 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DO
+namespace BO
 {
     [Serializable]
     public class BadStationCodeException : Exception
     {
         public int CODE;
-        public BadStationCodeException(int code) : base() => CODE =code;
+        public BadStationCodeException(int code) : base() => CODE = code;
         public BadStationCodeException(int code, string message) :
             base(message) => CODE = code;
         public BadStationCodeException(int code, string message, Exception innerException) :
@@ -99,7 +99,7 @@ namespace DO
 
         public override string ToString() => base.ToString() + $", bad User Name:{UserName}";
     }
-   
+  
 
     public class XMLFileLoadCreateException : Exception
     {

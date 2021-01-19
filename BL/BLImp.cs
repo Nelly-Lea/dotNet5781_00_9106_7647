@@ -12,7 +12,20 @@ namespace BL
      class BLImp : IBL //internal
     {
         IDL dl = DLFactory.GetDL();
+        #region Line 
+        //BO.Line ShowStations(BO.Line line)
+        //{
+        //    BO.Line lineBO = new BO.Line();
+            
 
+        // IEnumerable<DO.Line> ListofLines = dl.GetAllLines();
+        // IEnumerable<DO.Line>  linesDO = (IEnumerable<DO.Line>)ListofLines.Select(x => x.Id==line.Id);
+         
+          
+            
+        //}
+
+        #endregion Line
         //#region Student
         //BO.Student studentDoBoAdapter(DO.Student studentDO)
         //{

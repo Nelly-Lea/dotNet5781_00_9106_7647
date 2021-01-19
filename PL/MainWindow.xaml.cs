@@ -13,6 +13,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using BLAPI;
+using DLAPI;
+
 namespace PL
 {
     /// <summary>
@@ -25,7 +27,9 @@ namespace PL
         {
             InitializeComponent();
             //BL.BLImp b1 = new BL.BLImp();
-            bl = BLFactory.GetBL("1");
+            //bl = BLFactory.GetBL("1");
+            IDL d = DLFactory.GetDL();
+          var v =   d.GetAllLines();
         }
     }
 }

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
-
+using System.Device.Location;
 using DO;
 
 namespace DS
@@ -30,6 +30,14 @@ namespace DS
         static DataSource()
         {
             InitAllLists();
+           
+        }
+        static double CalculateDist(Station stat1, Station stat2)
+        {
+            GeoCoordinate p1 = new GeoCoordinate(stat1.Latitude, stat1.Longitude);
+            GeoCoordinate p2 = new GeoCoordinate(stat2.Latitude, stat2.Longitude);
+            double distance = p1.GetDistanceTo(p2);
+            return distance;
         }
         static void InitAllLists()
         {

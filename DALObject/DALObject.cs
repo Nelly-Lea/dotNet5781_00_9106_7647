@@ -193,7 +193,7 @@ namespace DL
             else
                 throw new DO.BadLineStationIdException(id, $"bad stationline id: {id}");
         }
-        public IEnumerable<DO.LineStation> GetAlllinestations()
+        public IEnumerable<DO.LineStation> GetAllLineStations()
         {
             return from linestation in DataSource.ListLineStations
                    select linestation.Clone();
@@ -299,88 +299,190 @@ namespace DL
         //    throw new NotImplementedException();
         //}
         #endregion AdjacentStations
+        #region Bus
+        public DO.Bus GetBus(int licensenum)
+        {
+            DO.Bus bus = DataSource.ListBuses.Find(p => p.LicenceNum == licensenum);
 
-        //#region Student
+            if (bus != null)
+                return bus.Clone();
+            else
+                throw new DO.BadLicenseNumException(licensenum, $"bad license num: {licensenum}");
+        }
+        public IEnumerable<DO.Bus> GetAllBuses()
+        {
+            return from bus in DataSource.ListBuses
+                   select bus.Clone();
+        }
+        public IEnumerable<DO.Bus> GetAllBusesBy(Predicate<DO.Bus> predicate)
+        {
+            return from bus in DataSource.ListBuses
+                   where predicate(bus)
+                   select bus.Clone();
 
-        //#endregion Student
+        }
+        public void AddBus(DO.Bus bus)
+        {
+            if (DataSource.ListBuses.FirstOrDefault(p => p.LicenceNum == bus.LicenceNum) != null)
+                throw new DO.BadLicenseNumException(bus.LicenceNum, "Duplicate license num");
+            DataSource.ListBuses.Add(bus.Clone());
+        }
 
-        //#region StudentInCourse
-        //public IEnumerable<DO.StudentInCourse> GetStudentsInCourseList(Predicate<DO.StudentInCourse> predicate)
+        public void DeleteBus(int licensenum)
+        {
+            DO.Bus bus = DataSource.ListBuses.Find(p => p.LicenceNum == licensenum);
+
+            if (bus != null)
+            {
+                DataSource.ListBuses.Remove(bus);
+            }
+            else
+                throw new DO.BadStationCodeException(licensenum, $"bad license num: {licensenum}");
+        }
+
+        public void UpdateBus(DO.Bus bus)
+        {
+            DO.Bus buses= DataSource.ListBuses.Find(p => p.LicenceNum == bus.LicenceNum);
+
+            if (buses != null)
+            {
+                DataSource.ListBuses.Remove(buses);
+                DataSource.ListBuses.Add(bus.Clone());
+            }
+            else
+                throw new DO.BadLicenseNumException(bus.LicenceNum, $"bad licence num: {bus.LicenceNum}");
+        }
+
+        //public void UpdateStation(int id, Action<DO.Station> update)
         //{
-        //    //option A - not good!!! 
-        //    //produces final list instead of deferred query and does not allow proper cloning:
-        //    // return DataSource.listStudInCourses.FindAll(predicate);
-
-        //    // option B - ok!!
-        //    //Returns deferred query + clone:
-        //    //return DataSource.listStudInCourses.Where(sic => predicate(sic)).Select(sic => sic.Clone());
-
-        //    // option c - ok!!
-        //    //Returns deferred query + clone:
-        //    return from sic in DataSource.ListStudInCourses
-        //           where predicate(sic)
-        //           select sic.Clone();
+        //    throw new NotImplementedException();
         //}
-        //public void AddStudentInCourse(int perID, int courseID, float grade = 0)
+        #endregion Bus
+
+        #region Trip
+        public DO.Trip GetTrip(int id)
+        {
+            DO.Trip Trip = DataSource.ListTrip.Find(p => p.Id == id);
+
+            if (Trip != null)
+                return Trip.Clone();
+            else
+                throw new DO.BadTripIdException(id, $"bad Trip id: {id}");
+        }
+        public IEnumerable<DO.Trip> GetAllTrips()
+        {
+            return from trip in DataSource.ListTrip
+                   select trip.Clone();
+        }
+        public IEnumerable<DO.Trip> GetAllTripBy(Predicate<DO.Trip> predicate)
+        {
+            return from trip in DataSource.ListTrip
+                   where predicate(trip)
+                   select trip.Clone();
+
+        }
+        public void AddTrip(DO.Trip trip)
+        {
+            if (DataSource.ListTrip.FirstOrDefault(p => p.Id == trip.Id) != null)
+                throw new DO.BadTripIdException(trip.Id, "Duplicate trip id");
+            DataSource.ListTrip.Add(trip.Clone());
+        }
+
+        public void DeleteTrip(int id)
+        {
+            DO.Trip trip = DataSource.ListTrip.Find(p => p.Id == id);
+
+            if (trip != null)
+            {
+                DataSource.ListTrip.Remove(trip);
+            }
+            else
+                throw new DO.BadTripIdException(id, $"bad trip id: {id}");
+        }
+
+        public void UpdateTrip(DO.Trip trip)
+        {
+            DO.Trip t = DataSource.ListTrip.Find(p => p.Id == trip.Id);
+
+            if (t != null)
+            {
+                DataSource.ListTrip.Remove(t);
+                DataSource.ListTrip.Add(trip.Clone());
+            }
+            else
+                throw new DO.BadTripIdException(trip.Id, $"bad trip id: {trip.Id}");
+        }
+
+
+
+        //public void UpdateStation(int id, Action<DO.Station> update)
         //{
-        //    if (DataSource.ListStudInCourses.FirstOrDefault(cis => (cis.PersonId == perID && cis.CourseId == courseID)) != null)
-        //        throw new DO.BadPersonIdCourseIDException(perID, courseID, "person ID is already registered to course ID");
-        //    DO.StudentInCourse sic = new DO.StudentInCourse() { PersonId = perID, CourseId = courseID, Grade = grade };
-        //    DataSource.ListStudInCourses.Add(sic);
+        //    throw new NotImplementedException();
         //}
 
-        //public void UpdateStudentGradeInCourse(int perID, int courseID, float grade)
+        #endregion Trip
+
+        #region user
+
+        public DO.User GetUser(string userName)
+        {
+            DO.User us = DataSource.ListUsers.Find(p => p.UserName == userName);
+
+            if (us != null)
+                return us.Clone();
+            else
+                throw new DO.BadUserNameException(userName, $"bad uer name: {userName}");
+        }
+        public IEnumerable<DO.User> GetAllUsers()
+        {
+            return from user in DataSource.ListUsers
+                   select user.Clone();
+        }
+        public IEnumerable<DO.User> GetAllUsersBy(Predicate<DO.User> predicate)
+        {
+            return from user in DataSource.ListUsers
+                   where predicate(user)
+                   select user.Clone();
+
+        }
+        public void AddUser(DO.User user)
+        {
+            if (DataSource.ListUsers.FirstOrDefault(p => p.UserName == user.UserName) != null)
+                throw new DO.BadUserNameException(user.UserName, "Duplicate user name");
+            DataSource.ListUsers.Add(user.Clone());
+        }
+
+        public void DeleteUser(string userName)
+        {
+            DO.User us = DataSource.ListUsers.Find(p => p.UserName==userName);
+
+            if (us != null)
+            {
+                DataSource.ListUsers.Remove(us);
+            }
+            else
+                throw new DO.BadUserNameException(userName, $"bad user name: {userName}");
+        }
+
+        public void UpdateUser(DO.User user)
+        {
+            DO.User us = DataSource.ListUsers.Find(p => p.UserName == user.UserName);
+
+            if (us!= null)
+            {
+                DataSource.ListUsers.Remove(us);
+                DataSource.ListUsers.Add(user.Clone());
+            }
+            else
+                throw new DO.BadUserNameException(user.UserName, $"bad user name: {user.UserName}");
+        }
+
+        //public void UpdateUser(string UserName, Action<DO.Station> update)
         //{
-        //    DO.StudentInCourse sic = DataSource.ListStudInCourses.Find(cis => (cis.PersonId == perID && cis.CourseId == courseID));
-
-        //    if (sic != null)
-        //    {
-        //        sic.Grade = grade;
-        //    }
-        //    else
-        //        throw new DO.BadPersonIdCourseIDException(perID, courseID, "person ID is NOT registered to course ID");
+        //    throw new NotImplementedException();
         //}
 
-        //public void DeleteStudentInCourse(int perID, int courseID)
-        //{
-        //    DO.StudentInCourse sic = DataSource.ListStudInCourses.Find(cis => (cis.PersonId == perID && cis.CourseId == courseID));
-
-        //    if (sic != null)
-        //    {
-        //        DataSource.ListStudInCourses.Remove(sic);
-        //    }
-        //    else
-        //        throw new DO.BadPersonIdCourseIDException(perID, courseID, "person ID is NOT registered to course ID");
-        //}
-        //public void DeleteStudentFromAllCourses(int perID)
-        //{
-        //    DataSource.ListStudInCourses.RemoveAll(p => p.PersonId == perID);
-        //}
-
-        //#endregion StudentInCourse
-
-        //#region Course
-        //public DO.Course GetCourse(int id)
-        //{
-        //    return DataSource.ListCourses.Find(c => c.ID == id).Clone();
-        //}
-
-        //public IEnumerable<DO.Course> GetAllCourses()
-        //{
-        //    return from course in DataSource.ListCourses
-        //           select course.Clone();
-        //}
-
-        //#endregion Course
-
-        //#region Lecturer
-        //public IEnumerable<DO.LecturerInCourse> GetLecturersInCourseList(Predicate<DO.LecturerInCourse> predicate)
-        //{
-        //    //Returns deferred query + clone:
-        //    return from sic in DataSource.ListLectInCourses
-        //           where predicate(sic)
-        //           select sic.Clone();
-        //}
-        //#endregion
+        #endregion user
+       
     }
 }
