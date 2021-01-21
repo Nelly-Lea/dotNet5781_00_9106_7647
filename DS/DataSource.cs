@@ -26,7 +26,7 @@ namespace DS
         public static List<LineTrip> ListLineTrip;
         public static List<Trip> ListTrip;
         public static int idtrip = 0;
-
+       
         static DataSource()
         {
             InitAllLists();
@@ -506,7 +506,8 @@ namespace DS
             {
                 new Line//1
                 {
-                    Id=++id,
+                   // Id=++id,
+                   Id=++id,
                     Code=100,
                     Area= Areas.KyriatEkron,
                     FirstStation=38838,
@@ -793,6 +794,8 @@ namespace DS
                     id=++(idAdjStation),
                     Station1=38838,
                     Station2=38839,
+                    Distance=2,
+                    Time=new TimeSpan(0,5,0),
 
                 },
                  new AdjacentStations
@@ -800,6 +803,9 @@ namespace DS
                      id=++(idAdjStation),
                     Station1=38839,
                     Station2=38840,
+                     Distance=2,
+                    Time=new TimeSpan(0,5,0),
+
 
                 },
                    new AdjacentStations
@@ -807,6 +813,9 @@ namespace DS
                     id=++(idAdjStation),
                     Station1=38840,
                     Station2=38841,
+                     Distance=2,
+                    Time=new TimeSpan(0,5,0),
+
 
                 },
                      new AdjacentStations
@@ -814,6 +823,9 @@ namespace DS
                          id=++(idAdjStation),
                     Station1=38841,
                     Station2=38842,
+                     Distance=2,
+                    Time=new TimeSpan(0,5,0),
+
 
                 },
               new AdjacentStations
@@ -821,6 +833,9 @@ namespace DS
                   id=++(idAdjStation),
                     Station1=38844,
                     Station2=38845,
+                     Distance=2,
+                    Time=new TimeSpan(0,5,0),
+
 
                 },
                new AdjacentStations
@@ -828,6 +843,9 @@ namespace DS
                    id=++(idAdjStation),
                     Station1=38845,
                     Station2=38846,
+                     Distance=2,
+                    Time=new TimeSpan(0,5,0),
+
 
                 },
                 new AdjacentStations
@@ -835,6 +853,9 @@ namespace DS
                     id=++(idAdjStation),
                     Station1=38846,
                     Station2=38847,
+                     Distance=4,
+                    Time=new TimeSpan(0,10,0),
+
 
                 },
                  new AdjacentStations
@@ -842,6 +863,9 @@ namespace DS
                      id=++(idAdjStation),
                     Station1=38847,
                     Station2=38855,
+                      Distance=4,
+                    Time=new TimeSpan(0,10,0),
+
 
                 },
                   new AdjacentStations
@@ -849,6 +873,9 @@ namespace DS
                       id=++(idAdjStation),
                     Station1=38833,
                     Station2=38834,
+                      Distance=4,
+                    Time=new TimeSpan(0,10,0),
+
 
                 },
                    new AdjacentStations
@@ -856,6 +883,9 @@ namespace DS
                        id=++(idAdjStation),
                     Station1=38834,
                     Station2=38836,
+                      Distance=4,
+                    Time=new TimeSpan(0,10,0),
+
 
                 },
                     new AdjacentStations
@@ -863,6 +893,9 @@ namespace DS
                         id=++(idAdjStation),
                     Station1=38836,
                     Station2=38837,
+                      Distance=6,
+                    Time=new TimeSpan(0,15,0),
+
 
                 },
                      new AdjacentStations
@@ -870,6 +903,8 @@ namespace DS
                          id=++(idAdjStation),
                     Station1=38837,
                     Station2=38838,
+                      Distance=6,
+                    Time=new TimeSpan(0,15,0)
 
                 },
                       new AdjacentStations
@@ -877,6 +912,8 @@ namespace DS
                           id=++(idAdjStation),
                     Station1=38842,
                     Station2=38847,
+                          Distance=6,
+                    Time=new TimeSpan(0,15,0)
 
                 },
              new AdjacentStations
@@ -884,6 +921,8 @@ namespace DS
                  id=++(idAdjStation),
                     Station1=38834,
                     Station2=38852,
+                          Distance=6,
+                    Time=new TimeSpan(0,15,0)
 
                 },
               new AdjacentStations
@@ -891,6 +930,8 @@ namespace DS
                   id=++(idAdjStation),
                     Station1=38852,
                     Station2=38856,
+                          Distance=6,
+                    Time=new TimeSpan(0,15,0)
 
                 },
                new AdjacentStations
@@ -898,6 +939,8 @@ namespace DS
                    id=++(idAdjStation),
                     Station1=38856,
                     Station2=38873,
+                          Distance=6,
+                    Time=new TimeSpan(0,15,0)
 
                 },
                 new AdjacentStations
@@ -912,6 +955,8 @@ namespace DS
                      id=++(idAdjStation),
                     Station1=38875,
                     Station2=38876,
+                          Distance=2,
+                    Time=new TimeSpan(0,5,0)
 
                 },
                   new AdjacentStations
@@ -919,6 +964,8 @@ namespace DS
                       id=++(idAdjStation),
                     Station1=38876,
                     Station2=38872,
+                         Distance=2,
+                    Time=new TimeSpan(0,5,0)
 
                 },
 
@@ -927,6 +974,8 @@ namespace DS
                        id=++(idAdjStation),
                     Station1=38872,
                     Station2=38870,
+                         Distance=2,
+                    Time=new TimeSpan(0,5,0)
 
                 },
                     new AdjacentStations
@@ -934,6 +983,8 @@ namespace DS
                         id=++(idAdjStation),
                     Station1=38870,
                     Station2=38869,
+                         Distance=2,
+                    Time=new TimeSpan(0,5,0)
 
                 },
                      new AdjacentStations
@@ -941,6 +992,8 @@ namespace DS
                          id=++(idAdjStation),
                     Station1=38869,
                     Station2=38867,
+                         Distance=8,
+                    Time=new TimeSpan(0,20,0)
 
                 },
                       new AdjacentStations
@@ -948,6 +1001,8 @@ namespace DS
                           id=++(idAdjStation),
                     Station1=38887,
                     Station2=38888,
+                           Distance=8,
+                    Time=new TimeSpan(0,20,0)
 
                 },
                        new AdjacentStations
@@ -955,6 +1010,8 @@ namespace DS
                            id=++(idAdjStation),
                     Station1=38888,
                     Station2=38889,
+                           Distance=8,
+                    Time=new TimeSpan(0,20,0)
 
                 },
                         new AdjacentStations
@@ -962,6 +1019,8 @@ namespace DS
                             id=++(idAdjStation),
                     Station1=38889,
                     Station2=38890,
+                           Distance=4,
+                    Time=new TimeSpan(0,10,0)
 
                 },
                          new AdjacentStations
@@ -969,6 +1028,8 @@ namespace DS
                              id=++(idAdjStation),
                     Station1=38890,
                     Station2=38891,
+                           Distance=4,
+                    Time=new TimeSpan(0,10,0)
 
                 },
                           new AdjacentStations
@@ -976,6 +1037,8 @@ namespace DS
                               id=++(idAdjStation),
                     Station1=38891,
                     Station2=38892,
+                           Distance=4,
+                    Time=new TimeSpan(0,10,0)
 
                 },
              new AdjacentStations
@@ -983,6 +1046,8 @@ namespace DS
                  id=++(idAdjStation),
                     Station1=38892,
                     Station2=38898,
+                           Distance=4,
+                    Time=new TimeSpan(0,10,0)
 
                 },
               new AdjacentStations
@@ -990,6 +1055,8 @@ namespace DS
                   id=++(idAdjStation),
                     Station1=38898,
                     Station2=38895,
+                           Distance=2,
+                    Time=new TimeSpan(0,5,0)
 
                 },
                new AdjacentStations
@@ -997,6 +1064,8 @@ namespace DS
                    id=++(idAdjStation),
                     Station1=38895,
                     Station2=38894,
+                                Distance=2,
+                    Time=new TimeSpan(0,5,0)
 
                 },
                 new AdjacentStations
@@ -1004,6 +1073,8 @@ namespace DS
                     id=++(idAdjStation),
                     Station1=38894,
                     Station2=38893,
+                                Distance=2,
+                    Time=new TimeSpan(0,5,0)
 
                 },
                  new AdjacentStations
@@ -1011,6 +1082,8 @@ namespace DS
                      id=++(idAdjStation),
                     Station1=38839,
                     Station2=38838,
+                                Distance=2,
+                    Time=new TimeSpan(0,5,0)
 
                 },
                   new AdjacentStations
@@ -1018,6 +1091,8 @@ namespace DS
                       id=++(idAdjStation),
                     Station1=38838,
                     Station2=38837,
+                                Distance=10,
+                    Time=new TimeSpan(0,25,0)
 
                 },
                    new AdjacentStations
@@ -1025,6 +1100,8 @@ namespace DS
                        id=++(idAdjStation),
                     Station1=38837,
                     Station2=38840,
+                                Distance=2,
+                    Time=new TimeSpan(0,5,0)
 
                 },
                     new AdjacentStations
@@ -1032,6 +1109,8 @@ namespace DS
                         id=++(idAdjStation),
                     Station1=38845,
                     Station2=38855,
+                                Distance=10,
+                    Time=new TimeSpan(0,25,0)
 
                 },
                      new AdjacentStations
@@ -1039,6 +1118,8 @@ namespace DS
                          id=++(idAdjStation),
                     Station1=38855,
                     Station2=38846,
+                                Distance=4,
+                    Time=new TimeSpan(0,10,0),
 
                 },
                       new AdjacentStations
@@ -1046,6 +1127,8 @@ namespace DS
                           id=++(idAdjStation),
                     Station1=38848,
                     Station2=38849,
+                                Distance=10,
+                    Time=new TimeSpan(0,25,0),
 
                 },
                        new AdjacentStations
@@ -1053,6 +1136,8 @@ namespace DS
                            id=++(idAdjStation),
                     Station1=38849,
                     Station2=38852,
+                           Distance=2,
+                    Time=new TimeSpan(0,5,0),
 
                 },
                         new AdjacentStations
@@ -1060,6 +1145,8 @@ namespace DS
                             id=++(idAdjStation),
                     Station1=38852,
                     Station2=38854,
+                           Distance=2,
+                    Time=new TimeSpan(0,5,0),
 
                 },
                          new AdjacentStations
@@ -1067,6 +1154,8 @@ namespace DS
                              id=++(idAdjStation),
                     Station1=38854,
                     Station2=38855,
+                           Distance=2,
+                    Time=new TimeSpan(0,5,0),
 
                 },
                           new AdjacentStations
@@ -1074,6 +1163,8 @@ namespace DS
                               id=++(idAdjStation),
                     Station1=38855,
                     Station2=38865,
+                           Distance=4,
+                    Time=new TimeSpan(0,10,0),
 
                 },
                            new AdjacentStations
@@ -1081,6 +1172,8 @@ namespace DS
                                id=++(idAdjStation),
                     Station1=38865,
                     Station2=38864,
+                               Distance=4,
+                    Time=new TimeSpan(0,10,0),
 
                 },
              new AdjacentStations
@@ -1088,6 +1181,8 @@ namespace DS
                  id=++(idAdjStation),
                     Station1=38864,
                     Station2=38861,
+                               Distance=4,
+                    Time=new TimeSpan(0,10,0),
 
                 },
               new AdjacentStations
@@ -1095,6 +1190,8 @@ namespace DS
                   id=++(idAdjStation),
                     Station1=38861,
                     Station2=38860,
+                               Distance=4,
+                    Time=new TimeSpan(0,10,0),
 
                 },
                new AdjacentStations
@@ -1102,6 +1199,8 @@ namespace DS
                    id=++(idAdjStation),
                     Station1=38860,
                     Station2=38859,
+                               Distance=12,
+                    Time=new TimeSpan(0,30,0),
 
                 },
                 new AdjacentStations
@@ -1109,6 +1208,8 @@ namespace DS
                     id=++(idAdjStation),
                     Station1=38881,
                     Station2=38883,
+                               Distance=4,
+                    Time=new TimeSpan(0,10,0),
 
                 },
              new AdjacentStations
@@ -1116,6 +1217,8 @@ namespace DS
                  id=++(idAdjStation),
                     Station1=38883,
                     Station2=38884,
+                               Distance=12,
+                    Time=new TimeSpan(0,30,0),
 
                 },
               new AdjacentStations
@@ -1123,6 +1226,8 @@ namespace DS
                   id=++(idAdjStation),
                     Station1=38884,
                     Station2=38885,
+                               Distance=2,
+                    Time=new TimeSpan(0,5,0),
 
                 },
                new AdjacentStations
@@ -1130,13 +1235,16 @@ namespace DS
                    id=++(idAdjStation),
                     Station1=38885,
                     Station2=38891,
-
+                            Distance=2,
+                    Time=new TimeSpan(0,5,0),
                 },
                 new AdjacentStations
                 {
                     id=++(idAdjStation),
                     Station1=38891,
                     Station2=38890,
+                            Distance=2,
+                    Time=new TimeSpan(0,5,0),
 
                 },
                  new AdjacentStations
@@ -1144,6 +1252,8 @@ namespace DS
                      id=++(idAdjStation),
                     Station1=38890,
                     Station2=38889,
+                            Distance=2,
+                    Time=new TimeSpan(0,5,0),
 
                 },
                   new AdjacentStations
@@ -1151,6 +1261,8 @@ namespace DS
                       id=++(idAdjStation),
                     Station1=38889,
                     Station2=38888,
+                            Distance=2,
+                    Time=new TimeSpan(0,5,0),
 
                 },
                    new AdjacentStations
@@ -1158,13 +1270,16 @@ namespace DS
                        id=++(idAdjStation),
                     Station1=38888,
                     Station2=38887,
-
+                            Distance=2,
+                    Time=new TimeSpan(0,5,0),
                 },
                  new AdjacentStations
                 {
                      id=++(idAdjStation),
                     Station1=38887,
                     Station2=38886,
+                            Distance=2,
+                    Time=new TimeSpan(0,5,0),
 
                 },
                   new AdjacentStations
@@ -1172,6 +1287,8 @@ namespace DS
                       id=++(idAdjStation),
                     Station1=38885,
                     Station2=38886,
+                            Distance=4,
+                    Time=new TimeSpan(0,10,0),
 
                 },
                  new AdjacentStations
@@ -1179,6 +1296,9 @@ namespace DS
                      id=++(idAdjStation),
                     Station1=38886,
                     Station2=38884,
+                                   Distance=4,
+                    Time=new TimeSpan(0,10,0),
+
 
                 },
                   new AdjacentStations
@@ -1186,6 +1306,9 @@ namespace DS
                       id=++(idAdjStation),
                     Station1=38884,
                     Station2=38883,
+                                   Distance=4,
+                    Time=new TimeSpan(0,10,0),
+
 
                 },
                    new AdjacentStations
@@ -1193,6 +1316,9 @@ namespace DS
                        id=++(idAdjStation),
                     Station1=38883,
                     Station2=38881,
+                                   Distance=4,
+                    Time=new TimeSpan(0,10,0),
+
 
                 },
                     new AdjacentStations
@@ -1200,6 +1326,9 @@ namespace DS
                         id=++(idAdjStation),
                     Station1=38881,
                     Station2=38880,
+                                   Distance=8,
+                    Time=new TimeSpan(0,20,0),
+
 
                 },
                      new AdjacentStations
@@ -1207,6 +1336,8 @@ namespace DS
                          id=++(idAdjStation),
                     Station1=38880,
                     Station2=38888,
+                           Distance=2,
+                    Time=new TimeSpan(0,5,0),
 
                 },
              new AdjacentStations
@@ -1214,13 +1345,18 @@ namespace DS
                  id=++(idAdjStation),
                     Station1=38852,
                     Station2=38834,
+                           Distance=8,
+                    Time=new TimeSpan(0,20,0),
 
                 },
+               
               new AdjacentStations
                 {
                   id=++(idAdjStation),
                     Station1=38834,
                     Station2=38837,
+                           Distance=4,
+                    Time=new TimeSpan(0,10,0),
 
                 },
                new AdjacentStations
@@ -1228,6 +1364,8 @@ namespace DS
                    id=++(idAdjStation),
                     Station1=38837,
                     Station2=38831,
+                           Distance=8,
+                    Time=new TimeSpan(0,20,0),
 
                 },
                 new AdjacentStations
@@ -1235,6 +1373,8 @@ namespace DS
                     id=++(idAdjStation),
                     Station1=38831,
                     Station2=38836,
+                           Distance=2,
+                    Time=new TimeSpan(0,5,0),
 
                 },
                  new AdjacentStations
@@ -1242,6 +1382,8 @@ namespace DS
                      id=++(idAdjStation),
                     Station1=38836,
                     Station2=38854,
+                           Distance=4,
+                    Time=new TimeSpan(0,10,0),
 
                 },
                   new AdjacentStations
@@ -1249,6 +1391,8 @@ namespace DS
                       id=++(idAdjStation),
                     Station1=38854,
                     Station2=38859,
+                           Distance=8,
+                    Time=new TimeSpan(0,20,0),
 
                 },
                    new AdjacentStations
@@ -1256,6 +1400,8 @@ namespace DS
                        id=++(idAdjStation),
                     Station1=38859,
                     Station2=38860,
+                           Distance=10,
+                    Time=new TimeSpan(0,25,0),
 
                 },
                  new AdjacentStations
@@ -1263,6 +1409,8 @@ namespace DS
                      id=++(idAdjStation),
                     Station1=38860,
                     Station2=38861,
+                           Distance=2,
+                    Time=new TimeSpan(0,5,0),
 
                 },
                   new AdjacentStations
@@ -1270,6 +1418,8 @@ namespace DS
                       id=++(idAdjStation),
                     Station1=38861,
                     Station2=38856,
+                           Distance=8,
+                    Time=new TimeSpan(0,20,0),
 
                 },
                    new AdjacentStations
@@ -1277,6 +1427,8 @@ namespace DS
                        id=++(idAdjStation),
                     Station1=38862,
                     Station2=38861,
+                           Distance=4,
+                    Time=new TimeSpan(0,10,0),
 
                 },
                     new AdjacentStations
@@ -1284,6 +1436,8 @@ namespace DS
                         id=++(idAdjStation),
                     Station1=38859,
                     Station2=38863,
+                        Distance=4,
+                    Time=new TimeSpan(0,10,0),
 
                 },
                      new AdjacentStations
@@ -1291,6 +1445,8 @@ namespace DS
                          id=++(idAdjStation),
                     Station1=38863,
                     Station2=38869,
+                        Distance=2,
+                    Time=new TimeSpan(0,5,0),
 
                 },
                  new AdjacentStations
@@ -1298,6 +1454,8 @@ namespace DS
                      id=++(idAdjStation),
                     Station1=38869,
                     Station2=38867,
+                        Distance=4,
+                    Time=new TimeSpan(0,10,0),
 
                 },
                   new AdjacentStations
@@ -1305,13 +1463,25 @@ namespace DS
                       id=++(idAdjStation),
                     Station1=38867,
                     Station2=38866,
-
+                        Distance=10,
+                    Time=new TimeSpan(0,25,0),
                 },
              new AdjacentStations
                 {
                  id=++(idAdjStation),
                     Station1=38866,
                     Station2=38865,
+                        Distance=4,
+                    Time=new TimeSpan(0,10,0),
+
+                },
+                 new AdjacentStations
+                {
+                          id=++(idAdjStation),
+                    Station1=38842,
+                    Station2=38844,
+                          Distance=6,
+                    Time=new TimeSpan(0,15,0)
 
                 },
             };

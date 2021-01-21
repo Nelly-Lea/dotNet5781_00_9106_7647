@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using BLAPI;
 using DLAPI;
 
+
 namespace PL
 {
     /// <summary>
@@ -26,10 +27,21 @@ namespace PL
         public MainWindow()
         {
             InitializeComponent();
-            //BL.BLImp b1 = new BL.BLImp();
+            BL.BLImp b1 = new BL.BLImp();
             //bl = BLFactory.GetBL("1");
             IDL d = DLFactory.GetDL();
           var v =   d.GetAllLines();
+
+            DO.Line l = d.GetLine(1);
+            BO.Line lineBO = new BO.Line();
+            lineBO.Area = (BO.Areas)l.Area;
+            lineBO.Code = l.Code;
+            lineBO.FirstStation = l.FirstStation;
+            lineBO.Id = l.Id;
+            lineBO.LastStation = l.LastStation;
+      
+
+            BO.ShowStationsLine s = b1.ShowStations(lineBO);
         }
     }
 }

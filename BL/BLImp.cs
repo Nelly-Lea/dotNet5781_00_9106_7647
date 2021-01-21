@@ -9,21 +9,64 @@ using System.Threading;
 
 namespace BL
 {
-     class BLImp : IBL //internal
+     public class BLImp : IBL //internal pas publiccccc
     {
         IDL dl = DLFactory.GetDL();
         #region Line 
-        //BO.Line ShowStations(BO.Line line)
-        //{
-        //    BO.Line lineBO = new BO.Line();
-            
+       public  BO.ShowStationsLine ShowStations(BO.Line line)// pas public!!!
+        {
+            BO.ShowStationsLine stationslineBO = new BO.ShowStationsLine();
+            BO.Station stationBO = new BO.Station();
 
-        // IEnumerable<DO.Line> ListofLines = dl.GetAllLines();
-        // IEnumerable<DO.Line>  linesDO = (IEnumerable<DO.Line>)ListofLines.Select(x => x.Id==line.Id);
-         
-          
-            
-        //}
+
+
+            IEnumerable<DO.Line> ListofLines = dl.GetAllLines();
+            IEnumerable<DO.Line> linesDO = (IEnumerable<DO.Line>)ListofLines.Where(x => x.Id == line.Id);
+            int currentstation;
+            int id = linesDO.FirstOrDefault().Id;
+            currentstation = linesDO.FirstOrDefault().FirstStation;
+            IEnumerable<DO.LineStation> linestationsDO = dl.GetAllLineStations();
+            IEnumerable<DO.LineStation> linestationDO;
+            while (currentstation!= linesDO.FirstOrDefault().LastStation)
+            {
+                //DO.LineStation linestationDO = dl.GetLineStation(id);
+
+                 linestationDO = linestationsDO.Where(x => (x.LineId == id) && (x.Station == currentstation));
+                DO.Station stationDO = dl.GetStation(linestationDO.FirstOrDefault().Station);
+                stationBO.Address = stationDO.Address;
+                stationBO.Code = stationDO.Code;
+                stationBO.Name= stationDO.Name;
+                stationBO.Latitude= stationDO.Latitude;
+                stationBO.Longitude = stationDO.Longitude;
+                stationslineBO.ListStat.Add(stationBO);
+                int nextstation = linestationDO.FirstOrDefault().NextStation;
+                IEnumerable<DO.AdjacentStations> adjstationsDO = dl.GetAllAdjacentStations();
+                IEnumerable<DO.AdjacentStations> adjstationDO = adjstationsDO.Where(x => (x.Station1 == currentstation) && (x.Station2 == nextstation));
+                stationslineBO.ListDistances.Add(adjstationDO.FirstOrDefault().Distance);
+                stationslineBO.ListTimes.Add(adjstationDO.FirstOrDefault().Time);
+                currentstation = nextstation;
+                linestationDO = linestationsDO.Where(x => (x.LineId == id) && (x.Station == nextstation));
+            }
+            linestationDO = linestationsDO.Where(x => (x.LineId == id) && (x.Station == linesDO.FirstOrDefault().LastStation));
+            DO.Station stationDO2 = dl.GetStation(linestationDO.FirstOrDefault().Station);
+            stationBO.Address = stationDO2.Address;
+            stationBO.Code = stationDO2.Code;
+            stationBO.Name = stationDO2.Name;
+            stationBO.Latitude = stationDO2.Latitude;
+            stationBO.Longitude = stationDO2.Longitude;
+            stationslineBO.ListStat.Add(stationBO);
+            return stationslineBO;
+
+        }
+        public void AddLine(int code,BO.Areas area, int firstation, int laststation)
+        {
+            DO.Line line = new DO.Line();
+            line.Area =(DO.Areas) area;
+            line.Code = code;
+            line.FirstStation = firstation;
+            line.LastStation = laststation;
+            //line.Id = id;
+        }
 
         #endregion Line
         //#region Student

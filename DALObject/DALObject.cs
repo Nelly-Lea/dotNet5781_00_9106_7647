@@ -16,6 +16,10 @@ namespace DL
         public static DALObject Instance { get => instance; }// The public Instance property to use
         #endregion
         //Implement IDL methods, CRUD
+        //public static int Countplus(int id)
+        //{
+        //    return ++id;
+        //}
         #region Station
 
         public DO.Station GetStation(int code)
