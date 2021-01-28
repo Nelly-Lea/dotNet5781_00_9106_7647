@@ -83,6 +83,7 @@ namespace dotNet5781_01_9106_7647
                             Console.WriteLine("its good you can travel!");
                             Listb[i].Gasoline = Listb[i].Gasoline - x;
                             Listb[i].KmBegin += x;
+                            
                         }
                         else
                             Console.WriteLine("You can't travel you have to do treatment");

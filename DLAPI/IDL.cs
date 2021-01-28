@@ -22,6 +22,7 @@ namespace DLAPI
         #region Line
         
         DO.Line GetLine(int id);
+        int Countplus();
         IEnumerable<DO.Line> GetAllLines();
        
         void AddLine(DO.Line Line);
@@ -32,6 +33,7 @@ namespace DLAPI
         #endregion Line
 
         #region LineStation
+        int CountplusLineStation();
         DO.LineStation GetLineStation(int id);
         IEnumerable<DO.LineStation> GetAllLineStations();
         
@@ -42,6 +44,8 @@ namespace DLAPI
 
         #endregion LineStationStation
         #region AdjacentStation
+        int CountplusAdjacentStation();
+         double CalculateDist(DO.Station stat1, DO.Station stat2);
         DO.AdjacentStations GetAdjacentStations(int id);
         IEnumerable<DO.AdjacentStations> GetAllAdjacentStations();
 

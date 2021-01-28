@@ -18,6 +18,19 @@ namespace DO
 
         public override string ToString() => base.ToString() + $", bad station code: {CODE}";
     }
+    public class BadLineCodeException : Exception
+    {
+        public int CODE;
+
+        public BadLineCodeException(int code) : base() => CODE = code;
+        //public BadLineCodeException(int id, string message) :
+        //    base(message) => ID = id;
+        //public BadLineCodeException(int id, string message, Exception innerException) :
+        //    base(message, innerException) => ID = id;
+
+        public override string ToString() => base.ToString() + $", impossibke to add this line: {CODE}"; //if we add a line that already exist but with wrong first and last station
+                                                                                                         //or if we add a line that already exits with same first and last station 
+    }
     public class BadLineIdException : Exception
     {
         public int ID;
@@ -42,14 +55,14 @@ namespace DO
     }
     public class BadLineStationIdException : Exception
     {
-        public int ID;
-        public BadLineStationIdException(int id) : base() => ID = id;
-        public BadLineStationIdException(int id, string message) :
-            base(message) => ID = id;
-        public BadLineStationIdException(int id, string message, Exception innerException) :
-            base(message, innerException) => ID = id;
+        public int LINEID;
+        public BadLineStationIdException(int lineid) : base() => LINEID = lineid;
+        public BadLineStationIdException(int lineid, string message) :
+            base(message) => LINEID = lineid;
+        public BadLineStationIdException(int lineid, string message, Exception innerException) :
+            base(message, innerException) => LINEID = lineid;
 
-        public override string ToString() => base.ToString() + $", bad linestation id: {ID}";
+        public override string ToString() => base.ToString() + $", bad line station line id: {LINEID}";
     }
 
     public class BadAdjacentStationsIdException : Exception
@@ -87,7 +100,17 @@ namespace DO
         public override string ToString() => base.ToString() + $", bad Trip Id: {TripId}";
     }
 
+    public class BadLineTripLineIdException : Exception
+    {
+        public int LINEID;
+        // public BadLineTripIdException(int id) : base() => ID = id;
+        public BadLineTripLineIdException(int lineid, string message) :
+            base(message) => LINEID = lineid;
+        //public BadLineTripIdException(int id, string message, Exception innerException) :
+        //    base(message, innerException) => ID = id;
 
+        public override string ToString() => base.ToString() + $", bad linetrip line id: {LINEID}";
+    }
     public class BadUserNameException : Exception
     {
         public string UserName;

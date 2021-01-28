@@ -32,13 +32,7 @@ namespace DS
             InitAllLists();
            
         }
-        static double CalculateDist(Station stat1, Station stat2)
-        {
-            GeoCoordinate p1 = new GeoCoordinate(stat1.Latitude, stat1.Longitude);
-            GeoCoordinate p2 = new GeoCoordinate(stat2.Latitude, stat2.Longitude);
-            double distance = p1.GetDistanceTo(p2);
-            return distance;
-        }
+       
         static void InitAllLists()
         {
             ListStations = new List<Station>
@@ -1495,6 +1489,7 @@ namespace DS
                         LineStationIndex=1,
                         PrevStation=-1,
                         NextStation=38839,
+                        
                 },
 
                 new LineStation

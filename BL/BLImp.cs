@@ -65,9 +65,46 @@ namespace BL
             line.Code = code;
             line.FirstStation = firstation;
             line.LastStation = laststation;
-            //line.Id = id;
-        }
+            line.Id = dl.Countplus();
+            line.CountStation = 2;
+            dl.AddLine(line);
 
+            DO.LineStation lineStation1 = new DO.LineStation();
+            lineStation1.LineId = line.Id;
+            lineStation1.Station = line.FirstStation;
+            lineStation1.LineStationIndex = 1;
+            lineStation1.PrevStation = -1;
+            lineStation1.NextStation = laststation;
+
+            DO.LineStation lineStation2 = new DO.LineStation();
+            lineStation2.LineId = line.Id;
+            lineStation2.Station = line.LastStation;
+            lineStation1.LineStationIndex = 2;
+            lineStation1.PrevStation = line.FirstStation;
+            lineStation1.NextStation = -1;
+
+            dl.AddLineStation(lineStation1);
+            dl.AddLineStation(lineStation2);
+
+            DO.AdjacentStations adjacentStation = new DO.AdjacentStations();
+
+            adjacentStation.Distance = (dl.CalculateDist(dl.GetStation(firstation), dl.GetStation(laststation)));
+            //vitesse=30km/h=>500m/min
+            double time = adjacentStation.Distance / 500;
+            int h = (int)time / 60;
+            int m = (int)time % 60;
+            adjacentStation.Time = new TimeSpan(h, m, 0);
+            dl.AddAdjacentStations(adjacentStation);
+        }
+        // FONCTION UPDATE
+        public void DeleteLine(int id)
+        {
+            
+            dl.DeleteLine(id);
+            dl.DeleteLineStation(id);
+            dl.DeleteLineTrip(id);
+            
+        }
         #endregion Line
         //#region Student
         //BO.Student studentDoBoAdapter(DO.Student studentDO)

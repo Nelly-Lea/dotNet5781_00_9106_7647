@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using DS;
 using DLAPI;
+using System.Device.Location;
+
 namespace DL
 {
     sealed class DALObject : IDL
@@ -16,10 +18,7 @@ namespace DL
         public static DALObject Instance { get => instance; }// The public Instance property to use
         #endregion
         //Implement IDL methods, CRUD
-        //public static int Countplus(int id)
-        //{
-        //    return ++id;
-        //}
+       
         #region Station
 
         public DO.Station GetStation(int code)
@@ -81,6 +80,10 @@ namespace DL
         //}
         #endregion Station
         #region Line
+        public int Countplus()
+        {
+            return ++DataSource.id;
+        }
         public DO.Line GetLine(int id)
         {
             DO.Line line = DataSource.ListLines.Find(p => p.Id == id);
@@ -90,10 +93,18 @@ namespace DL
             else
                 throw new DO.BadLineIdException(id, $"bad line id: {id}");
         }
+        
         public void AddLine(DO.Line line)
         {
+            DO.Line l = new DO.Line();
             if (DataSource.ListLines.FirstOrDefault(s => s.Id == line.Id) != null)
                 throw new DO.BadLineIdException(line.Id, "Duplicate line ID");
+            l = DataSource.ListLines.Find(x => (x.Code == line.Code)&&(l.Area==line.Area));
+            if(l!=null)
+            {
+                if ((l.FirstStation != line.LastStation) && (l.LastStation != line.FirstStation) || ((l.FirstStation == line.FirstStation) && (l.LastStation != line.LastStation)))
+                    throw new DO.BadLineCodeException(l.Code);      
+            }
            
             DataSource.ListLines.Add(line.Clone());
         }
@@ -162,16 +173,16 @@ namespace DL
             DataSource.ListLineTrip.Add(linetrip.Clone());
         }
 
-        public void DeleteLineTrip(int id)
+        public void DeleteLineTrip(int lineid)
         {
-            DO.LineTrip linetrip = DataSource.ListLineTrip.Find(p => p.Id == id);
+            DO.LineTrip linetrip = DataSource.ListLineTrip.Find(p => p.LineId == lineid);
 
             if (linetrip != null)
             {
                 DataSource.ListLineTrip.Remove(linetrip);
             }
             else
-                throw new DO.BadLineTripIdException(id, $"bad linetrip id: {id}");
+                throw new DO.BadLineTripLineIdException(lineid, $"bad linetrip line id: {lineid}");
         }
 
         public void UpdateLineTrip(DO.LineTrip linetrip)
@@ -188,6 +199,10 @@ namespace DL
         }
         #endregion LineTrip
         #region LineStation
+        public int CountplusLineStation()
+        {
+            return ++DataSource.idLineStation;
+        }
         public DO.LineStation GetLineStation(int id)
         {
             DO.LineStation linestation = DataSource.ListLineStations.Find(p => (p.LineId == id));
@@ -215,16 +230,20 @@ namespace DL
             DataSource.ListLineStations.Add(linestation.Clone());
         }
 
-        public void DeleteLineStation(int id)
+        public void DeleteLineStation(int lineid)
         {
-            DO.LineStation linestation = DataSource.ListLineStations.Find(p => p.Id == id);
-
-            if (linestation != null)
+          //  IEnumerable<DO.LineStation> linestations = DataSource.ListLineStations.Find(p => p.LineId == lineid);
+          foreach(var item in DataSource.ListLineStations)
             {
-                DataSource.ListLineStations.Remove(linestation);
+                if(item.LineId==lineid)
+                    DataSource.ListLineStations.Remove(item);
             }
-            else
-                throw new DO.BadLineStationIdException(id, $"bad linestation id: {id}");
+            //if (linestation != null)
+            //{
+            //    DataSource.ListLineStations.Remove(linestation);
+            //}
+            //else
+            //    throw new DO.BadLineStationIdException(lineid, $"bad line station LineId: {lineid}");
         }
 
         public void UpdateLineStation(DO.LineStation linestation)
@@ -246,6 +265,17 @@ namespace DL
         //}
         #endregion LineStation
         #region AdjacentStations
+        public int CountplusAdjacentStation()
+        {
+            return ++DataSource.idAdjStation;
+        }
+        public double CalculateDist(DO.Station stat1, DO.Station stat2)
+        {
+            GeoCoordinate p1 = new GeoCoordinate(stat1.Latitude, stat1.Longitude);
+            GeoCoordinate p2 = new GeoCoordinate(stat2.Latitude, stat2.Longitude);
+            double distance = p1.GetDistanceTo(p2);
+            return distance;
+        }
         public DO.AdjacentStations GetAdjacentStations(int Id)
         {
             DO.AdjacentStations AdjStation= DataSource.ListAdjacentStations.Find(p => p.id == Id);
