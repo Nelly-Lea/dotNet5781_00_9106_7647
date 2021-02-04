@@ -20,6 +20,7 @@ namespace DL
         public static DLXML Instance { get => instance; }// The public Instance property to use
         #endregion
 
+
         #region DS XML Files
         XElement stationRoot;
         XElement LineRoot;
@@ -168,7 +169,10 @@ namespace DL
             else
                 throw new DO.BadLineIdException(id, $"bad Line id: {id}");
         }
-
+        public int Countplus() //a modidfier
+        {
+            return 1;
+        }
         public void AddLine(DO.Line line)
         {
             List<Line> ListLines = XMLTools.LoadListFromXMLSerializer<Line>(LinePath);
@@ -245,6 +249,11 @@ namespace DL
         #endregion Line
 
         #region LineStation
+        public int CountplusLineStation()// a mdifier
+        {
+            //return ++DataSource.idLineStation;
+            return 1;
+        }
         public void SaveLineStationListLinq(List<LineStation> LineStationList)
         {
             LineStationRoot = new XElement("linestations",
@@ -453,6 +462,19 @@ namespace DL
 
         #endregion LineTrip
         #region AdjacentStation
+        public int CountplusAdjacentStation()//a modifier
+        {
+            // return ++DataSource.idAdjStation;
+            return 1;
+        }
+        public double CalculateDist(DO.Station stat1, DO.Station stat2) // a modifier
+        {
+        //    GeoCoordinate p1 = new GeoCoordinate(stat1.Latitude, stat1.Longitude);
+        //    GeoCoordinate p2 = new GeoCoordinate(stat2.Latitude, stat2.Longitude);
+        //    double distance = p1.GetDistanceTo(p2);
+        //    return distance;
+        return 1;
+        }
         public void SaveAdajcentStationListLinq(List<AdjacentStations> adjacentstationList)
         {
             AdjacentStationRoot = new XElement("adjacentstations",

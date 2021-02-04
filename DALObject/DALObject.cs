@@ -82,6 +82,7 @@ namespace DL
         #region Line
         public int Countplus()
         {
+        
             return ++DataSource.id;
         }
         public DO.Line GetLine(int id)

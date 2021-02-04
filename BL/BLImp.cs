@@ -58,6 +58,98 @@ namespace BL
             return stationslineBO;
 
         }
+
+        public BO.ShowStations ShowBusStations()
+        {
+            BO.ShowStations ss = new BO.ShowStations();
+            List<BO.Station> listStationBO=new List<BO.Station>();
+            IEnumerable<DO.Station> listStationDO = dl.GetAllStations();
+            
+            foreach(var item in listStationDO)
+            {
+                BO.Station StationBO = new BO.Station();
+                StationBO.Code = item.Code;
+                StationBO.Name = item.Name;
+                StationBO.Address = item.Address;
+                StationBO.Longitude = item.Longitude;
+                StationBO.Latitude = item.Latitude;
+                listStationBO.Add(StationBO);
+
+            }
+
+            ss.stations = listStationBO;
+            List<BO.AdjacentStations> listAdjStationBO = new List<BO.AdjacentStations>();
+            IEnumerable<DO.AdjacentStations> listAdjStationDO = dl.GetAllAdjacentStations();
+           
+            foreach (var item in listAdjStationDO)
+            {
+                BO.AdjacentStations AdjStationBO = new BO.AdjacentStations();
+                AdjStationBO.Distance = item.Distance;
+                AdjStationBO.id = item.id;
+                AdjStationBO.Station1 = item.Station1;
+                AdjStationBO.Station2 = item.Station2;
+                AdjStationBO.Time = item.Time;
+                listAdjStationBO.Add(AdjStationBO);
+
+            }
+            ss.adjStations = listAdjStationBO;
+            int codeLine,lineId,codeLastStation;
+            List<int> listinterieurcode = new List<int>();
+            List<string> listinterieurname = new List<string>();
+
+            IEnumerable<DO.LineStation> listLineStationDO=dl.GetAllLineStations();
+            //int i = 0;
+            foreach(var item in listStationBO)
+            {
+                codeLine = item.Code;
+                listinterieurcode = new List<int>();
+                listinterieurname = new List<string>();
+                foreach (var item1 in listLineStationDO)
+                {
+
+                    if(item1.Station==codeLine)
+                    {
+                        lineId = item1.LineId;
+                        
+                       
+                        foreach (var item2 in dl.GetAllLines())
+                        {
+                            if (item2.Id == lineId)
+                            {
+
+                                //ss.linesNumbers[i] = new List<int>();
+                                //ss.linesNumbers[i].Add(item2.Code);
+                               
+                                listinterieurcode.Add(item2.Code);
+                                codeLastStation = item2.LastStation;
+                                foreach(var item3 in dl.GetAllStations())
+                                {
+                                    if (item3.Code == codeLastStation)
+                                    {
+                                        //ss.lastStationNames[i].Add(item3.Name);
+                                        
+                                        listinterieurname.Add(item3.Name);
+                                    }
+                                }
+                            }
+                                
+                            
+                        }
+
+
+                    }
+                    
+                }
+                // i++;
+                ss.linesNumbers.Add(listinterieurcode);
+                ss.lastStationNames.Add(listinterieurname);
+               
+              
+            }
+            return ss;
+
+
+        }
         public void AddLine(int code,BO.Areas area, int firstation, int laststation)
         {
             DO.Line line = new DO.Line();
@@ -106,6 +198,48 @@ namespace BL
             
         }
         #endregion Line
+        #region AdjacentStation
+        void UpdateTimeAndDistance(BO.AdjacentStations AdjacentStation)
+        {
+            DO.Station station1 = new DO.Station();
+            DO.Station station2 = new DO.Station();
+            foreach(var item in dl.GetAllStations())
+            {
+                if (item.Code == AdjacentStation.Station1)
+                    station1 = item;
+                if (item.Code == AdjacentStation.Station2)
+                    station2 = item;
+            }
+            double distance = dl.CalculateDist(station1, station2);
+            AdjacentStation.Distance = distance;
+            //vitesse=30km/h=>500m/min
+            double time = AdjacentStation.Distance / 500;
+            int h = (int)time / 60;
+            int m = (int)time % 60;
+            AdjacentStation.Time = new TimeSpan(h, m, 0);
+            DO.AdjacentStations adjacentStationsDO = new DO.AdjacentStations();
+            adjacentStationsDO.Distance = AdjacentStation.Distance;
+            adjacentStationsDO.id = AdjacentStation.id;
+            adjacentStationsDO.Station1 = AdjacentStation.Station1;
+            adjacentStationsDO.Station2 = AdjacentStation.Station2;
+            adjacentStationsDO.Time = AdjacentStation.Time;
+            dl.UpdateAdjacentStations(adjacentStationsDO);
+
+        }
+        #endregion AdjacentStation
+        #region Station
+        void AddStation(int code, string name,double longitude,double latitude,string address)
+        {
+            DO.Station station = new DO.Station();
+            station.Code = code;
+            station.Name = name;
+            station.Longitude = longitude;
+            station.Latitude = latitude;
+            station.Address = address;
+            dl.AddStation(station);
+        }
+        #endregion Station
+
         //#region Student
         //BO.Student studentDoBoAdapter(DO.Student studentDO)
         //{

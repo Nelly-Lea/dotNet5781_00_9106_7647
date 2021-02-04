@@ -42,6 +42,8 @@ namespace PL
       
 
             BO.ShowStationsLine s = b1.ShowStations(lineBO);
+
+            BO.ShowStations ss = b1.ShowBusStations();
         }
     }
 }
