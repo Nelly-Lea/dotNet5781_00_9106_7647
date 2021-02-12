@@ -43,7 +43,8 @@ namespace DS
                     Name="Bar Lev School/ Ben Yehouda",
                     Latitude= 32.183921,
                     Longitude= 34.917806,
-                    Address="76 Ben Yehouda Street, Kfar Sabba"
+                    Address="76 Ben Yehouda Street, Kfar Sabba",
+                    Area=Areas.KfarSabba,
 
 
                 },
@@ -53,7 +54,8 @@ namespace DS
                     Name="Herzel/ Tsomet Gilo",
                     Latitude= 31.870034,
                     Longitude=34.819541 ,
-                    Address="Herzel Street, Kyriat Ekron"
+                    Address="Herzel Street, Kyriat Ekron",
+                    Area=Areas.KyriatEkron,
 
 
                 },
@@ -63,7 +65,8 @@ namespace DS
                     Name="Anehshol/ Adayaguim",
                     Latitude= 31.984553,
                     Longitude= 34.782828,
-                    Address="30 Anehshol Street, Rishon Letsion"
+                    Address="30 Anehshol Street, Rishon Letsion",
+                    Area=Areas.RishonLetsion,
 
 
                 },
@@ -73,7 +76,8 @@ namespace DS
                     Name="Frid/ Chechet Ayamim",
                     Latitude= 31.88855,
                     Longitude= 34.790904,
-                    Address="9 Moshe Frid Street, Rehovot"
+                    Address="9 Moshe Frid Street, Rehovot",
+                     Area=Areas.Rehovot,
 
 
                 },
@@ -84,7 +88,8 @@ namespace DS
                     Name="Tahanat merkazite Lod/Orada",
                     Latitude=31.956392 ,
                     Longitude=34.898098 ,
-                    Address="Lod"
+                    Address="Lod",
+                     Area=Areas.Lod,
 
 
                 },
@@ -94,7 +99,8 @@ namespace DS
                     Name="Hanna Avreh/ Volkni",
                     Latitude= 31.892166,
                     Longitude=34.796071 ,
-                    Address="9 Hanna Avreh Street, Rehovot"
+                    Address="9 Hanna Avreh Street, Rehovot",
+                     Area=Areas.Rehovot,
 
 
                 },
@@ -104,7 +110,8 @@ namespace DS
                     Name="Herzel/ Moshe Sharet",
                     Latitude= 31.857565,
                     Longitude=34.824106 ,
-                    Address="20 Herzel Street, Kyriat Ekron"
+                    Address="20 Herzel Street, Kyriat Ekron",
+                     Area=Areas.KyriatEkron,
 
 
                 },
@@ -114,7 +121,8 @@ namespace DS
                     Name="Abanim/Elie Cohen",
                     Latitude=31.862305 ,
                     Longitude=34.821857 ,
-                    Address="4 Abanim Street, Kyriat Ekron"
+                    Address="4 Abanim Street, Kyriat Ekron",
+                     Area=Areas.KyriatEkron,
 
                 },
                               new Station//9
@@ -123,7 +131,8 @@ namespace DS
                     Name="Weizman/Abanim",
                     Latitude=31.865085 ,
                     Longitude= 34.822237,
-                    Address="11 Weizman Street, Kyriat Ekron"
+                    Address="11 Weizman Street, Kyriat Ekron",
+                     Area=Areas.KyriatEkron,
 
                 },
                      new Station//10
@@ -132,7 +141,8 @@ namespace DS
                     Name="Ahirouss/Akalanite",
                     Latitude=31.865222 ,
                     Longitude=34.818957 ,
-                    Address="13 Ahirouss Street, Kyriat Ekron"
+                    Address="13 Ahirouss Street, Kyriat Ekron",
+                     Area=Areas.KyriatEkron,
 
                 },
                 new Station//11
@@ -141,7 +151,8 @@ namespace DS
                     Name="Akalanite/Anarkiss",
                     Latitude=31.867597 ,
                     Longitude= 34.818392,
-                    Address="Akalanite Street, Kyriat Ekron"
+                    Address="Akalanite Street, Kyriat Ekron",
+                     Area=Areas.KyriatEkron,
 
                 },
                       new Station//12
@@ -150,7 +161,8 @@ namespace DS
                     Name="Elie Cohen/ Lohamey Agatahout",
                     Latitude= 31.86244,
                     Longitude= 34.827023,
-                    Address="62 Elie Cohen Street, Kyriat Ekron"
+                    Address="62 Elie Cohen Street, Kyriat Ekron",
+                     Area=Areas.KyriatEkron,
 
                 },
                             new Station//13
@@ -159,7 +171,8 @@ namespace DS
                     Name="Chivzey/ Chevet Ahim",
                     Latitude= 31.863501,
                     Longitude= 34.828702,
-                    Address="51 Chivzey Street, Kyriat Ekron"
+                    Address="51 Chivzey Street, Kyriat Ekron",
+                     Area=Areas.KyriatEkron,
 
                 },
                      new Station//14
@@ -168,7 +181,8 @@ namespace DS
                     Name="Chivzey/Weizman",
                     Latitude= 31.865348,
                     Longitude= 34.827102,
-                    Address="31 Chivzey Street, Kyriat Ekron"
+                    Address="31 Chivzey Street, Kyriat Ekron",
+                     Area=Areas.KyriatEkron,
 
                 },
                   new Station//15
@@ -178,6 +192,8 @@ namespace DS
                     Latitude= 31.977409,
                     Longitude= 34.763896,
                     Address="Hain Bar Lev Street, Rishon Letsion"
+                    ,
+                     Area=Areas.RishonLetsion,
 
                 },
                         new Station//16
@@ -186,7 +202,8 @@ namespace DS
                     Name="Merkaz Labriout Anefech Lev Asharon",
                     Latitude=32.300345 ,
                     Longitude=34.912708 ,
-                    Address="Tsour Moshe"
+                    Address="Tsour Moshe",
+                      Area=Areas.TsourMoshe,
 
                 },
                       new Station//17
@@ -195,7 +212,8 @@ namespace DS
                     Name="Merkaz Labriout Anefech Lev Asharon",
                     Latitude= 32.301347,
                     Longitude=34.912602 ,
-                    Address="Tsour Moshe"
+                    Address="Tsour Moshe",
+                      Area=Areas.TsourMoshe,
 
                 },
                      new Station//18
@@ -204,7 +222,8 @@ namespace DS
                     Name="Oltsman/Amada",
                     Latitude= 31.914255,
                     Longitude=34.807944 ,
-                    Address="2 Haim Oltsman Street, Rehovot"
+                    Address="2 Haim Oltsman Street, Rehovot",
+                      Area=Areas.Rehovot,
 
                 },
                        new Station//19
@@ -213,7 +232,8 @@ namespace DS
                     Name="Mahaney Tserifin/Mohadon",
                     Latitude= 31.963668,
                     Longitude=34.836363 ,
-                    Address="Tserifin"
+                    Address="Tserifin",
+                      Area=Areas.General,
 
                 },
                         new Station//20
@@ -222,7 +242,8 @@ namespace DS
                     Name="Herzel/Golani",
                     Latitude= 31.856115,
                     Longitude=34.825249 ,
-                    Address="4 Herzel Street, Kyriat Ekron"
+                    Address="4 Herzel Street, Kyriat Ekron",
+                      Area=Areas.KyriatEkron,
 
                 },
                          new Station//21
@@ -231,7 +252,8 @@ namespace DS
                     Name="Arotem/Adagniot",
                     Latitude=31.874963 ,
                     Longitude= 34.81249,
-                    Address="3 Arotem Street, Rehovot"
+                    Address="3 Arotem Street, Rehovot",
+                      Area=Areas.Rehovot,
 
                 },
                   new Station//22
@@ -240,7 +262,8 @@ namespace DS
                     Name="Aarava",
                     Latitude=32.300035 ,
                     Longitude=34.910842 ,
-                    Address="Aarava Street, Tsour Moshe"
+                    Address="Aarava Street, Tsour Moshe",
+                      Area=Areas.TsourMoshe,
 
                 },
                       new Station//23
@@ -249,7 +272,8 @@ namespace DS
                     Name="Mavo Aguefen/Mored Ataana",
                     Latitude=32.305234 ,
                     Longitude=34.948647 ,
-                    Address="Mavo Aguefen Street, Yanov"
+                    Address="Mavo Aguefen Street, Yanov",
+                      Area=Areas.General,
 
                 },
                       new Station//24
@@ -258,7 +282,8 @@ namespace DS
                     Name="Mavo Aguefen/ Aarhava",
                     Latitude=32.304022 ,
                     Longitude=34.943393 ,
-                    Address="Mavo Aguefen Street, Yanov"
+                    Address="Mavo Aguefen Street, Yanov",
+                      Area=Areas.General,
 
                 },
                       new Station//25
@@ -267,7 +292,8 @@ namespace DS
                     Name="Aarhava Aleph",
                     Latitude= 32.302957,
                     Longitude=34.940529 ,
-                    Address="Aarhava Street, Geoulim"
+                    Address="Aarhava Street, Geoulim",
+                      Area=Areas.Gueoulim,
 
                 },
                       new Station//26
@@ -276,7 +302,8 @@ namespace DS
                     Name="Aarhava Bet",
                     Latitude=32.300264 ,
                     Longitude=34.939512 ,
-                    Address="Aarhava Street, Gueoulim"
+                    Address="Aarhava Street, Gueoulim",
+                      Area=Areas.Gueoulim,
 
                 },
                       new Station//27
@@ -285,7 +312,8 @@ namespace DS
                     Name="Aarhava/Otikim",
                     Latitude= 32.298171,
                     Longitude=34.938705 ,
-                    Address="Aarhava Street, Gueoulim"
+                    Address="Aarhava Street, Gueoulim",
+                      Area=Areas.Gueoulim,
 
                 },
                       new Station//28
@@ -294,7 +322,8 @@ namespace DS
                     Name="Reshout Sdot Ateoufat/ Aelia",
                     Latitude= 31.990876,
                     Longitude=34.8976 ,
-                    Address="Sderot Aelia Street,Namal Teoufat Ben Gurion"
+                    Address="Sderot Aelia Street,Namal Teoufat Ben Gurion",
+                      Area=Areas.center
 
                 },
                       new Station//29
@@ -303,7 +332,8 @@ namespace DS
                     Name="Kanaf/Brosh",
                     Latitude=31.998767 ,
                     Longitude= 34.879725,
-                    Address="Kanaf Street, Namal Teoufat Ben Gurion"
+                    Address="Kanaf Street, Namal Teoufat Ben Gurion",
+                    Area=Areas.center
 
                 },
                        new Station//30
@@ -312,7 +342,8 @@ namespace DS
                     Name="Ahaboura/Dov Oz",
                     Latitude= 31.883019,
                     Longitude= 34.818708,
-                    Address="24 Ahaboura Street,Rehovot"
+                    Address="24 Ahaboura Street,Rehovot",
+                    Area=Areas.Rehovot
 
                 },
                       new Station//31
@@ -321,7 +352,9 @@ namespace DS
                     Name="Bet Alevy He",
                     Latitude=32.349776 ,
                     Longitude=34.926837 ,
-                    Address="105, Bet Alevy"
+                    Address="105, Bet Alevy",
+                          Area=Areas.General,
+
 
                 },
                       new Station//32
@@ -330,7 +363,9 @@ namespace DS
                     Name="Arishonim/Kvish 5700",
                     Latitude= 32.352953,
                     Longitude= 34.899465,
-                    Address="13 Amigdal Street, Kfar Haim"
+                    Address="13 Amigdal Street, Kfar Haim",
+                          Area=Areas.General,
+
 
                 },
                       new Station//33
@@ -339,7 +374,8 @@ namespace DS
                     Name="Agaon Ben Ish Hay/Tsaalon",
                     Latitude=31.897286 ,
                     Longitude=34.775083 ,
-                    Address="Rehovot"
+                    Address="Rehovot",
+                          Area=Areas.Rehovot,
 
                 },
                       new Station//34
@@ -348,7 +384,8 @@ namespace DS
                     Name="Oukchey/Levi Eshkol",
                     Latitude= 31.883941,
                     Longitude=34.807039 ,
-                    Address="4 Israel Oukchey, Rehovot"
+                    Address="4 Israel Oukchey, Rehovot",
+                          Area=Areas.Rehovot,
 
                 },
                       new Station//35
@@ -357,7 +394,8 @@ namespace DS
                     Name="Menouha Venahala/ Yehouda Gorodiski",
                     Latitude= 31.896762,
                     Longitude=34.816752 ,
-                    Address="31 Menouha Venahala Street, Rehovot"
+                    Address="31 Menouha Venahala Street, Rehovot",
+                          Area=Areas.Rehovot,
 
                 },
                       new Station//36
@@ -366,7 +404,8 @@ namespace DS
                     Name="Gorodiski/Yehiel Faldi",
                     Latitude= 31.898463,
                     Longitude=34.823461 ,
-                    Address="35 Yehouda Gorodiski Street, Rehovot"
+                    Address="35 Yehouda Gorodiski Street, Rehovot",
+                          Area=Areas.Rehovot,
 
                 },
                       new Station//37
@@ -375,7 +414,8 @@ namespace DS
                     Name="Dereh Menahem Begin/Yaakov Hazan",
                     Latitude= 32.076535,
                     Longitude=34.904907 ,
-                    Address="30 Dereh Menahem Begin, Petah Tikva"
+                    Address="30 Dereh Menahem Begin, Petah Tikva",
+                          Area=Areas.General
 
                 },
                       new Station//38
@@ -384,7 +424,8 @@ namespace DS
                     Name="Dereh Apark/ Arav Neria",
                     Latitude= 32.299994,
                     Longitude= 34.878765,
-                    Address="20 Dereh Apark Street, Netanya"
+                    Address="20 Dereh Apark Street, Netanya",
+                          Area=Areas.north
 
                 },
                       new Station//39
@@ -393,7 +434,8 @@ namespace DS
                     Name="Ateena/Aguefen",
                     Latitude=31.865457 ,
                     Longitude=34.859437 ,
-                    Address="Ateena Street,Yatsits"
+                    Address="Ateena Street,Yatsits",
+                          Area=Areas.General
 
                 },
                       new Station//40
@@ -402,7 +444,8 @@ namespace DS
                     Name="Ateena/Aelon",
                     Latitude=31.866772 ,
                     Longitude=34.864555 ,
-                    Address="Ateena Street, Yatsits"
+                    Address="Ateena Street, Yatsits",
+                          Area=Areas.General
 
                 },
                       new Station//41
@@ -411,7 +454,8 @@ namespace DS
                     Name="Dereh Aprahim/ Yasmin",
                     Latitude= 31.809325,
                     Longitude=34.784347 ,
-                    Address="46 Dereh Aprahim Street,Guedera"
+                    Address="46 Dereh Aprahim Street,Guedera",
+                          Area=Areas.Guedera,
 
                 },
                       new Station//42
@@ -420,7 +464,8 @@ namespace DS
                     Name="Itshak Rabin/Pinhas Sapir",
                     Latitude=31.80037 ,
                     Longitude=34.778239 ,
-                    Address="Dereh Itshak Rabin Street, Guedera"
+                    Address="Dereh Itshak Rabin Street, Guedera",
+                          Area=Areas.Guedera,
 
                 },
                       new Station//43
@@ -429,7 +474,8 @@ namespace DS
                     Name="Menahem Begin/ Itshak Rabin",
                     Latitude=31.799224 ,
                     Longitude=34.782985 ,
-                    Address="4 Sderot Menahem Begin Street, Guedera"
+                    Address="4 Sderot Menahem Begin Street, Guedera",
+                          Area=Areas.Guedera,
 
                 },
                       new Station//44
@@ -438,7 +484,8 @@ namespace DS
                     Name="Haim Hertsog/Dolev",
                     Latitude=31.800334 ,
                     Longitude=34.785069,
-                    Address="12 Haim Hertsog Street, Guedera"
+                    Address="12 Haim Hertsog Street, Guedera",
+                          Area=Areas.Guedera,
 
                 },
                       new Station//45
@@ -447,7 +494,8 @@ namespace DS
                     Name="Bet Sefer Guevanim/Erez",
                     Latitude=31.802319 ,
                     Longitude=34.786735 ,
-                    Address="2 Erez Street, Guedera"
+                    Address="2 Erez Street, Guedera",
+                          Area=Areas.Guedera,
 
                 },
                       new Station//46
@@ -456,7 +504,8 @@ namespace DS
                     Name="Dereh Ailanot/Elon",
                     Latitude=31.804595 ,
                     Longitude=34.786623 ,
-                    Address="13 Dereh Ailanot Street, Guedera"
+                    Address="13 Dereh Ailanot Street, Guedera",
+                          Area=Areas.Guedera,
 
                 },
                           new Station//47
@@ -465,7 +514,8 @@ namespace DS
                     Name="Dereh Ailanot/ Menahem Begin",
                     Latitude=31.805041 ,
                     Longitude=34.785098 ,
-                    Address="3 Dereh Ailanot Street, Guedera"
+                    Address="3 Dereh Ailanot Street, Guedera",
+                          Area=Areas.Guedera,
 
                 },
                       new Station//48
@@ -474,7 +524,8 @@ namespace DS
                     Name="Aatsmaout/Weizman",
                     Latitude=31.816751 ,
                     Longitude=34.782252 ,
-                    Address="1 Aatsmaout Street, Guedera"
+                    Address="1 Aatsmaout Street, Guedera",
+                          Area=Areas.Guedera,
 
                 },
                       new Station//49
@@ -483,7 +534,8 @@ namespace DS
                     Name="Weizman/ Marabed Aksamim",
                     Latitude=31.816579 ,
                     Longitude=34.779753 ,
-                    Address="19 Weizman Street, Guedera"
+                    Address="19 Weizman Street, Guedera",
+                          Area=Areas.Guedera,
 
                 },
                       new Station//50
@@ -492,7 +544,8 @@ namespace DS
                     Name="Tsaala/Elmog",
                     Latitude=31.801182 ,
                     Longitude=34.787199 ,
-                    Address="25 Tsaala Street, Guedera"
+                    Address="25 Tsaala Street, Guedera",
+                          Area=Areas.Guedera,
 
                 },
             };
