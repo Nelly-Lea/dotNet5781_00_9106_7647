@@ -10,6 +10,9 @@ namespace BLAPI
 {
     public interface IBL
     {
+        #region User
+     bool CheckUserWorker(string UserName, string password);
+        #endregion User
         //Add Person to Course
         //get all courses for student
         //etc...

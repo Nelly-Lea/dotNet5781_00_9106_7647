@@ -5,8 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
+        Title="MainWindow" Height="500" Width="1000">
+    <Grid  Background="#FF7AA8CE">
+        <GroupBox Header="Choose Option:" HorizontalAlignment="Left" Height="186" Margin="350,135,0,0" VerticalAlignment="Top" Width="333" FontSize="16" FontStyle="Italic" FontWeight="SemiBold">
+            <StackPanel Margin="21,20,29,24">
+                <RadioButton x:Name ="DirectorWorker" Content="Director/Worker in the company" Height="24" IsChecked="True"/>
+                <RadioButton x:Name ="Passenger" Content="Passenger" Height="23" Margin="0,0,-11,0"/>
+              
+            </StackPanel>
+        </GroupBox>
+        <Button x:Name="btnGO" Content="GO" HorizontalAlignment="Left" Height="42" Margin="435,347,0,0" VerticalAlignment="Top" Width="105" Background="#FF4496CF" FontSize="16" FontFamily="Kristen ITC" FontWeight="Bold" Click="btnGO_Click"/>
+
     </Grid>
 </Window>

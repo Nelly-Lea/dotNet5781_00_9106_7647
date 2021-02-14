@@ -27,23 +27,46 @@ namespace PL
         public MainWindow()
         {
             InitializeComponent();
-            BL.BLImp b1 = new BL.BLImp();
-            //bl = BLFactory.GetBL("1");
-            IDL d = DLFactory.GetDL();
-          var v =   d.GetAllLines();
+            //  BL.BLImp b1 = new BL.BLImp();
+            //  //bl = BLFactory.GetBL("1");
+            //  IDL d = DLFactory.GetDL();
+            //var v =   d.GetAllLines();
 
-            DO.Line l = d.GetLine(1);
-            BO.Line lineBO = new BO.Line();
-            lineBO.Area = (BO.Areas)l.Area;
-            lineBO.Code = l.Code;
-            lineBO.FirstStation = l.FirstStation;
-            lineBO.Id = l.Id;
-            lineBO.LastStation = l.LastStation;
+            //  DO.Line l = d.GetLine(1);
+            //  BO.Line lineBO = new BO.Line();
+            //  lineBO.Area = (BO.Areas)l.Area;
+            //  lineBO.Code = l.Code;
+            //  lineBO.FirstStation = l.FirstStation;
+            //  lineBO.Id = l.Id;
+            //  lineBO.LastStation = l.LastStation;
+
+
+            //  BO.ShowStationsLine s = b1.ShowStations(lineBO);
+
+            //  BO.ShowStations ss = b1.ShowBusStations();
+        }
+
       
+        private void btnGO_Click(object sender, RoutedEventArgs e)
+        {
 
-            BO.ShowStationsLine s = b1.ShowStations(lineBO);
+            if (DirectorWorker.IsChecked == true)
+            {
+                Window2 win2 = new Window2();
+                win2.ShowDialog();
+            }
+            else
+            {
+                if (Passenger.IsChecked == true)
+                {
 
-            BO.ShowStations ss = b1.ShowBusStations();
+                    Window1 win1 = new Window1();
+                    win1.ShowDialog();
+
+
+                }
+
+            }
         }
     }
 }

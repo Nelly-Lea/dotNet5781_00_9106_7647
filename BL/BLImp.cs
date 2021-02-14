@@ -3,12 +3,12 @@ using DLAPI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-//using BO;
+using BO;
 //using BO;
 
 namespace BL
 {
-    public class BLImp : IBL //internal pas publiccccc
+   class BLImp : IBL //internal pas publiccccc
     {
         IDL dl = DLFactory.GetDL();
         #region Line 
@@ -384,6 +384,19 @@ namespace BL
             return ListStationsArea;
         }
 
+        public void UpdateStation(BO.Station StationToUpdate,int code, string name, string address)
+        {
+            DO.Station StationDO = new DO.Station();
+            StationDO.Area = (DO.Areas) StationToUpdate.Area;
+            StationDO.Longitude = StationToUpdate.Longitude;
+            StationDO.Latitude = StationToUpdate.Latitude;
+            StationDO.Code = code;
+            StationDO.Name = name;
+            StationDO.Address = address;
+            dl.UpdateStation(StationDO);
+
+        }
+
         //FONCTION UPDATE
         #endregion Station
         #region LineStation
@@ -470,10 +483,32 @@ namespace BL
 
             }
 
-
+            
 
         }
         #endregion LineStation
+        #region User
+
+        public void AddUser(string username, string password, bool admin)
+        {
+            DO.User user = new DO.User();
+            user.UserName = username;
+            user.Password = password;
+            user.Admin = admin;
+            dl.AddUser(user);
+        }
+
+        public bool CheckUserWorker(string UserName,string password)
+        {
+            DO.User user = dl.GetUser(UserName);
+            if ((user.Password == password) && (user.Admin))
+                return true;
+            else
+                return false;
+        }
+  
+
+        #endregion User
         //#region Student
         //BO.Student studentDoBoAdapter(DO.Student studentDO)
         //{

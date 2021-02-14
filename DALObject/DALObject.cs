@@ -466,7 +466,7 @@ namespace DL
             if (us != null)
                 return us.Clone();
             else
-                throw new DO.BadUserNameException(userName, $"bad uer name: {userName}");
+                throw new DO.BadUserNameException(userName, $"bad user name: {userName}");
         }
         public IEnumerable<DO.User> GetAllUsers()
         {
