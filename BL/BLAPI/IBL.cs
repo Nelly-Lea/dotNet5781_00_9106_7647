@@ -11,8 +11,17 @@ namespace BLAPI
     public interface IBL
     {
         #region User
-     bool CheckUserWorker(string UserName, string password);
+          bool CheckUserWorker(string UserName, string password);
         #endregion User
+        #region Line
+       IEnumerable<BO.Line> GetAllLines();
+        void DeleteLine(int id);
+        #endregion Line
+        #region LineStation
+        IEnumerable<BO.LineStation> GetLineStation(int LineId);
+        void RemoveLineStation(BO.Line Line, int code);
+        #endregion LineStation
+
         //Add Person to Course
         //get all courses for student
         //etc...

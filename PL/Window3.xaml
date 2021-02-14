@@ -6,7 +6,51 @@
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
         Title="Window3" Height="450" Width="800">
-    <Grid>
-        
+    <Grid >
+        <TabControl TabStripPlacement="Top">
+            <TabItem Header="Lines">
+                <ListView Name="ListLines" HorizontalAlignment="Left" Height="418" Margin="-1,0,-0.4,0" VerticalAlignment="Top" Width="795"  RenderTransformOrigin="0.5,0.5" >
+                    <ListView.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="-0.078"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </ListView.RenderTransform>
+                    <ListView.ItemBindingGroup>
+                        <BindingGroup/>
+                    </ListView.ItemBindingGroup>
+
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="Code" DisplayMemberBinding="{Binding Code}" Width="100"/>
+                            <GridViewColumn Header="Area" DisplayMemberBinding="{Binding Area}" Width="100"/>
+                            <GridViewColumn Header="First Station" DisplayMemberBinding="{Binding FirstStation}" Width="100"/>
+                            <GridViewColumn Header="Last Station" DisplayMemberBinding="{Binding LastStation}" Width="100"/>
+                            <GridViewColumn Width="100">
+
+
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button Content="Remove" Width="70" VerticalAlignment="Center" Click="Button_Click_RemoveLine"/>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                            <GridViewColumn Width="100">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button Content="Update" Width="50" VerticalAlignment="Center" Click="Button_Click_UpdateLine"/>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+
+                            </GridViewColumn>
+                        </GridView>
+
+                    </ListView.View>
+                </ListView>
+            </TabItem>
+            <TabItem Header="Stations"/>
+        </TabControl>
     </Grid>
 </Window>

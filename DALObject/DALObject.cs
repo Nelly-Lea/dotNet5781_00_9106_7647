@@ -176,14 +176,15 @@ namespace DL
 
         public void DeleteLineTrip(int lineid)
         {
-            DO.LineTrip linetrip = DataSource.ListLineTrip.Find(p => p.LineId == lineid);
+            //DO.LineTrip linetrip = DataSource.ListLineTrip.Find(p => p.LineId == lineid);
 
-            if (linetrip != null)
-            {
-                DataSource.ListLineTrip.Remove(linetrip);
-            }
-            else
-                throw new DO.BadLineTripLineIdException(lineid, $"bad linetrip line id: {lineid}");
+            //if (linetrip != null)
+            //{
+            //    DataSource.ListLineTrip.Remove(linetrip);
+            //}
+            //else
+            //    throw new DO.BadLineTripLineIdException(lineid, $"bad linetrip line id: {lineid}");
+            DataSource.ListLineTrip.RemoveAll(x => x.LineId == lineid);
         }
 
         public void UpdateLineTrip(DO.LineTrip linetrip)
@@ -233,12 +234,16 @@ namespace DL
 
         public void DeleteLineStation(int lineid)
         {
-          //  IEnumerable<DO.LineStation> linestations = DataSource.ListLineStations.Find(p => p.LineId == lineid);
-          foreach(var item in DataSource.ListLineStations)
-            {
-                if(item.LineId==lineid)
-                    DataSource.ListLineStations.Remove(item);
-            }
+            //  IEnumerable<DO.LineStation> linestations = DataSource.ListLineStations.Find(p => p.LineId == lineid);
+          
+
+          //foreach(var item in DataSource.ListLineStations)
+          //  {
+          //      if(item.LineId==lineid)
+          //          DataSource.ListLineStations.Remove(item);
+          //     }
+            DataSource.ListLineStations.RemoveAll(x => x.LineId == lineid);
+            
             //if (linestation != null)
             //{
             //    DataSource.ListLineStations.Remove(linestation);

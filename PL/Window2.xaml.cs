@@ -75,7 +75,8 @@ namespace PL
             if (DirectorWorkerRegistered)
             {
                 Window3 win3 = new Window3();
-                win3.ShowDialog();
+               
+                win3.Show();
             }
             else
             {

@@ -559,6 +559,7 @@ namespace DS
                     Area= Areas.KyriatEkron,
                     FirstStation=38838,
                     LastStation=38855,
+                    CountStation=10,
                 },
                  new Line//2
                 {
@@ -567,6 +568,7 @@ namespace DS
                     Area=Areas.RishonLetsion,
                     FirstStation=38833,
                     LastStation=38847,
+                     CountStation=10,
                 },
                   new Line//3
                 {
@@ -575,6 +577,7 @@ namespace DS
                     Area=Areas.Rehovot,
                     FirstStation=38834,
                     LastStation=38867,
+                     CountStation=10,
                 },
                       new Line//4
                 {
@@ -583,6 +586,7 @@ namespace DS
                     Area=Areas.Guedera,
                     FirstStation=38887,
                     LastStation=38893,
+                     CountStation=10,
                 },
                 new Line//5
                 {
@@ -591,6 +595,7 @@ namespace DS
                     Area=Areas.KyriatEkron,
                     FirstStation=38839,
                     LastStation=38846,
+                     CountStation=10,
                 },
                     new Line//6
                 {
@@ -599,6 +604,7 @@ namespace DS
                     Area=Areas.TsourMoshe,
                     FirstStation=38848,
                     LastStation=38859,
+                     CountStation=10,
                 },
                     new Line//7
                 {
@@ -607,6 +613,7 @@ namespace DS
                     Area=Areas.Guedera,
                     FirstStation=38881,
                     LastStation=38886,
+                     CountStation=10,
                 },
                         new Line//8
                 {
@@ -615,6 +622,7 @@ namespace DS
                     Area=Areas.Guedera,
                     FirstStation=38885,
                     LastStation=38891,
+                     CountStation=10,
                 },
                 new Line//9
                 {
@@ -623,6 +631,7 @@ namespace DS
                     Area=Areas.Rehovot,
                     FirstStation=38852,
                     LastStation=38856,
+                     CountStation=10,
                 },
                     new Line//10
                 {
@@ -631,6 +640,7 @@ namespace DS
                     Area=Areas.Gueoulim,
                     FirstStation=38862,
                     LastStation=38864,
+                     CountStation=10,
                 },
             };
             ListBuses = new List<Bus>
@@ -2479,94 +2489,184 @@ namespace DS
             };
             ListLineTrip = new List<LineTrip>
         {
-            new LineTrip//1
+            new LineTrip// Line 100
             {
                 Id=++idlinetrip,
                 LineId=1,
                 StartAt= new TimeSpan(8,0,0),
-                FinishAt=new TimeSpan(23, 0 ,0),
-                Frequency=new TimeSpan(1,0,0),
-
-            },
-             new LineTrip//2
-            {
-                Id=++idlinetrip,
-                LineId=2,
-                StartAt= new TimeSpan(7,30,0),
-                FinishAt=new TimeSpan(22, 30 ,0),
-                Frequency=new TimeSpan(0,30,0),
-
-            },
-              new LineTrip//3
-            {
-                Id=++idlinetrip,
-                LineId=3,
-                StartAt= new TimeSpan(6,0,0),
-                FinishAt=new TimeSpan(22, 0 ,0),
-                Frequency=new TimeSpan(1,30,0),
-
-            },
-               new LineTrip//4
-            {
-                Id=++idlinetrip,
-                LineId=4,
-                StartAt= new TimeSpan(5,30,0),
-                FinishAt=new TimeSpan(23, 0 ,0),
-                Frequency=new TimeSpan(0,15,0),
-
-            },
-             new LineTrip//5
-            {
-                Id=++idlinetrip,
-                LineId=5,
-                StartAt= new TimeSpan(10,0,0),
-                FinishAt=new TimeSpan(23, 30 ,0),
-                Frequency=new TimeSpan(0,30,0),
-
-            },
-              new LineTrip//6
-            {
-                Id=++idlinetrip,
-                LineId=6,
-                StartAt= new TimeSpan(9,0,0),
                 FinishAt=new TimeSpan(9, 0 ,0),
                 Frequency=new TimeSpan(0,0,0),
 
             },
-               new LineTrip//7
+            new LineTrip// Line 100
+            {
+                Id=++idlinetrip,
+                LineId=1,
+                StartAt= new TimeSpan(9,0,0),
+                FinishAt=new TimeSpan(10, 0 ,0),
+                Frequency=new TimeSpan(0,0,0),
+
+            },
+             new LineTrip//Line 101
+            {
+                Id=++idlinetrip,
+                LineId=2,
+                StartAt= new TimeSpan(7,0,0),
+                FinishAt=new TimeSpan(7, 30 ,0),
+                Frequency=new TimeSpan(0,00,0),
+
+            },
+               new LineTrip//Line 101
+            {
+                Id=++idlinetrip,
+                LineId=2,
+                StartAt= new TimeSpan(7,30,0),
+                FinishAt=new TimeSpan(8, 0,0),
+                Frequency=new TimeSpan(0,0,0),
+
+            },
+              new LineTrip//Line 102
+            {
+                Id=++idlinetrip,
+                LineId=3,
+                StartAt= new TimeSpan(6,0,0),
+                FinishAt=new TimeSpan(7, 0 ,0),
+                Frequency=new TimeSpan(0,0,0),
+
+            },
+                 new LineTrip//Line 102
+            {
+                Id=++idlinetrip,
+                LineId=3,
+                StartAt= new TimeSpan(7,0,0),
+                FinishAt=new TimeSpan(8, 0 ,0),
+                Frequency=new TimeSpan(0,0,0),
+
+            },
+               new LineTrip//Line 103
+            {
+                Id=++idlinetrip,
+                LineId=4,
+                StartAt= new TimeSpan(5,30,0),
+                FinishAt=new TimeSpan(5, 45 ,0),
+                Frequency=new TimeSpan(0,0,0),
+
+            },
+                  new LineTrip//Line 103
+            {
+                Id=++idlinetrip,
+                LineId=4,
+                StartAt= new TimeSpan(5,45,0),
+                FinishAt=new TimeSpan(6, 0 ,0),
+                Frequency=new TimeSpan(0,0,0),
+
+            },
+             new LineTrip//Line 104
+            {
+                Id=++idlinetrip,
+                LineId=5,
+                StartAt= new TimeSpan(10,0,0),
+                FinishAt=new TimeSpan(10, 30 ,0),
+                Frequency=new TimeSpan(0,0,0),
+
+            },
+               new LineTrip//Line 104
+            {
+                Id=++idlinetrip,
+                LineId=5,
+                StartAt= new TimeSpan(10,30,0),
+                FinishAt=new TimeSpan(11, 0 ,0),
+                Frequency=new TimeSpan(0,0,0),
+
+            },
+              new LineTrip//Line 105
+            {
+                Id=++idlinetrip,
+                LineId=6,
+                StartAt= new TimeSpan(9,0,0),
+                FinishAt=new TimeSpan(10, 0 ,0),
+                Frequency=new TimeSpan(0,0,0),
+
+            },
+               new LineTrip//Line 105
+            {
+                Id=++idlinetrip,
+                LineId=6,
+                StartAt= new TimeSpan(10,0,0),
+                FinishAt=new TimeSpan(11, 0 ,0),
+                Frequency=new TimeSpan(0,0,0),
+
+            },
+               new LineTrip//Line 106
             {
                 Id=++idlinetrip,
                 LineId=7,
                 StartAt= new TimeSpan(8,45,0),
-                FinishAt=new TimeSpan(23, 15 ,0),
-                Frequency=new TimeSpan(0,15,0),
+                FinishAt=new TimeSpan(9, 0 ,0),
+                Frequency=new TimeSpan(0,0,0),
 
             },
-                new LineTrip//8
+                 new LineTrip//Line 106
+            {
+                Id=++idlinetrip,
+                LineId=7,
+                StartAt= new TimeSpan(9,0,0),
+                FinishAt=new TimeSpan(9, 15 ,0),
+                Frequency=new TimeSpan(0,0,0),
+
+            },
+                new LineTrip//Line 107
             {
                 Id=++idlinetrip,
                 LineId=8,
-                StartAt= new TimeSpan(7,15,0),
-                FinishAt=new TimeSpan(20, 0 ,0),
-                Frequency=new TimeSpan(0,15,0),
+                StartAt= new TimeSpan(7,0,0),
+                FinishAt=new TimeSpan(8, 0 ,0),
+                Frequency=new TimeSpan(0,0,0),
 
             },
-                 new LineTrip//9
+                new LineTrip//Line 107
+            {
+                Id=++idlinetrip,
+                LineId=8,
+                StartAt= new TimeSpan(8,0,0),
+                FinishAt=new TimeSpan(9, 0 ,0),
+                Frequency=new TimeSpan(0,0,0),
+
+            },
+                 new LineTrip//line 108
             {
                 Id=++idlinetrip,
                 LineId=9,
                 StartAt= new TimeSpan(8,0,0),
-                FinishAt=new TimeSpan(20, 0 ,0),
-                Frequency=new TimeSpan(1,0,0),
+                FinishAt=new TimeSpan(9, 0 ,0),
+                Frequency=new TimeSpan(0,0,0),
 
             },
-                  new LineTrip//10
+                  new LineTrip//line 108
+            {
+                Id=++idlinetrip,
+                LineId=9,
+                StartAt= new TimeSpan(9,0,0),
+                FinishAt=new TimeSpan(10, 0 ,0),
+                Frequency=new TimeSpan(0,0,0),
+
+            },
+                  new LineTrip//line 109
             {
                 Id=++idlinetrip,
                 LineId=10,
                 StartAt= new TimeSpan(6,30,0),
-                FinishAt=new TimeSpan(23, 0 ,0),
-                Frequency=new TimeSpan(0,30,0),
+                FinishAt=new TimeSpan(7, 30 ,0),
+                Frequency=new TimeSpan(0,0,0),
+
+            },
+                  new LineTrip//line 109
+            {
+                Id=++idlinetrip,
+                LineId=10, 
+                StartAt= new TimeSpan(7,30,0),
+                FinishAt=new TimeSpan(8, 30 ,0),
+                Frequency=new TimeSpan(0,0,0),
 
             },
         };
