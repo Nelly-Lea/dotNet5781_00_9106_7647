@@ -232,7 +232,7 @@ namespace DL
             DataSource.ListLineStations.Add(linestation.Clone());
         }
 
-        public void DeleteLineStation(int lineid)
+        public void DeleteLineStation(int id)
         {
             //  IEnumerable<DO.LineStation> linestations = DataSource.ListLineStations.Find(p => p.LineId == lineid);
           
@@ -242,7 +242,7 @@ namespace DL
           //      if(item.LineId==lineid)
           //          DataSource.ListLineStations.Remove(item);
           //     }
-            DataSource.ListLineStations.RemoveAll(x => x.LineId == lineid);
+            DataSource.ListLineStations.RemoveAll(x => x.Id == id);
             
             //if (linestation != null)
             //{

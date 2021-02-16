@@ -19,6 +19,7 @@ namespace BLAPI
         #endregion Line
         #region LineStation
         IEnumerable<BO.LineStation> GetLineStation(int LineId);
+        IEnumerable<BO.LineStation> GetAllLinesStation(int lineid);
         void RemoveLineStation(BO.Line Line, int code);
         #endregion LineStation
 

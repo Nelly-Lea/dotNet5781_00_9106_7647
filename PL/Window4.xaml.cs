@@ -57,11 +57,15 @@ namespace PL
             if (sender != null && sender is Button btn)
                 CurrentLineStation = (BO.LineStation)btn.DataContext;
             bl2.RemoveLineStation(Line,CurrentLineStation.Station);
+            ListLinesStation.ItemsSource=bl2.GetAllLinesStation(Line.Id);
             ListLinesStation.Items.Refresh();
-            Window4 win4 = new Window4();
-            Application.Current.MainWindow = win4;
-            win4.Show();
-            //this.Close();
+            //Window4 win4 = new Window4();
+            //Application.Current.MainWindow = win4;
+           // win4.Show();
+           // this.Close();
+            
+            
+         
 
 
         }

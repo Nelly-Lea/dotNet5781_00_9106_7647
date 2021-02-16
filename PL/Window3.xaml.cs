@@ -62,6 +62,7 @@ namespace PL
                 CurrentLine1 = (BO.Line)btn.DataContext;
            
             Window4 win4 = new Window4();
+            
             // win4.Line = CurrentLine1;
             List<BO.LineStation> L = new List<BO.LineStation>();
             L= bl1.GetLineStation(CurrentLine1.Id).ToList();
@@ -69,6 +70,7 @@ namespace PL
             win4.Line = CurrentLine1;
             win4.InitList();
             win4.ShowDialog();
+
             // win4.LineId = CurrentLine1.Id;
 
 
