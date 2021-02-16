@@ -59,35 +59,37 @@ namespace PL
             bl2.RemoveLineStation(Line,CurrentLineStation.Station);
             ListLinesStation.ItemsSource=bl2.GetAllLinesStation(Line.Id);
             ListLinesStation.Items.Refresh();
-            //Window4 win4 = new Window4();
-            //Application.Current.MainWindow = win4;
-           // win4.Show();
-           // this.Close();
-            
-            
-         
+ 
 
 
         }
 
         private void UpdateLineStation_button(object sender, RoutedEventArgs e)
         {
-        //    if (sender != null && sender is Button btn)
-        //        CurrentLineStation = (BO.LineStation)btn.DataContext;
+            if (sender != null && sender is Button btn)
+                CurrentLineStation = (BO.LineStation)btn.DataContext;
 
-        //    Window5 win5 = new Window5();
-            
-        //    List<BO.LineStation> L = new List<BO.LineStation>();
-        //    L = bl1.GetLineStation(CurrentLine1.Id).ToList();
-        //    win5.ListLineStations = bl1.GetLineStation(CurrentLine1.Id).ToList();
-        //    win5.Line = CurrentLine1;
-        //    win5.InitList();
-        //    win5.ShowDialog();
+            Window5 win5 = new Window5();
+            win5.CurrentLineStation = CurrentLineStation;
+            win5.CurrentLine = Line;
+            win5.Init();
+            //    List<BO.LineStation> L = new List<BO.LineStation>();
+            //    L = bl1.GetLineStation(CurrentLine1.Id).ToList();
+            //    win5.ListLineStations = bl1.GetLineStation(CurrentLine1.Id).ToList();
+            //    win5.Line = CurrentLine1;
+            //    win5.InitList();
+                win5.ShowDialog();
+            ListLinesStation.Items.Refresh();
         }
 
+        private void UpdateCodeLine_button(object sender, RoutedEventArgs e)
+        {
+            Window6 win6 = new Window6();
+            win6.CurrentLine = Line;
+            win6.Init();
+            win6.ShowDialog();
+        }
 
-
-
-
+       
     }
 }

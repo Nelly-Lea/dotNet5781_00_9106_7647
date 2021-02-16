@@ -16,12 +16,18 @@ namespace BLAPI
         #region Line
        IEnumerable<BO.Line> GetAllLines();
         void DeleteLine(int id);
+        void UpdateLine(BO.Line Line, BO.LineStation DeletedStation, BO.Station NewStation);
+        void UpdateLineCode(BO.Line Line, int code);
         #endregion Line
         #region LineStation
         IEnumerable<BO.LineStation> GetLineStation(int LineId);
         IEnumerable<BO.LineStation> GetAllLinesStation(int lineid);
         void RemoveLineStation(BO.Line Line, int code);
+      
         #endregion LineStation
+        #region Station
+        IEnumerable<BO.Station> ShowStationArea(BO.Line line);
+         #endregion Station
 
         //Add Person to Course
         //get all courses for student

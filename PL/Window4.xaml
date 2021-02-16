@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="Window4" Height="450" Width="800">
     <Grid>
-        <ListView Name="ListLinesStation" HorizontalAlignment="Left" Height="418" Margin="-1,0,-0.4,0" VerticalAlignment="Top" Width="795"  RenderTransformOrigin="0.5,0.5" >
+        <ListView Name="ListLinesStation" HorizontalAlignment="Left" Height="418" Margin="-1,8,-0.4,-6" VerticalAlignment="Top" Width="795"  RenderTransformOrigin="0.5,0.5"  >
             <ListView.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -31,14 +31,14 @@
 
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <Button Content="Remove" Width="70" VerticalAlignment="Center" Click="RemoveLineStation_button" />
+                                <Button Content="Remove" Width="70" VerticalAlignment="Center" Click=" RemoveLineStation_button"/>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
                     <GridViewColumn Width="100">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <Button Content="Update" Width="50" VerticalAlignment="Center" Click="UpdateLineStation_button" />
+                                <Button Content="Update" Width="50" VerticalAlignment="Center" Click="UpdateLineStation_button"/>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
 
@@ -46,7 +46,10 @@
                 </GridView>
 
             </ListView.View>
+         
         </ListView>
+        <Button  Content="Add Station" HorizontalAlignment="Left" Margin="182,321,0,0" VerticalAlignment="Top" Width="150" Height="33" />
+        <Button Content="Update Code Line" HorizontalAlignment="Left" Margin="485,321,0,0" VerticalAlignment="Top" Width="150" Height="33" Click="UpdateCodeLine_button"/>
 
     </Grid>
 </Window>

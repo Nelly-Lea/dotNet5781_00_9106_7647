@@ -3,6 +3,7 @@ using DLAPI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+
 using BO;
 //using BO;
 
@@ -155,8 +156,15 @@ namespace BL
         public void UpdateLineCode(BO.Line Line,int code)
         {
             DO.Line LineDO = dl.GetLine(Line.Id);
-            LineDO.Code = code;
-            dl.UpdateLine(LineDO);
+            DO.Line NewLine = new DO.Line();
+            NewLine.Id = LineDO.Id;
+            NewLine.Code = code;
+            NewLine.Area = LineDO.Area;
+            NewLine.FirstStation = LineDO.FirstStation;
+            NewLine.LastStation = LineDO.LastStation;
+            NewLine.CountStation = LineDO.CountStation;
+           
+            dl.UpdateLine(NewLine);
 
         }
         public IEnumerable<BO.Line> GetAllLines()
@@ -219,13 +227,19 @@ namespace BL
             dl.AddAdjacentStations(adjacentStation);
         }
 
-        public void UpdateLine(BO.Line Line, BO.Station DeletedStation, BO.Station NewStation)
+        public void UpdateLine(BO.Line Line, BO.LineStation DeletedStation, BO.Station NewStation)
         {
             
             IEnumerable<DO.LineStation> ListLineStations = dl.GetAllLineStations();
-            IEnumerable<DO.LineStation> LineStations = ListLineStations.Where(x => (x.LineId == Line.Id) && (x.Station == DeletedStation.Code));
+           // IEnumerable<DO.LineStation> LineStations = ListLineStations.Where(x => (x.LineId == Line.Id) && (x.Station == DeletedStation.Station));
             DO.LineStation NewLineStation = new DO.LineStation();
-            NewLineStation = ListLineStations.FirstOrDefault();
+
+            NewLineStation.Id =  DeletedStation.Id;
+            NewLineStation.LineId = DeletedStation.LineId;
+            NewLineStation.LineStationIndex = DeletedStation.LineStationIndex;
+            NewLineStation.NextStation = DeletedStation.NextStation;
+            NewLineStation.PrevStation = DeletedStation.PrevStation;
+         
             NewLineStation.Station = NewStation.Code;
             dl.UpdateLineStation(NewLineStation);
             DO.Line NewLine = new DO.Line();
@@ -234,10 +248,10 @@ namespace BL
             NewLine.Id = Line.Id;
             NewLine.CountStation = Line.CountStation;
             BO.AdjacentStations adjacentStationsBO1 = new BO.AdjacentStations();
-            DO.AdjacentStations adjacentStationsDO1 = new DO.AdjacentStations();
+          //  DO.AdjacentStations adjacentStationsDO1 = new DO.AdjacentStations();
            
             BO.AdjacentStations adjacentStationsBO2 = new BO.AdjacentStations();
-            DO.AdjacentStations adjacentStationsDO2 = new DO.AdjacentStations();
+          //  DO.AdjacentStations adjacentStationsDO2 = new DO.AdjacentStations();
 
 
 
@@ -250,12 +264,17 @@ namespace BL
                     adjacentStationsBO1.Station2 = NewLineStation.NextStation;
                     adjacentStationsBO1.id = dl.CountplusAdjacentStation();
                     UpdateTimeAndDistance(adjacentStationsBO1);
-                    
-                    adjacentStationsDO1.id = adjacentStationsBO1.id;
-                    adjacentStationsDO1.Station1 = adjacentStationsBO1.Station1;
-                    adjacentStationsDO1.Station2 = adjacentStationsBO1.Station2;
-                    adjacentStationsDO1.Distance = adjacentStationsBO1.Distance;
-                    adjacentStationsDO1.Time = adjacentStationsBO1.Time;
+                    DO.LineStation nextLineStation = new DO.LineStation();
+                    nextLineStation = dl.GetAllLineStations().Where(x => x.LineId == Line.Id && x.Station == DeletedStation.NextStation).FirstOrDefault();
+                    DO.LineStation stationDO = new DO.LineStation();
+                    stationDO.Id = nextLineStation.Id;
+                    stationDO.LineId = nextLineStation.LineId;
+                    stationDO.LineStationIndex = nextLineStation.LineStationIndex;
+                    stationDO.PrevStation = NewLineStation.Station;
+                    stationDO.Station = nextLineStation.Station;
+                    stationDO.NextStation = nextLineStation.NextStation;
+                    dl.UpdateLineStation(stationDO);
+                   
                    
                 }
 
@@ -266,12 +285,17 @@ namespace BL
                     adjacentStationsBO1.Station2 = NewLineStation.Station;
                     adjacentStationsBO1.id = dl.CountplusAdjacentStation();
                     UpdateTimeAndDistance(adjacentStationsBO1);
-                    adjacentStationsDO1.id = adjacentStationsBO1.id;
-                    adjacentStationsDO1.Station1 = adjacentStationsBO1.Station1;
-                    adjacentStationsDO1.Station2 = adjacentStationsBO1.Station2;
-                    adjacentStationsDO1.Distance = adjacentStationsBO1.Distance;
-                    adjacentStationsDO1.Time = adjacentStationsBO1.Time;
-                    
+                    DO.LineStation prevLineStation = new DO.LineStation();
+                    prevLineStation = dl.GetAllLineStations().Where(x => x.LineId == Line.Id && x.Station == DeletedStation.PrevStation).FirstOrDefault();
+                    DO.LineStation stationDO = new DO.LineStation();
+                    stationDO.Id = prevLineStation.Id;
+                    stationDO.LineId =prevLineStation.LineId;
+                    stationDO.LineStationIndex = prevLineStation.LineStationIndex;
+                    stationDO.PrevStation = prevLineStation.PrevStation;
+                    stationDO.Station = prevLineStation.Station;
+                    stationDO.NextStation = NewLineStation.Station;
+                    dl.UpdateLineStation(stationDO);
+
                 }
             }
             else
@@ -280,27 +304,35 @@ namespace BL
                 adjacentStationsBO1.Station2 = NewLineStation.Station;
                 adjacentStationsBO1.id = dl.CountplusAdjacentStation();
                 UpdateTimeAndDistance(adjacentStationsBO1);
-                adjacentStationsDO1.id = adjacentStationsBO1.id;
-                adjacentStationsDO1.Station1 = adjacentStationsBO1.Station1;
-                adjacentStationsDO1.Station2 = adjacentStationsBO1.Station2;
-                adjacentStationsDO1.Distance = adjacentStationsBO1.Distance;
-                adjacentStationsDO1.Time = adjacentStationsBO1.Time;
-                
+                DO.LineStation nextLineStation = new DO.LineStation();
+                nextLineStation = dl.GetAllLineStations().Where(x => x.LineId == Line.Id && x.Station == DeletedStation.NextStation).FirstOrDefault();
+                DO.LineStation stationDO = new DO.LineStation();
+                stationDO.Id = nextLineStation.Id;
+                stationDO.LineId = nextLineStation.LineId;
+                stationDO.LineStationIndex = nextLineStation.LineStationIndex;
+                stationDO.PrevStation = NewLineStation.Station;
+                stationDO.Station = nextLineStation.Station;
+                stationDO.NextStation = nextLineStation.NextStation;
+                dl.UpdateLineStation(stationDO);
+
                 adjacentStationsBO2.Station1 = NewLineStation.Station;
                 adjacentStationsBO2.Station2 = NewLineStation.NextStation;
-                adjacentStationsBO1.id = dl.CountplusAdjacentStation();
+                adjacentStationsBO2.id = dl.CountplusAdjacentStation();
                 UpdateTimeAndDistance(adjacentStationsBO2);
 
-                adjacentStationsDO2.id = adjacentStationsBO2.id;
-                adjacentStationsDO2.Station1 = adjacentStationsBO2.Station1;
-                adjacentStationsDO2.Station2 = adjacentStationsBO2.Station2;
-                adjacentStationsDO2.Distance = adjacentStationsBO2.Distance;
-                adjacentStationsDO2.Time = adjacentStationsBO2.Time;
-                dl.AddAdjacentStations(adjacentStationsDO2);
-
+                DO.LineStation prevLineStation = new DO.LineStation();
+                prevLineStation = dl.GetAllLineStations().Where(x => x.LineId == Line.Id && x.Station == DeletedStation.PrevStation).FirstOrDefault();
+                DO.LineStation stationDO2 = new DO.LineStation();
+                stationDO2.Id = prevLineStation.Id;
+                stationDO2.LineId = prevLineStation.LineId;
+                stationDO2.LineStationIndex = prevLineStation.LineStationIndex;
+                stationDO2.PrevStation = prevLineStation.PrevStation;
+                stationDO2.Station = prevLineStation.Station;
+                stationDO2.NextStation = NewLineStation.Station;
+                dl.UpdateLineStation(stationDO2);
 
             }
-            dl.AddAdjacentStations(adjacentStationsDO1);
+          
             dl.UpdateLine(NewLine);
         }
         public void DeleteLine(int id)
@@ -338,7 +370,7 @@ namespace BL
             adjacentStationsDO.Station1 = AdjacentStation.Station1;
             adjacentStationsDO.Station2 = AdjacentStation.Station2;
             adjacentStationsDO.Time = AdjacentStation.Time;
-            dl.UpdateAdjacentStations(adjacentStationsDO);
+            dl.AddAdjacentStations(adjacentStationsDO);
 
         }
         #endregion AdjacentStation
@@ -406,8 +438,26 @@ namespace BL
 
         public IEnumerable<BO.Station> ShowStationArea(BO.Line line)
         {
-            IEnumerable<BO.Station> ListStationsArea =( IEnumerable < BO.Station >) dl.GetAllStations().Where(x=>x.Area==(DO.Areas)line.Area);
-            return ListStationsArea;
+           
+            
+            IEnumerable<BO.Station> listStations=from StationDO in dl.GetAllStations()
+                   where StationDO.Area == (DO.Areas)line.Area
+                   select new BO.Station
+                   { Code = StationDO.Code, Name =StationDO.Name, Longitude = StationDO.Longitude, Latitude = StationDO.Latitude,Address = StationDO.Address, Area= (BO.Areas)StationDO.Area};
+            
+            IEnumerable<DO.LineStation> ListLineStation = dl.GetAllLineStations().Where(x => x.LineId == line.Id);
+           
+            IEnumerable<BO.Station> ListStationLine = from StationLineDO in dl.GetAllStations()
+                                                      from LineStationDO in ListLineStation
+                                                      where StationLineDO.Code == LineStationDO.Station
+                                                      select new BO.Station
+                                                      { Code = StationLineDO.Code, Name = StationLineDO.Name, Longitude = StationLineDO.Longitude, Latitude = StationLineDO.Latitude, Address = StationLineDO.Address, Area = (BO.Areas)StationLineDO.Area };
+           
+            IEnumerable<BO.Station> listStation = listStations.Where(p => ListStationLine.All(p2 => p2.Code != p.Code));
+            
+            return listStation;
+
+            
         }
 
         public void UpdateStation(BO.Station StationToUpdate,int code, string name, string address)

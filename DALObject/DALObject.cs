@@ -260,6 +260,9 @@ namespace DL
             {
                 DataSource.ListLineStations.Remove(linestations);
                 DataSource.ListLineStations.Add(linestation.Clone());
+               
+                DataSource.ListLineStations = DataSource.ListLineStations.OrderBy(x => x.LineStationIndex).ToList();
+               
             }
             else
                 throw new DO.BadLineStationIdException(linestation.Id, $"bad linestation id: {linestation.Id}");

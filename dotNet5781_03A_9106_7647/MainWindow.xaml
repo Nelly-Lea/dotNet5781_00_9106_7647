@@ -31,7 +31,7 @@
             </ComboBox>
         </Grid>
         <Label Content="Bus Line Number" HorizontalAlignment="Left" VerticalAlignment="Top" Height="68" Width="193" Margin="0,1,0,0" Grid.RowSpan="2" FontFamily="Forte" FontSize="24" Foreground="AliceBlue" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" />
-        <TextBox Name="tbArea" HorizontalAlignment="Stretch" Margin="598,10,34.6,10" TextWrapping="Wrap" VerticalAlignment="Stretch" Text="{Binding Path=areap}" TextChanged="tbArea_TextChanged" FontSize="24" FontFamily="Time New Roman" Background="#FFAAD0F0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+        <TextBox Name="tbArea" HorizontalAlignment="Stretch" Margin="598,15,34.6,5" TextWrapping="Wrap" VerticalAlignment="Stretch" Text="{Binding Path=areap}" TextChanged="tbArea_TextChanged" FontSize="24" FontFamily="Time New Roman" Background="#FFAAD0F0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
         <ListBox Name="lbBusLineStations" HorizontalAlignment="Stretch" Height="542" Grid.Row="1" VerticalAlignment="Stretch" Width="794" Grid.ColumnSpan="2" Margin="0,0,-0.4,0" ItemsSource="{Binding}" FontFamily=" Time New Roman" FontSize="10" FontWeight="Bold" >
             
             <ListBox.Background>
