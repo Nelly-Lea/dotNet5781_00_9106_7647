@@ -70,6 +70,7 @@ namespace PL
             win4.Line = CurrentLine1;
             win4.InitList();
             win4.ShowDialog();
+            
 
             // win4.LineId = CurrentLine1.Id;
 

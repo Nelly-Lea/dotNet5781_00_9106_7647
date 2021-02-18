@@ -78,7 +78,9 @@ namespace PL
             //    win5.ListLineStations = bl1.GetLineStation(CurrentLine1.Id).ToList();
             //    win5.Line = CurrentLine1;
             //    win5.InitList();
-                win5.ShowDialog();
+          
+            win5.ShowDialog();
+            ListLinesStation.ItemsSource = bl2.GetAllLinesStation(Line.Id);
             ListLinesStation.Items.Refresh();
         }
 

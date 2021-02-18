@@ -260,6 +260,7 @@ namespace BL
                 if (NewLineStation.PrevStation == -1)
                 {
                     NewLine.FirstStation = NewStation.Code;
+                    NewLine.LastStation = Line.LastStation;
                     adjacentStationsBO1.Station1 = NewLineStation.Station;
                     adjacentStationsBO1.Station2 = NewLineStation.NextStation;
                     adjacentStationsBO1.id = dl.CountplusAdjacentStation();
@@ -281,6 +282,7 @@ namespace BL
                 else
                 {
                     NewLine.LastStation = NewStation.Code;
+                    NewLine.FirstStation = Line.FirstStation;
                     adjacentStationsBO1.Station1 = NewLineStation.PrevStation;
                     adjacentStationsBO1.Station2 = NewLineStation.Station;
                     adjacentStationsBO1.id = dl.CountplusAdjacentStation();
@@ -300,6 +302,8 @@ namespace BL
             }
             else
             {
+                NewLine.FirstStation = Line.FirstStation;
+                NewLine.LastStation = Line.LastStation;
                 adjacentStationsBO1.Station1 = NewLineStation.PrevStation;
                 adjacentStationsBO1.Station2 = NewLineStation.Station;
                 adjacentStationsBO1.id = dl.CountplusAdjacentStation();

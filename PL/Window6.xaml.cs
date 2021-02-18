@@ -40,12 +40,16 @@ namespace PL
         private void Button_Click(object sender, RoutedEventArgs e)
         {
 
-            int code = Int32.Parse(TbLineNumber.Text);
+            int code = Int32.Parse(tbNewLineNumber.Text);
             bl4.UpdateLineCode(CurrentLine, code);
-            //Window3 win3 = new Window3();
-            //Application.Current.MainWindow = win3;
-            //win3.Show();
-            //this.Close();
+
+            // this.Close();
+            
+            Window3 win3 = new Window3();
+            Application.Current.MainWindow = win3;
+            win3.ListLines.ItemsSource = bl4.GetAllLines();
+            win3.Show();
+            this.Close();
 
         }
     }

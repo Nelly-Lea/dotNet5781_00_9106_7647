@@ -133,7 +133,7 @@ namespace DL
         }
         public void UpdateLine(DO.Line line)
         {
-            DO.Line lines = DataSource.ListLines.Find(p => p.Code == line.Code);
+            DO.Line lines = DataSource.ListLines.Find(p => p.Id == line.Id);
 
             if (lines != null)
             {
@@ -141,7 +141,7 @@ namespace DL
                 DataSource.ListLines.Add(line.Clone());
             }
             else
-                throw new DO.BadStationCodeException(line.Code, $"bad line id: {line.Code}");
+                throw new DO.BadStationCodeException(line.Id, $"bad line id: {line.Id}");
         }
 
 

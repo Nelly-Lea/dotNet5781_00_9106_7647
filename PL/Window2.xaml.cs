@@ -76,7 +76,7 @@ namespace PL
             {
                 Window3 win3 = new Window3();
                
-                win3.Show();
+                win3.ShowDialog();
             }
             else
             {
