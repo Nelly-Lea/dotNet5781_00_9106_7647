@@ -12,6 +12,19 @@ namespace BL
    class BLImp : IBL //internal pas publiccccc
     {
         IDL dl = DLFactory.GetDL();
+        public List<BO.Areas> GetAreas()
+        {
+            IEnumerable<DO.Areas> ListAreas = dl.GetAllAreas();
+            BO.Areas AreaBO = new BO.Areas();
+          List<BO.Areas> ListAreasBO=new List<BO.Areas>();
+            foreach(var item in ListAreas)
+            {
+                AreaBO = (BO.Areas)item;
+                ListAreasBO.Add(AreaBO);
+            }
+            return ListAreasBO;
+
+        }
         #region Line 
        public  BO.ShowStationsLine ShowStations(BO.Line line)// pas public!!!
         {
@@ -41,6 +54,7 @@ namespace BL
                 stationBO.Area = (BO.Areas)stationDO.Area;
                 stationslineBO.ListStat.Add(stationBO);
                 int nextstation = linestationDO.FirstOrDefault().NextStation;
+                 stationBO = new BO.Station();
                 IEnumerable<DO.AdjacentStations> adjstationsDO = dl.GetAllAdjacentStations();
                 IEnumerable<DO.AdjacentStations> adjstationDO = adjstationsDO.Where(x => (x.Station1 == currentstation) && (x.Station2 == nextstation));
                 stationslineBO.ListDistances.Add(adjstationDO.FirstOrDefault().Distance);
@@ -60,6 +74,22 @@ namespace BL
             return stationslineBO;
 
         }
+        public List<int> GetAllLineInStation(int index)
+
+        {
+       
+            BO.ShowStations SS = ShowBusStations();
+            return SS.linesNumbers[index];
+
+        }
+        public List<string> GetAllLastStationInLine(int index)
+
+        {
+
+            BO.ShowStations SS = ShowBusStations();
+            return SS.lastStationNames[index];
+
+        }
 
         public BO.ShowStations ShowBusStations()
         {
@@ -77,8 +107,10 @@ namespace BL
                 StationBO.Latitude = item.Latitude;
                 StationBO.Area = (BO.Areas)item.Area;
               listStationBO.Add(StationBO);
+                StationBO = new BO.Station();
 
             }
+            listStationBO = listStationBO.OrderBy(x => x.Area.ToString()).ToList();
 
             ss.stations = listStationBO;
             List<BO.AdjacentStations> listAdjStationBO = new List<BO.AdjacentStations>();
@@ -93,6 +125,7 @@ namespace BL
                 AdjStationBO.Station2 = item.Station2;
                 AdjStationBO.Time = item.Time;
                 listAdjStationBO.Add(AdjStationBO);
+                AdjStationBO = new BO.AdjacentStations();
 
             }
             ss.adjStations = listAdjStationBO;
@@ -185,45 +218,80 @@ namespace BL
 
 
         }
-        public void AddLine(int code,BO.Areas area, int firstation, int laststation)
+        
+        public IEnumerable<BO.Station> AddLineFirst(int code,BO.Areas area,BO.Station firstStation)
         {
+            BO.Line Line = new BO.Line();
+            Line.Id = dl.Countplus();
+            Line.Code = code;
+            Line.Area = area;
+            Line.FirstStation = firstStation.Code;
+            Line.LastStation = -1;
+            Line.CountStation = 1;
+            DO.LineStation FirstLineStation = new DO.LineStation();
+            FirstLineStation.Id = dl.CountplusLineStation();
+            FirstLineStation.LineId = Line.Id;
+            FirstLineStation.LineStationIndex = 1;
+            FirstLineStation.NextStation = -1;
+            FirstLineStation.PrevStation = -1;
+            FirstLineStation.Station = firstStation.Code;
+            dl.AddLineStation(FirstLineStation);
+            DO.Line LineDO = new DO.Line();
+            LineDO.Id = Line.Id;
+            LineDO.Code = code;
+            LineDO.Area = (DO.Areas)area;
+            LineDO.FirstStation = firstStation.Code;
+            LineDO.LastStation = -1;
+            LineDO.CountStation = 1;
+            dl.AddLine(LineDO);
+            IEnumerable<BO.Station> listStation= ShowStationArea(Line);
+            return listStation;
+        }
+        public void AddLine(int code, BO.Station FirstStation, BO.Station LastStation)
+        {
+            
+            DO.Line Line = new DO.Line();
+            Line = dl.GetAllLines().Where(x => (x.Code == code) && (x.FirstStation == FirstStation.Code) && (x.LastStation == -1)).FirstOrDefault();
             DO.Line line = new DO.Line();
-            line.Area =(DO.Areas) area;
-            line.Code = code;
-            line.FirstStation = firstation;
-            line.LastStation = laststation;
-            line.Id = dl.Countplus();
+            line.Area = Line.Area;
+            line.Code = Line.Code;
+            line.FirstStation = Line.FirstStation;
+            line.LastStation = LastStation.Code;
+            line.Id = Line.Id;
             line.CountStation = 2;
-            dl.AddLine(line);
-
+            dl.UpdateLine(line);
+            IEnumerable<DO.LineStation> lineStationDO = dl.GetAllLineStations().Where(x => x.LineId == Line.Id);
             DO.LineStation lineStation1 = new DO.LineStation();
-            lineStation1.LineId = line.Id;
-            lineStation1.Station = line.FirstStation;
+            lineStation1.Id = lineStationDO.FirstOrDefault().Id;
+            lineStation1.LineId = lineStationDO.FirstOrDefault().LineId;
+            lineStation1.Station = lineStationDO.FirstOrDefault().Station;
             lineStation1.LineStationIndex = 1;
             lineStation1.PrevStation = -1;
-            lineStation1.NextStation = laststation;
+            lineStation1.NextStation = LastStation.Code;
 
             DO.LineStation lineStation2 = new DO.LineStation();
+            lineStation2.Id = dl.CountplusLineStation();
             lineStation2.LineId = line.Id;
-            lineStation2.Station = line.LastStation;
-            lineStation1.LineStationIndex = 2;
-            lineStation1.PrevStation = line.FirstStation;
-            lineStation1.NextStation = -1;
+            lineStation2.Station = LastStation.Code;
+            lineStation2.LineStationIndex = 2;
+            lineStation2.PrevStation = line.FirstStation;
+            lineStation2.NextStation = -1;
 
-            dl.AddLineStation(lineStation1);
+            dl.UpdateLineStation(lineStation1);
             dl.AddLineStation(lineStation2);
 
             DO.AdjacentStations adjacentStation = new DO.AdjacentStations();
 
-            adjacentStation.Distance = (dl.CalculateDist(dl.GetStation(firstation), dl.GetStation(laststation)));
+            adjacentStation.Distance = (dl.CalculateDist(dl.GetStation(line.FirstStation), dl.GetStation(LastStation.Code)));
+          
             //vitesse=30km/h=>500m/min
             double time = adjacentStation.Distance / 500;
             int h = (int)time / 60;
             int m = (int)time % 60;
             adjacentStation.Time = new TimeSpan(h, m, 0);
             adjacentStation.id = dl.CountplusAdjacentStation();
-            adjacentStation.Station1 = firstation;
-            adjacentStation.Station2 = laststation;
+            adjacentStation.Station1 = line.FirstStation;
+            adjacentStation.Station2 = LastStation.Code;
             dl.AddAdjacentStations(adjacentStation);
         }
 
@@ -477,6 +545,16 @@ namespace BL
 
         }
 
+        public IEnumerable<BO.Station> GetStationWithArea(BO.Areas area)
+        {
+           
+            IEnumerable<DO.Station> listStationDO =  dl.GetAllStations().Where(x => (BO.Areas)x.Area == area);
+            IEnumerable<BO.Station> ListStationBO = from StationDO in listStationDO 
+                                                      select new BO.Station
+                                                      { Code = StationDO.Code, Name = StationDO.Name, Longitude = StationDO.Longitude, Latitude = StationDO.Latitude, Address = StationDO.Address, Area = (BO.Areas)StationDO.Area };
+
+            return ListStationBO;
+        }
         //FONCTION UPDATE
         #endregion Station
         #region LineStation
@@ -516,6 +594,7 @@ namespace BL
             public void AddLineStation(BO.Line Line, BO.Station Station)
         {
             DO.LineStation lineStation = new DO.LineStation();
+            lineStation.Id = dl.CountplusLineStation();
             lineStation.LineId = Line.Id;
             lineStation.Station = Station.Code;
             lineStation.LineStationIndex = ++Line.CountStation;
@@ -537,14 +616,7 @@ namespace BL
             adjStation.Station2 = Station.Code;
             adjStation.id = dl.CountplusAdjacentStation();
             UpdateTimeAndDistance(adjStation);
-            DO.AdjacentStations adjstationDO = new DO.AdjacentStations();
-            adjstationDO.id = adjStation.id;
-            adjstationDO.Station1 = adjStation.Station1;
-            adjstationDO.Station2 = adjStation.Station2;
-            adjstationDO.Time = adjStation.Time;
-            adjstationDO.Distance = adjStation.Distance;
-            dl.UpdateAdjacentStations(adjstationDO);
-
+            dl.AddLineStation(lineStation);
 
 
         }

@@ -29,6 +29,7 @@ namespace PL
 
         BO.Line CurrentLine = new BO.Line();
         BO.Line CurrentLine1 = new BO.Line();
+        public BO.Station CurrentStation;
 
 
         public Window3()
@@ -38,9 +39,14 @@ namespace PL
            
             var listLinesObs = new ObservableCollection<BO.Line>(listOfLines);
             ListLines.ItemsSource = listLinesObs;
+            init();
            
         }
     
+        public void init()
+        {
+            ListViewStations.ItemsSource = bl1.ShowBusStations().stations;
+        }
         
         private void Button_Click_RemoveLine(object sender, RoutedEventArgs e)
         {
@@ -62,7 +68,7 @@ namespace PL
                 CurrentLine1 = (BO.Line)btn.DataContext;
            
             Window4 win4 = new Window4();
-            
+            this.Close();
             // win4.Line = CurrentLine1;
             List<BO.LineStation> L = new List<BO.LineStation>();
             L= bl1.GetLineStation(CurrentLine1.Id).ToList();
@@ -71,26 +77,52 @@ namespace PL
             win4.InitList();
             win4.ShowDialog();
             
+           
 
-            // win4.LineId = CurrentLine1.Id;
+        }
 
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Window8 win8 = new Window8();
+            win8.Init();
+            win8.Show();
+            this.Close();
+        }
+        private void MouseDoubleClick_ShowLine(object sender, MouseButtonEventArgs e)
+        {
 
+            CurrentLine = (BO.Line)ListLines.SelectedItem;
+            Window9 win9 = new Window9();
+            win9.CurrentLine = CurrentLine;
+            win9.Init();
+            win9.Show();
 
-            //if (sender != null && sender is Button btn)
-            //    current = (BUS)btn.DataContext;
-            //if (current.Gasoline == 1200)
-            //    MessageBox.Show("You already have 1200 km of gasoline");
-            //else
-            //    current.Refueling();
-            //ListBus.Items.Refresh();
+            this.Close();
 
 
         }
 
+        private void Button_AddStation(object sender, RoutedEventArgs e)
+        {
 
+        }
+        private void MouseDoubleClick_ShowLineInStation(object sender, MouseButtonEventArgs e)
+        {
+
+            CurrentStation = (BO.Station)ListViewStations.SelectedItem;
+            Window10 win10 = new Window10();
+            win10.CurrentStation = CurrentStation;
+            win10.index = ListViewStations.SelectedIndex;
+            win10.Init();
+            win10.Show();
+
+            this.Close();
+
+
+        }
     }
-     
-       
-        //public List<BO.Line> ListOfLines { get => listOfLines; set => listOfLines = value; }
     
+
+    //public List<BO.Line> ListOfLines { get => listOfLines; set => listOfLines = value; }
+
 }

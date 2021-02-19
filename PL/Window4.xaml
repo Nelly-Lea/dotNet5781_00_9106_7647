@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="Window4" Height="450" Width="800">
     <Grid>
-        <ListView Name="ListLinesStation" HorizontalAlignment="Left" Height="418" Margin="-1,8,-0.4,-6" VerticalAlignment="Top" Width="795"  RenderTransformOrigin="0.5,0.5"  >
+        <ListView Name="ListLinesStation" HorizontalAlignment="Left" Margin="-1,8,-0.4,85" Width="795"  RenderTransformOrigin="0.5,0.5"  >
             <ListView.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -46,10 +46,11 @@
                 </GridView>
 
             </ListView.View>
-         
-        </ListView>
-        <Button  Content="Add Station" HorizontalAlignment="Left" Margin="182,321,0,0" VerticalAlignment="Top" Width="150" Height="33" />
-        <Button Content="Update Code Line" HorizontalAlignment="Left" Margin="485,321,0,0" VerticalAlignment="Top" Width="150" Height="33" Click="UpdateCodeLine_button"/>
 
+
+        </ListView>
+        <Button  Content="Add Station" HorizontalAlignment="Left" Margin="305,351,0,0" VerticalAlignment="Top" Width="150" Height="33" Click="AddStation_button"/>
+        <Button Content="Update Code Line" HorizontalAlignment="Left" Margin="557,351,0,0" VerticalAlignment="Top" Width="150" Height="33" Click="UpdateCodeLine_button"/>
+        <Button Content="return" Width="150" Height="33" Margin="70,351,573.6,36" Click="Button_Click"/>
     </Grid>
 </Window>

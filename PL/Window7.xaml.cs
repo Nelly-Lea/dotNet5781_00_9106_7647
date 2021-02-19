@@ -16,42 +16,44 @@ using BLAPI;
 namespace PL
 {
     /// <summary>
-    /// Interaction logic for Window5.xaml
+    /// Interaction logic for Window7.xaml
     /// </summary>
-    public partial class Window5 : Window
+    public partial class Window7 : Window
     {
-        static IBL bl3 = BLFactory.GetBL("1");
-        public  BO.LineStation CurrentLineStation;
-        public BO.Line CurrentLine;
+        static IBL bl5 = BLFactory.GetBL("1");
         public BO.Station CurrentStation;
-      
+        public BO.Line CurrentLine;
+       
 
-        public Window5()
+        public Window7()
         {
             InitializeComponent();
         }
-          
         public void Init()
         {
             TbLine.DataContext = CurrentLine;
             TbLine.Text = CurrentLine.Code.ToString();
             TbArea.DataContext = CurrentLine;
             TbArea.Text = CurrentLine.Area.ToString();
-            List<BO.Station> ListStationsArea = bl3.ShowStationArea(CurrentLine).ToList();
+            List<BO.Station> ListStationsArea = bl5.ShowStationArea(CurrentLine).ToList();
             ListLinesStationArea.ItemsSource = ListStationsArea;
           
 
         }
 
-        private void MouseDoubleClick_UpdateLineStation(object sender,MouseButtonEventArgs e )
+        private void MouseDoubleClick_AddStation(object sender, MouseButtonEventArgs e)
         {
-           
-                CurrentStation = (BO.Station) ListLinesStationArea.SelectedItem;
-                bl3.UpdateLine(CurrentLine, CurrentLineStation, CurrentStation);
-           
+
+            CurrentStation = (BO.Station)ListLinesStationArea.SelectedItem;
+            bl5.AddLineStation(CurrentLine, CurrentStation);
+            Window4 win4 = new Window4();
+            Application.Current.MainWindow = win4;
+            win4.ListLinesStation.ItemsSource = bl5.GetAllLinesStation(CurrentLine.Id);
+            win4.Show();
             this.Close();
-          
-            
+
+
+
         }
     }
 }

@@ -20,7 +20,10 @@ namespace DL
         public static DLXML Instance { get => instance; }// The public Instance property to use
         #endregion
 
-
+        public List<DO.Areas> GetAllAreas()
+        {
+            throw new NotImplementedException();
+        }
         #region DS XML Files
         XElement stationRoot;
         XElement LineRoot;
@@ -254,6 +257,8 @@ namespace DL
             //return ++DataSource.idLineStation;
             return 1;
         }
+
+       
         public void SaveLineStationListLinq(List<LineStation> LineStationList)
         {
             LineStationRoot = new XElement("linestations",

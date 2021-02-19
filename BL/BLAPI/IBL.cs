@@ -10,10 +10,13 @@ namespace BLAPI
 {
     public interface IBL
     {
+        List<BO.Areas> GetAreas();
         #region User
-          bool CheckUserWorker(string UserName, string password);
+        bool CheckUserWorker(string UserName, string password);
         #endregion User
         #region Line
+        void AddLine(int code, BO.Station FirstStation, BO.Station LastStation);
+        IEnumerable<BO.Station> AddLineFirst(int code, BO.Areas area, BO.Station firstStation);
        IEnumerable<BO.Line> GetAllLines();
         void DeleteLine(int id);
         void UpdateLine(BO.Line Line, BO.LineStation DeletedStation, BO.Station NewStation);
@@ -23,10 +26,16 @@ namespace BLAPI
         IEnumerable<BO.LineStation> GetLineStation(int LineId);
         IEnumerable<BO.LineStation> GetAllLinesStation(int lineid);
         void RemoveLineStation(BO.Line Line, int code);
-      
+        void AddLineStation(BO.Line Line, BO.Station Station);
+        BO.ShowStationsLine ShowStations(BO.Line line);
+
         #endregion LineStation
         #region Station
+        BO.ShowStations ShowBusStations();
+        List<int> GetAllLineInStation(int index);
+        List<string> GetAllLastStationInLine(int index);
         IEnumerable<BO.Station> ShowStationArea(BO.Line line);
+        IEnumerable<BO.Station> GetStationWithArea(BO.Areas area);
          #endregion Station
 
         //Add Person to Course

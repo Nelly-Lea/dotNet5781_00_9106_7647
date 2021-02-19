@@ -59,8 +59,6 @@ namespace PL
             bl2.RemoveLineStation(Line,CurrentLineStation.Station);
             ListLinesStation.ItemsSource=bl2.GetAllLinesStation(Line.Id);
             ListLinesStation.Items.Refresh();
- 
-
 
         }
 
@@ -70,18 +68,22 @@ namespace PL
                 CurrentLineStation = (BO.LineStation)btn.DataContext;
 
             Window5 win5 = new Window5();
+
+          
             win5.CurrentLineStation = CurrentLineStation;
             win5.CurrentLine = Line;
             win5.Init();
-            //    List<BO.LineStation> L = new List<BO.LineStation>();
-            //    L = bl1.GetLineStation(CurrentLine1.Id).ToList();
-            //    win5.ListLineStations = bl1.GetLineStation(CurrentLine1.Id).ToList();
-            //    win5.Line = CurrentLine1;
-            //    win5.InitList();
+           
           
             win5.ShowDialog();
             ListLinesStation.ItemsSource = bl2.GetAllLinesStation(Line.Id);
             ListLinesStation.Items.Refresh();
+
+            Window3 win3 = new Window3();
+            Application.Current.MainWindow = win3;
+            
+            win3.Show();
+            
         }
 
         private void UpdateCodeLine_button(object sender, RoutedEventArgs e)
@@ -92,6 +94,22 @@ namespace PL
             win6.ShowDialog();
         }
 
-       
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Window3 win3 = new Window3();
+            Application.Current.MainWindow = win3;
+           
+            win3.Show();
+            this.Close();
+        }
+
+        private void AddStation_button(object sender, RoutedEventArgs e)
+        {
+            Window7 win7 = new Window7();
+            win7.CurrentLine = Line;
+            win7.Init();
+            win7.ShowDialog();
+
+        }
     }
 }

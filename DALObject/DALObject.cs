@@ -18,6 +18,12 @@ namespace DL
         public static DALObject Instance { get => instance; }// The public Instance property to use
         #endregion
         //Implement IDL methods, CRUD
+        public List<DO.Areas> GetAllAreas()
+        {
+             List<DO.Areas> ListAreas = Enum.GetValues(typeof(DO.Areas)).Cast<DO.Areas>().ToList();
+            return ListAreas;
+
+        }
        
         #region Station
 

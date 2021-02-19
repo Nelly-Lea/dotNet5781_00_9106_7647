@@ -8,7 +8,7 @@ namespace DLAPI
 {
     public interface IDL
     {
-
+        List<DO.Areas> GetAllAreas();
 
         #region Station
        DO.Station GetStation(int code);
@@ -36,7 +36,8 @@ namespace DLAPI
         int CountplusLineStation();
         DO.LineStation GetLineStation(int id);
         IEnumerable<DO.LineStation> GetAllLineStations();
-        
+
+       
         void AddLineStation(DO.LineStation LineStation);
         void UpdateLineStation(DO.LineStation LineStation);
   
