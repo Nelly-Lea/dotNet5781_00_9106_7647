@@ -36,6 +36,8 @@ namespace BLAPI
         List<string> GetAllLastStationInLine(int index);
         IEnumerable<BO.Station> ShowStationArea(BO.Line line);
         IEnumerable<BO.Station> GetStationWithArea(BO.Areas area);
+        void DeleteStation(int code);
+
          #endregion Station
 
         //Add Person to Course

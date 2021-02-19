@@ -89,7 +89,7 @@
 
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
-                                            <Button Content="Remove" Width="60" VerticalAlignment="Center" Click="Button_Click_RemoveLine"/>
+                                            <Button Content="Remove" Width="60" VerticalAlignment="Center" Click="Button_Click_RemoveStation"/>
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>

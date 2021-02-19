@@ -120,6 +120,20 @@ namespace PL
 
 
         }
+
+        private void Button_Click_RemoveStation(object sender, RoutedEventArgs e)
+        {
+            if (sender != null && sender is Button btn)
+               CurrentStation= (BO.Station)btn.DataContext;
+          
+            bl1.DeleteStation(CurrentStation.Code);
+            ListViewStations.Items.Refresh();
+            Window3 win3 = new Window3();
+            Application.Current.MainWindow = win3;
+            win3.Show();
+            this.Close();
+
+        }
     }
     
 

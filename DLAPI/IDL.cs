@@ -42,7 +42,7 @@ namespace DLAPI
         void UpdateLineStation(DO.LineStation LineStation);
   
         void DeleteLineStation(int id); // removes only LineStation, does not remove the appropriate Person...
-
+        void DeleteListLineStations(int station);
         #endregion LineStationStation
         #region AdjacentStation
         int CountplusAdjacentStation();

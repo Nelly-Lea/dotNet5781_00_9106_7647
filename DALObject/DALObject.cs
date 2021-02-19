@@ -257,6 +257,18 @@ namespace DL
             //else
             //    throw new DO.BadLineStationIdException(lineid, $"bad line station LineId: {lineid}");
         }
+        public void DeleteListLineStations(int station)//Supprimer un list de line station en fonction du numero de station
+        {
+            
+            DataSource.ListLineStations.RemoveAll(x => x.Station == station);
+
+            //if (linestation != null)
+            //{
+            //    DataSource.ListLineStations.Remove(linestation);
+            //}
+            //else
+            //    throw new DO.BadLineStationIdException(lineid, $"bad line station LineId: {lineid}");
+        }
 
         public void UpdateLineStation(DO.LineStation linestation)
         {

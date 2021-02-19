@@ -275,7 +275,10 @@ namespace DL
             );
             LineStationRoot.Save(LineStationPath);
         }
-
+        public void DeleteListLineStations(int station)
+        {
+            throw new NotImplementedException();
+        }
         public DO.LineStation GetLineStation(int id)
         {
             List<LineStation> ListLineStations = XMLTools.LoadListFromXMLSerializer<LineStation>(LineStationPath);
