@@ -37,6 +37,8 @@ namespace BLAPI
         IEnumerable<BO.Station> ShowStationArea(BO.Line line);
         IEnumerable<BO.Station> GetStationWithArea(BO.Areas area);
         void DeleteStation(int code);
+        void UpdateStation(BO.Station StationToUpdate, string name, string address);
+        void AddStation(int code, string name, double longitude, double latitude, string address, BO.Areas area);
 
          #endregion Station
 

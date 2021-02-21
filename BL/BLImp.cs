@@ -608,13 +608,13 @@ namespace BL
 
         }
 
-        public void UpdateStation(BO.Station StationToUpdate, int code, string name, string address)
+        public void UpdateStation(BO.Station StationToUpdate,  string name, string address)
         {
             DO.Station StationDO = new DO.Station();
             StationDO.Area = (DO.Areas)StationToUpdate.Area;
             StationDO.Longitude = StationToUpdate.Longitude;
             StationDO.Latitude = StationToUpdate.Latitude;
-            StationDO.Code = code;
+            StationDO.Code = StationToUpdate.Code;
             StationDO.Name = name;
             StationDO.Address = address;
             dl.UpdateStation(StationDO);
