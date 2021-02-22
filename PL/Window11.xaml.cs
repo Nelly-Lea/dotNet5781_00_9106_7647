@@ -33,7 +33,15 @@ namespace PL
            
             string name = TbName.Text;
             string address = TbAddress.Text;
-            bl9.UpdateStation(CurrentStation,  name, address);
+            try
+            {
+                bl9.UpdateStation(CurrentStation, name, address);
+            }
+            catch (BO.BadStationCodeException ex)
+            {
+                MessageBox.Show("Bad Code Station");
+            }
+           
             this.Close();
         }
 

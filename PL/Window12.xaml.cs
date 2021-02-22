@@ -43,18 +43,24 @@ namespace PL
         private void Button_ClickEnter(object sender, RoutedEventArgs e)
         {
             int code = Int32.Parse(TbCode.Text);
-            //if (!Regex.Match(TbAddress.Text, @"^[0-9]+\s+([a-zA-Z]+|[a-zA-Z]+\s[a-zA-Z]+)$").Success)
+            //if (!Regex.Match(TbAddress.Text, @"^[0-200]+\s+([a-zA-Z]+|[a-zA-Z]+\s[a-zA-Z]+)$").Success)
             //{
             //    // address was incorrect  
             //    MessageBox.Show("Invalid address", "Message", MessageBoxButton.OK, MessageBoxImage.Error);
             //    TbAddress.Focus();
             //    return;
             //}
-           this.TbLongitude=Convert.ToDouble(Console.ReadLine())
-            double longitude = double.TryParse(TbLongitude.Text,longitude);
-           // double longi = Convert.ToDouble(TbLongitude.Text);
-            double latitude = Double.Parse(TbLatitude.Text);
-            bl10.AddStation(code, TbName.Text, longitude, latitude, TbAddress.Text, (BO.Areas)CbArea.SelectedItem);
+  
+            double longitude = double.Parse(TbLongitude.Text);
+            double latitude = double.Parse(TbLatitude.Text);
+            try
+            {
+                bl10.AddStation(code, TbName.Text, longitude, latitude, TbAddress.Text, (BO.Areas)CbArea.SelectedItem);
+            }
+            catch (BO.BadStationCodeException ex)
+            {
+                MessageBox.Show("Bad Code Station");
+            }
             this.Close();
 
         }

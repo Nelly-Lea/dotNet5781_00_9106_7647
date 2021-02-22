@@ -32,7 +32,7 @@
         <ListView x:Name="ListViewDist" Height="336" VerticalAlignment="Top" Margin="471,0,160.6,0" Grid.ColumnSpan="3" Grid.Row="1">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Distance in km"  Width="157"/>
+                    <GridViewColumn Header="Distance in m"  Width="157"/>
 
 
                 </GridView>

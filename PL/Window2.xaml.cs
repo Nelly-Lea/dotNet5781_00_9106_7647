@@ -71,20 +71,46 @@ namespace PL
             string user = UserName.Text;
             string password=PasswordHidden.Password;
 
-            bool DirectorWorkerRegistered = bl.CheckUserWorker(user, password);
-            if (DirectorWorkerRegistered)
+            try
             {
+                bl.CheckUserWorker(user, password);
                 Window3 win3 = new Window3();
-               
+
                 win3.ShowDialog();
             }
-            else
+            catch (BO.BadUserNameException ex)
             {
                 MessageBox.Show("Input Error");
+            }
+            catch(BO.BadPasswordUserException ex)
+            {
+                MessageBox.Show("Error Password");
             }
 
         }
 
-       
+        private void AddNewUser_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                bl.CheckPassword(PasswordHidden1.Password, PasswordHidden2.Password);
+            }
+            catch (BO.BadPasswordUserException ex)
+            {
+                MessageBox.Show("Paswords don't match");
+            }
+            try
+            {
+                bl.AddUser(NewUserName.Text, PasswordHidden1.Password, true);
+                MessageBox.Show("You have been registered");
+                this.Close();
+            }
+            catch (BO.BadUserNameException ex)
+            {
+                MessageBox.Show("The user name already exist");
+            }
+        }
+
+        
     }
 }

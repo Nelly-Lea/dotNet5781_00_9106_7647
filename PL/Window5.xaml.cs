@@ -47,8 +47,17 @@ namespace PL
         {
            
                 CurrentStation = (BO.Station) ListLinesStationArea.SelectedItem;
+                
+            try
+            {
                 bl3.UpdateLine(CurrentLine, CurrentLineStation, CurrentStation);
-           
+            }
+            catch (BO.BadLineIdException ex)
+            {
+                MessageBox.Show("Bad Code Line");
+
+            }
+
             this.Close();
           
             

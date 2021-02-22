@@ -48,6 +48,10 @@ namespace PL
             var listLineStationsObs = new ObservableCollection<BO.LineStation>(ListLineStations);
             ListLinesStation.ItemsSource = listLineStationsObs;
             ListLinesStation.Items.Refresh();
+            TbLineNumber.DataContext = Line;
+            TbLineNumber.Text = Line.Code.ToString();
+            TbArea.DataContext = Line;
+            TbArea.Text = Line.Area.ToString();
 
         }
         private void RemoveLineStation_button(object sender, RoutedEventArgs e)
@@ -92,6 +96,7 @@ namespace PL
             win6.CurrentLine = Line;
             win6.Init();
             win6.ShowDialog();
+            this.Close();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

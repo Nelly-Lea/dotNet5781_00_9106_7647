@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using BLAPI;
 
 namespace PL
 {
@@ -19,9 +20,95 @@ namespace PL
     /// </summary>
     public partial class Window1 : Window
     {
+        IBL bl = BLFactory.GetBL("1");
         public Window1()
         {
             InitializeComponent();
+        }
+        private void ShowPassword_PreviewMouseUp(object sender, MouseButtonEventArgs e) => HidePasswordFunction();
+        private void ShowPassword_MouseLeave(object sender, MouseButtonEventArgs e) => HidePasswordFunction();
+        private void ShowPassword_PreviewMouseDown(object sender, MouseButtonEventArgs e) => ShowPasswordFunction();
+
+        private void ShowPasswordFunction()
+        {
+            ShowPassword.Text = "HIDE";
+            PasswordUnmask.Visibility = Visibility.Visible;
+            PasswordHidden.Visibility = Visibility.Hidden;
+            PasswordUnmask.Text = PasswordHidden.Password;
+
+        }
+        private void HidePasswordFunction()
+        {
+            ShowPassword.Text = "SHOW";
+            PasswordUnmask.Visibility = Visibility.Hidden;
+            PasswordHidden.Visibility = Visibility.Visible;
+        }
+
+        private void ShowPassword_PreviewMouseUp1(object sender, MouseButtonEventArgs e) => HidePasswordFunction1();
+        private void ShowPassword_MouseLeave1(object sender, MouseButtonEventArgs e) => HidePasswordFunction1();
+        private void ShowPassword_PreviewMouseDown1(object sender, MouseButtonEventArgs e) => ShowPasswordFunction1();
+
+        private void ShowPasswordFunction1()
+        {
+            ShowPassword1.Text = "HIDE";
+            PasswordUnmask1.Visibility = Visibility.Visible;
+            PasswordHidden1.Visibility = Visibility.Hidden;
+            PasswordUnmask1.Text = PasswordHidden.Password;
+
+        }
+        private void HidePasswordFunction1()
+        {
+            ShowPassword.Text = "SHOW";
+            PasswordUnmask.Visibility = Visibility.Hidden;
+            PasswordHidden.Visibility = Visibility.Visible;
+        }
+
+        private void Registered_Click(object sender, RoutedEventArgs e)
+        {
+            string user = UserName.Text;
+            string password = PasswordHidden.Password;
+
+            try
+            {
+                bl.CheckUserPassenger(user, password);
+                Window13 win13 = new Window13();
+                win13.CurrentUser = UserName.Text;
+                win13.init();
+
+                win13.ShowDialog();
+            }
+            catch (BO.BadUserNameException ex)
+            {
+                MessageBox.Show("Input Error");
+            }
+            catch (BO.BadPasswordUserException ex)
+            {
+                MessageBox.Show("Error Password");
+            }
+
+
+        }
+
+        private void AddNewUser_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                bl.CheckPassword(PasswordHidden1.Password, PasswordHidden2.Password);
+            }
+            catch (BO.BadPasswordUserException ex)
+            {
+                MessageBox.Show("Paswords don't match");
+            }
+            try
+            {
+                bl.AddUser(NewUserName.Text, PasswordHidden1.Password,false);
+                MessageBox.Show("You have been registered");
+                this.Close();
+            }
+            catch (BO.BadUserNameException ex)
+            {
+                MessageBox.Show("The user name already exist");
+            }
         }
     }
 }

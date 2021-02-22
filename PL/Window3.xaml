@@ -85,8 +85,6 @@
                                 <GridViewColumn Header="Longitude" DisplayMemberBinding="{Binding Longitude}" Width="70"/>
                                 <GridViewColumn Header="Latitude" DisplayMemberBinding="{Binding Latitude}" Width="70"/>
                                 <GridViewColumn Width="70">
-
-
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
                                             <Button Content="Remove" Width="60" VerticalAlignment="Center" Click="Button_Click_RemoveStation"/>
@@ -107,10 +105,41 @@
 
                     </ListView>
                     <Button Content="Add Station" HorizontalAlignment="Left" Margin="320,23.4,0,0" Grid.Row="1" VerticalAlignment="Top" Width="133" Height="29" Click="Button_AddStation"/>
-                </Grid>
+                
+</Grid>
             </TabItem>
 
+            <TabItem Header="AdjacentStations">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="157*"/>
+                        <RowDefinition Height="41*"/>
 
+                    </Grid.RowDefinitions>
+
+                    <ListView x:Name="ListViewAdjStations" Margin="-4,0,-3,82" Grid.RowSpan="2" >
+                        <ListView.View  >
+                            <GridView>
+                                <GridViewColumn Header="Station 1" DisplayMemberBinding="{Binding Station1}" Width="100"/>
+                                <GridViewColumn Header="Station 2" DisplayMemberBinding="{Binding Station2}" Width="100"/>
+                                <GridViewColumn Header="Distance in m" DisplayMemberBinding="{Binding Distance}" Width="100"/>
+                                <GridViewColumn Header="Time" DisplayMemberBinding="{Binding Time}" Width="100"/>
+                                <GridViewColumn Width="100">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Button Content="Update Time and Distance" Width="60" VerticalAlignment="Center" Click="Button_Click_UpdateAdjStation"/>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+
+                                </GridViewColumn>
+                            </GridView>
+                         
+                        </ListView.View>
+
+                    </ListView>
+                    <Button Content="Add Station" HorizontalAlignment="Left" Margin="320,23.4,0,0" Grid.Row="1" VerticalAlignment="Top" Width="133" Height="29" Click="Button_AddStation"/>
+                </Grid>
+            </TabItem>
         </TabControl>
 
     </Grid>

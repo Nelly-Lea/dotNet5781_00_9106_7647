@@ -11,9 +11,7 @@ namespace BLAPI
     public interface IBL
     {
         List<BO.Areas> GetAreas();
-        #region User
-        bool CheckUserWorker(string UserName, string password);
-        #endregion User
+       
         #region Line
         void AddLine(int code, BO.Station FirstStation, BO.Station LastStation);
         IEnumerable<BO.Station> AddLineFirst(int code, BO.Areas area, BO.Station firstStation);
@@ -32,7 +30,8 @@ namespace BLAPI
         #endregion LineStation
         #region Station
         BO.ShowStations ShowBusStations();
-        List<int> GetAllLineInStation(int index);
+        //List<int> GetAllLineInStation(int index);
+        List<BO.Line> GetAllLineInStation(int index);
         List<string> GetAllLastStationInLine(int index);
         IEnumerable<BO.Station> ShowStationArea(BO.Line line);
         IEnumerable<BO.Station> GetStationWithArea(BO.Areas area);
@@ -40,8 +39,18 @@ namespace BLAPI
         void UpdateStation(BO.Station StationToUpdate, string name, string address);
         void AddStation(int code, string name, double longitude, double latitude, string address, BO.Areas area);
 
-         #endregion Station
+        #endregion Station
+        #region AdjacentStations
+        void AddAdjacentStations(BO.AdjacentStations AdjacentStation);
+        void UpdateTimeAndDistanceAdjStations(BO.AdjacentStations AdjacentStation);
+        #endregion AdjacentStations
+        #region User
+        void CheckUserWorker(string UserName, string password);
+        void CheckPassword(string password, string password1);
+        void AddUser(string username, string password, bool admin);
 
+        void CheckUserPassenger(string UserName, string password);
+   #endregion User
         //Add Person to Course
         //get all courses for student
         //etc...

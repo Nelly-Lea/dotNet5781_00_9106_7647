@@ -43,8 +43,21 @@ namespace PL
         {
             int code = Int32.Parse(tbCode.Text);
             BO.Areas Area = (BO.Areas)CbArea.SelectedItem;
-           BO.Station FirstStation = (BO.Station)CbFirstStation.SelectedItem;
-            CbLastStation.ItemsSource = bl6.AddLineFirst(code, Area, FirstStation);
+            BO.Station FirstStation = (BO.Station)CbFirstStation.SelectedItem;
+            try
+            {
+                CbLastStation.ItemsSource = bl6.AddLineFirst(code, Area, FirstStation);
+            }
+            catch (BO.BadLineIdException ex)
+            {
+                MessageBox.Show("Bad Code Line");
+                Window3 win3 = new Window3();
+
+                win3.Show();
+                this.Close();
+
+            }
+        
 
 
         }
@@ -59,7 +72,16 @@ namespace PL
             int code = Int32.Parse(tbCode.Text);
             BO.Station LastStation = (BO.Station)CbLastStation.SelectedItem;
             BO.Station FirstStation = (BO.Station)CbFirstStation.SelectedItem;
-            bl6.AddLine(code, FirstStation, LastStation);
+            try
+            {
+                bl6.AddLine(code, FirstStation, LastStation);
+            }
+            catch (BO.BadLineIdException ex)
+            {
+                MessageBox.Show("Bad Code Line");
+
+            }
+           
             Window3 win3 = new Window3();
             win3.ListLines.ItemsSource=bl6.GetAllLines();
             win3.Show();

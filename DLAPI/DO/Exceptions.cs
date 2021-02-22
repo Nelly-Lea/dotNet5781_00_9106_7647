@@ -122,7 +122,18 @@ namespace DO
 
         public override string ToString() => base.ToString() + $", bad User Name:{UserName}";
     }
-   
+    public class BadPasswordUserException : Exception
+    {
+        public string Password;
+        public BadPasswordUserException(string password) : base() => Password = password;
+        public BadPasswordUserException(string password, string message) :
+            base(message) => Password = password;
+        public BadPasswordUserException(string password, string message, Exception innerException) :
+            base(message, innerException) => Password = password;
+
+        public override string ToString() => base.ToString() + $", bad User Password:{Password}";
+    }
+
 
     public class XMLFileLoadCreateException : Exception
     {

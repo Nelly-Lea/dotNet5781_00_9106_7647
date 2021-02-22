@@ -838,7 +838,7 @@ namespace DS
             },
               new User
             {
-                UserName="Nelly Lea Amar",
+                UserName="Nelly",
                 Password="123456",
                 Admin=false,
 

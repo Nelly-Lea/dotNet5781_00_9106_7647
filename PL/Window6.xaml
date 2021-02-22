@@ -20,7 +20,8 @@
         <Label Content="Line Number :" HorizontalAlignment="Left" Margin="242,62,0,0" VerticalAlignment="Top" Height="27" Width="112"/>
         <TextBlock x:Name="TbLineNumber"  HorizontalAlignment="Left" Margin="410,62,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Height="27" Width="101"/>
         <TextBox x:Name="tbNewLineNumber"  HorizontalAlignment="Left" Height="23" Margin="443,177,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" PreviewTextInput="NumberValidationTextBox"/>
-        <Button Content="Enter" HorizontalAlignment="Left" Margin="279,265,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
+        <Button Content="Enter" HorizontalAlignment="Left" Margin="410,264,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
+        <Button x:Name="ButtonReturn" Content="Return" HorizontalAlignment="Left" Margin="200,264,0,0" VerticalAlignment="Top" Width="75" Click="ButtonReturn_Click"/>
 
     </Grid>
 </Window>

@@ -41,16 +41,34 @@ namespace PL
         {
 
             int code = Int32.Parse(tbNewLineNumber.Text);
-            bl4.UpdateLineCode(CurrentLine, code);
+           
+            try
+            {
+                bl4.UpdateLineCode(CurrentLine, code);
+            }
+            catch (BO.BadLineIdException ex)
+            {
+                MessageBox.Show("Bad Code Line");
+
+            }
+
 
             // this.Close();
-            
+
             Window3 win3 = new Window3();
             Application.Current.MainWindow = win3;
             win3.ListLines.ItemsSource = bl4.GetAllLines();
             win3.Show();
             this.Close();
 
+        }
+
+        private void ButtonReturn_Click(object sender, RoutedEventArgs e)
+        {
+            Window3 win3 = new Window3();
+            Application.Current.MainWindow = win3;
+            win3.Show();
+            this.Close();
         }
     }
 }

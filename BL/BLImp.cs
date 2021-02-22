@@ -73,7 +73,15 @@ namespace BL
             return stationslineBO;
 
         }
-        public List<int> GetAllLineInStation(int index)
+        //public List<int> GetAllLineInStation(int index)
+
+        //{
+
+        //    BO.ShowStations SS = ShowBusStations();
+        //    return SS.linesNumbers[index];
+
+        //}
+        public List<BO.Line> GetAllLineInStation(int index)
 
         {
 
@@ -129,7 +137,10 @@ namespace BL
             }
             ss.adjStations = listAdjStationBO;
             int codeLine, lineId, codeLastStation;
-            List<int> listinterieurcode = new List<int>();
+           // List<int> listinterieurcode = new List<int>();
+
+            List<BO.Line> ListInterieurCode = new List<BO.Line>();//ajout
+
             List<string> listinterieurname = new List<string>();
 
             IEnumerable<DO.LineStation> listLineStationDO = dl.GetAllLineStations();
@@ -137,7 +148,8 @@ namespace BL
             foreach (var item in listStationBO)
             {
                 codeLine = item.Code;
-                listinterieurcode = new List<int>();
+                //listinterieurcode = new List<int>();
+                 ListInterieurCode = new List<BO.Line>();//ajout
                 listinterieurname = new List<string>();
                 foreach (var item1 in listLineStationDO)
                 {
@@ -154,8 +166,16 @@ namespace BL
 
                                 //ss.linesNumbers[i] = new List<int>();
                                 //ss.linesNumbers[i].Add(item2.Code);
+                                BO.Line LineBO = new BO.Line();//ajout
+                                LineBO.Id = item2.Id;//ajout
+                                LineBO.Code = item2.Code;//ajout
+                                LineBO.Area = (BO.Areas)item2.Area;//ajout
+                                LineBO.FirstStation = item2.FirstStation;//ajout
+                                LineBO.LastStation = item2.LastStation;//ajout
+                                LineBO.CountStation = item2.CountStation;//ajout
+                                ListInterieurCode.Add(LineBO);//ajout
 
-                                listinterieurcode.Add(item2.Code);
+                              //  listinterieurcode.Add(item2.Code);
                                 codeLastStation = item2.LastStation;
                                 foreach (var item3 in dl.GetAllStations())
                                 {
@@ -176,7 +196,8 @@ namespace BL
 
                 }
                 // i++;
-                ss.linesNumbers.Add(listinterieurcode);
+                ss.linesNumbers.Add(ListInterieurCode);//ajout
+               // ss.linesNumbers.Add(listinterieurcode);
                 ss.lastStationNames.Add(listinterieurname);
 
 
@@ -195,26 +216,23 @@ namespace BL
             NewLine.FirstStation = LineDO.FirstStation;
             NewLine.LastStation = LineDO.LastStation;
             NewLine.CountStation = LineDO.CountStation;
+            IEnumerable<DO.Line> listLines = dl.GetAllLines().Where(x => (x.Code == code) && (x.Area == (DO.Areas)Line.Area));
 
-            dl.UpdateLine(NewLine);
 
+            if ((Line.Code != NewLine.Code) && (listLines.FirstOrDefault() == null) || (Line.Code == NewLine.Code))
+                dl.UpdateLine(NewLine);
+            else
+                throw new BO.BadLineIdException(NewLine.Code, "Bad Line code");
+            
         }
+          
         public IEnumerable<BO.Line> GetAllLines()
         {
             BO.Line LineBO = new BO.Line();
             return from LineDO in dl.GetAllLines()
                    select new BO.Line
                    { Id = LineDO.Id, Code = LineDO.Code, Area = (BO.Areas)LineDO.Area, FirstStation = LineDO.FirstStation, LastStation = LineDO.LastStation, CountStation = LineDO.CountStation };
-            //       {
-            //    LineBO.Area = (BO.Areas)LineDO.Area,
-            //    LineBO.Code = LineDO.Code,
-            //    LineBO.CountStation = LineDO.CountStation;
-            //    LineBO.Id = LineDO.Id;
-            //    LineBO.FirstStation = LineDO.FirstStation;
-            //    LineBO.LastStation = LineDO.LastStation;
-            //}
-            //IEnumerable<BO.Line> ListOfLines=new List<BO.Line>();
-
+           
 
         }
 
@@ -235,6 +253,7 @@ namespace BL
             FirstLineStation.PrevStation = -1;
             FirstLineStation.Station = firstStation.Code;
             dl.AddLineStation(FirstLineStation);
+            
             DO.Line LineDO = new DO.Line();
             LineDO.Id = Line.Id;
             LineDO.Code = code;
@@ -242,7 +261,17 @@ namespace BL
             LineDO.FirstStation = firstStation.Code;
             LineDO.LastStation = -1;
             LineDO.CountStation = 1;
-            dl.AddLine(LineDO);
+
+           
+            try
+            {
+                dl.AddLine(LineDO);
+            }
+            catch (DO.BadLineIdException ex)
+            {
+                throw new BO.BadLineIdException(LineDO.Id, "Bad line Id", ex);
+            }
+            //dl.AddLine(LineDO);
             IEnumerable<BO.Station> listStation = ShowStationArea(Line);
             return listStation;
         }
@@ -258,7 +287,15 @@ namespace BL
             line.LastStation = LastStation.Code;
             line.Id = Line.Id;
             line.CountStation = 2;
-            dl.UpdateLine(line);
+            try
+            {
+                dl.UpdateLine(line);
+            }
+            catch (DO.BadLineIdException ex)
+            {
+                throw new BO.BadLineIdException(line.Code, "Bad line Code", ex);
+            }
+           
             IEnumerable<DO.LineStation> lineStationDO = dl.GetAllLineStations().Where(x => x.LineId == Line.Id);
             DO.LineStation lineStation1 = new DO.LineStation();
             lineStation1.Id = lineStationDO.FirstOrDefault().Id;
@@ -275,19 +312,20 @@ namespace BL
             lineStation2.LineStationIndex = 2;
             lineStation2.PrevStation = line.FirstStation;
             lineStation2.NextStation = -1;
-
             dl.UpdateLineStation(lineStation1);
             dl.AddLineStation(lineStation2);
-
+  
             DO.AdjacentStations adjacentStation = new DO.AdjacentStations();
 
             adjacentStation.Distance = (dl.CalculateDist(dl.GetStation(line.FirstStation), dl.GetStation(LastStation.Code)));
-
-            //vitesse=30km/h=>500m/min
-            double time = adjacentStation.Distance / 500;
-            int h = (int)time / 60;
-            int m = (int)time % 60;
-            adjacentStation.Time = new TimeSpan(h, m, 0);
+            double time = adjacentStation.Distance / 333.33;
+            double timeinseconds = time * 60;
+            int m = (int)time;
+            int s = (int)timeinseconds - m * 60;
+            
+            adjacentStation.Time = new TimeSpan(0, m, s);
+            ////vitesse=20km/h=>333.33m/min
+           
             adjacentStation.id = dl.CountplusAdjacentStation();
             adjacentStation.Station1 = line.FirstStation;
             adjacentStation.Station2 = LastStation.Code;
@@ -330,8 +368,8 @@ namespace BL
                     NewLine.LastStation = Line.LastStation;
                     adjacentStationsBO1.Station1 = NewLineStation.Station;
                     adjacentStationsBO1.Station2 = NewLineStation.NextStation;
-                    adjacentStationsBO1.id = dl.CountplusAdjacentStation();
-                    UpdateTimeAndDistance(adjacentStationsBO1);
+                   
+                    AddAdjacentStations(adjacentStationsBO1);
                     DO.LineStation nextLineStation = new DO.LineStation();
                     nextLineStation = dl.GetAllLineStations().Where(x => x.LineId == Line.Id && x.Station == DeletedStation.NextStation).FirstOrDefault();
                     DO.LineStation stationDO = new DO.LineStation();
@@ -352,8 +390,8 @@ namespace BL
                     NewLine.FirstStation = Line.FirstStation;
                     adjacentStationsBO1.Station1 = NewLineStation.PrevStation;
                     adjacentStationsBO1.Station2 = NewLineStation.Station;
-                    adjacentStationsBO1.id = dl.CountplusAdjacentStation();
-                    UpdateTimeAndDistance(adjacentStationsBO1);
+                   
+                    AddAdjacentStations(adjacentStationsBO1);
                     DO.LineStation prevLineStation = new DO.LineStation();
                     prevLineStation = dl.GetAllLineStations().Where(x => x.LineId == Line.Id && x.Station == DeletedStation.PrevStation).FirstOrDefault();
                     DO.LineStation stationDO = new DO.LineStation();
@@ -373,8 +411,8 @@ namespace BL
                 NewLine.LastStation = Line.LastStation;
                 adjacentStationsBO1.Station1 = NewLineStation.PrevStation;
                 adjacentStationsBO1.Station2 = NewLineStation.Station;
-                adjacentStationsBO1.id = dl.CountplusAdjacentStation();
-                UpdateTimeAndDistance(adjacentStationsBO1);
+                
+                AddAdjacentStations(adjacentStationsBO1);
                 DO.LineStation nextLineStation = new DO.LineStation();
                 nextLineStation = dl.GetAllLineStations().Where(x => x.LineId == Line.Id && x.Station == DeletedStation.NextStation).FirstOrDefault();
                 DO.LineStation stationDO = new DO.LineStation();
@@ -388,8 +426,8 @@ namespace BL
 
                 adjacentStationsBO2.Station1 = NewLineStation.Station;
                 adjacentStationsBO2.Station2 = NewLineStation.NextStation;
-                adjacentStationsBO2.id = dl.CountplusAdjacentStation();
-                UpdateTimeAndDistance(adjacentStationsBO2);
+                
+                AddAdjacentStations(adjacentStationsBO2);
 
                 DO.LineStation prevLineStation = new DO.LineStation();
                 prevLineStation = dl.GetAllLineStations().Where(x => x.LineId == Line.Id && x.Station == DeletedStation.PrevStation).FirstOrDefault();
@@ -403,21 +441,31 @@ namespace BL
                 dl.UpdateLineStation(stationDO2);
 
             }
+            
+            try
+            {
+                dl.UpdateLine(NewLine);
+            }
+            catch (DO.BadLineIdException ex)
+            {
+                throw new BO.BadLineIdException(NewLine.Code, "Bad line Code", ex);
+            }
 
-            dl.UpdateLine(NewLine);
+           
         }
         public void DeleteLine(int id)
         {
 
 
             dl.DeleteLineStation(id);
+
             dl.DeleteLine(id);
             dl.DeleteLineTrip(id);
 
         }
         #endregion Line
         #region AdjacentStation
-        void UpdateTimeAndDistance(BO.AdjacentStations AdjacentStation)
+       public void AddAdjacentStations(BO.AdjacentStations AdjacentStation)
         {
             DO.Station station1 = new DO.Station();
             DO.Station station2 = new DO.Station();
@@ -430,18 +478,50 @@ namespace BL
             }
             double distance = dl.CalculateDist(station1, station2);
             AdjacentStation.Distance = distance;
-            //vitesse=30km/h=>500m/min
-            double time = AdjacentStation.Distance / 500;
-            int h = (int)time / 60;
-            int m = (int)time % 60;
-            AdjacentStation.Time = new TimeSpan(h, m, 0);
+          
+            double time = AdjacentStation.Distance / 333.33;
+            double timeinseconds = time * 60;
+            int m = (int)time;
+            int s = (int)timeinseconds - m * 60;
+          
+            AdjacentStation.Time = new TimeSpan(0, m, s);
+          
+            DO.AdjacentStations adjacentStationsDO = new DO.AdjacentStations();
+            adjacentStationsDO.Distance = AdjacentStation.Distance;
+            adjacentStationsDO.id =dl.CountplusAdjacentStation();
+            adjacentStationsDO.Station1 = AdjacentStation.Station1;
+            adjacentStationsDO.Station2 = AdjacentStation.Station2;
+            adjacentStationsDO.Time = AdjacentStation.Time;
+            dl.AddAdjacentStations(adjacentStationsDO);
+
+        }
+        public void UpdateTimeAndDistanceAdjStations(BO.AdjacentStations AdjacentStation)
+        {
+            DO.Station station1 = new DO.Station();
+            DO.Station station2 = new DO.Station();
+            foreach (var item in dl.GetAllStations())
+            {
+                if (item.Code == AdjacentStation.Station1)
+                    station1 = item;
+                if (item.Code == AdjacentStation.Station2)
+                    station2 = item;
+            }
+            double distance = dl.CalculateDist(station1, station2);
+            AdjacentStation.Distance = distance;
+            //vitesse=20km/h=>333.33m/min
+            double time = AdjacentStation.Distance / 333.33;
+            double timeinseconds = time * 60;
+            int m = (int)time;
+            int s = (int)timeinseconds - m * 60;
+          
+            AdjacentStation.Time = new TimeSpan(0, m, s);
             DO.AdjacentStations adjacentStationsDO = new DO.AdjacentStations();
             adjacentStationsDO.Distance = AdjacentStation.Distance;
             adjacentStationsDO.id = AdjacentStation.id;
             adjacentStationsDO.Station1 = AdjacentStation.Station1;
             adjacentStationsDO.Station2 = AdjacentStation.Station2;
             adjacentStationsDO.Time = AdjacentStation.Time;
-            dl.AddAdjacentStations(adjacentStationsDO);
+            dl.UpdateAdjacentStations(adjacentStationsDO);
 
         }
         #endregion AdjacentStation
@@ -455,7 +535,15 @@ namespace BL
             station.Latitude = latitude;
             station.Address = address;
             station.Area = (DO.Areas)area;
-            dl.AddStation(station);
+            try
+            {
+                dl.AddStation(station);
+            }
+            catch (DO.BadStationCodeException ex)
+            {
+                throw new BO.BadStationCodeException(station.Code, "Bad Station code", ex);
+            }
+           // dl.AddStation(station);
         }
         public void DeleteStation(int code)
         {
@@ -477,10 +565,6 @@ namespace BL
                     LineStationDO2.NextStation = lineStation2.FirstOrDefault().NextStation;
                     LineStationDO2.Station = lineStation2.FirstOrDefault().Station;
 
-
-
-                    // lineStation2.FirstOrDefault().PrevStation = -1;
-                    // lineStation2.FirstOrDefault().LineStationIndex = 1;
                     DO.Line line = dl.GetAllLines().Where(x => x.Id == item.LineId).FirstOrDefault();
                     DO.Line Line = new DO.Line();
                     Line.Area = line.Area;
@@ -491,10 +575,7 @@ namespace BL
                     Line.Id = line.Id;
                     dl.UpdateLine(Line);
                     dl.UpdateLineStation(LineStationDO2);
-                   // dl.AddLineStation(LineStationDO2);
-                    //  line.FirstStation = lineStation2.FirstOrDefault().Station;
-                    //  dl.UpdateLine(line);
-                    // dl.UpdateLineStation(lineStation2.FirstOrDefault());
+                  
                 }
                 if (item.NextStation == -1)
                 {
@@ -519,11 +600,7 @@ namespace BL
                     Line.Id = line.Id;
                     dl.UpdateLine(Line);
                     dl.UpdateLineStation(LineStationDO1);
-                   // dl.AddLineStation(LineStationDO1);
-
-                    //line.LastStation = lineStation2.FirstOrDefault().Station;
-                    //dl.UpdateLine(line);
-                    // dl.UpdateLineStation(lineStation2.FirstOrDefault());
+                  
                 }
                         else
                 {
@@ -536,7 +613,7 @@ namespace BL
                     PreLineStation.PrevStation = lineStation1.FirstOrDefault().PrevStation;
                     PreLineStation.NextStation = item.NextStation;
                     PreLineStation.Station = lineStation1.FirstOrDefault().Station;
-                    //lineStation1.FirstOrDefault().NextStation = item.NextStation;
+                   
 
                     DO.LineStation LineStationDO3 = new DO.LineStation();
                     LineStationDO3.Id = lineStation2.FirstOrDefault().Id;
@@ -546,13 +623,11 @@ namespace BL
                     LineStationDO3.NextStation = lineStation2.FirstOrDefault().NextStation;
                     LineStationDO3.Station = lineStation2.FirstOrDefault().Station;
 
-                    //            //lineStation2.FirstOrDefault().PrevStation = item.PrevStation;
+                    
                      dl.UpdateLineStation(PreLineStation);
-                    //            //dl.UpdateLineStation(lineStation2.FirstOrDefault());
-                    //            //dl.UpdateLineStation(lineStation1.FirstOrDefault());
-                               dl.UpdateLineStation(LineStationDO3);
-                   // dl.AddLineStation(LineStationDO3);
-                    //dl.AddLineStation(PreLineStation);
+                    
+                     dl.UpdateLineStation(LineStationDO3);
+                   
                 }
                 List<DO.LineStation> lineStationsUpdateIndex = ListLineStations.Where(x => x.LineId == item.LineId && x.LineStationIndex > item.LineStationIndex).ToList();
             foreach (var item1 in lineStationsUpdateIndex)
@@ -565,16 +640,10 @@ namespace BL
                 LineStationDO.NextStation = item1.NextStation;
                 LineStationDO.PrevStation = item1.PrevStation;
                 LineStationDO.Station = item1.Station;
-                   
-                    // item1.LineStationIndex--;
-
-                     dl.UpdateLineStation(LineStationDO);
-                    //dl.AddLineStation(LineStationDO);
-                   // dl.DeleteLineStation(item1.Id);
-                //item1.LineStationIndex--;
-                //dl.UpdateLineStation(item1);
+                dl.UpdateLineStation(LineStationDO);
+                    
             }
-            // dl.DeleteLineStation(item.Id);
+           
         }
 
         dl.DeleteListLineStations(code);  // j'hesite a nettre cette ligne
@@ -617,7 +686,15 @@ namespace BL
             StationDO.Code = StationToUpdate.Code;
             StationDO.Name = name;
             StationDO.Address = address;
-            dl.UpdateStation(StationDO);
+            try
+            {
+                dl.UpdateStation(StationDO);
+            }
+            catch (DO.BadStationCodeException ex)
+            {
+                throw new BO.BadStationCodeException(StationDO.Code, "Bad Station code", ex);
+            }
+           
 
         }
 
@@ -631,28 +708,63 @@ namespace BL
 
             return ListStationBO;
         }
+
+        //public List<BO.Station> ShowTravelsBetween2Stations(BO.Station StationStart, BO.Station StationFinish)
+        //{
+        //    BO.ShowStations ShowStations = new ShowStations();
+        //    ShowStations = ShowBusStations();
+        //    int index1 = 0, index2 = 0;
+        //    foreach(var item in ShowStations.stations)
+        //    {
+        //        if (item.Code == StationStart.Code)
+        //            break;
+        //        index1++;
+        //    }
+        //    foreach (var item in ShowStations.stations)
+        //    {
+        //        if (item.Code == StationFinish.Code)
+        //            break;
+        //        index2++;
+        //    }
+        //    List<BO.Line> LineStations1 = ShowStations.linesNumbers[index1];
+        //    List<BO.Line> LineStations2 = ShowStations.linesNumbers[index2];
+
+        //    List<BO.Line> listLines = LineStations1.Where(p => LineStations2.All(p2 => p2.Code == p.Code)).ToList();
+        //    int indexlinestation1=0, indexlinestation2=0;
+        //    if(listLines!=null)
+        //    {
+        //        IEnumerable<DO.LineStation> listLineStation =dl.GetAllLineStations().Where(x=>x.LineId==)
+        //    }
+        //    List < List<BO.LineStation> >ListlineStations= new List<List<BO.LineStation>>();
+        //    int i = 0;
+        //    foreach(var item1 in listLines)
+        //    {
+        //        foreach(var item2 in dl.GetAllLineStations().Where(x=>x.LineId==item1.Id))
+        //        {
+        //            if (item2.Station == StationStart.Code)
+        //                break;
+        //            indexlinestation1++;
+        //        }
+        //        foreach (var item3 in dl.GetAllLineStations().Where(x => x.LineId == item1.Id))
+        //        {
+        //            if (item3.Station == StationFinish.Code)
+        //                break;
+        //            indexlinestation2++;
+        //        }
+        //        if(indexlinestation1<indexlinestation2)
+        //        {
+        //            ListlineStations[i].Add(dl.GetLineStation())
+        //        }
+        //        i++;
+        //    }
+        }
+
         //FONCTION UPDATE
         #endregion Station
         #region LineStation
         public IEnumerable<BO.LineStation> GetLineStation(int LineId)
         {
-            //BO.LineStation lineStationBO = new BO.LineStation();
-            //List<BO.LineStation> ListOfLineStations = new List<LineStation>();
-            //foreach(var item in dl.GetAllLineStations())
-            //{
-            //    if(item.LineId==LineId)
-            //    {
-            //        lineStationBO.Id = item.Id;
-            //        lineStationBO.LineId = item.LineId;
-            //        lineStationBO.LineStationIndex = item.LineStationIndex;
-            //        lineStationBO.NextStation = item.NextStation;
-            //        lineStationBO.PrevStation = item.PrevStation;
-            //        lineStationBO.Station = item.Station;
-            //        ListOfLineStations.Add(lineStationBO);
-            //    }
-
-            //}
-            //return ListOfLineStations;
+           
             return from LineStationDO in dl.GetAllLineStations()
                    where LineStationDO.LineId == LineId
                    select new BO.LineStation
@@ -686,12 +798,20 @@ namespace BL
             LineDO.FirstStation = Line.FirstStation;
             LineDO.LastStation = Station.Code;
             LineDO.Id = Line.Id;
-            dl.UpdateLine(LineDO);
+            try
+            {
+                dl.UpdateLine(LineDO);
+            }
+            catch (DO.BadLineIdException ex)
+            {
+                throw new BO.BadLineIdException(LineDO.Code, "Bad Line code", ex);
+            }
+           
             BO.AdjacentStations adjStation = new BO.AdjacentStations();
             adjStation.Station1 = lastStation.Station;
             adjStation.Station2 = Station.Code;
-            adjStation.id = dl.CountplusAdjacentStation();
-            UpdateTimeAndDistance(adjStation);
+          
+            AddAdjacentStations(adjStation);
             dl.AddLineStation(lineStation);
 
 
@@ -791,11 +911,7 @@ namespace BL
                     List<DO.LineStation> lineStationsUpdateIndex = new List<DO.LineStation>();
                     lineStationsUpdateIndex = ListLineStations.Where(x => x.LineStationIndex > deletedIndex).ToList();
                     DO.LineStation LineStationDO = new DO.LineStation();
-                    ////(x => x.LineId == item.LineId && x.LineStationIndex > item.LineStationIndex);
-                    //List<DO.LineStation> lineStationsUpdateIndex = new List<DO.LineStation> ();
-                    //List<DO.LineStation> L = new List<DO.LineStation>();
-                    //L = ListLineStations.ToList();
-                    //lineStationsUpdateIndex = L.FindAll(x => x.LineStationIndex > item.LineStationIndex);
+                    
                     foreach (var item1 in lineStationsUpdateIndex)
                     {
                         LineStationDO.Id = item1.Id;
@@ -805,14 +921,12 @@ namespace BL
                         LineStationDO.PrevStation = item1.PrevStation;
                         LineStationDO.Station = item1.Station;
 
-                        // item1.LineStationIndex--;
-
                         dl.UpdateLineStation(LineStationDO);
 
                     }
 
                     dl.DeleteLineStation(LineStationsDeleted.FirstOrDefault().Id);
-                    //IEnumerable<DO.LineStation> l = dl.GetAllLineStations().Where(x => x.LineId == Line.Id);
+                   
 
                     break;
                 }
@@ -833,220 +947,66 @@ namespace BL
             user.UserName = username;
             user.Password = password;
             user.Admin = admin;
-
-            dl.AddUser(user);
+            try
+            {
+                dl.AddUser(user);
+            }
+            catch (DO.BadUserNameException ex)
+            {
+                throw new BO.BadUserNameException(user.UserName, "Bad user name", ex);
+            }
+           
         }
 
-        public bool CheckUserWorker(string UserName, string password)
+        public void CheckUserWorker(string UserName, string password)
         {
-            DO.User user = dl.GetUser(UserName);
-            if ((user.Password == password) && (user.Admin))
-                return true;
-            else
-                return false;
+            
+            try
+            {
+                DO.User user = dl.GetUser(UserName);
+                if ((user.Password == password) && (user.Admin))
+                    return;
+                else
+                    throw new BO.BadPasswordUserException(user.Password, "Bad password");
+            }
+            catch(DO.BadUserNameException ex)
+            {
+                throw new BO.BadUserNameException(UserName, "Bad User name", ex);
+            }
+
+           
         }
 
+        public void  CheckPassword(string password, string password1)
+        {
+             if (password == password1)
+                    return;
+            else
+            {
+                throw new BO.BadPasswordUserException(password, "Bad password");
+            }
 
+        }
+
+        public void CheckUserPassenger(string UserName,string password)
+        {
+           
+
+            try
+            {
+                DO.User user = dl.GetUser(UserName);
+                if ((user.Password == password) && (!user.Admin))
+                    return;
+                else
+                    throw new BO.BadPasswordUserException(user.Password, "Bad password");
+            }
+            catch (DO.BadUserNameException ex)
+            {
+                throw new BO.BadUserNameException(UserName, "Bad User name", ex);
+            }
+        }
         #endregion User
-        //#region Student
-        //BO.Student studentDoBoAdapter(DO.Student studentDO)
-        //{
-        //    BO.Student studentBO = new BO.Student();
-        //    DO.Person personDO;
-        //    int id = studentDO.ID;
-        //    try
-        //    {
-        //        personDO = dl.GetPerson(id);
-        //    }
-        //    catch (DO.BadPersonIdException ex)
-        //    {
-        //        throw new BO.BadStudentIdException("Student ID is illegal", ex);
-        //    }
-        //    personDO.CopyPropertiesTo(studentBO);
-        //    //studentBO.ID = personDO.ID;
-        //    //studentBO.BirthDate = personDO.BirthDate;
-        //    //studentBO.City = personDO.City;
-        //    //studentBO.Name = personDO.Name;
-        //    //studentBO.HouseNumber = personDO.HouseNumber;
-        //    //studentBO.Street = personDO.Street;
-        //    //studentBO.PersonalStatus = (BO.PersonalStatus)(int)personDO.PersonalStatus;
-
-        //    studentDO.CopyPropertiesTo(studentBO);
-        //    //studentBO.StartYear = studentDO.StartYear;
-        //    //studentBO.Status = (BO.StudentStatus)(int)studentDO.Status;
-        //    //studentBO.Graduation = (BO.StudentGraduate)(int)studentDO.Graduation;
-
-        //    studentBO.ListOfCourses = from sic in dl.GetStudentsInCourseList(sic => sic.PersonId == id)
-        //                              let course = dl.GetCourse(sic.CourseId)
-        //                              select course.CopyToStudentCourse(sic);
-        //    //new BO.StudentCourse()
-        //    //{
-        //    //    ID = course.ID,
-        //    //    Number = course.Number,
-        //    //    Name = course.Name,
-        //    //    Year = course.Year,
-        //    //    Semester = (BO.Semester)(int)course.Semester,
-        //    //    Grade = sic.Grade
-        //    //};
-
-        //    return studentBO;
-        //}
-
-        //public BO.Student GetStudent(int id)
-        //{
-        //    DO.Student studentDO;
-        //    try
-        //    {
-        //        studentDO = dl.GetStudent(id);
-        //    }
-        //    catch (DO.BadPersonIdException ex)
-        //    {
-        //        throw new BO.BadStudentIdException("Person id does not exist or he is not a student", ex);
-        //    }
-        //    return studentDoBoAdapter(studentDO);
-        //}
-
-        //public IEnumerable<BO.Student> GetAllStudents()
-        //{
-        //    //return from item in dl.GetStudentListWithSelectedFields( (stud) => { return GetStudent(stud.ID); } )
-        //    //       let student = item as BO.Student
-        //    //       orderby student.ID
-        //    //       select student;
-        //    return from studentDO in dl.GetAllStudents()
-        //           orderby studentDO.ID
-        //           select studentDoBoAdapter(studentDO);
-        //}
-        //public IEnumerable<BO.Student> GetStudentsBy(Predicate<BO.Student> predicate)
-        //{
-        //    throw new NotImplementedException();
-        //}
-
-        //public IEnumerable<BO.ListedPerson> GetStudentIDNameList()
-        //{
-        //    return from item in dl.GetStudentListWithSelectedFields((studentDO) =>
-        //    {
-        //        try { Thread.Sleep(1500); } catch (ThreadInterruptedException e) { }
-        //        return new BO.ListedPerson() { ID = studentDO.ID, Name = dl.GetPerson(studentDO.ID).Name };
-        //    })
-        //           let studentBO = item as BO.ListedPerson
-        //           //orderby student.ID
-        //           select studentBO;
-        //}
-
-        //public void UpdateStudentPersonalDetails(BO.Student student)
-        //{
-        //    //Update DO.Person            
-        //    DO.Person personDO = new DO.Person();
-        //    student.CopyPropertiesTo(personDO);
-        //    try
-        //    {
-        //        dl.UpdatePerson(personDO);
-        //    }
-        //    catch (DO.BadPersonIdException ex)
-        //    {
-        //        throw new BO.BadStudentIdException("Student ID is illegal", ex);
-        //    }
-
-        //    //Update DO.Student            
-        //    DO.Student studentDO = new DO.Student();
-        //    student.CopyPropertiesTo(studentDO);
-        //    try
-        //    {
-        //        dl.UpdateStudent(studentDO);
-        //    }
-        //    catch (DO.BadPersonIdException ex)
-        //    {
-        //        throw new BO.BadStudentIdException("Student ID is illegal", ex);
-        //    }
-
-        //}
-
-        //public void DeleteStudent(int id)
-        //{
-        //    try
-        //    {
-        //        dl.DeletePerson(id);
-        //        dl.DeleteStudent(id);
-        //        dl.DeleteStudentFromAllCourses(id);
-        //    }
-        //    catch (DO.BadPersonIdCourseIDException ex)
-        //    {
-        //        throw new BO.BadStudentIdCourseIDException("Student ID and Course ID is Not exist", ex);
-        //    }
-        //    catch (DO.BadPersonIdException ex)
-        //    {
-        //        throw new BO.BadStudentIdException("Person id does not exist or he is not a student", ex);
-        //    }
-        //}
-
-        //#endregion
-
-        //#region StudentIn Course
-        //public void AddStudentInCourse(int perID, int courseID, float grade = 0)
-        //{
-        //    try
-        //    {
-        //        dl.AddStudentInCourse(perID, courseID, grade);
-        //    }
-        //    catch (DO.BadPersonIdCourseIDException ex)
-        //    {
-        //        throw new BO.BadStudentIdCourseIDException("Student ID and Course ID is Not exist", ex);
-        //    }
-        //}
-
-        //public void UpdateStudentGradeInCourse(int perID, int courseID, float grade)
-        //{
-        //    try
-        //    {
-        //        dl.UpdateStudentGradeInCourse(perID, courseID, grade);
-        //    }
-        //    catch (DO.BadPersonIdCourseIDException ex)
-        //    {
-        //        throw new BO.BadStudentIdCourseIDException("Student ID and Course ID is Not exist", ex);
-        //    }
-        //}
-
-        //public void DeleteStudentInCourse(int perID, int courseID)
-        //{
-        //    try
-        //    {
-        //        dl.DeleteStudentInCourse(perID, courseID);
-        //    }
-        //    catch (DO.BadPersonIdCourseIDException ex)
-        //    {
-        //        throw new BO.BadStudentIdCourseIDException("Student ID and Course ID is Not exist", ex);
-        //    }
-        //}
-        //#endregion
-
-        //#region Course
-
-        //BO.Course courseDoBoAdapter(DO.Course courseDO)
-        //{
-        //    BO.Course courseBO = new BO.Course();
-        //    int id = courseDO.ID;
-        //    courseDO.CopyPropertiesTo(courseBO);
-
-        //    courseBO.Lecturers = from lic in dl.GetLecturersInCourseList(lic => lic.CourseId == id)
-        //                         let course = dl.GetCourse(lic.CourseId)
-        //                         select (BO.CourseLecturer)course.CopyPropertiesToNew(typeof(BO.CourseLecturer));
-        //    return courseBO;
-        //}
-        //public IEnumerable<BO.Course> GetAllCourses()
-        //{
-        //    return from crsDO in dl.GetAllCourses()
-        //           select courseDoBoAdapter(crsDO);
-        //}
-
-        //public IEnumerable<BO.StudentCourse> GetAllCoursesPerStudent(int id)
-        //{
-        //    return from sic in dl.GetStudentsInCourseList(sic => sic.PersonId == id)
-        //           let course = dl.GetCourse(sic.CourseId)
-        //           select course.CopyToStudentCourse(sic);
-        //}
-
-        //#endregion
-
+       
 
     }
 }

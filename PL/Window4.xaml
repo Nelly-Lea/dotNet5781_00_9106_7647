@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="Window4" Height="450" Width="800">
     <Grid>
-        <ListView Name="ListLinesStation" HorizontalAlignment="Left" Margin="-1,8,-0.4,85" Width="795"  RenderTransformOrigin="0.5,0.5"  >
+        <ListView Name="ListLinesStation" HorizontalAlignment="Left" Margin="-2,56,0,64" Width="795"  RenderTransformOrigin="0.5,0.5"  >
             <ListView.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -49,8 +49,12 @@
 
 
         </ListView>
-        <Button  Content="Add Station" HorizontalAlignment="Left" Margin="305,351,0,0" VerticalAlignment="Top" Width="150" Height="33" Click="AddStation_button"/>
-        <Button Content="Update Code Line" HorizontalAlignment="Left" Margin="557,351,0,0" VerticalAlignment="Top" Width="150" Height="33" Click="UpdateCodeLine_button"/>
-        <Button Content="return" Width="150" Height="33" Margin="70,351,573.6,36" Click="Button_Click"/>
+        <Button  Content="Add Station" HorizontalAlignment="Left" Margin="305,368,0,0" VerticalAlignment="Top" Width="150" Height="33" Click="AddStation_button"/>
+        <Button Content="Update Code Line" HorizontalAlignment="Left" Margin="559,368,0,0" VerticalAlignment="Top" Width="150" Height="33" Click="UpdateCodeLine_button"/>
+        <Button Content="return" Width="150" Height="33" Margin="62,368,581.6,19" Click="Button_Click"/>
+        <Label Content="LINE :" HorizontalAlignment="Center" Margin="83,10,627.6,0" VerticalAlignment="Top" Width="83"/>
+        <TextBlock Name="TbLineNumber" HorizontalAlignment="Left" Margin="195,10,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Height="26" Width="105"/>
+        <Label Content="AREA" HorizontalAlignment="Center" Margin="452,10,246.6,0" VerticalAlignment="Top" Width="95" Height="26"/>
+        <TextBlock x:Name="TbArea"  HorizontalAlignment="Left" Margin="604,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="26" Width="105"/>
     </Grid>
 </Window>

@@ -43,6 +43,7 @@ namespace BO
         public override string ToString() => base.ToString() + $", impossibke to add this line: {CODE}"; //if we add a line that already exist but with wrong first and last station
                                                                                                         //or if we add a line that already exits with same first and last station 
     }
+
     public class BadLineTripIdException : Exception
     {
         public int ID;
@@ -124,7 +125,17 @@ namespace BO
 
         public override string ToString() => base.ToString() + $", bad User Name:{UserName}";
     }
-  
+    public class BadPasswordUserException : Exception
+    {
+        public string Password;
+        public BadPasswordUserException(string password) : base() => Password = password;
+        public BadPasswordUserException(string password, string message) :
+            base(message) => Password = password;
+        public BadPasswordUserException(string password, string message, Exception innerException) :
+            base(message, innerException) => Password = password;
+
+        public override string ToString() => base.ToString() + $", bad User Password:{Password}";
+    }
 
     public class XMLFileLoadCreateException : Exception
     {

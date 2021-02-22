@@ -106,12 +106,10 @@ namespace DL
             DO.Line l = new DO.Line();
             if (DataSource.ListLines.FirstOrDefault(s => s.Id == line.Id) != null)
                 throw new DO.BadLineIdException(line.Id, "Duplicate line ID");
-            l = DataSource.ListLines.Find(x => (x.Code == line.Code)&&(l.Area==line.Area));
+            l = DataSource.ListLines.Find(x => (x.Code == line.Code)&&(x.Area==line.Area));
             if(l!=null)
-            {
-                if ((l.FirstStation != line.LastStation) && (l.LastStation != line.FirstStation) || ((l.FirstStation == line.FirstStation) && (l.LastStation != line.LastStation)))
-                    throw new DO.BadLineCodeException(l.Code);      
-            }
+                throw new DO.BadLineIdException(line.Code, $"bad line code: {line.Code}");     
+           
            
             DataSource.ListLines.Add(line.Clone());
         }
@@ -139,7 +137,7 @@ namespace DL
         }
         public void UpdateLine(DO.Line line)
         {
-            DO.Line lines = DataSource.ListLines.Find(p => p.Id == line.Id);
+            DO.Line lines = DataSource.ListLines.Find(p =>( p.Id == line.Id)&&(p.Area==line.Area));
 
             if (lines != null)
             {
@@ -147,7 +145,7 @@ namespace DL
                 DataSource.ListLines.Add(line.Clone());
             }
             else
-                throw new DO.BadStationCodeException(line.Id, $"bad line id: {line.Id}");
+                throw new DO.BadLineIdException(line.Code, $"bad line code: {line.Code}");
         }
 
 
@@ -492,7 +490,7 @@ namespace DL
             if (us != null)
                 return us.Clone();
             else
-                throw new DO.BadUserNameException(userName, $"bad user name: {userName}");
+                throw new DO.BadUserNameException(userName,"Bad User Name");
         }
         public IEnumerable<DO.User> GetAllUsers()
         {

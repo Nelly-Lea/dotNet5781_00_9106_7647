@@ -30,8 +30,8 @@ namespace PL
         BO.Line CurrentLine = new BO.Line();
         BO.Line CurrentLine1 = new BO.Line();
         public BO.Station CurrentStation;
-
-
+        BO.AdjacentStations CurrentAdjacentStations;
+      
         public Window3()
         {
 
@@ -46,6 +46,7 @@ namespace PL
         public void init()
         {
             ListViewStations.ItemsSource = bl1.ShowBusStations().stations;
+            ListViewAdjStations.ItemsSource = bl1.ShowBusStations().adjStations;
         }
         
         private void Button_Click_RemoveLine(object sender, RoutedEventArgs e)
@@ -127,6 +128,7 @@ namespace PL
 
         }
 
+
         private void Button_Click_RemoveStation(object sender, RoutedEventArgs e)
         {
             if (sender != null && sender is Button btn)
@@ -153,9 +155,20 @@ namespace PL
             this.Close();
 
         }
-    }
-    
+        private void Button_Click_UpdateAdjStation(object sender, RoutedEventArgs e)
+        {
+            if (sender != null && sender is Button btn)
+                CurrentAdjacentStations = (BO.AdjacentStations)btn.DataContext;
+            bl1.UpdateTimeAndDistanceAdjStations(CurrentAdjacentStations);
+            Window3 win3 = new Window3();
+            Application.Current.MainWindow = win3;
+            win3.Show();
+            this.Close();
 
-    //public List<BO.Line> ListOfLines { get => listOfLines; set => listOfLines = value; }
+        }
+    }
+
+   
+    
 
 }

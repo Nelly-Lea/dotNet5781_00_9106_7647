@@ -10,7 +10,8 @@ namespace BO
     {
         public List<Station> stations=new List<Station>();
         public List<AdjacentStations> adjStations=new List<AdjacentStations>();
-        public List<List<int>> linesNumbers = new List<List<int>>();
+        // public List<List<int>> linesNumbers = new List<List<int>>();
+        public List<List<BO.Line>> linesNumbers = new List<List<BO.Line>>();
         public List<List<string>> lastStationNames = new List<List<string>>();
     }
 }
