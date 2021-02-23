@@ -53,16 +53,33 @@ namespace PL
             ShowPassword1.Text = "HIDE";
             PasswordUnmask1.Visibility = Visibility.Visible;
             PasswordHidden1.Visibility = Visibility.Hidden;
-            PasswordUnmask1.Text = PasswordHidden.Password;
+            PasswordUnmask1.Text = PasswordHidden1.Password;
 
         }
         private void HidePasswordFunction1()
         {
-            ShowPassword.Text = "SHOW";
-            PasswordUnmask.Visibility = Visibility.Hidden;
-            PasswordHidden.Visibility = Visibility.Visible;
+            ShowPassword1.Text = "SHOW";
+            PasswordUnmask1.Visibility = Visibility.Hidden;
+            PasswordHidden1.Visibility = Visibility.Visible;
         }
+        private void ShowPassword_PreviewMouseUp2(object sender, MouseButtonEventArgs e) => HidePasswordFunction2();
+        private void ShowPassword_MouseLeave2(object sender, MouseButtonEventArgs e) => HidePasswordFunction2();
+        private void ShowPassword_PreviewMouseDown2(object sender, MouseButtonEventArgs e) => ShowPasswordFunction2();
 
+        private void ShowPasswordFunction2()
+        {
+            ShowPassword2.Text = "HIDE";
+            PasswordUnmask2.Visibility = Visibility.Visible;
+            PasswordHidden2.Visibility = Visibility.Hidden;
+            PasswordUnmask2.Text = PasswordHidden2.Password;
+
+        }
+        private void HidePasswordFunction2()
+        {
+            ShowPassword2.Text = "SHOW";
+            PasswordUnmask2.Visibility = Visibility.Hidden;
+            PasswordHidden2.Visibility = Visibility.Visible;
+        }
         private void Registered_Click(object sender, RoutedEventArgs e)
         {
             string user = UserName.Text;
@@ -93,18 +110,22 @@ namespace PL
         {
             try
             {
+                if (string.IsNullOrEmpty(PasswordHidden1.Password) || (string.IsNullOrEmpty(PasswordHidden2.Password)) || (string.IsNullOrEmpty(NewUserName.Text)))
+                    throw new BO.BadInputException("bad input");
                 bl.CheckPassword(PasswordHidden1.Password, PasswordHidden2.Password);
+                bl.AddUser(NewUserName.Text, PasswordHidden1.Password, false);
+                MessageBox.Show("You have been registered");
+                this.Close();
+            }
+            catch (BO.BadInputException ex)
+            {
+                MessageBox.Show("Not all the fields are completed");
             }
             catch (BO.BadPasswordUserException ex)
             {
                 MessageBox.Show("Paswords don't match");
             }
-            try
-            {
-                bl.AddUser(NewUserName.Text, PasswordHidden1.Password,false);
-                MessageBox.Show("You have been registered");
-                this.Close();
-            }
+           
             catch (BO.BadUserNameException ex)
             {
                 MessageBox.Show("The user name already exist");

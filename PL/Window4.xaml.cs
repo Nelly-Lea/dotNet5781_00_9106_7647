@@ -26,7 +26,7 @@ namespace PL
        public  BO.Line Line;
         static IBL bl2 = BLFactory.GetBL("1");
         public IEnumerable<BO.LineStation> listOfLines;
-
+        public BO.Line CurrentLine;
 
         public List<BO.LineStation> ListLineStations = new List<BO.LineStation>();
         public BO.LineStation CurrentLineStation=new BO.LineStation();
@@ -52,6 +52,10 @@ namespace PL
             TbLineNumber.Text = Line.Code.ToString();
             TbArea.DataContext = Line;
             TbArea.Text = Line.Area.ToString();
+            CurrentLine = Line;
+            //Window3 win3 = new Window3();
+            //Application.Current.MainWindow = win3;
+            //Line = (BO.Line)win3.ListLines.SelectedItem;
 
         }
         private void RemoveLineStation_button(object sender, RoutedEventArgs e)
@@ -60,7 +64,9 @@ namespace PL
 
             if (sender != null && sender is Button btn)
                 CurrentLineStation = (BO.LineStation)btn.DataContext;
-            bl2.RemoveLineStation(Line,CurrentLineStation.Station);
+
+          
+            bl2.RemoveLineStation(CurrentLine,CurrentLineStation.Station);
             ListLinesStation.ItemsSource=bl2.GetAllLinesStation(Line.Id);
             ListLinesStation.Items.Refresh();
 
@@ -80,6 +86,7 @@ namespace PL
            
           
             win5.ShowDialog();
+            this.Close();
             ListLinesStation.ItemsSource = bl2.GetAllLinesStation(Line.Id);
             ListLinesStation.Items.Refresh();
 
@@ -114,6 +121,7 @@ namespace PL
             win7.CurrentLine = Line;
             win7.Init();
             win7.ShowDialog();
+            this.Close();
 
         }
     }

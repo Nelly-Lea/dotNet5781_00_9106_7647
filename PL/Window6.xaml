@@ -7,21 +7,14 @@
         mc:Ignorable="d"
         Title="Window6" Height="350" Width="600">
     <Grid Background="#FF9DE2FC" >
-        <Label Content="Enter a new line number" HorizontalAlignment="Left" Margin="181,168,0,0" VerticalAlignment="Top" Height="32" Width="210" RenderTransformOrigin="0.5,0.5">
-            <Label.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform/>
-                    <SkewTransform/>
-                    <RotateTransform Angle="0.304"/>
-                    <TranslateTransform/>
-                </TransformGroup>
-            </Label.RenderTransform>
+        <Label Content="Enter a new line number :" HorizontalAlignment="Left" Margin="85,136,0,0" VerticalAlignment="Top" Height="32" Width="210" RenderTransformOrigin="0.5,0.5" FontSize="16">
+
         </Label>
-        <Label Content="Line Number :" HorizontalAlignment="Left" Margin="242,62,0,0" VerticalAlignment="Top" Height="27" Width="112"/>
-        <TextBlock x:Name="TbLineNumber"  HorizontalAlignment="Left" Margin="410,62,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Height="27" Width="101"/>
-        <TextBox x:Name="tbNewLineNumber"  HorizontalAlignment="Left" Height="23" Margin="443,177,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" PreviewTextInput="NumberValidationTextBox"/>
-        <Button Content="Enter" HorizontalAlignment="Left" Margin="410,264,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
-        <Button x:Name="ButtonReturn" Content="Return" HorizontalAlignment="Left" Margin="200,264,0,0" VerticalAlignment="Top" Width="75" Click="ButtonReturn_Click"/>
+        <Label Content="Line Number :" HorizontalAlignment="Left" Margin="123,62,0,0" VerticalAlignment="Top" Height="41" Width="152" FontSize="20" FontWeight="Bold" FontStyle="Italic"/>
+        <TextBlock  x:Name="TbLineNumber"  HorizontalAlignment="Left" Margin="306,67,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Height="27" Width="151" FontSize="20" FontWeight="Bold" FontStyle="Italic"/>
+        <TextBox x:Name="tbNewLineNumber"  HorizontalAlignment="Left" Height="32" Margin="324,136,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="133" PreviewTextInput="NumberValidationTextBox" FontSize="16"/>
+        <Button  Background="#FF4496CF"  FontFamily="Kristen ITC" Content="Enter" HorizontalAlignment="Left" Margin="348,246,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click" FontSize="16" FontWeight="Bold" RenderTransformOrigin="0.5,0.81"/>
+        <Button  Background="#FF4496CF"  FontFamily="Kristen ITC" x:Name="ButtonReturn" Content="Return" HorizontalAlignment="Left" Margin="153,246,0,0" VerticalAlignment="Top" Width="75" Click="ButtonReturn_Click" FontSize="16" FontWeight="Bold"/>
 
     </Grid>
 </Window>

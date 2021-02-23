@@ -5,40 +5,30 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
-        Title="Window4" Height="450" Width="800">
+        Title="Window4" Height="460" Width="1000">
     <Grid Background="#FF9DE2FC" >
-        <ListView Background="#FF9DE2FC"  Name="ListLinesStation" HorizontalAlignment="Left" Margin="-2,56,0,64" Width="795"  RenderTransformOrigin="0.5,0.5"  >
-            <ListView.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform/>
-                    <SkewTransform/>
-                    <RotateTransform Angle="-0.078"/>
-                    <TranslateTransform/>
-                </TransformGroup>
-            </ListView.RenderTransform>
-            <ListView.ItemBindingGroup>
-                <BindingGroup/>
-            </ListView.ItemBindingGroup>
+        <ListView Background="AliceBlue"  Name="ListLinesStation" HorizontalAlignment="Left" Margin="-2,56,-0.4,64" Width="996"  RenderTransformOrigin="0.5,0.5" FontSize="16" FontWeight="Bold" FontStyle="Italic"  >
+
 
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Station" DisplayMemberBinding="{Binding Station}" Width="100"/>
-                    <GridViewColumn Header="Line Station Index" DisplayMemberBinding="{Binding LineStationIndex}" Width="100"/>
-                    <GridViewColumn Header="Previous Station" DisplayMemberBinding="{Binding PrevStation}" Width="100"/>
-                    <GridViewColumn Header="Next Station" DisplayMemberBinding="{Binding NextStation}" Width="100"/>
-                    <GridViewColumn Width="100">
+                    <GridViewColumn Header="Line Station Index" DisplayMemberBinding="{Binding LineStationIndex}" Width="150"/>
+                    <GridViewColumn Header="Previous Station" DisplayMemberBinding="{Binding PrevStation}" Width="150"/>
+                    <GridViewColumn Header="Next Station" DisplayMemberBinding="{Binding NextStation}" Width="150"/>
+                    <GridViewColumn Width="130">
 
 
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <Button Content="Remove" Width="70" VerticalAlignment="Center" Click=" RemoveLineStation_button"/>
+                                <Button  Background="#FF4496CF" FontFamily="Kristen ITC" Content="Remove" Width="100" VerticalAlignment="Center" Click=" RemoveLineStation_button" FontWeight="Bold"/>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
-                    <GridViewColumn Width="100">
+                    <GridViewColumn Width="130">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <Button Content="Update" Width="50" VerticalAlignment="Center" Click="UpdateLineStation_button"/>
+                                <Button  Background="#FF4496CF" FontFamily="Kristen ITC" Content="Update" Width="100" VerticalAlignment="Center" Click="UpdateLineStation_button" FontWeight="Bold"/>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
 
@@ -49,12 +39,12 @@
 
 
         </ListView>
-        <Button  Content="Add Station" HorizontalAlignment="Left" Margin="305,368,0,0" VerticalAlignment="Top" Width="150" Height="33" Click="AddStation_button"/>
-        <Button Content="Update Code Line" HorizontalAlignment="Left" Margin="559,368,0,0" VerticalAlignment="Top" Width="150" Height="33" Click="UpdateCodeLine_button"/>
-        <Button Content="return" Width="150" Height="33" Margin="62,368,581.6,19" Click="Button_Click"/>
-        <Label Content="LINE :" HorizontalAlignment="Center" Margin="83,10,627.6,0" VerticalAlignment="Top" Width="83"/>
-        <TextBlock Name="TbLineNumber" HorizontalAlignment="Left" Margin="195,10,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Height="26" Width="105"/>
-        <Label Content="AREA" HorizontalAlignment="Center" Margin="452,10,246.6,0" VerticalAlignment="Top" Width="95" Height="26"/>
-        <TextBlock x:Name="TbArea"  HorizontalAlignment="Left" Margin="604,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="26" Width="105"/>
+        <Button  Background="#FF4496CF"  FontFamily="Kristen ITC" Content="Add Station" HorizontalAlignment="Left" Margin="402,374,0,0" VerticalAlignment="Top" Width="190" Height="33" Click="AddStation_button" FontSize="16" FontWeight="Bold"/>
+        <Button  Background="#FF4496CF"  FontFamily="Kristen ITC" Content="Update Code Line" HorizontalAlignment="Left" Margin="723,374,0,0" VerticalAlignment="Top" Width="190" Height="33" Click="UpdateCodeLine_button" FontSize="16" FontWeight="Bold"/>
+        <Button  Background="#FF4496CF"  FontFamily="Kristen ITC" Content="Return" Width="190" Height="33" Margin="92,373,711.6,24.4" Click="Button_Click" FontSize="16" FontWeight="Bold"/>
+        <Label Content="Line :" HorizontalAlignment="Center" Margin="83,10,627.6,0" VerticalAlignment="Top" Width="83" FontSize="20" FontWeight="Bold" FontStyle="Italic"/>
+        <TextBlock Name="TbLineNumber"  HorizontalAlignment="Left" Margin="307,15,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Height="26" Width="105" FontSize="20" FontWeight="Bold" FontStyle="Italic"/>
+        <Label Content="Area :" HorizontalAlignment="Center" Margin="552,10,346.6,0" VerticalAlignment="Top" Width="95" Height="31" FontSize="20" FontWeight="Bold" FontStyle="Italic"/>
+        <TextBlock x:Name="TbArea" HorizontalAlignment="Left" Margin="652,15,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="32" Width="233" FontSize="20" FontWeight="Bold" FontStyle="Italic"/>
     </Grid>
 </Window>

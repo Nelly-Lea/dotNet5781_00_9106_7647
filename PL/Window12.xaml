@@ -27,23 +27,18 @@
         <Label  HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Content="Address :" HorizontalAlignment="Left" Margin="104,9.8,0,0" Grid.Row="4" VerticalAlignment="Top" Width="179" Height="33" RenderTransformOrigin="0.281,1.45" FontSize="18"/>
         <Label  HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Content="Longitude :" HorizontalAlignment="Left" Margin="104,12,0,0" Grid.Row="5" VerticalAlignment="Top" Width="179" Height="33" RenderTransformOrigin="0.233,2.72" FontSize="18"/>
         <Label  HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Content="Latitude :" HorizontalAlignment="Left" Margin="104,10,0,0" Grid.Row="6" VerticalAlignment="Top" Width="179" Height="33" FontSize="18"/>
-        <TextBox  HorizontalContentAlignment="Center" VerticalContentAlignment="Center" x:Name="TbAddress" HorizontalAlignment="Left" Height="33" Margin="137.2,10.6,0,0" Grid.Row="4" TextWrapping="Wrap" VerticalAlignment="Top" Width="179" Grid.Column="1"/>
-        <TextBox  HorizontalContentAlignment="Center" VerticalContentAlignment="Center" x:Name="TbLatitude" HorizontalAlignment="Left" Width="179" Height="33" Margin="137.2,10,0,0" Grid.Row="6" TextWrapping="Wrap" VerticalAlignment="Top"  Grid.Column="1" />
-        <TextBox  HorizontalContentAlignment="Center" VerticalContentAlignment="Center" x:Name="TbLongitude" HorizontalAlignment="Left" Width="179" Height="33" Margin="137.2,10,0,0" Grid.Row="5" TextWrapping="Wrap" VerticalAlignment="Top" Grid.Column="1"/>
-        <Button Background="#FF4496CF" Content="Enter" Grid.Column="1" HorizontalAlignment="Left" Margin="163.2,10,0,0" Grid.Row="7" VerticalAlignment="Top" Width="120" Click="Button_ClickEnter" Height="32" FontWeight="Bold" FontSize="16"/>
-        <Button Background="#FF4496CF" Content="Return" HorizontalAlignment="Left" Margin="145,10,0,0" Grid.Row="7" VerticalAlignment="Top"  Width="120" Height="32" Click="Button_Click" FontSize="16" FontWeight="Bold"/>
-        <Label HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Content="Enter a new data for the station" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="204,8,0,0" Grid.ColumnSpan="2" Width="387" FontSize="24" FontWeight="Bold" FontStyle="Italic"/>
+        <TextBox  HorizontalContentAlignment="Center" VerticalContentAlignment="Center" x:Name="TbAddress" HorizontalAlignment="Left" Height="33" Margin="137.2,10.6,0,0" Grid.Row="4" TextWrapping="Wrap" VerticalAlignment="Top" Width="179" Grid.Column="1" FontSize="16"/>
+        <TextBox  HorizontalContentAlignment="Center" VerticalContentAlignment="Center" x:Name="TbLatitude" HorizontalAlignment="Left" Width="179" Height="33" Margin="137.2,10,0,0" Grid.Row="6" TextWrapping="Wrap" VerticalAlignment="Top"  Grid.Column="1" FontSize="16" />
+        <TextBox HorizontalContentAlignment="Center" VerticalContentAlignment="Center" x:Name="TbLongitude" HorizontalAlignment="Left" Width="179" Height="33" Margin="137.2,10,0,0" Grid.Row="5" TextWrapping="Wrap" VerticalAlignment="Top" Grid.Column="1" FontSize="16"/>
+        <Button Background="#FF4496CF"  FontFamily="Kristen ITC" Content="Enter" Grid.Column="1" HorizontalAlignment="Left" Margin="163.2,10,0,0" Grid.Row="7" VerticalAlignment="Top" Width="120" Click="Button_ClickEnter" Height="32" FontWeight="Bold" FontSize="16"/>
+        <Button Background="#FF4496CF"  FontFamily="Kristen ITC" Content="Return" HorizontalAlignment="Left" Margin="145,10,0,0" Grid.Row="7" VerticalAlignment="Top"  Width="120" Height="32" Click="Button_Click" FontSize="16" FontWeight="Bold"/>
+        <Label HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Content="Enter  new data for the station" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="204,8,0,0" Grid.ColumnSpan="2" Width="387" FontSize="24" FontWeight="Bold" FontStyle="Italic"/>
         <Label  HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Content="Code :" HorizontalAlignment="Left" Margin="104,10.2,0,0" Grid.Row="1" VerticalAlignment="Top" Width="179" Height="33" FontSize="18"/>
-        <TextBox  HorizontalContentAlignment="Center" VerticalContentAlignment="Center" x:Name="TbCode" HorizontalAlignment="Left"  Margin="137.2,10.2,0,0" Grid.Row="1" TextWrapping="Wrap"  VerticalAlignment="Top" Width="179" Height="33" Grid.Column="1"/>
-        <ComboBox  HorizontalContentAlignment="Center" VerticalContentAlignment="Center" x:Name="CbArea" HorizontalAlignment="Left" Margin="137.2,9.4,0,0" Grid.Row="3" VerticalAlignment="Top" Width="179" Height="33" SelectedIndex="0"  RenderTransformOrigin="0.5,0.5" Grid.Column="1"/>
+        <TextBox  HorizontalContentAlignment="Center" VerticalContentAlignment="Center" x:Name="TbCode" HorizontalAlignment="Left"  Margin="137.2,10.2,0,0" Grid.Row="1" TextWrapping="Wrap"  VerticalAlignment="Top" Width="179" Height="33" Grid.Column="1" FontSize="16"/>
+        <ComboBox  HorizontalContentAlignment="Center" VerticalContentAlignment="Center" x:Name="CbArea" HorizontalAlignment="Left" Margin="137.2,9.4,0,0" Grid.Row="3" VerticalAlignment="Top" Width="179" Height="33" SelectedIndex="0"  RenderTransformOrigin="0.5,0.5" Grid.Column="1" FontSize="16"/>
         <Label  HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Content="Area :" HorizontalAlignment="Left" Margin="104,9.6,0,0" Grid.Row="3" VerticalAlignment="Top" Width="179" Height="33" FontSize="18"/>
         <Label   HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Content="Name :" HorizontalAlignment="Left" Margin="104,10.2,0,9.6" Grid.Row="2" Width="179" Height="33" FontSize="18"/>
-        <TextBox  HorizontalContentAlignment="Center" VerticalContentAlignment="Center" x:Name="TbName" Grid.Column="1" HorizontalAlignment="Left" Margin="137.2,7.2,0,0" Grid.Row="2" TextWrapping="Wrap"  VerticalAlignment="Top" Width="179" Height="33"/>
-
-
-
-
-
+        <TextBox  HorizontalContentAlignment="Center" VerticalContentAlignment="Center" x:Name="TbName" Grid.Column="1" HorizontalAlignment="Left" Margin="137.2,7.2,0,0" Grid.Row="2" TextWrapping="Wrap"  VerticalAlignment="Top" Width="179" Height="33" FontSize="16"/>
 
 
     </Grid>

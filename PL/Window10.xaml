@@ -7,13 +7,13 @@
         mc:Ignorable="d"
         Title="Window10" Height="450" Width="800">
     <Grid Background="#FF9DE2FC">
-        <ListBox  Background="#FF9DE2FC" x:Name="ListBoxLineNumber" DisplayMemberPath="Code" HorizontalAlignment="Left" Height="203" VerticalAlignment="Top" Width="382" Margin="0,115,0,0"/>
-        <ListBox  Background="#FF9DE2FC" x:Name="ListBoxLastStation" HorizontalAlignment="Left" Height="203" Margin="382,115,-0.4,0" VerticalAlignment="Top" Width="412"/>
-        <Button Background="#FF4496CF" Content="Return" HorizontalAlignment="Left" Margin="317,346,0,0" VerticalAlignment="Top" Width="117" Height="41"  Click="Button_Return" FontSize="16" FontWeight="Bold"/>
-        <Label Content="Lines Numbers" HorizontalAlignment="Left" Margin="116,83,0,0" VerticalAlignment="Top" Width="125" FontSize="16" RenderTransformOrigin="0.49,0.006"/>
-        <Label Content="Last Stations" HorizontalAlignment="Left" Margin="521,83,0,0" VerticalAlignment="Top" Width="172" FontSize="16"/>
-        <Label Content="Station:" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="225,31,0,0" VerticalAlignment="Top" Width="121" FontSize="16" FontWeight="Bold"/>
-        <TextBlock x:Name="TbStationName" HorizontalAlignment="Left" Margin="438,36,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="219" Height="26" FontSize="16" FontWeight="Bold"/>
+        <ListBox  Background="AliceBlue"  x:Name="ListBoxLineNumber" DisplayMemberPath="Code" HorizontalAlignment="Left" Height="203" VerticalAlignment="Top" Width="382" Margin="0,115,0,0" FontSize="16"/>
+        <ListBox  Background="AliceBlue"  x:Name="ListBoxLastStation" HorizontalAlignment="Left" Height="203" Margin="382,115,-0.4,0" VerticalAlignment="Top" Width="412" FontSize="16"/>
+        <Button Background="#FF4496CF"  FontFamily="Kristen ITC" Content="Return" HorizontalAlignment="Left" Margin="317,346,0,0" VerticalAlignment="Top" Width="117" Height="41"  Click="Button_Return" FontSize="16" FontWeight="Bold"/>
+        <Label Content="Lines Numbers" HorizontalAlignment="Left" Margin="116,83,0,0" VerticalAlignment="Top" Width="125" FontSize="16" RenderTransformOrigin="0.49,0.006" FontWeight="Bold" FontStyle="Italic"/>
+        <Label Content="Last Stations" HorizontalAlignment="Left" Margin="521,83,0,0" VerticalAlignment="Top" Width="172" FontSize="16" FontWeight="Bold" FontStyle="Italic"/>
+        <Label Content="Station:" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="102,31,0,0" VerticalAlignment="Top" Width="121" FontSize="20" FontWeight="Bold" FontStyle="Italic"/>
+        <TextBlock x:Name="TbStationName" HorizontalAlignment="Left" Margin="259,36,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="477" Height="37" FontSize="20" FontWeight="Bold" FontStyle="Italic"/>
 
     </Grid>
 </Window>

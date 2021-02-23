@@ -136,7 +136,14 @@ namespace BO
 
         public override string ToString() => base.ToString() + $", bad User Password:{Password}";
     }
-
+    public class BadInputException : Exception
+    {
+        string Message;
+        public BadInputException(string message) :
+              base(message) => Message = message;
+      
+        public override string ToString() => base.ToString() + $", bad input:{Message}";
+    }
     public class XMLFileLoadCreateException : Exception
     {
         public string xmlFilePath;

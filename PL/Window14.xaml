@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="Window14" Height="450" Width="800">
     <Grid Background="#FF9DE2FC" >
-        <ListView x:Name="LvListLinesNumber" HorizontalAlignment="Left" Height="123" Margin="98,51,0,0" VerticalAlignment="Top" Width="202" MouseDoubleClick="MouseDoubleClick_ShowStations" FontSize="16" FontWeight="Bold">
+        <ListView x:Name="LvListLinesNumber" HorizontalAlignment="Left" Height="123" Margin="98,51,0,0" VerticalAlignment="Top" Width="202" MouseDoubleClick="MouseDoubleClick_ShowStations" FontSize="16" FontWeight="Bold" FontStyle="Italic">
             <ListView.View>
 
                 <GridView>
@@ -17,7 +17,7 @@
             </ListView.View>
         </ListView>
 
-        <ListView x:Name="LvListStations" Height="166" Margin="10,192,9.6,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold">
+        <ListView x:Name="LvListStations" Height="166" Margin="10,192,9.6,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" FontStyle="Italic">
             <ListView.View>
                 <GridView>
 
@@ -37,14 +37,14 @@
         </ListView>
 
 
-        <Button  Background="#FF4496CF" Content="Return" HorizontalAlignment="Left" Margin="335,377,0,0" VerticalAlignment="Top" Width="106" Height="29" Click="Button_ClickReturn" FontSize="16" FontWeight="Bold"/>
+        <Button  FontFamily="Kristen ITC" Background="#FF4496CF" Content="Return" HorizontalAlignment="Left" Margin="335,377,0,0" VerticalAlignment="Top" Width="106" Height="29" Click="Button_ClickReturn" FontSize="16" FontWeight="Bold"/>
         <ListBox x:Name="LbLastStation" HorizontalAlignment="Left" Height="123" Margin="300,51,0,0" VerticalAlignment="Top" Width="194"/>
-        <Label  HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Content="Last Station" Margin="300,47,302.6,345" FontSize="16" FontWeight="Bold">
+        <Label  HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Content="Last Station" Margin="300,42,302.6,334" FontSize="16" FontWeight="Bold" FontStyle="Italic">
            
         </Label>
 
         <ListBox  x:Name="LbNumberOfStations" HorizontalAlignment="Left" Height="123" Margin="494,51,0,0" VerticalAlignment="Top" Width="202"/>
-        <Label HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Content="Number of stations" Margin="490,46,103.6,345" FontSize="16" FontWeight="Bold"/>
+        <Label HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Content="Number of stations" Margin="494,41,99.6,334" FontSize="16" FontWeight="Bold" FontStyle="Italic"/>
         
 
     </Grid>

@@ -41,12 +41,21 @@ namespace PL
 
         private void CbFirstStation_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            int code = Int32.Parse(tbCode.Text);
+          
             BO.Areas Area = (BO.Areas)CbArea.SelectedItem;
             BO.Station FirstStation = (BO.Station)CbFirstStation.SelectedItem;
+           
             try
             {
-                CbLastStation.ItemsSource = bl6.AddLineFirst(code, Area, FirstStation);
+                if (string.IsNullOrEmpty(tbCode.Text))
+                    throw new BO.BadInputException("bad input");
+                CbLastStation.ItemsSource = bl6.AddLineFirst( Int32.Parse(tbCode.Text), Area, FirstStation);
+            }
+            catch (BO.BadInputException ex)
+            {
+                MessageBox.Show("The code field is not completed");
+               
+
             }
             catch (BO.BadLineIdException ex)
             {

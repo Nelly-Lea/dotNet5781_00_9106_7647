@@ -15,7 +15,7 @@
 
         </Grid.RowDefinitions>
         <Grid Background="#FF9DE2FC" Margin="3,114,-4.4,-111.6" Grid.RowSpan="2">
-            <ListView Background="#FF9DE2FC"  x:Name="ListLinesStationArea" HorizontalAlignment="Left" Height="389" VerticalAlignment="Top" Width="795"  RenderTransformOrigin="0.5,0.5" Margin="-2,-4,0,0" MouseDoubleClick="MouseDoubleClick_AddStation" >
+            <ListView Background="AliceBlue"  x:Name="ListLinesStationArea" HorizontalAlignment="Left" Height="389" VerticalAlignment="Top" Width="795"  RenderTransformOrigin="0.5,0.5" Margin="-2,-4,0,0" MouseDoubleClick="MouseDoubleClick_AddStation" FontSize="16" FontWeight="Bold" FontStyle="Italic" >
                
 
                 <ListView.View>
@@ -33,10 +33,10 @@
             </ListView>
 
         </Grid>
-        <TextBlock x:Name="TbLine" Margin="178,36,485.6,0" TextWrapping="Wrap"  VerticalAlignment="Top" Height="36" Width="130"  Text="{Binding Path=Code}"/>
-        <TextBlock  x:Name="TbArea" HorizontalAlignment="Left" Margin="615,36,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="36" Width="146"/>
-        <Label Content="AREA" HorizontalAlignment="Left" Margin="463,36,0,0" VerticalAlignment="Top" Height="36" Width="81"/>
-        <Label Content="LINE" HorizontalAlignment="Left" Margin="45,36,0,0" VerticalAlignment="Top" Height="36" Width="89"/>
+        <TextBlock   Text="{Binding Path=Code}"  x:Name="TbLine" Margin="178,41,485.6,0" TextWrapping="Wrap"  VerticalAlignment="Top" Height="36" Width="130" FontSize="20" FontWeight="Bold" FontStyle="Italic"/>
+        <TextBlock  x:Name="TbArea"  HorizontalAlignment="Left" Margin="616,41,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="36" Width="146" FontSize="20" FontWeight="Bold" FontStyle="Italic"/>
+        <Label Content="Area :" HorizontalAlignment="Left" Margin="463,36,0,0" VerticalAlignment="Top" Height="36" Width="81" FontSize="20" FontWeight="Bold" FontStyle="Italic"/>
+        <Label Content="Line :" HorizontalAlignment="Left" Margin="49,36,0,0" VerticalAlignment="Top" Height="36" Width="89" FontSize="20" FontWeight="Bold" FontStyle="Italic"/>
 
 
     </Grid>

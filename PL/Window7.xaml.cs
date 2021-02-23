@@ -45,10 +45,15 @@ namespace PL
         {
 
             CurrentStation = (BO.Station)ListLinesStationArea.SelectedItem;
-            bl5.AddLineStation(CurrentLine, CurrentStation);
+            //bl5.AddLineStation(CurrentLine, CurrentStation);
             Window4 win4 = new Window4();
             Application.Current.MainWindow = win4;
             win4.ListLinesStation.ItemsSource = bl5.GetAllLinesStation(CurrentLine.Id);
+            win4.TbLineNumber.DataContext = CurrentLine;
+            win4.TbLineNumber.Text = CurrentLine.Code.ToString();
+            win4.TbArea.DataContext = CurrentLine;
+            win4.TbArea.Text = CurrentLine.Area.ToString();
+            win4.Line = CurrentLine;
             win4.Show();
             this.Close();
 

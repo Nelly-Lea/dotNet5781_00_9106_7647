@@ -28,30 +28,30 @@
 
         <Label Content="User Name :" HorizontalAlignment="Left" Margin="20,17.2,0,0" Grid.Row="2" VerticalAlignment="Top" Height="33" Width="138" FontSize="16"/>
         <Label Content="Password :" HorizontalAlignment="Left" Margin="20,22.8,0,0" Grid.Row="3" VerticalAlignment="Top" Width="146" FontSize="16"/>
-        <TextBox Name="UserName" Grid.Column="1" HorizontalAlignment="Left" Height="33" Margin="26.8,15,0,0" Grid.Row="2" TextWrapping="Wrap" VerticalAlignment="Top" Width="160" />
-        <PasswordBox PasswordChar="*" Name="PasswordHidden" Grid.Column="1" Height="33" Width="160" Margin="26.8,20.6,26.8,0" Grid.Row="3" VerticalAlignment="Top"/>
+        <TextBox Name="UserName" Grid.Column="1" HorizontalAlignment="Left" Height="33" Margin="26.8,15,0,0" Grid.Row="2" TextWrapping="Wrap" VerticalAlignment="Top" Width="160" FontSize="16" />
+        <PasswordBox PasswordChar="*" Name="PasswordHidden" Grid.Column="1" Height="33" Width="160" Margin="26.8,20.6,26.8,0" Grid.Row="3" VerticalAlignment="Top" FontSize="16"/>
         <TextBox Name="PasswordUnmask" Height="33" Visibility="Hidden" Grid.Column="1" Margin="26.8,20.6,9.8,16.8" Grid.Row="3"/>
         <TextBlock x:Name="ShowPassword" Text="SHOW" PreviewMouseDown="ShowPassword_PreviewMouseDown" PreviewMouseUp="ShowPassword_PreviewMouseUp" Grid.Column="1" Margin="149.8,22.8,26.8,18.2" Grid.Row="3" Width="38" RenderTransformOrigin="0.423,0.494"/>
-        <Button Background="#FF4496CF" x:Name="Registered" Content="Enter" HorizontalAlignment="Left" Margin="128,12.8,0,0" Grid.Row="5" VerticalAlignment="Top" Width="116" Grid.ColumnSpan="2" Height="36" Click="Registered_Click" FontSize="16" FontWeight="Bold"/>
+        <Button Background="#FF4496CF"  FontFamily="Kristen ITC" x:Name="Registered" Content="Enter" HorizontalAlignment="Left" Margin="128,12.8,0,0" Grid.Row="5" VerticalAlignment="Top" Width="116" Grid.ColumnSpan="2" Height="36" Click="Registered_Click" FontSize="16" FontWeight="Bold"/>
         <Label Content="New User" FontStyle="Italic" FontWeight="SemiBold" FontSize="18" Width="330" Height="54" Grid.Column="2" HorizontalContentAlignment="Center"  HorizontalAlignment="Left"  Margin="33.2,17.6,0,69.2" VerticalAlignment="Center" Grid.ColumnSpan="2" Grid.Row="1" Grid.RowSpan="2"/>
         <Label Content="User Name :" Grid.Column="2" HorizontalAlignment="Left"  Margin="10.2,18.2,0,0" Grid.Row="2" VerticalAlignment="Top"  Height="32" Width="178" FontSize="16"/>
         <Label Content="Password :" HorizontalAlignment="Left" Margin="10.2,22.8,0,0" Grid.Row="3" Grid.Column="2" VerticalAlignment="Top" Height="32" Width="178" FontSize="16"/>
-        <TextBox x:Name="NewUserName" HorizontalAlignment="Left" Height="33" Margin="18.8,15,0,0" Grid.Row="2" Grid.Column="3" TextWrapping="Wrap" VerticalAlignment="Top" Width="160" />
+        <TextBox x:Name="NewUserName" HorizontalAlignment="Left" Height="33" Margin="18.8,15,0,0" Grid.Row="2" Grid.Column="3" TextWrapping="Wrap" VerticalAlignment="Top" Width="160" FontSize="16" />
 
-        <PasswordBox PasswordChar="*" Name="PasswordHidden1" Grid.Column="3" Height="33" Width="160" Margin="18.8,18.6,19.6,0" Grid.Row="3" VerticalAlignment="Top"/>
+        <PasswordBox PasswordChar="*" Name="PasswordHidden1" Grid.Column="3" Height="33" Width="160" Margin="18.8,18.6,19.6,0" Grid.Row="3" VerticalAlignment="Top" FontSize="16"/>
         <TextBox Name="PasswordUnmask2" Height="33" Visibility="Hidden" Grid.Column="3" Margin="18.8,22.8,24.6,14.6" Grid.Row="3"/>
         <TextBlock x:Name="ShowPassword2" Text="SHOW" PreviewMouseDown="ShowPassword_PreviewMouseDown" PreviewMouseUp="ShowPassword_PreviewMouseUp" Grid.Column="3" Margin="140.8,20.8,0,20.2" Grid.Row="3" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left" Width="38"/>
 
 
 
-        <Button Background="#FF4496CF" x:Name="AddNewUser" Content="Enter" HorizontalAlignment="Left" Margin="141.2,10.8,0,0" Grid.Row="5" VerticalAlignment="Top" Width="116" Height="36" Grid.Column="2" Click="AddNewUser_Click" Grid.ColumnSpan="2" FontSize="16" FontWeight="Bold"/>
+        <Button Background="#FF4496CF"  FontFamily="Kristen ITC" x:Name="AddNewUser" Content="Enter" HorizontalAlignment="Left" Margin="141.2,10.8,0,0" Grid.Row="5" VerticalAlignment="Top" Width="116" Height="36" Grid.Column="2" Click="AddNewUser_Click" Grid.ColumnSpan="2" FontSize="16" FontWeight="Bold"/>
         <Label Content="Confirm you password :" Grid.Column="2" HorizontalAlignment="Left" Margin="10.2,18.8,0,0" Grid.Row="4" VerticalAlignment="Top" Height="32" Width="178" FontSize="16"/>
-        <PasswordBox PasswordChar="*" Name="PasswordHidden2" Grid.Column="3" Height="33" Width="160" Margin="18.8,18.2,19.6,0" Grid.Row="4" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5"/>
+        <PasswordBox PasswordChar="*" Name="PasswordHidden2" Grid.Column="3" Height="33" Width="160" Margin="18.8,18.2,19.6,0" Grid.Row="4" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" FontSize="16"/>
 
 
         <TextBox Name="PasswordUnmask1" Height="33" Visibility="Hidden" Grid.Column="3" Margin="18.8,18.4,35.6,19" Grid.Row="4"/>
         <TextBlock x:Name="ShowPassword1" Text="SHOW" PreviewMouseDown="ShowPassword_PreviewMouseDown" PreviewMouseUp="ShowPassword_PreviewMouseUp" Grid.Column="3" Margin="135.8,18.8,0,19.2" Grid.Row="4" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left" Width="38"/>
-        <Label Content="Passenger" FontStyle="Italic" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"  Margin="120.8,14,110.2,10.4" VerticalAlignment="Center"  Height="46" Width="181" Grid.ColumnSpan="2" Grid.Column="1" FontSize="27" FontWeight="Bold" Background="#FFD0CFCD" />
+        <Label Content="Passenger" FontStyle="Italic" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"  Margin="120.8,14,110.2,10.4" VerticalAlignment="Center"  Height="46" Width="181" Grid.ColumnSpan="2" Grid.Column="1" FontSize="27" FontWeight="Bold"/>
 
 
 

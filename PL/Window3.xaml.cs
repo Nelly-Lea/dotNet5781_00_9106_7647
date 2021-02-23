@@ -110,7 +110,9 @@ namespace PL
             win12.ShowDialog();
             Window3 win3 = new Window3();
             Application.Current.MainWindow = win3;
+            
             win3.Show();
+            this.Close();
 
         }
         private void MouseDoubleClick_ShowLineInStation(object sender, MouseButtonEventArgs e)
@@ -148,6 +150,7 @@ namespace PL
                 CurrentStation = (BO.Station)btn.DataContext;
             Window11 win11 = new Window11();
             win11.CurrentStation = CurrentStation;
+            win11.init();
             win11.ShowDialog();
             Window3 win3 = new Window3();
             Application.Current.MainWindow = win3;
@@ -166,6 +169,8 @@ namespace PL
             this.Close();
 
         }
+
+      
     }
 
    

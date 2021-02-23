@@ -5,42 +5,36 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
-        Title="Window3" Height="446.8" Width="800">
+        Title="Window3" Height="446.8" Width="1000">
     <Grid Margin="0,0,-0.4,79.8" Background="#FF9DE2FC"  >
-        <Grid.RowDefinitions>
-            <RowDefinition Height="143*"/>
-            <RowDefinition Height="25*"/>
-        </Grid.RowDefinitions>
 
-        <TabControl Background="#FF9DE2FC"  TabStripPlacement="Top" Margin="0,0,0,-87.2" Grid.RowSpan="2" Height="424" VerticalAlignment="Top" >
-            <TabItem Header="Lines" >
-                <Grid Margin="0,0,0,91">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="79*"/>
 
-                    </Grid.RowDefinitions>
+        <TabControl Background="#FF9DE2FC"  TabStripPlacement="Top" Margin="0,0,0,-87" Height="424" VerticalAlignment="Top"  >
+            <TabItem Header="Lines" Width="100" Margin="0,-1,0,2.6" FontSize="16" FontWeight="Bold" FontStyle="Italic" >
+                <Grid Margin="0,0,0,56.2">
 
-                    <ListView Background="#FF9DE2FC" Name="ListLines" HorizontalAlignment="Left" Margin="1,-1,-8,4.8" Width="795" Grid.Row="0" RenderTransformOrigin="0.5,0.5" MouseDoubleClick="MouseDoubleClick_ShowLine" >
-                       
+
+                    <ListView Background="AliceBlue"  Name="ListLines" HorizontalAlignment="Left" Margin="111,0,0,0" Width="795" Grid.Row="0" RenderTransformOrigin="0.5,0.5" MouseDoubleClick="MouseDoubleClick_ShowLine" FontSize="16" FontStyle="Italic" FontWeight="Bold" Height="335" VerticalAlignment="Top" >
+
                         <ListView.View>
                             <GridView>
                                 <GridViewColumn Header="Code" DisplayMemberBinding="{Binding Code}" Width="100"/>
-                                <GridViewColumn Header="Area" DisplayMemberBinding="{Binding Area}" Width="100"/>
+                                <GridViewColumn Header="Area" DisplayMemberBinding="{Binding Area}" Width="130"/>
                                 <GridViewColumn Header="First Station" DisplayMemberBinding="{Binding FirstStation}" Width="100"/>
                                 <GridViewColumn Header="Last Station" DisplayMemberBinding="{Binding LastStation}" Width="100"/>
-                                <GridViewColumn Width="100">
+                                <GridViewColumn Width="120">
 
 
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
-                                            <Button Content="Remove" Width="70" VerticalAlignment="Center" Click="Button_Click_RemoveLine"/>
+                                            <Button  Background="#FF4496CF" FontFamily="Kristen ITC" Content="Remove" Width="100" VerticalAlignment="Center" Click="Button_Click_RemoveLine"/>
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
-                                <GridViewColumn Width="100">
+                                <GridViewColumn Width="120">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
-                                            <Button Content="Update" Width="50" VerticalAlignment="Center" Click="Button_Click_UpdateLine"/>
+                                            <Button   Background="#FF4496CF" FontFamily="Kristen ITC" Content="Update" Width="110" VerticalAlignment="Center" Click="Button_Click_UpdateLine"/>
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
 
@@ -51,84 +45,76 @@
 
 
                     </ListView>
-                    <Button Content="Add line" Width="130" Margin="324,315,334,-64.2" Click="Button_Click"/>
+                    <Button  Background="#FF4496CF"  Width="141" Height="32"  FontFamily="Kristen ITC" Content="Add Line" Click="Button_Click" FontSize="16" FontWeight="Bold" Margin="408,342,439,-39"/>
+                </Grid>
+
+            </TabItem>
+
+            <TabItem Background="#FF9DE2FC" Width="100"  Header="Stations" FontSize="16" Margin="0,-2,0,2.6" FontWeight="Bold" FontStyle="Italic">
+                <Grid>
+
+                    <ListView Background="AliceBlue"  x:Name="ListViewStations" Margin="-4,0,-3,56.2" Grid.RowSpan="2" MouseDoubleClick="MouseDoubleClick_ShowLineInStation" Grid.ColumnSpan="2">
+                        <ListView.View  >
+                            <GridView>
+                                <GridViewColumn Header="Code" DisplayMemberBinding="{Binding Code}" Width="100"/>
+                                <GridViewColumn Header="Area" DisplayMemberBinding="{Binding Area}" Width="130"/>
+                                <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" Width="350"/>
+                                <GridViewColumn Header="Address" DisplayMemberBinding="{Binding Address}" Width="400"/>
+                                <GridViewColumn Header="Longitude" DisplayMemberBinding="{Binding Longitude}" Width="100"/>
+                                <GridViewColumn Header="Latitude" DisplayMemberBinding="{Binding Latitude}" Width="100"/>
+                                <GridViewColumn Width="120">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Button Background="#FF4496CF" FontFamily="Kristen ITC" Content="Remove" Width="100" VerticalAlignment="Center" Click="Button_Click_RemoveStation"/>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn Width="120">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Button  Background="#FF4496CF" FontFamily="Kristen ITC" Content="Update" Width="100" VerticalAlignment="Center" Click="Button_Click_UpdateStation"/>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+
+                                </GridViewColumn>
+                            </GridView>
+
+                        </ListView.View>
+
+                    </ListView>
+                    <Button Background="#FF4496CF" Width="141" Height="32"  FontFamily="Kristen ITC" Content="Add Station" HorizontalAlignment="Left" Margin="403,342,0,0" VerticalAlignment="Top" Click="Button_AddStation" FontWeight="Bold" FontStyle="Normal"/>
 
                 </Grid>
             </TabItem>
 
-            <TabItem Background="#FF9DE2FC"  Header="Stations">
+            <TabItem Background="#FF9DE2FC" Header="Adjacent Stations" FontSize="16" Margin="0,-1,-6,0.6" FontWeight="Bold" FontStyle="Italic">
                 <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="157*"/>
-                        <RowDefinition Height="41*"/>
+                   
 
-                    </Grid.RowDefinitions>
-
-                    <ListView Background="#FF9DE2FC"  x:Name="ListViewStations" Margin="-4,0,-3,82" Grid.RowSpan="2" MouseDoubleClick="MouseDoubleClick_ShowLineInStation">
-                        <ListView.View  >
-                            <GridView>
-                                <GridViewColumn Header="Code" DisplayMemberBinding="{Binding Code}" Width="70"/>
-                                <GridViewColumn Header="Area" DisplayMemberBinding="{Binding Area}" Width="100"/>
-                                <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" Width="250"/>
-                                <GridViewColumn Header="Address" DisplayMemberBinding="{Binding Address}" Width="300"/>
-                                <GridViewColumn Header="Longitude" DisplayMemberBinding="{Binding Longitude}" Width="70"/>
-                                <GridViewColumn Header="Latitude" DisplayMemberBinding="{Binding Latitude}" Width="70"/>
-                                <GridViewColumn Width="70">
-                                    <GridViewColumn.CellTemplate>
-                                        <DataTemplate>
-                                            <Button Content="Remove" Width="60" VerticalAlignment="Center" Click="Button_Click_RemoveStation"/>
-                                        </DataTemplate>
-                                    </GridViewColumn.CellTemplate>
-                                </GridViewColumn>
-                                <GridViewColumn Width="100">
-                                    <GridViewColumn.CellTemplate>
-                                        <DataTemplate>
-                                            <Button Content="Update" Width="60" VerticalAlignment="Center" Click="Button_Click_UpdateStation"/>
-                                        </DataTemplate>
-                                    </GridViewColumn.CellTemplate>
-
-                                </GridViewColumn>
-                            </GridView>
-
-                        </ListView.View>
-
-                    </ListView>
-                    <Button Content="Add Station" HorizontalAlignment="Left" Margin="320,23.4,0,0" Grid.Row="1" VerticalAlignment="Top" Width="133" Height="29" Click="Button_AddStation"/>
-                
-</Grid>
-            </TabItem>
-
-            <TabItem Background="#FF9DE2FC"  Header="AdjacentStations">
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="157*"/>
-                        <RowDefinition Height="41*"/>
-
-                    </Grid.RowDefinitions>
-
-                    <ListView Background="#FF9DE2FC" x:Name="ListViewAdjStations" Margin="-4,0,-3,82" Grid.RowSpan="2" >
+                    <ListView Background="AliceBlue"  x:Name="ListViewAdjStations" Margin="99,1,77,56.2" FontSize="16" FontWeight="Bold" FontStyle="Italic" Grid.RowSpan="2" >
                         <ListView.View  >
                             <GridView>
                                 <GridViewColumn Header="Station 1" DisplayMemberBinding="{Binding Station1}" Width="100"/>
                                 <GridViewColumn Header="Station 2" DisplayMemberBinding="{Binding Station2}" Width="100"/>
-                                <GridViewColumn Header="Distance in m" DisplayMemberBinding="{Binding Distance}" Width="100"/>
+                                <GridViewColumn Header="Distance in m" DisplayMemberBinding="{Binding Distance}" Width="110"/>
                                 <GridViewColumn Header="Time" DisplayMemberBinding="{Binding Time}" Width="100"/>
-                                <GridViewColumn Width="100">
+                                <GridViewColumn Width="220">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
-                                            <Button Content="Update Time and Distance" Width="60" VerticalAlignment="Center" Click="Button_Click_UpdateAdjStation"/>
+                                            <Button  Background="#FF4496CF" FontFamily="Kristen ITC" Content="Update Time and Distance" Width="210" VerticalAlignment="Center" Click="Button_Click_UpdateAdjStation" FontSize="10"/>
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
 
                                 </GridViewColumn>
                             </GridView>
-                         
+
                         </ListView.View>
 
                     </ListView>
-                    <Button Content="Add Station" HorizontalAlignment="Left" Margin="320,23.4,0,0" Grid.Row="1" VerticalAlignment="Top" Width="133" Height="29" Click="Button_AddStation"/>
+                    
                 </Grid>
             </TabItem>
+
         </TabControl>
 
     </Grid>

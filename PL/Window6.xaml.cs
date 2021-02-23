@@ -40,11 +40,19 @@ namespace PL
         private void Button_Click(object sender, RoutedEventArgs e)
         {
 
-            int code = Int32.Parse(tbNewLineNumber.Text);
+            
            
             try
             {
-                bl4.UpdateLineCode(CurrentLine, code);
+                if (string.IsNullOrEmpty(tbNewLineNumber.Text))
+                    throw new BO.BadInputException("bad input");
+                bl4.UpdateLineCode(CurrentLine, Int32.Parse(tbNewLineNumber.Text));
+            }
+            catch (BO.BadInputException ex)
+            {
+                MessageBox.Show("The code field is not completed");
+
+
             }
             catch (BO.BadLineIdException ex)
             {

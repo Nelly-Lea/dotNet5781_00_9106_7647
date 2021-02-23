@@ -42,21 +42,25 @@ namespace PL
         }
         private void Button_ClickEnter(object sender, RoutedEventArgs e)
         {
-            int code = Int32.Parse(TbCode.Text);
-            //if (!Regex.Match(TbAddress.Text, @"^[0-200]+\s+([a-zA-Z]+|[a-zA-Z]+\s[a-zA-Z]+)$").Success)
-            //{
-            //    // address was incorrect  
-            //    MessageBox.Show("Invalid address", "Message", MessageBoxButton.OK, MessageBoxImage.Error);
-            //    TbAddress.Focus();
-            //    return;
-            //}
-  
-            double longitude = double.Parse(TbLongitude.Text);
-            double latitude = double.Parse(TbLatitude.Text);
+            
+            //double longitude, latitude;
             try
             {
-                bl10.AddStation(code, TbName.Text, longitude, latitude, TbAddress.Text, (BO.Areas)CbArea.SelectedItem);
+                
+              
+                if (string.IsNullOrEmpty((TbCode.Text)) || (string.IsNullOrEmpty(TbName.Text)) || (string.IsNullOrEmpty(TbLatitude.Text) ) || (string.IsNullOrEmpty(TbLongitude.Text) ) || (string.IsNullOrEmpty(TbAddress.Text)))
+                    throw new BO.BadInputException("Bad Input");
+                bl10.AddStation(Int32.Parse(TbCode.Text), TbName.Text, double.Parse(TbLongitude.Text), double.Parse(TbLatitude.Text), TbAddress.Text, (BO.Areas)CbArea.SelectedItem);
+
+
             }
+            catch (BO.BadInputException ex)
+            {
+                MessageBox.Show("Not All the properties are filled");
+            }
+         
+            
+              
             catch (BO.BadStationCodeException ex)
             {
                 MessageBox.Show("Bad Code Station");

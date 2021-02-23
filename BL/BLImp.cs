@@ -881,7 +881,7 @@ namespace BL
             DO.Line LineDO = new DO.Line();
             LineDO.Area = (DO.Areas)Line.Area;
             LineDO.Code = Line.Code;
-            LineDO.CountStation = ++Line.CountStation;
+            LineDO.CountStation = Line.CountStation;
             LineDO.FirstStation = Line.FirstStation;
             LineDO.LastStation = Station.Code;
             LineDO.Id = Line.Id;

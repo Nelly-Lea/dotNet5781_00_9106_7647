@@ -25,8 +25,13 @@ namespace PL
         public Window11()
         {
             InitializeComponent();
+
         }
-       
+       public void init()
+        {
+            tbStationCode.DataContext = CurrentStation;
+            tbStationCode.Text = CurrentStation.Code.ToString();
+        }
 
         private void Button_ClickEnter(object sender, RoutedEventArgs e)
         {
@@ -35,7 +40,14 @@ namespace PL
             string address = TbAddress.Text;
             try
             {
+
+                if ((string.IsNullOrEmpty(TbAddress.Text) )|| (string.IsNullOrEmpty(TbName.Text)))
+                    throw new BO.BadInputException("bad input");
                 bl9.UpdateStation(CurrentStation, name, address);
+            }
+            catch (BO.BadInputException ex)
+            {
+                MessageBox.Show("Not All the properties are filled");
             }
             catch (BO.BadStationCodeException ex)
             {
