@@ -45,7 +45,7 @@ namespace PL
         {
 
             CurrentStation = (BO.Station)ListLinesStationArea.SelectedItem;
-            //bl5.AddLineStation(CurrentLine, CurrentStation);
+            bl5.AddLineStation(CurrentLine, CurrentStation);
             Window4 win4 = new Window4();
             Application.Current.MainWindow = win4;
             win4.ListLinesStation.ItemsSource = bl5.GetAllLinesStation(CurrentLine.Id);
