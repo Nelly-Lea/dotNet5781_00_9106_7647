@@ -29,6 +29,7 @@ namespace BLAPI
 
         #endregion LineStation
         #region Station
+        List<BO.Station> GetAllStationInATravel(int index, BO.Station StationStart, BO.Station StationFinish);
         BO.ShowStations ShowBusStations();
         //List<int> GetAllLineInStation(int index);
         List<BO.Line> GetAllLineInStation(int index);
@@ -38,6 +39,8 @@ namespace BLAPI
         void DeleteStation(int code);
         void UpdateStation(BO.Station StationToUpdate, string name, string address);
         void AddStation(int code, string name, double longitude, double latitude, string address, BO.Areas area);
+        List<BO.Station> GetAllStationWithoutStartStation(BO.Station StationStart);
+        BO.TravelBetween2Stations ShowTravelsBetween2Stations(BO.Station StationStart, BO.Station StationFinish);
 
         #endregion Station
         #region AdjacentStations

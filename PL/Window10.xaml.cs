@@ -29,7 +29,7 @@ namespace PL
         public void Init()
         {
             ListBoxLineNumber.ItemsSource = bl8.GetAllLineInStation(index);
-            
+            TbStationName.Text = CurrentStation.Name;
             ListBoxLastStation.ItemsSource = bl8.GetAllLastStationInLine(index);
         }
 

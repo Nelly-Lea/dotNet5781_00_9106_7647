@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
         Title="Window5" Height="450" Width="800">
-    <Grid>
+    <Grid Background="#FF9DE2FC" >
 
         <Grid.RowDefinitions>
             <RowDefinition Height="59*"/>
@@ -14,20 +14,9 @@
 
 
         </Grid.RowDefinitions>
-        <Grid Margin="3,114,-4.4,-111.6" Grid.RowSpan="2">
-            <ListView x:Name="ListLinesStationArea" HorizontalAlignment="Left" Height="389" VerticalAlignment="Top" Width="795"  RenderTransformOrigin="0.5,0.5" Margin="-2,-4,0,0" MouseDoubleClick="MouseDoubleClick_UpdateLineStation" >
-                <ListView.RenderTransform>
-                    <TransformGroup>
-                        <ScaleTransform/>
-                        <SkewTransform/>
-                        <RotateTransform Angle="-0.078"/>
-                        <TranslateTransform/>
-                    </TransformGroup>
-                </ListView.RenderTransform>
-                <ListView.ItemBindingGroup>
-                    <BindingGroup/>
-                </ListView.ItemBindingGroup>
-
+        <Grid Background="#FF9DE2FC" Margin="3,114,-4.4,-111.6" Grid.RowSpan="2">
+            <ListView Background="#FF9DE2FC"  x:Name="ListLinesStationArea" HorizontalAlignment="Left" Height="389" VerticalAlignment="Top" Width="795"  RenderTransformOrigin="0.5,0.5" Margin="-2,-4,0,0" MouseDoubleClick="MouseDoubleClick_UpdateLineStation" >
+               
                 <ListView.View>
                     <GridView>
                         <GridViewColumn Header="Code" DisplayMemberBinding="{Binding Code}" Width="100"/>

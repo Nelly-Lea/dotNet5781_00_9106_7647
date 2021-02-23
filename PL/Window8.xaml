@@ -7,8 +7,8 @@
                      
         mc:Ignorable="d"
         Title="Window8" Height="450" Width="800">
-    
-    <Grid>
+
+    <Grid Background="#FF9DE2FC" >
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>

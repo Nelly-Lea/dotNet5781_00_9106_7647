@@ -6,13 +6,13 @@
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
         Title="Window13" Height="450" Width="800">
-    <Grid>
+    <Grid Background="#FF9DE2FC" >
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
+
 
 
         </Grid.RowDefinitions>
@@ -21,13 +21,13 @@
             <ColumnDefinition Width="*"/>
 
         </Grid.ColumnDefinitions>
-        <Label Content="Welcome" HorizontalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"  Margin="259,25,23.8,19" VerticalAlignment="Center" Height="40" Width="114"/>
-        <TextBlock x:Name="TbUserName" Grid.Column="1" HorizontalAlignment="Center" Margin="43.2,25,231.6,19" TextWrapping="Wrap"  VerticalAlignment="Center" Height="40" Width="122"/>
-        <Label Content="Where are you?" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="91,25,0,0" Grid.Row="1" VerticalAlignment="Top" Height="37" Width="189"/>
-        <ComboBox x:Name="CbStartStation" DisplayMemberPath = "Name" Grid.Column="1" HorizontalAlignment="Left" Margin="29.2,25,0,0" Grid.Row="1" VerticalAlignment="Top" Width="342" Height="37"/>
-        <Label Content="Where do you want to go?" HorizontalAlignment="Left" Margin="91,25,0,0" Grid.Row="2" VerticalAlignment="Top" Height="30" Width="189" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-        <ComboBox x:Name="CbFinishStation" DisplayMemberPath = "Name" Grid.Column="1" HorizontalAlignment="Left" Margin="29.2,25,0,0" Grid.Row="2" VerticalAlignment="Top" Width="342" Height="37"/>
-        <Button x:Name="Button" Grid.ColumnSpan="2" Content="Enter" HorizontalAlignment="Left" Margin="336,34,0,0" Grid.Row="3" VerticalAlignment="Top" Width="119" Height="26" Click="Button_Click"/>
+        <Label Content="Welcome" HorizontalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"  Margin="259,25,23.8,19" VerticalAlignment="Center" Height="40" Width="114" FontSize="24" FontWeight="Bold" FontStyle="Italic"/>
+        <TextBlock  x:Name="TbUserName" Grid.Column="1" HorizontalAlignment="Center"  Margin="29.2,30,222.6,14" TextWrapping="Wrap"  VerticalAlignment="Center" Height="40" Width="145" FontSize="24" FontWeight="Bold" FontStyle="Italic"/>
+        <Label Content="Where are you?" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="76,25,0,0" Grid.Row="1" VerticalAlignment="Top" Height="37" Width="248" FontSize="18"/>
+        <ComboBox x:Name="CbStartStation" SelectionChanged="CbStartStation_SelectionChanged" DisplayMemberPath = "Name" Grid.Column="1" HorizontalAlignment="Left" Margin="29.2,25,0,0" Grid.Row="1" VerticalAlignment="Top" Width="342" Height="37"/>
+        <Label Content="Where do you want to go?" HorizontalAlignment="Left" Margin="76,25,0,0" Grid.Row="2" VerticalAlignment="Top" Height="37" Width="248" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="18"/>
+        <ComboBox x:Name="CbFinishStation" DisplayMemberPath = "Name" Grid.Column="1" HorizontalAlignment="Left" Margin="29.2,25,0,0" Grid.Row="2" VerticalAlignment="Top" Width="342" Height="37" />
+        <Button  Background="#FF4496CF" x:Name="Button" Grid.ColumnSpan="2" Content="Enter" HorizontalAlignment="Left" Margin="336,33.8,0,0" Grid.Row="3" VerticalAlignment="Top" Width="119" Height="35" Click="Button_Click" FontSize="16" FontWeight="Bold"/>
 
 
     </Grid>

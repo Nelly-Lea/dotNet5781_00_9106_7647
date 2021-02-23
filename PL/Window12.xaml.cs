@@ -65,6 +65,12 @@ namespace PL
 
         }
 
-       
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Window3 win3 = new Window3();
+            Application.Current.MainWindow = win3;
+            win3.Show();
+            this.Close();
+        }
     }
 }

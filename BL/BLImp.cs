@@ -89,6 +89,14 @@ namespace BL
             return SS.linesNumbers[index];
 
         }
+        public List<BO.Station> GetAllStationInATravel(int index, BO.Station StationStart, BO.Station StationFinish)
+
+        {
+
+            BO.TravelBetween2Stations TB=ShowTravelsBetween2Stations(StationStart,StationFinish);
+            return TB.ListStations[index];
+
+        }
         public List<string> GetAllLastStationInLine(int index)
 
         {
@@ -708,56 +716,135 @@ namespace BL
 
             return ListStationBO;
         }
+        public List<BO.Station> GetAllStationWithoutStartStation(BO.Station StationStart)
+        {
+            IEnumerable<BO.Station> listStations = from StationDO in dl.GetAllStations()
+                                                   where StationDO.Code != StationStart.Code
+                                                   select new BO.Station
+                                                   { Code = StationDO.Code, Name = StationDO.Name, Longitude = StationDO.Longitude, Latitude = StationDO.Latitude, Address = StationDO.Address, Area = (BO.Areas)StationDO.Area };
 
-        //public List<BO.Station> ShowTravelsBetween2Stations(BO.Station StationStart, BO.Station StationFinish)
-        //{
-        //    BO.ShowStations ShowStations = new ShowStations();
-        //    ShowStations = ShowBusStations();
-        //    int index1 = 0, index2 = 0;
-        //    foreach(var item in ShowStations.stations)
-        //    {
-        //        if (item.Code == StationStart.Code)
-        //            break;
-        //        index1++;
-        //    }
-        //    foreach (var item in ShowStations.stations)
-        //    {
-        //        if (item.Code == StationFinish.Code)
-        //            break;
-        //        index2++;
-        //    }
-        //    List<BO.Line> LineStations1 = ShowStations.linesNumbers[index1];
-        //    List<BO.Line> LineStations2 = ShowStations.linesNumbers[index2];
-
-        //    List<BO.Line> listLines = LineStations1.Where(p => LineStations2.All(p2 => p2.Code == p.Code)).ToList();
-        //    int indexlinestation1=0, indexlinestation2=0;
-        //    if(listLines!=null)
-        //    {
-        //        IEnumerable<DO.LineStation> listLineStation =dl.GetAllLineStations().Where(x=>x.LineId==)
-        //    }
-        //    List < List<BO.LineStation> >ListlineStations= new List<List<BO.LineStation>>();
-        //    int i = 0;
-        //    foreach(var item1 in listLines)
-        //    {
-        //        foreach(var item2 in dl.GetAllLineStations().Where(x=>x.LineId==item1.Id))
-        //        {
-        //            if (item2.Station == StationStart.Code)
-        //                break;
-        //            indexlinestation1++;
-        //        }
-        //        foreach (var item3 in dl.GetAllLineStations().Where(x => x.LineId == item1.Id))
-        //        {
-        //            if (item3.Station == StationFinish.Code)
-        //                break;
-        //            indexlinestation2++;
-        //        }
-        //        if(indexlinestation1<indexlinestation2)
-        //        {
-        //            ListlineStations[i].Add(dl.GetLineStation())
-        //        }
-        //        i++;
-        //    }
+            return listStations.ToList();
         }
+        public TravelBetween2Stations ShowTravelsBetween2Stations(BO.Station StationStart, BO.Station StationFinish)
+        {
+            TravelBetween2Stations Travel = new TravelBetween2Stations();
+            BO.ShowStations ShowStations = new ShowStations();
+            ShowStations = ShowBusStations();
+            int index1 = 0, index2 = 0;
+            foreach (var item in ShowStations.stations)
+            {
+                if (item.Code == StationStart.Code)
+                    break;
+                index1++;
+            }
+            foreach (var item in ShowStations.stations)
+            {
+                if (item.Code == StationFinish.Code)
+                    break;
+                index2++;
+            }
+          
+            List<BO.Line> LineStations1 = ShowStations.linesNumbers[index1];
+            List<BO.Line> LineStations2 = ShowStations.linesNumbers[index2];
+            List<List<BO.Station>> ListStations = new List<List<BO.Station>>();
+            List<BO.Station> LB = new List<BO.Station>();
+            List<BO.Line> listLines = new List<BO.Line>();
+            foreach (var item11 in LineStations1)
+            {
+                foreach (var item22 in LineStations2)
+                {
+                    if (item11.Id == item22.Id)
+                    {
+                        listLines.Add(item11);
+
+                    }
+                }
+            }
+            List<BO.Line> listLinesFinal = new List<BO.Line>();
+            //List<BO.Line> listLines = LineStations1.Where(p => LineStations2.All(p2 => p2.Id == p.Id));
+            // listLines = LineStations1.Except(LineStations2).Union(LineStations2).Except(LineStations1).ToList();
+            try
+            {
+                if (listLines != null)
+                {
+
+                    foreach (var item1 in listLines)
+                    {
+
+                        LB = new List<BO.Station>();
+
+                        DO.LineStation LineStation1 = new DO.LineStation();
+                        DO.LineStation LineStation2 = new DO.LineStation();
+                        LineStation1 = dl.GetAllLineStations().Where(x => (x.LineId == item1.Id) && (x.Station == StationStart.Code)).FirstOrDefault();
+                        LineStation2 = dl.GetAllLineStations().Where(x => (x.LineId == item1.Id) && (x.Station == StationFinish.Code)).FirstOrDefault();
+                        try
+                        {
+                            if ((LineStation1 != null) && (LineStation2 != null))
+                            {
+
+                                if (LineStation1.LineStationIndex < LineStation2.LineStationIndex)
+                                {
+                                    //ListStations[i] = new List<BO.Station>();
+                                    LB.Add(StationStart);
+                                    listLinesFinal.Add(item1);
+
+                                    for (int j = LineStation1.LineStationIndex; j < LineStation2.LineStationIndex; j++)
+                                    {
+                                        DO.LineStation LineStationNext = new DO.LineStation();
+                                        LineStationNext = dl.GetAllLineStations().Where(x => (x.LineId == item1.Id) && (x.LineStationIndex == j + 1)).FirstOrDefault();
+                                        DO.Station StationNext = new DO.Station();
+                                        StationNext = dl.GetStation(LineStationNext.Station);
+                                        BO.Station StationNextBO = new BO.Station();
+                                        StationNextBO.Address = StationNext.Address;
+                                        StationNextBO.Area = (BO.Areas)StationNext.Area;
+                                        StationNextBO.Code = StationNext.Code;
+                                        StationNextBO.Latitude = StationNext.Latitude;
+                                        StationNextBO.Longitude = StationNext.Longitude;
+                                        StationNextBO.Name = StationNext.Name;
+                                        //LB = new List<BO.Station>();
+                                        LB.Add(StationNextBO);
+                                       
+                                    }
+
+                                }
+                                
+                                
+                            }
+                            
+                        
+                        }
+                        catch (DO.BadStationCodeException ex)
+                        {
+                            throw new BO.BadStationCodeException(StationStart.Code, "Bad Station code");
+                        }
+                        if (LB.Count() != 0)
+                        {
+                            ListStations.Add(LB);
+
+                            Travel.ListNumberStationBetween2Stations.Add(LB.Count());
+                            string last = dl.GetStation(item1.LastStation).Name;
+                            Travel.ListLastStation.Add(last);
+                        }
+
+                    }
+                }
+                if ((ListStations.Count == 0) || (Travel.ListNumberStationBetween2Stations.Count ==0) || (listLinesFinal.Count ==0) || (Travel.ListLastStation.Count ==0))
+                    throw new BO.BadStationCodeException(StationStart.Code, "Bad Station code");
+                else
+                {
+                    Travel.ListLines = listLinesFinal;
+                    Travel.ListStations = ListStations;
+                    return Travel;
+                }
+            }
+
+            catch (DO.BadStationCodeException ex)
+            {
+                throw new BO.BadStationCodeException(StationStart.Code, "Bad Station code", ex);
+            }
+      
+        }
+        
 
         //FONCTION UPDATE
         #endregion Station

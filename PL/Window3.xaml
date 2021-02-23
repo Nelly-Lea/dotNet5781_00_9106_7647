@@ -6,13 +6,13 @@
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
         Title="Window3" Height="446.8" Width="800">
-    <Grid Margin="0,0,-0.4,79.8" >
+    <Grid Margin="0,0,-0.4,79.8" Background="#FF9DE2FC"  >
         <Grid.RowDefinitions>
             <RowDefinition Height="143*"/>
             <RowDefinition Height="25*"/>
         </Grid.RowDefinitions>
 
-        <TabControl TabStripPlacement="Top" Margin="0,0,0,-87.2" Grid.RowSpan="2" Height="424" VerticalAlignment="Top" >
+        <TabControl Background="#FF9DE2FC"  TabStripPlacement="Top" Margin="0,0,0,-87.2" Grid.RowSpan="2" Height="424" VerticalAlignment="Top" >
             <TabItem Header="Lines" >
                 <Grid Margin="0,0,0,91">
                     <Grid.RowDefinitions>
@@ -20,19 +20,8 @@
 
                     </Grid.RowDefinitions>
 
-                    <ListView Name="ListLines" HorizontalAlignment="Left" Margin="1,-1,-8,4.8" Width="795" Grid.Row="0" RenderTransformOrigin="0.5,0.5" MouseDoubleClick="MouseDoubleClick_ShowLine" >
-                        <ListView.RenderTransform>
-                            <TransformGroup>
-                                <ScaleTransform/>
-                                <SkewTransform/>
-                                <RotateTransform Angle="-0.078"/>
-                                <TranslateTransform/>
-                            </TransformGroup>
-                        </ListView.RenderTransform>
-                        <ListView.ItemBindingGroup>
-                            <BindingGroup/>
-                        </ListView.ItemBindingGroup>
-
+                    <ListView Background="#FF9DE2FC" Name="ListLines" HorizontalAlignment="Left" Margin="1,-1,-8,4.8" Width="795" Grid.Row="0" RenderTransformOrigin="0.5,0.5" MouseDoubleClick="MouseDoubleClick_ShowLine" >
+                       
                         <ListView.View>
                             <GridView>
                                 <GridViewColumn Header="Code" DisplayMemberBinding="{Binding Code}" Width="100"/>
@@ -67,7 +56,7 @@
                 </Grid>
             </TabItem>
 
-            <TabItem Header="Stations">
+            <TabItem Background="#FF9DE2FC"  Header="Stations">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="157*"/>
@@ -75,7 +64,7 @@
 
                     </Grid.RowDefinitions>
 
-                    <ListView x:Name="ListViewStations" Margin="-4,0,-3,82" Grid.RowSpan="2" MouseDoubleClick="MouseDoubleClick_ShowLineInStation">
+                    <ListView Background="#FF9DE2FC"  x:Name="ListViewStations" Margin="-4,0,-3,82" Grid.RowSpan="2" MouseDoubleClick="MouseDoubleClick_ShowLineInStation">
                         <ListView.View  >
                             <GridView>
                                 <GridViewColumn Header="Code" DisplayMemberBinding="{Binding Code}" Width="70"/>
@@ -109,7 +98,7 @@
 </Grid>
             </TabItem>
 
-            <TabItem Header="AdjacentStations">
+            <TabItem Background="#FF9DE2FC"  Header="AdjacentStations">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="157*"/>
@@ -117,7 +106,7 @@
 
                     </Grid.RowDefinitions>
 
-                    <ListView x:Name="ListViewAdjStations" Margin="-4,0,-3,82" Grid.RowSpan="2" >
+                    <ListView Background="#FF9DE2FC" x:Name="ListViewAdjStations" Margin="-4,0,-3,82" Grid.RowSpan="2" >
                         <ListView.View  >
                             <GridView>
                                 <GridViewColumn Header="Station 1" DisplayMemberBinding="{Binding Station1}" Width="100"/>
