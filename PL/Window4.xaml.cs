@@ -65,10 +65,24 @@ namespace PL
             if (sender != null && sender is Button btn)
                 CurrentLineStation = (BO.LineStation)btn.DataContext;
 
-          
-            bl2.RemoveLineStation(CurrentLine,CurrentLineStation.Station);
-            ListLinesStation.ItemsSource=bl2.GetAllLinesStation(Line.Id);
-            ListLinesStation.Items.Refresh();
+            
+             bl2.RemoveLineStation(Line, CurrentLineStation.Station);
+                //Line = bl2.GetLine(Line.Id);
+            IEnumerable<BO.LineStation> ListLineStation = bl2.GetAllLinesStation(Line.Id);
+            if (ListLineStation.Any())
+            {
+                ListLinesStation.ItemsSource = bl2.GetAllLinesStation(Line.Id);
+                ListLinesStation.Items.Refresh();
+            }
+            else {
+                Window3 win3 = new Window3();
+                Application.Current.MainWindow = win3;
+
+                win3.Show();
+                this.Close();
+            }
+            
+            
 
         }
 

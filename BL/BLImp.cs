@@ -471,6 +471,20 @@ namespace BL
             dl.DeleteLineTrip(id);
 
         }
+
+        public BO.Line GetLine(int id)
+        {
+            DO.Line LineDO = dl.GetLine(id);
+            BO.Line LineBO = new BO.Line();
+            LineBO.Area = (BO.Areas)LineDO.Area;
+            LineBO.Code = LineDO.Code;
+            LineBO.CountStation = LineDO.CountStation;
+            LineBO.FirstStation = LineDO.FirstStation;
+            LineBO.LastStation = LineDO.LastStation;
+            LineBO.Id = LineDO.Id;
+            return LineBO;
+        }
+       
         #endregion Line
         #region AdjacentStation
        public void AddAdjacentStations(BO.AdjacentStations AdjacentStation)
@@ -559,6 +573,7 @@ namespace BL
             List<DO.LineStation> ListLineStationsDeleted = dl.GetAllLineStations().Where(x => x.Station == code).ToList();
             DO.LineStation LineStationDO2 = new DO.LineStation();
             DO.LineStation LineStationDO1 = new DO.LineStation();
+            BO.AdjacentStations adjStation = new BO.AdjacentStations();
             foreach (var item in ListLineStationsDeleted)
             {
                 if (item.PrevStation == -1)
@@ -583,7 +598,7 @@ namespace BL
                     Line.Id = line.Id;
                     dl.UpdateLine(Line);
                     dl.UpdateLineStation(LineStationDO2);
-                  
+
                 }
                 if (item.NextStation == -1)
                 {
@@ -608,53 +623,60 @@ namespace BL
                     Line.Id = line.Id;
                     dl.UpdateLine(Line);
                     dl.UpdateLineStation(LineStationDO1);
-                  
+
                 }
-                        else
+                else
                 {
-                    IEnumerable<DO.LineStation> lineStation1 = ListLineStations.Where(x => x.LineId == (item.LineId) && (x.LineStationIndex == item.LineStationIndex - 1));
-                    IEnumerable<DO.LineStation> lineStation2 = ListLineStations.Where(x => (x.LineId == item.LineId) && (x.LineStationIndex == item.LineStationIndex + 1));
-                    DO.LineStation PreLineStation = new DO.LineStation();
-                    PreLineStation.Id = lineStation1.FirstOrDefault().Id;
-                    PreLineStation.LineId = lineStation1.FirstOrDefault().LineId;
-                    PreLineStation.LineStationIndex = lineStation1.FirstOrDefault().LineStationIndex;
-                    PreLineStation.PrevStation = lineStation1.FirstOrDefault().PrevStation;
-                    PreLineStation.NextStation = item.NextStation;
-                    PreLineStation.Station = lineStation1.FirstOrDefault().Station;
-                   
+                    if ((item.PrevStation != -1) && (item.NextStation != -1))
+                    {
+                        IEnumerable<DO.LineStation> lineStation1 = ListLineStations.Where(x => x.LineId == (item.LineId) && (x.LineStationIndex == item.LineStationIndex - 1));
+                        IEnumerable<DO.LineStation> lineStation2 = ListLineStations.Where(x => (x.LineId == item.LineId) && (x.LineStationIndex == item.LineStationIndex + 1));
+                        DO.LineStation PreLineStation = new DO.LineStation();
+                        PreLineStation.Id = lineStation1.FirstOrDefault().Id;
+                        PreLineStation.LineId = lineStation1.FirstOrDefault().LineId;
+                        PreLineStation.LineStationIndex = lineStation1.FirstOrDefault().LineStationIndex;
+                        PreLineStation.PrevStation = lineStation1.FirstOrDefault().PrevStation;
+                        PreLineStation.NextStation = item.NextStation;
+                        PreLineStation.Station = lineStation1.FirstOrDefault().Station;
 
-                    DO.LineStation LineStationDO3 = new DO.LineStation();
-                    LineStationDO3.Id = lineStation2.FirstOrDefault().Id;
-                    LineStationDO3.LineId = lineStation2.FirstOrDefault().LineId;
-                    LineStationDO3.LineStationIndex = lineStation2.FirstOrDefault().LineStationIndex;
-                    LineStationDO3.PrevStation = item.PrevStation;
-                    LineStationDO3.NextStation = lineStation2.FirstOrDefault().NextStation;
-                    LineStationDO3.Station = lineStation2.FirstOrDefault().Station;
 
-                    
-                     dl.UpdateLineStation(PreLineStation);
-                    
-                     dl.UpdateLineStation(LineStationDO3);
-                   
+                        DO.LineStation LineStationDO3 = new DO.LineStation();
+                        LineStationDO3.Id = lineStation2.FirstOrDefault().Id;
+                        LineStationDO3.LineId = lineStation2.FirstOrDefault().LineId;
+                        LineStationDO3.LineStationIndex = lineStation2.FirstOrDefault().LineStationIndex;
+                        LineStationDO3.PrevStation = item.PrevStation;
+                        LineStationDO3.NextStation = lineStation2.FirstOrDefault().NextStation;
+                        LineStationDO3.Station = lineStation2.FirstOrDefault().Station;
+
+
+                        dl.UpdateLineStation(PreLineStation);
+
+                        dl.UpdateLineStation(LineStationDO3);
+                        adjStation.Station1 = PreLineStation.Station;
+                        adjStation.Station2 = LineStationDO3.Station;
+                        AddAdjacentStations(adjStation);
+
+                    }
                 }
                 List<DO.LineStation> lineStationsUpdateIndex = ListLineStations.Where(x => x.LineId == item.LineId && x.LineStationIndex > item.LineStationIndex).ToList();
-            foreach (var item1 in lineStationsUpdateIndex)
-            {
-                   
-                    DO.LineStation LineStationDO = new DO.LineStation();
-                LineStationDO.Id = item1.Id;
-                LineStationDO.LineId = item1.LineId;
-                LineStationDO.LineStationIndex = --item1.LineStationIndex;
-                LineStationDO.NextStation = item1.NextStation;
-                LineStationDO.PrevStation = item1.PrevStation;
-                LineStationDO.Station = item1.Station;
-                dl.UpdateLineStation(LineStationDO);
-                    
-            }
-           
-        }
+                foreach (var item1 in lineStationsUpdateIndex)
+                {
 
-        dl.DeleteListLineStations(code);  // j'hesite a nettre cette ligne
+                    DO.LineStation LineStationDO = new DO.LineStation();
+                    LineStationDO.Id = item1.Id;
+                    LineStationDO.LineId = item1.LineId;
+                    LineStationDO.LineStationIndex = --item1.LineStationIndex;
+                    LineStationDO.NextStation = item1.NextStation;
+                    LineStationDO.PrevStation = item1.PrevStation;
+                    LineStationDO.Station = item1.Station;
+                    dl.UpdateLineStation(LineStationDO);
+
+                }
+
+            }
+
+            dl.DeleteListLineStations(code);// j'hesite a nettre cette ligne
+            IEnumerable<DO.LineStation> L = dl.GetAllLineStations().Where(x => x.Station == code);
             dl.DeleteStation(code);
 
 
@@ -866,7 +888,7 @@ namespace BL
                    select new BO.LineStation
                    { Id = LineStationDO.Id, LineId = LineStationDO.LineId, Station = LineStationDO.Station, PrevStation = LineStationDO.PrevStation, NextStation = LineStationDO.NextStation, LineStationIndex = LineStationDO.LineStationIndex };
         }
-        public void AddLineStation(BO.Line Line, BO.Station Station)
+        public BO.Line AddLineStation(BO.Line Line, BO.Station Station)
         {
             DO.LineStation lineStation = new DO.LineStation();
             lineStation.Id = dl.CountplusLineStation();
@@ -876,8 +898,18 @@ namespace BL
             lineStation.PrevStation = Line.LastStation;
             lineStation.NextStation = -1;
             DO.LineStation lastStation = dl.GetAllLineStations().Where(x => (x.LineId == Line.Id) && (x.Station == Line.LastStation)).FirstOrDefault();
-            lastStation.NextStation = Station.Code;
-            dl.UpdateLineStation(lastStation);
+
+            DO.LineStation LastStation = new DO.LineStation();
+            LastStation.Id = lastStation.Id;
+            LastStation.LineId = lastStation.LineId;
+            LastStation.LineStationIndex = lastStation.LineStationIndex;
+            LastStation.PrevStation = lastStation.PrevStation;
+            LastStation.NextStation = Station.Code;
+            LastStation.Station = lastStation.Station;
+            
+            
+           // lastStation.NextStation = Station.Code;
+            dl.UpdateLineStation(LastStation);
             DO.Line LineDO = new DO.Line();
             LineDO.Area = (DO.Areas)Line.Area;
             LineDO.Code = Line.Code;
@@ -901,127 +933,153 @@ namespace BL
             AddAdjacentStations(adjStation);
             dl.AddLineStation(lineStation);
 
+            BO.Line LineBO = new BO.Line();
+            LineBO.Area = (BO.Areas)LineDO.Area;
+            LineBO.Code = LineDO.Code;
+            LineBO.CountStation = LineDO.CountStation;
+            LineBO.FirstStation = LineDO.FirstStation;
+            LineBO.LastStation = LineDO.LastStation;
+            LineBO.Id = LineDO.Id;
+            return LineBO;
 
         }
         public void RemoveLineStation(BO.Line Line, int code)
         {
-            IEnumerable<DO.LineStation> ListLineStations = dl.GetAllLineStations().Where(x => x.LineId == Line.Id);
-            IEnumerable<DO.LineStation> LineStationsDeleted = dl.GetAllLineStations().Where(x => x.LineId == Line.Id && x.Station == code);
-            int deletedIndex = LineStationsDeleted.FirstOrDefault().LineStationIndex + 1;
-            DO.LineStation lineStationDO2 = new DO.LineStation();
-            foreach (var item in ListLineStations)
+            
+                IEnumerable<DO.LineStation> ListLineStations = dl.GetAllLineStations().Where(x => x.LineId == Line.Id);
+                IEnumerable<DO.LineStation> LineStationsDeleted = dl.GetAllLineStations().Where(x => x.LineId == Line.Id && x.Station == code);
+                int deletedIndex = LineStationsDeleted.FirstOrDefault().LineStationIndex + 1;
+                DO.LineStation lineStationDO2 = new DO.LineStation();
+            BO.AdjacentStations adjstation = new BO.AdjacentStations();
+
+            if (Line.CountStation >= 2)
             {
-                if (LineStationsDeleted.FirstOrDefault().PrevStation == -1)
+                foreach (var item in ListLineStations)
                 {
-                    if (item.PrevStation == -1)
+                    if ((LineStationsDeleted.FirstOrDefault().PrevStation == -1))
                     {
-                        IEnumerable<DO.LineStation> lineStation2 = ListLineStations.Where(x => x.LineStationIndex == 2);
-                        lineStationDO2.Id = lineStation2.FirstOrDefault().Id;
-                        lineStationDO2.LineId = lineStation2.FirstOrDefault().LineId;
-                        lineStationDO2.LineStationIndex = 1;
-                        lineStationDO2.NextStation = lineStation2.FirstOrDefault().NextStation;
-                        lineStationDO2.PrevStation = -1;
-                        lineStationDO2.Station = lineStation2.FirstOrDefault().Station;
-                        Line.FirstStation = lineStation2.FirstOrDefault().Station;
-                        DO.Line lineDO = new DO.Line();
-                        lineDO.Area = (DO.Areas)Line.Area;
-                        lineDO.Id = Line.Id;
-                        lineDO.Code = Line.Code;
-                        lineDO.FirstStation = Line.FirstStation;
-                        lineDO.LastStation = Line.LastStation;
-                        lineDO.CountStation = --Line.CountStation;
-                        dl.UpdateLine(lineDO);
-                        dl.UpdateLineStation(lineStationDO2);
+                        if (item.PrevStation == -1)
+                        {
+                            IEnumerable<DO.LineStation> lineStation2 = ListLineStations.Where(x => x.LineStationIndex == 2);
+                            lineStationDO2.Id = lineStation2.FirstOrDefault().Id;
+                            lineStationDO2.LineId = lineStation2.FirstOrDefault().LineId;
+                            lineStationDO2.LineStationIndex = 1;
+                            lineStationDO2.NextStation = lineStation2.FirstOrDefault().NextStation;
+                            lineStationDO2.PrevStation = -1;
+                            lineStationDO2.Station = lineStation2.FirstOrDefault().Station;
+                            Line.FirstStation = lineStation2.FirstOrDefault().Station;
+                            DO.Line lineDO = new DO.Line();
+                            lineDO.Area = (DO.Areas)Line.Area;
+                            lineDO.Id = Line.Id;
+                            lineDO.Code = Line.Code;
+                            lineDO.FirstStation = Line.FirstStation;
+                            lineDO.LastStation = Line.LastStation;
+                            lineDO.CountStation = --Line.CountStation;
+                            dl.UpdateLine(lineDO);
+                            dl.UpdateLineStation(lineStationDO2);
 
+
+
+                        }
+                    }
+                    if ((LineStationsDeleted.FirstOrDefault().NextStation == -1))
+                    {
+                        if (item.NextStation == -1)
+                        {
+                            IEnumerable<DO.LineStation> lineStation2 = ListLineStations.Where(x => x.LineStationIndex == item.LineStationIndex - 1);
+                            lineStationDO2.Id = lineStation2.FirstOrDefault().Id;
+                            lineStationDO2.LineId = lineStation2.FirstOrDefault().LineId;
+                            lineStationDO2.LineStationIndex = lineStation2.FirstOrDefault().LineStationIndex;
+                            lineStationDO2.NextStation = -1;
+                            lineStationDO2.PrevStation = lineStation2.FirstOrDefault().PrevStation;
+                            lineStationDO2.Station = lineStation2.FirstOrDefault().Station;
+
+                            Line.LastStation = lineStation2.FirstOrDefault().Station;
+                            DO.Line lineDO = new DO.Line();
+                            lineDO.Area = (DO.Areas)Line.Area;
+                            lineDO.Id = Line.Id;
+                            lineDO.Code = Line.Code;
+                            lineDO.FirstStation = Line.FirstStation;
+                            lineDO.LastStation = Line.LastStation;
+                            lineDO.CountStation = --Line.CountStation;
+                            dl.UpdateLine(lineDO);
+                            dl.UpdateLineStation(lineStationDO2);
+
+
+                        }
+                    }
+                    else
+                    {
+                        if ((item.Station == LineStationsDeleted.FirstOrDefault().Station) && (LineStationsDeleted.FirstOrDefault().PrevStation != -1) && (LineStationsDeleted.FirstOrDefault().NextStation != -1))
+                        {
+                            IEnumerable<DO.LineStation> lineStation1 = ListLineStations.Where(x => x.LineStationIndex == item.LineStationIndex - 1);
+                            IEnumerable<DO.LineStation> lineStation2 = ListLineStations.Where(x => x.LineStationIndex == item.LineStationIndex + 1);
+
+                            DO.LineStation lineStationPrev = new DO.LineStation();
+                            DO.LineStation lineStationAfter = new DO.LineStation();
+
+
+                            lineStationPrev.Id = lineStation1.FirstOrDefault().Id;
+                            lineStationPrev.LineId = lineStation1.FirstOrDefault().LineId;
+                            lineStationPrev.LineStationIndex = lineStation1.FirstOrDefault().LineStationIndex;
+                            lineStationPrev.NextStation = item.NextStation;
+                            lineStationPrev.PrevStation = lineStation1.FirstOrDefault().PrevStation;
+                            lineStationPrev.Station = lineStation1.FirstOrDefault().Station;
+
+                            lineStationAfter.Id = lineStation2.FirstOrDefault().Id;
+                            lineStationAfter.LineId = lineStation2.FirstOrDefault().LineId;
+                            lineStationAfter.LineStationIndex = deletedIndex - 1;
+                            lineStationAfter.NextStation = lineStation2.FirstOrDefault().NextStation;
+                            lineStationAfter.PrevStation = item.PrevStation;
+                            lineStationAfter.Station = lineStation2.FirstOrDefault().Station;
+                            Line.CountStation = --Line.CountStation;
+                            dl.UpdateLineStation(lineStationPrev);
+                            dl.UpdateLineStation(lineStationAfter);
+                            adjstation.Station1 = lineStationPrev.Station;
+                            adjstation.Station2 = lineStationAfter.Station;
+                            
+                            AddAdjacentStations(adjstation);
+
+                        }
 
                     }
-                }
-                if (LineStationsDeleted.FirstOrDefault().NextStation == -1)
-                {
-                    if (item.NextStation == -1)
+                    if ((item.Station == LineStationsDeleted.FirstOrDefault().Station))
                     {
-                        IEnumerable<DO.LineStation> lineStation2 = ListLineStations.Where(x => x.LineStationIndex == item.LineStationIndex - 1);
-                        lineStationDO2.Id = lineStation2.FirstOrDefault().Id;
-                        lineStationDO2.LineId = lineStation2.FirstOrDefault().LineId;
-                        lineStationDO2.LineStationIndex = lineStation2.FirstOrDefault().LineStationIndex;
-                        lineStationDO2.NextStation = -1;
-                        lineStationDO2.PrevStation = lineStation2.FirstOrDefault().PrevStation;
-                        lineStationDO2.Station = lineStation2.FirstOrDefault().Station;
+                        List<DO.LineStation> lineStationsUpdateIndex = new List<DO.LineStation>();
+                        lineStationsUpdateIndex = ListLineStations.Where(x => x.LineStationIndex > deletedIndex).ToList();
+                        DO.LineStation LineStationDO = new DO.LineStation();
 
-                        Line.LastStation = lineStation2.FirstOrDefault().Station;
-                        DO.Line lineDO = new DO.Line();
-                        lineDO.Area = (DO.Areas)Line.Area;
-                        lineDO.Id = Line.Id;
-                        lineDO.Code = Line.Code;
-                        lineDO.FirstStation = Line.FirstStation;
-                        lineDO.LastStation = Line.LastStation;
-                        lineDO.CountStation = --Line.CountStation;
-                        dl.UpdateLine(lineDO);
-                        dl.UpdateLineStation(lineStationDO2);
+                        foreach (var item1 in lineStationsUpdateIndex)
+                        {
+                            LineStationDO.Id = item1.Id;
+                            LineStationDO.LineId = item1.LineId;
+                            LineStationDO.LineStationIndex = --item1.LineStationIndex;
+                            LineStationDO.NextStation = item1.NextStation;
+                            LineStationDO.PrevStation = item1.PrevStation;
+                            LineStationDO.Station = item1.Station;
 
+                            dl.UpdateLineStation(LineStationDO);
 
-                    }
-                }
-                else
-                {
-                    if ((item.Station == LineStationsDeleted.FirstOrDefault().Station) && (LineStationsDeleted.FirstOrDefault().PrevStation != -1) && (LineStationsDeleted.FirstOrDefault().NextStation != -1))
-                    {
-                        IEnumerable<DO.LineStation> lineStation1 = ListLineStations.Where(x => x.LineStationIndex == item.LineStationIndex - 1);
-                        IEnumerable<DO.LineStation> lineStation2 = ListLineStations.Where(x => x.LineStationIndex == item.LineStationIndex + 1);
+                        }
 
-                        DO.LineStation lineStationPrev = new DO.LineStation();
-                        DO.LineStation lineStationAfter = new DO.LineStation();
+                        dl.DeleteLineStation(LineStationsDeleted.FirstOrDefault().Id);
 
 
-                        lineStationPrev.Id = lineStation1.FirstOrDefault().Id;
-                        lineStationPrev.LineId = lineStation1.FirstOrDefault().LineId;
-                        lineStationPrev.LineStationIndex = lineStation1.FirstOrDefault().LineStationIndex;
-                        lineStationPrev.NextStation = item.NextStation;
-                        lineStationPrev.PrevStation = lineStation1.FirstOrDefault().PrevStation;
-                        lineStationPrev.Station = lineStation1.FirstOrDefault().Station;
-
-                        lineStationAfter.Id = lineStation2.FirstOrDefault().Id;
-                        lineStationAfter.LineId = lineStation2.FirstOrDefault().LineId;
-                        lineStationAfter.LineStationIndex = deletedIndex - 1;
-                        lineStationAfter.NextStation = lineStation2.FirstOrDefault().NextStation;
-                        lineStationAfter.PrevStation = item.PrevStation;
-                        lineStationAfter.Station = lineStation2.FirstOrDefault().Station;
-                        Line.CountStation = --Line.CountStation;
-                        dl.UpdateLineStation(lineStationPrev);
-                        dl.UpdateLineStation(lineStationAfter);
-
+                        break;
                     }
 
                 }
-                if (item.Station == LineStationsDeleted.FirstOrDefault().Station)
-                {
-                    List<DO.LineStation> lineStationsUpdateIndex = new List<DO.LineStation>();
-                    lineStationsUpdateIndex = ListLineStations.Where(x => x.LineStationIndex > deletedIndex).ToList();
-                    DO.LineStation LineStationDO = new DO.LineStation();
-                    
-                    foreach (var item1 in lineStationsUpdateIndex)
-                    {
-                        LineStationDO.Id = item1.Id;
-                        LineStationDO.LineId = item1.LineId;
-                        LineStationDO.LineStationIndex = --item1.LineStationIndex;
-                        LineStationDO.NextStation = item1.NextStation;
-                        LineStationDO.PrevStation = item1.PrevStation;
-                        LineStationDO.Station = item1.Station;
 
-                        dl.UpdateLineStation(LineStationDO);
 
-                    }
-
-                    dl.DeleteLineStation(LineStationsDeleted.FirstOrDefault().Id);
-                   
-
-                    break;
-                }
-
+               
             }
-
-
-            IEnumerable<DO.LineStation> L = dl.GetAllLineStations().Where(x => x.LineId == Line.Id);
+            else if(Line.CountStation == 1)
+            {
+               
+                dl.DeleteLineStation(LineStationsDeleted.FirstOrDefault().Id);
+                dl.DeleteLine(Line.Id);
+            }
+            
 
 
         }

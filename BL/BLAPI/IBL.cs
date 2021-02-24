@@ -11,8 +11,9 @@ namespace BLAPI
     public interface IBL
     {
         List<BO.Areas> GetAreas();
-       
+
         #region Line
+        BO.Line GetLine(int id);
         void AddLine(int code, BO.Station FirstStation, BO.Station LastStation);
         IEnumerable<BO.Station> AddLineFirst(int code, BO.Areas area, BO.Station firstStation);
        IEnumerable<BO.Line> GetAllLines();
@@ -24,7 +25,7 @@ namespace BLAPI
         IEnumerable<BO.LineStation> GetLineStation(int LineId);
         IEnumerable<BO.LineStation> GetAllLinesStation(int lineid);
         void RemoveLineStation(BO.Line Line, int code);
-        void AddLineStation(BO.Line Line, BO.Station Station);
+        BO.Line AddLineStation(BO.Line Line, BO.Station Station);
         BO.ShowStationsLine ShowStations(BO.Line line);
 
         #endregion LineStation

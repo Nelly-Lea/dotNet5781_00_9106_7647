@@ -152,10 +152,11 @@ namespace PL
             win11.CurrentStation = CurrentStation;
             win11.init();
             win11.ShowDialog();
+            this.Close();
             Window3 win3 = new Window3();
             Application.Current.MainWindow = win3;
             win3.Show();
-            this.Close();
+           
 
         }
         private void Button_Click_UpdateAdjStation(object sender, RoutedEventArgs e)
