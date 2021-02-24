@@ -45,7 +45,8 @@
 
 
                     </ListView>
-                    <Button  Background="#FF4496CF"  Width="141" Height="32"  FontFamily="Kristen ITC" Content="Add Line" Click="Button_Click" FontSize="16" FontWeight="Bold" Margin="408,342,439,-39"/>
+                    <Button  Background="#FF4496CF"  Width="141" Height="32"  FontFamily="Kristen ITC" Content="Add Line" Click="Button_Click" FontSize="16" FontWeight="Bold" Margin="632,342,215,-39"/>
+                    <Button Background="#FF4496CF" Height="32"  FontFamily="Kristen ITC" Content="See the Schedule" Margin="195,342,618,-39" RenderTransformOrigin="0.842,0.369" Click="Button_Click_SeeTheSchedule"/>
                 </Grid>
 
             </TabItem>
@@ -87,9 +88,9 @@
                 </Grid>
             </TabItem>
 
-            <TabItem Background="#FF9DE2FC" Header="Adjacent Stations" FontSize="16" Margin="0,-1,-6,0.6" FontWeight="Bold" FontStyle="Italic">
+            <TabItem Background="#FF9DE2FC" Header="Adjacent Stations" FontSize="16" Margin="0,-1,-5.6,0.6" FontWeight="Bold" FontStyle="Italic" HorizontalAlignment="Left" Width="148">
                 <Grid>
-                   
+
 
                     <ListView Background="AliceBlue"  x:Name="ListViewAdjStations" Margin="99,1,77,56.2" FontSize="16" FontWeight="Bold" FontStyle="Italic" Grid.RowSpan="2" >
                         <ListView.View  >
@@ -111,7 +112,7 @@
                         </ListView.View>
 
                     </ListView>
-                    
+
                 </Grid>
             </TabItem>
 

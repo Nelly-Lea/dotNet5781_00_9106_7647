@@ -1,0 +1,39 @@
+﻿<Window x:Class="PL.Window15"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PL"
+        mc:Ignorable="d"
+        Title="Window15" Height="450" Width="800">
+    <Grid Background="#FF9DE2FC">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+
+        </Grid.RowDefinitions>
+        <Label Content="Schedule" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="245,10,0,0" VerticalAlignment="Top" Height="52" Width="272" FontSize="20" FontWeight="Bold" FontStyle="Italic"/>
+        <Label Content="Choose Line Number :" HorizontalAlignment="Left" Margin="91,37.4,0,0" Grid.Row="1" VerticalAlignment="Top" Width="196" FontStyle="Italic" FontWeight="Bold" Height="37" FontSize="16"/>
+        <ComboBox x:Name="CbLineNumbers" HorizontalAlignment="Left" SelectedIndex="0" DisplayMemberPath = "Code"  Margin="472,37.4,0,0" Grid.Row="1" VerticalAlignment="Top" Width="213" Height="41" SelectionChanged="ComboBox_SelectionChanged"/>
+        <ListView x:Name="LvSchedule" HorizontalAlignment="Left" Height="100" Margin="245,4.6,0,0" Grid.Row="2" VerticalAlignment="Top" Width="440" >
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Start At" DisplayMemberBinding="{Binding StartAt}" Width="150"/>
+                    <GridViewColumn Header="Finish At" DisplayMemberBinding="{Binding FinishAt}" Width="150"/>
+                    <GridViewColumn Width="120">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Background="#FF4496CF" FontFamily="Kristen ITC" Content="Remove" Width="100" VerticalAlignment="Center" Click="Button_Click_RemoveLineTrip" FontWeight="Bold"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+
+                </GridView>
+            </ListView.View>
+
+        </ListView>
+
+    </Grid>
+</Window>

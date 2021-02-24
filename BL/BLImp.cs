@@ -1151,7 +1151,62 @@ namespace BL
             }
         }
         #endregion User
-       
+        #region LineTrip
+        public IEnumerable<BO.LineTrip> GetAllLineTrips(BO.Line Line)
+        {
+            
+                 BO.LineTrip LineTripBO = new BO.LineTrip();
+            return from LineTripDO in dl.GetAllLineTrips()
+                   where LineTripDO.LineId==Line.Id
+                   select new BO.LineTrip
+                   { Id = LineTripDO.Id, LineId = LineTripDO.LineId, StartAt= LineTripDO.StartAt, Frequency = LineTripDO.Frequency, FinishAt = LineTripDO.FinishAt };
+
+        }
+        public void RemoveLineTrip (BO.LineTrip LineTrip)
+        {
+            DO.LineTrip LineTripDO = dl.GetLineTrip(LineTrip.Id);
+            dl.DeleteLineTrip(LineTripDO.Id);
+        }
+        public List<BO.LineTrip> ShowLineTrips(BO.Line Line)
+        {
+            List<DO.LineTrip> ListLineTripsDO = dl.GetAllLineTrips().Where(x => x.LineId == Line.Id).ToList();
+            List<BO.LineTrip> ListLineTripsBO = new List<BO.LineTrip>();
+            foreach(var item in ListLineTripsDO)
+            {
+                BO.LineTrip LineTripBO = new BO.LineTrip();
+                LineTripBO.Id = item.Id;
+                LineTripBO.LineId = item.LineId;
+                LineTripBO.StartAt = item.StartAt;
+                LineTripBO.Frequency = item.Frequency;
+                LineTripBO.FinishAt=UpdateFinishAt(LineTripBO);
+                ListLineTripsBO.Add(LineTripBO);
+            }
+            return ListLineTripsBO;
+        }
+        public TimeSpan UpdateFinishAt(BO.LineTrip LineTrip)
+        {
+            DO.LineTrip LineTripDO = new DO.LineTrip();
+            LineTripDO.Id = LineTrip.Id;
+            LineTripDO.LineId = LineTrip.LineId;
+            LineTripDO.StartAt = LineTrip.StartAt;
+            LineTripDO.Frequency = LineTrip.Frequency;
+            List<DO.LineStation> ListLineStations = dl.GetAllLineStations().Where(x => x.LineId == LineTrip.LineId).ToList();
+            TimeSpan TimeFinal = LineTrip.StartAt;
+            foreach(var item in ListLineStations)
+            {
+                if (item.NextStation != -1)
+                {
+                    DO.AdjacentStations AdjStation = new DO.AdjacentStations();
+                    AdjStation = dl.GetAdjacentStations(item.Station, item.NextStation);
+                    TimeFinal += AdjStation.Time;
+                }
+            }
+
+            LineTripDO.FinishAt = TimeFinal;
+            dl.UpdateLineTrip(LineTripDO);
+            return TimeFinal;
+        }
+        #endregion LineTrip
 
     }
 }

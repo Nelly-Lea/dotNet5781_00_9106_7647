@@ -47,7 +47,7 @@ namespace DLAPI
         #region AdjacentStation
         int CountplusAdjacentStation();
          double CalculateDist(DO.Station stat1, DO.Station stat2);
-        DO.AdjacentStations GetAdjacentStations(int id);
+        DO.AdjacentStations GetAdjacentStations(int Station1, int Station2);
         IEnumerable<DO.AdjacentStations> GetAllAdjacentStations();
 
         void AddAdjacentStations(DO.AdjacentStations AdjStation);

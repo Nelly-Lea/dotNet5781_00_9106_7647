@@ -51,6 +51,6 @@
         <Label Content="Line :" HorizontalAlignment="Center" Margin="183,10,727.6,0" VerticalAlignment="Top" Width="83" FontSize="20" FontWeight="Bold" FontStyle="Italic" Height="37"/>
         <TextBlock Name="TbLineNumber"  HorizontalAlignment="Left" Margin="307,15,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Height="26" Width="105" FontSize="20" FontWeight="Bold" FontStyle="Italic"/>
         <Label Content="Area :" HorizontalAlignment="Center" Margin="552,10,346.6,0" VerticalAlignment="Top" Width="95" Height="31" FontSize="20" FontWeight="Bold" FontStyle="Italic"/>
-        <TextBlock x:Name="TbArea" HorizontalAlignment="Left" Margin="321,15,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="32" Width="233" FontSize="20" FontWeight="Bold" FontStyle="Italic"/>
+        <TextBlock x:Name="TbArea"  HorizontalAlignment="Left" Margin="647,12,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="32" Width="233" FontSize="20" FontWeight="Bold" FontStyle="Italic" RenderTransformOrigin="0.492,0.019"/>
     </Grid>
 </Window>

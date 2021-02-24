@@ -5,27 +5,29 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
-        Title="Window14" Height="450" Width="800">
+        Title="Window14" Height="450" Width="950">
     <Grid Background="#FF9DE2FC" >
-        <ListView x:Name="LvListLinesNumber" HorizontalAlignment="Left" Height="123" Margin="98,51,0,0" VerticalAlignment="Top" Width="202" MouseDoubleClick="MouseDoubleClick_ShowStations" FontSize="16" FontWeight="Bold" FontStyle="Italic">
+        <ListView Background="AliceBlue"  x:Name="LvListLinesNumber" HorizontalAlignment="Left" Height="141" Margin="168,33,0,0" VerticalAlignment="Top" Width="202" MouseDoubleClick="MouseDoubleClick_ShowStations" FontSize="16" FontWeight="Bold" FontStyle="Italic">
             <ListView.View>
 
                 <GridView>
+
                     <GridViewColumn Header="Line Number" DisplayMemberBinding="{Binding Code}" Width="200"/>
 
                 </GridView>
             </ListView.View>
+
         </ListView>
 
-        <ListView x:Name="LvListStations" Height="166" Margin="10,192,9.6,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" FontStyle="Italic">
+        <ListView Background="AliceBlue" x:Name="LvListStations" Height="166" Margin="6,192,10,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" FontStyle="Italic">
             <ListView.View>
                 <GridView>
 
                     <GridViewColumn Header="Code" DisplayMemberBinding="{Binding Code}" Width="100"/>
-                    <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" Width="200"/>
+                    <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" Width="300"/>
                     <GridViewColumn Header="Longitude" DisplayMemberBinding="{Binding Longitude}" Width="100"/>
                     <GridViewColumn Header="Latitude" DisplayMemberBinding="{Binding Latitude}" Width="100"/>
-                    <GridViewColumn Header="Address" DisplayMemberBinding="{Binding Address}" Width="300"/>
+                    <GridViewColumn Header="Address" DisplayMemberBinding="{Binding Address}" Width="350"/>
 
 
 
@@ -37,15 +39,16 @@
         </ListView>
 
 
-        <Button  FontFamily="Kristen ITC" Background="#FF4496CF" Content="Return" HorizontalAlignment="Left" Margin="335,377,0,0" VerticalAlignment="Top" Width="106" Height="29" Click="Button_ClickReturn" FontSize="16" FontWeight="Bold"/>
-        <ListBox x:Name="LbLastStation" HorizontalAlignment="Left" Height="123" Margin="300,51,0,0" VerticalAlignment="Top" Width="194"/>
-        <Label  HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Content="Last Station" Margin="300,42,302.6,334" FontSize="16" FontWeight="Bold" FontStyle="Italic">
-           
+        <Button  FontFamily="Kristen ITC" Background="#FF4496CF" Content="Return" HorizontalAlignment="Left" Margin="409,377,0,0" VerticalAlignment="Top" Width="106" Height="29" Click="Button_ClickReturn" FontSize="16" FontWeight="Bold"/>
+        <ListBox  Background="AliceBlue" x:Name="LbLastStation" HorizontalAlignment="Left" Height="120" Margin="368,54,0,0" VerticalAlignment="Top" Width="228" RenderTransformOrigin="0.5,0.5" FontWeight="Bold" FontStyle="Italic" FontSize="14"/>
+        <Label Background="#FFF2F5F7"  HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Content="Last Station" Margin="368,11,307,351" FontSize="16" FontWeight="Bold" FontStyle="Italic" RenderTransformOrigin="0.49,0.521">
+
         </Label>
 
-        <ListBox  x:Name="LbNumberOfStations" HorizontalAlignment="Left" Height="123" Margin="494,51,0,0" VerticalAlignment="Top" Width="202"/>
-        <Label HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Content="Number of stations" Margin="494,41,99.6,334" FontSize="16" FontWeight="Bold" FontStyle="Italic"/>
-        
+        <ListBox Background="AliceBlue" x:Name="LbNumberOfStations" HorizontalAlignment="Left" Height="120" Margin="596,54,0,0" VerticalAlignment="Top" Width="202" FontWeight="Bold" FontStyle="Italic" FontSize="14"/>
+        <Label Background="#FFF2F5F7" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Content="Number of stations" Margin="596,11,132,351" FontSize="16" FontWeight="Bold" FontStyle="Italic"/>
+        <Label Background="#FFF2F5F7"  HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="16" FontWeight="Bold" FontStyle="Italic" Content="Line Number" HorizontalAlignment="Left" Margin="168,12,0,0" VerticalAlignment="Top" Width="202" Height="44"/>
+
 
     </Grid>
 </Window>

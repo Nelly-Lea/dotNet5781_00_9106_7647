@@ -65,16 +65,12 @@ namespace DO
         public override string ToString() => base.ToString() + $", bad line station line id: {LINEID}";
     }
 
-    public class BadAdjacentStationsIdException : Exception
+    public class BadAdjacentStationsException : Exception
     {
-        public int ID;
-        public BadAdjacentStationsIdException(int id) : base() => ID = id;
-        public BadAdjacentStationsIdException(int id, string message) :
-            base(message) => ID = id;
-        public BadAdjacentStationsIdException(int id, string message, Exception innerException) :
-            base(message, innerException) => ID = id;
-
-        public override string ToString() => base.ToString() + $", bad Adjacent Station id: {ID}";
+        string Message;
+        public BadAdjacentStationsException(string message) : base() => Message=message;
+      
+        public override string ToString() => base.ToString() + $", bad Adjacent Station : ";
     }
     public class BadLicenseNumException : Exception
     {

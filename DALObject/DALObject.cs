@@ -301,14 +301,14 @@ namespace DL
             double distance = p1.GetDistanceTo(p2);
             return distance;
         }
-        public DO.AdjacentStations GetAdjacentStations(int Id)
+        public DO.AdjacentStations GetAdjacentStations(int Station1, int Station2)
         {
-            DO.AdjacentStations AdjStation= DataSource.ListAdjacentStations.Find(p => p.id == Id);
+            DO.AdjacentStations AdjStation= DataSource.ListAdjacentStations.Find(p => (p.Station1== Station1)&&( p.Station2==Station2));
 
             if (AdjStation!= null)
                 return AdjStation.Clone();
             else
-                throw new DO.BadAdjacentStationsIdException(Id, $"bad Adjacent Station id: {Id}");
+                throw new DO.BadAdjacentStationsException( "bad Adjacent Station id:");
         }
         public IEnumerable<DO.AdjacentStations> GetAllAdjacentStations()
         {
@@ -324,7 +324,7 @@ namespace DL
         public void AddAdjacentStations(DO.AdjacentStations AdjStation)
         {
             if (DataSource.ListAdjacentStations.FirstOrDefault(p => p.id == AdjStation.id) != null)
-                throw new DO.BadAdjacentStationsIdException(AdjStation.id, "Duplicate Adjacent Station ID");
+                throw new DO.BadAdjacentStationsException( "Duplicate Adjacent Station ID");
             DataSource.ListAdjacentStations.Add(AdjStation.Clone());
         }
 
@@ -337,7 +337,7 @@ namespace DL
                 DataSource.ListAdjacentStations.Remove(AdjStation);
             }
             else
-                throw new DO.BadAdjacentStationsIdException(Id, $"bad Adjacent Station id: {Id}");
+                throw new DO.BadAdjacentStationsException("bad Adjacent Station id");
         }
 
         public void UpdateAdjacentStations(DO.AdjacentStations AdjStation)
@@ -350,7 +350,7 @@ namespace DL
                 DataSource.ListAdjacentStations.Add(AdjStation.Clone());
             }
             else
-                throw new DO.BadAdjacentStationsIdException(AdjStation.id, $"bad Adjacent Station id: {AdjStation.id}");
+                throw new DO.BadAdjacentStationsException( "bad Adjacent Station id");
         }
 
         //public void UpdatePerson(int id, Action<DO.AdjacentStations> update)

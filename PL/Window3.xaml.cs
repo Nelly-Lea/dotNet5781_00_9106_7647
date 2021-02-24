@@ -171,7 +171,11 @@ namespace PL
 
         }
 
-      
+        private void Button_Click_SeeTheSchedule(object sender, RoutedEventArgs e)
+        {
+            Window15 win15 = new Window15();
+            win15.Show();
+        }
     }
 
    

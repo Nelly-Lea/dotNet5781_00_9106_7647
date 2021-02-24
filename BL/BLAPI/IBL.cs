@@ -54,7 +54,15 @@ namespace BLAPI
         void AddUser(string username, string password, bool admin);
 
         void CheckUserPassenger(string UserName, string password);
-   #endregion User
+        #endregion User
+        #region LineTrip
+
+        TimeSpan UpdateFinishAt(BO.LineTrip LineTrip);
+        IEnumerable<BO.LineTrip> GetAllLineTrips(BO.Line Line);
+        List<BO.LineTrip> ShowLineTrips(BO.Line Line);
+        void RemoveLineTrip(BO.LineTrip LineTrip);
+        #endregion LineTrip 
+
         //Add Person to Course
         //get all courses for student
         //etc...
