@@ -61,6 +61,9 @@ namespace BLAPI
         IEnumerable<BO.LineTrip> GetAllLineTrips(BO.Line Line);
         List<BO.LineTrip> ShowLineTrips(BO.Line Line);
         void RemoveLineTrip(BO.LineTrip LineTrip);
+        List<string> Listhours();
+      List<string> ListMinOrSec();
+        void AddLineTrip(BO.Line Line, TimeSpan StartAt);
         #endregion LineTrip 
 
         //Add Person to Course

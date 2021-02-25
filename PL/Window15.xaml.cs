@@ -45,5 +45,14 @@ namespace PL
 
 
         }
+
+        private void Button_ClickAddLineTrip(object sender, RoutedEventArgs e)
+        {
+            Window16 win16 = new Window16();
+            win16.Show();
+            LvSchedule.ItemsSource = bl.GetAllLineTrips(CurrentLine);
+            LvSchedule.Items.Refresh();
+            
+        }
     }
 }

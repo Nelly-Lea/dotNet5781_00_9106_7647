@@ -90,6 +90,9 @@
     <Compile Include="Window15.xaml.cs">
       <DependentUpon>Window15.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Window16.xaml.cs">
+      <DependentUpon>Window16.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Window2.xaml.cs">
       <DependentUpon>Window2.xaml</DependentUpon>
     </Compile>
@@ -151,6 +154,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Window15.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Window16.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

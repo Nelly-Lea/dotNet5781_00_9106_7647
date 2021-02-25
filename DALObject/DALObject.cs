@@ -151,6 +151,11 @@ namespace DL
 
         #endregion Line
         #region LineTrip
+        public int CountplusIdLineTrip()
+        {
+
+            return ++DataSource.idlinetrip;
+        }
         public DO.LineTrip GetLineTrip(int id)
         {
             DO.LineTrip linetrip = DataSource.ListLineTrip.Find(p => p.Id == id);
@@ -178,7 +183,7 @@ namespace DL
             DataSource.ListLineTrip.Add(linetrip.Clone());
         }
 
-        public void DeleteLineTrip(int lineid)
+        public void DeleteLineTrip(int id)
         {
             //DO.LineTrip linetrip = DataSource.ListLineTrip.Find(p => p.LineId == lineid);
 
@@ -188,7 +193,7 @@ namespace DL
             //}
             //else
             //    throw new DO.BadLineTripLineIdException(lineid, $"bad linetrip line id: {lineid}");
-            DataSource.ListLineTrip.RemoveAll(x => x.LineId == lineid);
+            DataSource.ListLineTrip.RemoveAll(x=>x.Id==id);
         }
 
         public void UpdateLineTrip(DO.LineTrip linetrip)
@@ -359,58 +364,58 @@ namespace DL
         //}
         #endregion AdjacentStations
         #region Bus
-        public DO.Bus GetBus(int licensenum)
-        {
-            DO.Bus bus = DataSource.ListBuses.Find(p => p.LicenceNum == licensenum);
+        //public DO.Bus GetBus(int licensenum)
+        //{
+        //    DO.Bus bus = DataSource.ListBuses.Find(p => p.LicenceNum == licensenum);
 
-            if (bus != null)
-                return bus.Clone();
-            else
-                throw new DO.BadLicenseNumException(licensenum, $"bad license num: {licensenum}");
-        }
-        public IEnumerable<DO.Bus> GetAllBuses()
-        {
-            return from bus in DataSource.ListBuses
-                   select bus.Clone();
-        }
-        public IEnumerable<DO.Bus> GetAllBusesBy(Predicate<DO.Bus> predicate)
-        {
-            return from bus in DataSource.ListBuses
-                   where predicate(bus)
-                   select bus.Clone();
+        //    if (bus != null)
+        //        return bus.Clone();
+        //    else
+        //        throw new DO.BadLicenseNumException(licensenum, $"bad license num: {licensenum}");
+        //}
+        //public IEnumerable<DO.Bus> GetAllBuses()
+        //{
+        //    return from bus in DataSource.ListBuses
+        //           select bus.Clone();
+        //}
+        //public IEnumerable<DO.Bus> GetAllBusesBy(Predicate<DO.Bus> predicate)
+        //{
+        //    return from bus in DataSource.ListBuses
+        //           where predicate(bus)
+        //           select bus.Clone();
 
-        }
-        public void AddBus(DO.Bus bus)
-        {
-            if (DataSource.ListBuses.FirstOrDefault(p => p.LicenceNum == bus.LicenceNum) != null)
-                throw new DO.BadLicenseNumException(bus.LicenceNum, "Duplicate license num");
-            DataSource.ListBuses.Add(bus.Clone());
-        }
+        //}
+        //public void AddBus(DO.Bus bus)
+        //{
+        //    if (DataSource.ListBuses.FirstOrDefault(p => p.LicenceNum == bus.LicenceNum) != null)
+        //        throw new DO.BadLicenseNumException(bus.LicenceNum, "Duplicate license num");
+        //    DataSource.ListBuses.Add(bus.Clone());
+        //}
 
-        public void DeleteBus(int licensenum)
-        {
-            DO.Bus bus = DataSource.ListBuses.Find(p => p.LicenceNum == licensenum);
+        //public void DeleteBus(int licensenum)
+        //{
+        //    DO.Bus bus = DataSource.ListBuses.Find(p => p.LicenceNum == licensenum);
 
-            if (bus != null)
-            {
-                DataSource.ListBuses.Remove(bus);
-            }
-            else
-                throw new DO.BadStationCodeException(licensenum, $"bad license num: {licensenum}");
-        }
+        //    if (bus != null)
+        //    {
+        //        DataSource.ListBuses.Remove(bus);
+        //    }
+        //    else
+        //        throw new DO.BadStationCodeException(licensenum, $"bad license num: {licensenum}");
+        //}
 
-        public void UpdateBus(DO.Bus bus)
-        {
-            DO.Bus buses= DataSource.ListBuses.Find(p => p.LicenceNum == bus.LicenceNum);
+        //public void UpdateBus(DO.Bus bus)
+        //{
+        //    DO.Bus buses= DataSource.ListBuses.Find(p => p.LicenceNum == bus.LicenceNum);
 
-            if (buses != null)
-            {
-                DataSource.ListBuses.Remove(buses);
-                DataSource.ListBuses.Add(bus.Clone());
-            }
-            else
-                throw new DO.BadLicenseNumException(bus.LicenceNum, $"bad licence num: {bus.LicenceNum}");
-        }
+        //    if (buses != null)
+        //    {
+        //        DataSource.ListBuses.Remove(buses);
+        //        DataSource.ListBuses.Add(bus.Clone());
+        //    }
+        //    else
+        //        throw new DO.BadLicenseNumException(bus.LicenceNum, $"bad licence num: {bus.LicenceNum}");
+        //}
 
         //public void UpdateStation(int id, Action<DO.Station> update)
         //{
@@ -419,58 +424,58 @@ namespace DL
         #endregion Bus
 
         #region Trip
-        public DO.Trip GetTrip(int id)
-        {
-            DO.Trip Trip = DataSource.ListTrip.Find(p => p.Id == id);
+        //public DO.Trip GetTrip(int id)
+        //{
+        //    DO.Trip Trip = DataSource.ListTrip.Find(p => p.Id == id);
 
-            if (Trip != null)
-                return Trip.Clone();
-            else
-                throw new DO.BadTripIdException(id, $"bad Trip id: {id}");
-        }
-        public IEnumerable<DO.Trip> GetAllTrips()
-        {
-            return from trip in DataSource.ListTrip
-                   select trip.Clone();
-        }
-        public IEnumerable<DO.Trip> GetAllTripBy(Predicate<DO.Trip> predicate)
-        {
-            return from trip in DataSource.ListTrip
-                   where predicate(trip)
-                   select trip.Clone();
+        //    if (Trip != null)
+        //        return Trip.Clone();
+        //    else
+        //        throw new DO.BadTripIdException(id, $"bad Trip id: {id}");
+        //}
+        //public IEnumerable<DO.Trip> GetAllTrips()
+        //{
+        //    return from trip in DataSource.ListTrip
+        //           select trip.Clone();
+        //}
+        //public IEnumerable<DO.Trip> GetAllTripBy(Predicate<DO.Trip> predicate)
+        //{
+        //    return from trip in DataSource.ListTrip
+        //           where predicate(trip)
+        //           select trip.Clone();
 
-        }
-        public void AddTrip(DO.Trip trip)
-        {
-            if (DataSource.ListTrip.FirstOrDefault(p => p.Id == trip.Id) != null)
-                throw new DO.BadTripIdException(trip.Id, "Duplicate trip id");
-            DataSource.ListTrip.Add(trip.Clone());
-        }
+        //}
+        //public void AddTrip(DO.Trip trip)
+        //{
+        //    if (DataSource.ListTrip.FirstOrDefault(p => p.Id == trip.Id) != null)
+        //        throw new DO.BadTripIdException(trip.Id, "Duplicate trip id");
+        //    DataSource.ListTrip.Add(trip.Clone());
+        //}
 
-        public void DeleteTrip(int id)
-        {
-            DO.Trip trip = DataSource.ListTrip.Find(p => p.Id == id);
+        //public void DeleteTrip(int id)
+        //{
+        //    DO.Trip trip = DataSource.ListTrip.Find(p => p.Id == id);
 
-            if (trip != null)
-            {
-                DataSource.ListTrip.Remove(trip);
-            }
-            else
-                throw new DO.BadTripIdException(id, $"bad trip id: {id}");
-        }
+        //    if (trip != null)
+        //    {
+        //        DataSource.ListTrip.Remove(trip);
+        //    }
+        //    else
+        //        throw new DO.BadTripIdException(id, $"bad trip id: {id}");
+        //}
 
-        public void UpdateTrip(DO.Trip trip)
-        {
-            DO.Trip t = DataSource.ListTrip.Find(p => p.Id == trip.Id);
+        //public void UpdateTrip(DO.Trip trip)
+        //{
+        //    DO.Trip t = DataSource.ListTrip.Find(p => p.Id == trip.Id);
 
-            if (t != null)
-            {
-                DataSource.ListTrip.Remove(t);
-                DataSource.ListTrip.Add(trip.Clone());
-            }
-            else
-                throw new DO.BadTripIdException(trip.Id, $"bad trip id: {trip.Id}");
-        }
+        //    if (t != null)
+        //    {
+        //        DataSource.ListTrip.Remove(t);
+        //        DataSource.ListTrip.Add(trip.Clone());
+        //    }
+        //    else
+        //        throw new DO.BadTripIdException(trip.Id, $"bad trip id: {trip.Id}");
+        //}
 
 
 

@@ -17,7 +17,7 @@
         <Label Content="Schedule" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="245,10,0,0" VerticalAlignment="Top" Height="52" Width="272" FontSize="20" FontWeight="Bold" FontStyle="Italic"/>
         <Label Content="Choose Line Number :" HorizontalAlignment="Left" Margin="91,37.4,0,0" Grid.Row="1" VerticalAlignment="Top" Width="196" FontStyle="Italic" FontWeight="Bold" Height="37" FontSize="16"/>
         <ComboBox x:Name="CbLineNumbers" HorizontalAlignment="Left" SelectedIndex="0" DisplayMemberPath = "Code"  Margin="472,37.4,0,0" Grid.Row="1" VerticalAlignment="Top" Width="213" Height="41" SelectionChanged="ComboBox_SelectionChanged"/>
-        <ListView x:Name="LvSchedule" HorizontalAlignment="Left" Height="100" Margin="245,4.6,0,0" Grid.Row="2" VerticalAlignment="Top" Width="440" >
+        <ListView x:Name="LvSchedule" HorizontalAlignment="Left" Height="100" Margin="199,4.6,0,0" Grid.Row="2" VerticalAlignment="Top" Width="440" >
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Start At" DisplayMemberBinding="{Binding StartAt}" Width="150"/>
@@ -34,6 +34,7 @@
             </ListView.View>
 
         </ListView>
+        <Button Content="Add Line Trip" Background="#FF4496CF" FontFamily="Kristen ITC" HorizontalAlignment="Left" Margin="331,42.8,0,0" Grid.Row="3" VerticalAlignment="Top" Width="144" Height="38" FontWeight="Bold" FontSize="16" Click="Button_ClickAddLineTrip"/>
 
     </Grid>
 </Window>

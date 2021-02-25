@@ -1206,6 +1206,59 @@ namespace BL
             dl.UpdateLineTrip(LineTripDO);
             return TimeFinal;
         }
+        public List<string> Listhours()
+        {
+            List<string> ListHours = new List<string>();
+            for(int i=0;i<24;i++)
+            {
+                if (i <= 9)
+                {
+                    string str = ("0" + i);
+                    ListHours.Add(str);
+                }
+                else
+                {
+                    ListHours.Add(""+i);
+                }
+            }
+            return ListHours;
+        }
+       public  List<string > ListMinOrSec()
+        {
+            List<string> ListMinOrSec = new List<string>();
+            for(int i=0;i<60;i++)
+            {
+                if(i<=9)
+                {
+                    string str = ("0" + i);
+                    ListMinOrSec.Add(str);
+                } 
+                else
+                ListMinOrSec.Add(""+i);
+            }
+            return ListMinOrSec;
+        }
+        public void AddLineTrip(BO.Line Line, TimeSpan StartAt)
+        {
+          
+
+            DO.LineTrip LineTripDO = new DO.LineTrip();
+            LineTripDO.Id = dl.CountplusIdLineTrip();
+            LineTripDO.LineId = Line.Id;
+            LineTripDO.StartAt = StartAt;
+            LineTripDO.Frequency = new TimeSpan(0, 0, 0);
+            LineTripDO.FinishAt = new TimeSpan(0, 0, 0);
+            dl.AddLineTrip(LineTripDO);
+
+            BO.LineTrip LineTripBO = new BO.LineTrip();
+            LineTripBO.Id = LineTripDO.Id;
+            LineTripBO.LineId = LineTripDO.LineId;
+            LineTripBO.StartAt = LineTripDO.StartAt;
+            LineTripBO.Frequency = LineTripDO.Frequency;
+            LineTripBO.FinishAt = UpdateFinishAt(LineTripBO);
+
+
+        }
         #endregion LineTrip
 
     }

@@ -65,28 +65,28 @@ namespace DLAPI
         void UpdateLineTrip(DO.LineTrip LineTrip);
         
         void DeleteLineTrip(int id); // removes only LineTrip, does not remove the appropriate Person...
-
+        int CountplusIdLineTrip();
 
         #endregion LineTrip
         #region Trip
-        DO.Trip GetTrip(int id);
-        IEnumerable<DO.Trip> GetAllTrips();
+        //DO.Trip GetTrip(int id);
+        //IEnumerable<DO.Trip> GetAllTrips();
 
-        void AddTrip(DO.Trip Trip);
-        void UpdateTrip(DO.Trip Trip);
+        //void AddTrip(DO.Trip Trip);
+        //void UpdateTrip(DO.Trip Trip);
         
-        void DeleteTrip(int id); // removes only Trip, does not remove the appropriate Person...
+        //void DeleteTrip(int id); // removes only Trip, does not remove the appropriate Person...
 
         #endregion Trip
         #region Bus
        
-        DO.Bus GetBus(int licensenum);
-        IEnumerable<DO.Bus> GetAllBuses();
+        //DO.Bus GetBus(int licensenum);
+        //IEnumerable<DO.Bus> GetAllBuses();
 
-        void AddBus(DO.Bus Bus);
-        void UpdateBus(DO.Bus Bus);
+        //void AddBus(DO.Bus Bus);
+        //void UpdateBus(DO.Bus Bus);
       
-        void DeleteBus(int licensenum); // removes only Bus, does not remove the appropriate Person...
+        //void DeleteBus(int licensenum); // removes only Bus, does not remove the appropriate Person...
         #endregion Bus 
         #region User
         DO.User GetUser(string username);
