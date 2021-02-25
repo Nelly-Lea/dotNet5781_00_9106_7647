@@ -686,12 +686,35 @@ namespace BL
 
             public IEnumerable<BO.Station> ShowStationArea(BO.Line line)
         {
+           IEnumerable<IGrouping<DO.Areas, DO.Station>> liststations = (IEnumerable <IGrouping< DO.Areas, DO.Station >>) dl.GetAllStations().ToList().GroupBy(x => x.Area);
+            List<DO.Station> liststat = new List<DO.Station>();
+            foreach(var item in liststations)
+            {
+                if (item.Key == (DO.Areas)line.Area)
+                    liststat = item.ToList();
+            }
+                
+           
 
-
-            IEnumerable<BO.Station> listStations = from StationDO in dl.GetAllStations()
-                                                   where StationDO.Area == (DO.Areas)line.Area
+            IEnumerable<BO.Station> listStations = from StationDO in liststat
                                                    select new BO.Station
+
                                                    { Code = StationDO.Code, Name = StationDO.Name, Longitude = StationDO.Longitude, Latitude = StationDO.Latitude, Address = StationDO.Address, Area = (BO.Areas)StationDO.Area };
+
+            //from StationDO in dl.GetAllStations()
+            //                                   let Area = (DO.Areas)line.Area
+            //                                   where Area == StationDO.Area
+            //                                   //where StationDO.Area == (DO.Areas)line.Area
+            //                                   select new BO.Station
+            //                                   { Code = StationDO.Code, Name = StationDO.Name, Longitude = StationDO.Longitude, Latitude = StationDO.Latitude, Address = StationDO.Address, Area = (BO.Areas)StationDO.Area };
+
+
+            //IEnumerable<BO.Station> listStations = from StationDO in dl.GetAllStations()
+            //                                       let Area=(DO.Areas)line.Area
+            //                                       where Area==StationDO.Area
+            //                                       //where StationDO.Area == (DO.Areas)line.Area
+            //                                       select new BO.Station
+            //                                       { Code = StationDO.Code, Name = StationDO.Name, Longitude = StationDO.Longitude, Latitude = StationDO.Latitude, Address = StationDO.Address, Area = (BO.Areas)StationDO.Area };
 
             IEnumerable<DO.LineStation> ListLineStation = dl.GetAllLineStations().Where(x => x.LineId == line.Id);
 
@@ -742,7 +765,8 @@ namespace BL
         public List<BO.Station> GetAllStationWithoutStartStation(BO.Station StationStart)
         {
             IEnumerable<BO.Station> listStations = from StationDO in dl.GetAllStations()
-                                                   where StationDO.Code != StationStart.Code
+                                                   let Code=StationStart.Code
+                                                   where StationDO.Code != Code
                                                    select new BO.Station
                                                    { Code = StationDO.Code, Name = StationDO.Name, Longitude = StationDO.Longitude, Latitude = StationDO.Latitude, Address = StationDO.Address, Area = (BO.Areas)StationDO.Area };
 
