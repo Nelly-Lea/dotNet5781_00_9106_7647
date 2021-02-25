@@ -277,6 +277,7 @@ namespace BL
             }
             catch (DO.BadLineIdException ex)
             {
+                dl.DeleteLineStation(FirstLineStation.Id);
                 throw new BO.BadLineIdException(LineDO.Id, "Bad line Id", ex);
             }
             //dl.AddLine(LineDO);
@@ -876,6 +877,7 @@ namespace BL
            
             return from LineStationDO in dl.GetAllLineStations()
                    where LineStationDO.LineId == LineId
+                   orderby LineStationDO.LineStationIndex
                    select new BO.LineStation
                    { LineId = LineStationDO.LineId, Station = LineStationDO.Station, LineStationIndex = LineStationDO.LineStationIndex, PrevStation = LineStationDO.PrevStation, NextStation = LineStationDO.NextStation, Id = LineStationDO.Id };
         }
@@ -885,6 +887,7 @@ namespace BL
             BO.Line LineStationBO = new BO.Line();
             return from LineStationDO in dl.GetAllLineStations()
                    where LineStationDO.LineId == lineid
+                   orderby LineStationDO.LineStationIndex
                    select new BO.LineStation
                    { Id = LineStationDO.Id, LineId = LineStationDO.LineId, Station = LineStationDO.Station, PrevStation = LineStationDO.PrevStation, NextStation = LineStationDO.NextStation, LineStationIndex = LineStationDO.LineStationIndex };
         }

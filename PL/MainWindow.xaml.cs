@@ -11,10 +11,12 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
-using System.Windows.Shapes;
+//using System.Windows.Shapes;
 using BLAPI;
-using DLAPI;
-
+using DL;
+//using DLAPI;
+using DO;
+using DS;
 
 namespace PL
 {
@@ -25,8 +27,17 @@ namespace PL
     {
         IBL bl;
         public MainWindow()
+            
         {
             InitializeComponent();
+
+            XMLTools.SaveListToXMLSerializer<Station>(DS.DataSource.ListStations, @"StationXml1.xml");
+            XMLTools.SaveListToXMLSerializer<Line>(DS.DataSource.ListLines, @"LineXml1.xml");
+            XMLTools.SaveListToXMLSerializer<LineStation>(DS.DataSource.ListLineStations, @"LineStationXml1.xml");
+            XMLTools.SaveListToXMLSerializer<AdjacentStations>(DS.DataSource.ListAdjacentStations, @"AdjacentStationXml1.xml");
+            XMLTools.SaveListToXMLSerializer<User>(DS.DataSource.ListUsers, @"UserXml1.xml");
+            XMLTools.SaveListToXMLSerializer<LineTrip>(DS.DataSource.ListLineTrip, @"LineTripXml1.xml");
+
             //  BL.BLImp b1 = new BL.BLImp();
             //  //bl = BLFactory.GetBL("1");
             //  IDL d = DLFactory.GetDL();

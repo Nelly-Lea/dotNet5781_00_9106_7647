@@ -40,13 +40,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UI", "UI\UI.csproj", "{7C8B
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items1", "Solution Items1", "{78A2522A-C6C7-470E-BA52-C02D542F8411}"
 	ProjectSection(SolutionItems) = preProject
-		AdjacentStationsXml1.xml = AdjacentStationsXml1.xml
+		bin\AdjacentStationXml1.xml = bin\AdjacentStationXml1.xml
 		bin\config.xml = bin\config.xml
-		LineStationXml1.xml = LineStationXml1.xml
-		LineTripXml1.xml = LineTripXml1.xml
-		LineXml1.xml = LineXml1.xml
-		StationXml1.xml = StationXml1.xml
-		UserXml1.xml = UserXml1.xml
+		bin\LineStationXml1.xml = bin\LineStationXml1.xml
+		bin\LineTripXml1.xml = bin\LineTripXml1.xml
+		bin\LineXml1.xml = bin\LineXml1.xml
+		bin\StationXml1.xml = bin\StationXml1.xml
+		bin\UserXml1.xml = bin\UserXml1.xml
 	EndProjectSection
 EndProject
 Global

@@ -7,11 +7,13 @@ using System.Threading.Tasks;
 using System.Xml.Serialization;
 using System.Device.Location;
 using DO;
+using DL;
+
 
 namespace DS
 {
 
-    public static class DataSource
+    public static class DataSource 
     {
         public static List<Station> ListStations;
         public static List<Line> ListLines;
@@ -26,11 +28,15 @@ namespace DS
         public static List<LineTrip> ListLineTrip;
         public static List<Trip> ListTrip;
         public static int idtrip = 0;
-       
+
+     
+
         static DataSource()
         {
             InitAllLists();
-           
+
+
+
         }
        
         static void InitAllLists()
@@ -2698,7 +2704,9 @@ namespace DS
          }
 
      };
+            
         }
+       
     }
 }
 

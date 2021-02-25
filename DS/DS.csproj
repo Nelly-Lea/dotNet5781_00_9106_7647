@@ -50,6 +50,10 @@
       <Project>{4ca6b381-e613-4e64-8f3d-85871967c6a0}</Project>
       <Name>DLAPI</Name>
     </ProjectReference>
+    <ProjectReference Include="..\DLXML\DLXML.csproj">
+      <Project>{7809e3b4-04ce-4b1e-b68e-d87c04de7f33}</Project>
+      <Name>DLXML</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

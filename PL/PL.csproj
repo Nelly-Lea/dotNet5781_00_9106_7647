@@ -230,6 +230,14 @@
       <Project>{4CA6B381-E613-4E64-8F3D-85871967C6A0}</Project>
       <Name>DLAPI</Name>
     </ProjectReference>
+    <ProjectReference Include="..\DLXML\DLXML.csproj">
+      <Project>{7809e3b4-04ce-4b1e-b68e-d87c04de7f33}</Project>
+      <Name>DLXML</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DS\DS.csproj">
+      <Project>{a35bd721-adb1-456f-9dc0-0e09e9af2740}</Project>
+      <Name>DS</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="PO\" />
