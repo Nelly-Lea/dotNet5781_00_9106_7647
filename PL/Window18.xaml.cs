@@ -31,11 +31,14 @@ namespace PL
     {
         static IBL bl = BLFactory.GetBL("1");
         public BO.Station CurrentStation;
+
+
+
         public Window18()
         {
             InitializeComponent();
             DataContext = new CurrentTimeViewModel();
-            
+          
         }
 
         public void init()
@@ -47,19 +50,7 @@ namespace PL
            tbStation.Text = CurrentStation.Name;
          
         }
-       // private System.Timers.Timer timer1;
-        //public void InitTimer()
-        //{
-        //    // timer1 = new System.Timers.Timer();
-        //    //// timer1.Elapsed += timer1_Elapsed;
-        //    // timer1.Interval = 50000; // in miliseconds
-        //    // timer1.Start();
-        //    System.Timers.Timer timer = new System.Timers.Timer(2000);
-        //    timer.AutoReset = true; // the key is here so it repeats
-        //    timer.Elapsed += timer1_Elapsed;
-        //    timer.Start();
-        //}
-
+       
         private void timer1_Elapsed(/*object sender, EventArgs e*/)
         {
             BO.Simulator S = bl.LinesFromStation(CurrentStation);
@@ -136,6 +127,7 @@ namespace PL
             e.Handled = regex.IsMatch(e.Text);
         }
 
-       
+   
+
     }
 }

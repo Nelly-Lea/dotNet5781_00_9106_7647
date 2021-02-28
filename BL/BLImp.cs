@@ -483,7 +483,7 @@ namespace BL
             {
                 foreach (var item1 in dl.GetAllLineStations().Where(x => x.LineId == item.Id))
                 {
-                    if (item1.NextStation != Station.Code)
+                    if (item1.Station!=Station.Code)
                     {
                         station1 = new DO.Station();
                         station1 = dl.GetStation(item1.Station);
@@ -511,24 +511,42 @@ namespace BL
         public List<TimeSpan> StartSimulator(int speed, TimeSpan ActualTime, Simulator sim)
         {
             List<TimeSpan> listTimes = new List<TimeSpan>();
-            foreach (var item in sim.ListArrivalTimes)
+            List<List<TimeSpan>> lineTripTimes = new List<List<TimeSpan>>();
+            List<TimeSpan> listTripInside = new List<TimeSpan>();
+            int i = 0;
+           foreach(var item in sim.ListLines)
             {
-                if (ActualTime < item)
+                foreach(var item1 in dl.GetAllLineTrips())
                 {
-                    TimeSpan t = new TimeSpan();
-                    t = (item - ActualTime);
-                    int timeInSeconds = (t.Hours * 3600 + t.Minutes * 60 + t.Seconds) / speed;
-                    t = new TimeSpan(0, 0, 0, timeInSeconds);
-                    listTimes.Add(t);
+                    if (item1.LineId == item.Id)
+                        listTripInside.Add(item1.StartAt + sim.ListArrivalTimes[i]);
                 }
-                else
+                i ++;
+                listTripInside = new List<TimeSpan>();
+                lineTripTimes.Add(listTripInside);
+            }
+            for (int j = 0; j < lineTripTimes.Count; j++)
+            {
+                foreach (var item in lineTripTimes[j])
                 {
+                    if (ActualTime < item)
+                    {
+                        TimeSpan t = new TimeSpan();
+                        t = (item - ActualTime);
+                        int timeInSeconds = (t.Hours * 3600 + t.Minutes * 60 + t.Seconds) / speed;
+                        t = new TimeSpan(0, 0, 0, timeInSeconds);
+                        listTimes.Add(t);
+                    }
+                    else
+                    {
 
-                    TimeSpan t = new TimeSpan();
-                    t = (ActualTime - item);
-                    int timeInSeconds = (t.Hours * 3600 + t.Minutes * 60 + t.Seconds) / speed;
-                    t = new TimeSpan(1, 0, 0, timeInSeconds);
-                    listTimes.Add(t);
+                        TimeSpan t = new TimeSpan();
+                        t = (ActualTime - item);
+                        int timeInSeconds = (t.Hours * 3600 + t.Minutes * 60 + t.Seconds) / speed;
+                        t = new TimeSpan(1, 0, 0, timeInSeconds);
+                        listTimes.Add(t);
+                    }
+
                 }
             }
             return listTimes;

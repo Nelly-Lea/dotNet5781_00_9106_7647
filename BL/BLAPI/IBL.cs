@@ -11,7 +11,7 @@ namespace BLAPI
     public interface IBL
     {
         List<BO.Areas> GetAreas();
-
+      
         #region Line
         BO.Line GetLine(int id);
         void AddLine(int code, BO.Station FirstStation, BO.Station LastStation);
