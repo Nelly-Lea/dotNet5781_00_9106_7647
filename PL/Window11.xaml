@@ -32,8 +32,13 @@
         <TextBox x:Name="TbAddress" HorizontalAlignment="Left" Height="43" Margin="0.2,30.6,0,0" Grid.Row="2" TextWrapping="Wrap" VerticalAlignment="Top" Width="223" FontSize="16" Grid.Column="1"/>
         <Button Background="#FF4496CF"  FontFamily="Kristen ITC" Content="Enter" HorizontalAlignment="Left" Margin="36.2,28.8,0,0" Grid.Row="3" VerticalAlignment="Top" Width="157" Height="44" Click="Button_ClickEnter" Grid.Column="1" FontSize="16" FontWeight="Bold"/>
         <Button Background="#FF4496CF"  FontFamily="Kristen ITC" Content="Return" HorizontalAlignment="Left" Margin="131,28.8,0,0" Grid.Row="3" VerticalAlignment="Top" Width="149" Height="44" Click="Button_Click" FontSize="16" FontWeight="Bold"/>
-        <TextBlock x:Name="tbStationCode" Grid.Row="0" Grid.ColumnSpan="1" HorizontalAlignment="Left" Margin="10.2,45,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="44" Width="149" FontSize="27" FontWeight="Bold" FontStyle="Italic" Grid.Column="1"/>
-
+        <TextBlock x:Name="tbStationCode" Grid.Row="0" Grid.ColumnSpan="1" HorizontalAlignment="Left" Margin="10.2,45,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="44" Width="149" FontWeight="Bold" FontStyle="Italic" Grid.Column="1">
+            <TextBlock.Style>
+                <Style>
+                    <Setter Property="TextBlock.FontSize" Value="27"/>
+                </Style>
+            </TextBlock.Style>
+        </TextBlock>
 
 
     </Grid>

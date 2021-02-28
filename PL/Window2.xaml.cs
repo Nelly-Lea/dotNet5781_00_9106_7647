@@ -124,12 +124,12 @@ namespace PL
             }
             catch (BO.BadPasswordUserException ex)
             {
-                MessageBox.Show("Paswords don't match");
+                MessageBox.Show("Passwords don't match");
             }
            
             catch (BO.BadUserNameException ex)
             {
-                MessageBox.Show("The user name already exist");
+                MessageBox.Show("The user name already exists");
             }
         }
 

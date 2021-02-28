@@ -18,7 +18,7 @@ namespace DL
         public static DALObject Instance { get => instance; }// The public Instance property to use
         #endregion
         //Implement IDL methods, CRUD
-        public List<DO.Areas> GetAllAreas()
+        public List<DO.Areas> GetAllAreas() // this function returns a list of all the areas
         {
              List<DO.Areas> ListAreas = Enum.GetValues(typeof(DO.Areas)).Cast<DO.Areas>().ToList();
             return ListAreas;
@@ -80,13 +80,9 @@ namespace DL
                 throw new DO.BadStationCodeException(station.Code, $"bad station code: {station.Code}");
         }
 
-        //public void UpdateStation(int id, Action<DO.Station> update)
-        //{
-        //    throw new NotImplementedException();
-        //}
         #endregion Station
         #region Line
-        public int Countplus()
+        public int Countplus() // this function calculates the id for a new line
         {
         
             return ++DataSource.id;
@@ -108,7 +104,7 @@ namespace DL
                 throw new DO.BadLineIdException(line.Id, "Duplicate line ID");
             l = DataSource.ListLines.Find(x => (x.Code == line.Code)&&(x.Area==line.Area));
             if(l!=null)
-                throw new DO.BadLineIdException(line.Code, $"bad line code: {line.Code}");     
+                throw new DO.BadLineIdException(line.Code, $"bad line code: {line.Code}"); // we can't line with the same code and the same area
            
            
             DataSource.ListLines.Add(line.Clone());
@@ -137,7 +133,7 @@ namespace DL
         }
         public void UpdateLine(DO.Line line)
         {
-            DO.Line lines = DataSource.ListLines.Find(p =>( p.Id == line.Id)&&(p.Area==line.Area));
+            DO.Line lines = DataSource.ListLines.Find(p =>( p.Id == line.Id)&&(p.Area==line.Area)); // we can't update a line with the same code and the same area
 
             if (lines != null)
             {
@@ -151,7 +147,7 @@ namespace DL
 
         #endregion Line
         #region LineTrip
-        public int CountplusIdLineTrip()
+        public int CountplusIdLineTrip() // this finction calculates the if for a new line trip
         {
 
             return ++DataSource.idlinetrip;
@@ -184,15 +180,7 @@ namespace DL
         }
 
         public void DeleteLineTrip(int id)
-        {
-            //DO.LineTrip linetrip = DataSource.ListLineTrip.Find(p => p.LineId == lineid);
-
-            //if (linetrip != null)
-            //{
-            //    DataSource.ListLineTrip.Remove(linetrip);
-            //}
-            //else
-            //    throw new DO.BadLineTripLineIdException(lineid, $"bad linetrip line id: {lineid}");
+        {   
             DataSource.ListLineTrip.RemoveAll(x=>x.Id==id);
         }
 
@@ -210,7 +198,7 @@ namespace DL
         }
         #endregion LineTrip
         #region LineStation
-        public int CountplusLineStation()
+        public int CountplusLineStation() // this function claculates the id of new line station
         {
             return ++DataSource.idLineStation;
         }
@@ -243,34 +231,14 @@ namespace DL
 
         public void DeleteLineStation(int id)
         {
-            //  IEnumerable<DO.LineStation> linestations = DataSource.ListLineStations.Find(p => p.LineId == lineid);
-          
-
-          //foreach(var item in DataSource.ListLineStations)
-          //  {
-          //      if(item.LineId==lineid)
-          //          DataSource.ListLineStations.Remove(item);
-          //     }
             DataSource.ListLineStations.RemoveAll(x => x.Id == id);
-            
-            //if (linestation != null)
-            //{
-            //    DataSource.ListLineStations.Remove(linestation);
-            //}
-            //else
-            //    throw new DO.BadLineStationIdException(lineid, $"bad line station LineId: {lineid}");
+           
         }
-        public void DeleteListLineStations(int station)//Supprimer un list de line station en fonction du numero de station
+        public void DeleteListLineStations(int station)//this function deletes a list of line stations according to a code station
         {
             
             DataSource.ListLineStations.RemoveAll(x => x.Station == station);
 
-            //if (linestation != null)
-            //{
-            //    DataSource.ListLineStations.Remove(linestation);
-            //}
-            //else
-            //    throw new DO.BadLineStationIdException(lineid, $"bad line station LineId: {lineid}");
         }
 
         public void UpdateLineStation(DO.LineStation linestation)
@@ -289,17 +257,13 @@ namespace DL
                 throw new DO.BadLineStationIdException(linestation.Id, $"bad linestation id: {linestation.Id}");
         }
 
-        //public void UpdatePerson(int id, Action<DO.Person> update)
-        //{
-        //    throw new NotImplementedException();
-        //}
         #endregion LineStation
         #region AdjacentStations
-        public int CountplusAdjacentStation()
+        public int CountplusAdjacentStation() // this function calculates the id for a new adjacent stations
         {
             return ++DataSource.idAdjStation;
         }
-        public double CalculateDist(DO.Station stat1, DO.Station stat2)
+        public double CalculateDist(DO.Station stat1, DO.Station stat2) // this function calculates distance between stat1 and stat2 
         {
             GeoCoordinate p1 = new GeoCoordinate(stat1.Latitude, stat1.Longitude);
             GeoCoordinate p2 = new GeoCoordinate(stat2.Latitude, stat2.Longitude);
@@ -358,10 +322,6 @@ namespace DL
                 throw new DO.BadAdjacentStationsException( "bad Adjacent Station id");
         }
 
-        //public void UpdatePerson(int id, Action<DO.AdjacentStations> update)
-        //{
-        //    throw new NotImplementedException();
-        //}
         #endregion AdjacentStations
         #region Bus
         //public DO.Bus GetBus(int licensenum)
@@ -540,11 +500,6 @@ namespace DL
             else
                 throw new DO.BadUserNameException(user.UserName, $"bad user name: {user.UserName}");
         }
-
-        //public void UpdateUser(string UserName, Action<DO.Station> update)
-        //{
-        //    throw new NotImplementedException();
-        //}
 
         #endregion user
        

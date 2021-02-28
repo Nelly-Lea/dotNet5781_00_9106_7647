@@ -12,7 +12,7 @@ namespace DO
     [Serializable]
     public class LineTrip
     {
-        public int Id { get; set; }//identifiant
+        public int Id { get; set; }
         public int LineId { get; set; }
         [XmlIgnore]
         public TimeSpan StartAt { get; set; }
@@ -32,7 +32,7 @@ namespace DO
         }
         [XmlIgnore]
        
-        public TimeSpan Frequency { get; set; }//changer la frequence en fonction du moment de la journee
+        public TimeSpan Frequency { get; set; }
         [Browsable(false)]
         [XmlElement(DataType = "duration", ElementName = "Frequency")]
         public string TimeFrequencytEventString

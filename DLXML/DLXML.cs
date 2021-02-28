@@ -66,22 +66,7 @@ namespace DL
         }
         public DO.Station GetStation(int code)
         {
-            //XElement stationRoot = XMLTools.LoadListFromXMLElement(stationPath);
-            //Station station = (from stat in stationRoot.Elements()
-            //                   where int.Parse(stat.Element("Code").Value) == code
-            //                   select new Station()
-            //                   {
-            //                       Code = Int32.Parse(stat.Element("Code").Value),
-            //                       Name = stat.Element("Name").Value,
-            //                       Longitude = double.Parse(stat.Element("Longitude").Value),
-            //                       Latitude = double.Parse(stat.Element("Latitude").Value),
-            //                       Address = stat.Element("Address").Value,
-            //                       Area = (Areas)Enum.Parse(typeof(Areas), stat.Element("Area").Value),
-            //                   }
-            //                 ).FirstOrDefault();
-            //if (station == null)
-            //    throw new DO.BadStationCodeException(code, $"bad station code:{code}");
-            //return station;
+            
             List<Station> ListStations = XMLTools.LoadListFromXMLSerializer<Station>(stationPath);
 
             DO.Station sta = ListStations.Find(p => p.Code == code);
@@ -93,35 +78,6 @@ namespace DL
         }
         public IEnumerable<DO.Station> GetAllStations()
         {
-            //XElement stationRoot = XMLTools.LoadListFromXMLElement(stationPath);
-
-
-            ////  List<Line> ListLines = XMLTools.LoadListFromXMLSerializer<Line>(LinePath);
-            //IEnumerable<Station> E= (from stat in stationRoot.Elements()
-            //       select new Station()
-
-            //       {
-            //           Code = Int32.Parse(stat.Element("Code").Value),
-            //           Name = stat.Element("Name").Value,
-            //           Longitude = double.Parse(stat.Element("Longitude").Value),
-            //           Latitude = double.Parse(stat.Element("Latitude").Value),
-            //           Address = stat.Element("Address").Value,
-            //           Area = (Areas)Enum.Parse(typeof(Areas), stat.Element("Area").Value),
-            //       }
-            //       );
-            ////return  (from stat in stationRoot.Elements()  
-            ////                   select new Station()
-            ////                   {
-            ////                       Code = Int32.Parse(stat.Element("Code").Value),
-            ////                       Name = stat.Element("Name").Value,
-            ////                       Longitude = double.Parse(stat.Element("Longitude").Value),
-            ////                       Latitude = double.Parse(stat.Element("Latitude").Value),
-            ////                       Address = stat.Element("Address").Value,
-            ////                       Area = (Areas)Enum.Parse(typeof(Areas), stat.Element("Area").Value),
-            ////                   }
-            ////                 );
-            //return E;
-
             List<Station> ListStations = XMLTools.LoadListFromXMLSerializer<Station>(stationPath);
 
             return from station in ListStations
@@ -131,22 +87,7 @@ namespace DL
 
         public void AddStation(DO.Station station)
         {
-            //XElement stationRoot = XMLTools.LoadListFromXMLElement(stationPath);
-            //XElement station1 = (from s in stationRoot.Elements()
-            //                     where int.Parse(s.Element("Code").Value) == station.Code
-            //                     select s).FirstOrDefault();
-            //if(station1!=null)
-            //    throw new DO.BadStationCodeException(station.Code, "Duplicate station Code");
-            //XElement stationElem = new XElement("Station",
-            //                     new XElement("Code", station.Code.ToString()),
-            //                     new XElement("Name", station.Name),
-            //                     new XElement("Longitude", station.Longitude.ToString()),
-            //                     new XElement("Latitude", station.Latitude.ToString()),
-            //                     new XElement("Address", station.Address),
-            //                     new XElement("Area", station.Area.ToString()));
-
-            //stationRoot.Add(stationElem);
-            //XMLTools.SaveListToXMLElement(stationRoot, stationPath);
+            
             List<Station> ListStations = XMLTools.LoadListFromXMLSerializer<Station>(stationPath);
 
             if (ListStations.FirstOrDefault(s => s.Code == station.Code) != null)
@@ -160,18 +101,7 @@ namespace DL
         }
         public void DeleteStation(int code)
         {
-            //    XElement stationRoot = XMLTools.LoadListFromXMLElement(stationPath);
-            //    XElement station = (from s in stationRoot.Elements()
-            //                        where int.Parse(s.Element("Code").Value) == code
-            //                        select s).FirstOrDefault();
-            //    if (station != null)
-            //    {
-            //        station.Remove();
-            //        XMLTools.SaveListToXMLElement(stationRoot, stationPath);
-            //    }
-            //    else
-            //        throw new DO.BadStationCodeException(code, $"bad station code:{code}");
-
+           
 
             List<Station> ListStations = XMLTools.LoadListFromXMLSerializer<Station>(stationPath);
 
@@ -189,24 +119,7 @@ namespace DL
         }
         public void UpdateStation(DO.Station station)
         {
-            //    XElement stationRoot = XMLTools.LoadListFromXMLElement(stationPath);
-            //    XElement station1 = (from s in stationRoot.Elements()
-            //                         where int.Parse(s.Element("Code").Value) == station.Code
-            //                         select s).FirstOrDefault();
-            //    if (station1 != null)
-            //    {
-            //        station1.Element("Code").Value = station.Code.ToString();
-            //        station1.Element("Name").Value = station.Name;
-            //        station1.Element("Longitude").Value = station.Longitude.ToString();
-            //        station1.Element("Latitude").Value = station.Latitude.ToString();
-            //        station1.Element("Address").Value = station.Address;
-            //        station1.Element("Area").Value = station.Area.ToString();
-
-
-            //        XMLTools.SaveListToXMLElement(stationRoot, stationPath);
-            //    }
-            //    else
-            //        throw new DO.BadStationCodeException(station.Code, $"bad station code: {station.Code}");
+           
 
             List<Station> ListStations = XMLTools.LoadListFromXMLSerializer<Station>(stationPath);
 
@@ -214,7 +127,7 @@ namespace DL
             if (sta != null)
             {
                 ListStations.Remove(sta);
-                ListStations.Add(station); //no nee to Clone()
+                ListStations.Add(station); //no need to Clone()
             }
             else
                 throw new DO.BadStationCodeException(station.Code, $"bad station code: {station.Code}");
@@ -255,7 +168,7 @@ namespace DL
             else
                 throw new DO.BadLineIdException(id, $"bad Line id: {id}");
         }
-        public int Countplus() //a modidfier
+        public int Countplus() //this function return the id for a new line
         {
             List<Line> ListLines = XMLTools.LoadListFromXMLSerializer<Line>(LinePath);
             int max = ListLines.Max(p => p.Id);
@@ -295,7 +208,7 @@ namespace DL
             if (l != null)
             {
                 ListLines.Remove(l);
-                ListLines.Add(line); //no nee to Clone()
+                ListLines.Add(line); //no need to Clone()
             }
             else
                 throw new DO.BadLineIdException(line.Id, $"bad Line id: {line.Id}");
@@ -323,7 +236,7 @@ namespace DL
         #endregion Line
 
         #region LineStation
-        public int CountplusLineStation()// a mdifier
+        public int CountplusLineStation()// this function returns the id for s new ine station
         {
             List<LineStation> ListLineStations = XMLTools.LoadListFromXMLSerializer<LineStation>(LineStationPath);
             int max = ListLineStations.Max(p => p.Id);
@@ -439,7 +352,7 @@ namespace DL
             );
             LineTripRoot.Save(LineTripPath);
         }
-    public int CountplusIdLineTrip()
+    public int CountplusIdLineTrip() // this function returns the id for a new line trip
         {
             List<LineTrip> ListLineTrips = XMLTools.LoadListFromXMLSerializer<LineTrip>(LineTripPath);
             int max=ListLineTrips.Max(p => p.Id);
@@ -489,7 +402,7 @@ namespace DL
             if (lt != null)
             {
                 ListLineTrips.Remove(lt);
-                ListLineTrips.Add(lineTrip); //no nee to Clone()
+                ListLineTrips.Add(lineTrip); //no need to Clone()
             }
             else
                 throw new DO.BadLineTripIdException(lineTrip.Id, $"bad Line Trip id: {lineTrip.Id}");
@@ -526,14 +439,14 @@ namespace DL
             else
                 throw new DO.BadAdjacentStationsException("bad Adjacent Station");
         }
-        public int CountplusAdjacentStation()//a modifier
+        public int CountplusAdjacentStation()//this function returns the id for a new adjacent stations
         {
             List<AdjacentStations> ListAdjStations = XMLTools.LoadListFromXMLSerializer<AdjacentStations>(AdjacentStationPath);
             int max = ListAdjStations.Max(p => p.id);
             return ++max;
       
         }
-        public double CalculateDist(DO.Station stat1, DO.Station stat2) // a modifier
+        public double CalculateDist(DO.Station stat1, DO.Station stat2) // this function calculates time and distance between stat1 and stat2 
         {
             GeoCoordinate p1 = new GeoCoordinate(stat1.Latitude, stat1.Longitude);
             GeoCoordinate p2 = new GeoCoordinate(stat2.Latitude, stat2.Longitude);
@@ -588,15 +501,8 @@ namespace DL
             return from AdjacentStations in ListAdjacentStations
                    select AdjacentStations; //no need to Clone()
         }
-        //public IEnumerable<object> GetStudentFields(Func<int, string, object> generate)
-        //{
-        //    List<AdjacentStations> ListStudents = XMLTools.LoadListFromXMLSerializer<AdjacentStations>(AdjacentStationsPath);
-
-        //    return from student in ListStudents
-        //           select generate(student.ID, GetPerson(student.ID).Name);
-        //}
-
        
+
         public void UpdateAdjacentStations(DO.AdjacentStations AdjacentStations)
         {
             List<AdjacentStations> ListAdjacentStations = XMLTools.LoadListFromXMLSerializer<AdjacentStations>(AdjacentStationPath);
@@ -605,7 +511,7 @@ namespace DL
             if (adjsta != null)
             {
                 ListAdjacentStations.Remove(adjsta);
-                ListAdjacentStations.Add(AdjacentStations); //no nee to Clone()
+                ListAdjacentStations.Add(AdjacentStations); //no need to Clone()
             }
             else
                 throw new DO.BadAdjacentStationsException("bad AdjacentStations id");
@@ -614,7 +520,6 @@ namespace DL
         }
 
        
-
         public void DeleteAdjacentStations(int id)
         {
             List<AdjacentStations> ListAdjacentStations = XMLTools.LoadListFromXMLSerializer<AdjacentStations>(AdjacentStationPath);
@@ -692,7 +597,7 @@ namespace DL
             if (us != null)
             {
                 ListUsers.Remove(us);
-                ListUsers.Add(user); //no nee to Clone()
+                ListUsers.Add(user); //no need to Clone()
             }
             else
                 throw new DO.BadUserNameException(user.UserName, $"bad User Name: {user.UserName}");

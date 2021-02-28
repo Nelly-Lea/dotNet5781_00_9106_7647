@@ -34,10 +34,7 @@ namespace PL
 
         public Window4()
         {
-            //listOfLines = bl2.GetLineStation(Line.Id);
-            //var listLineStationsObs = new ObservableCollection<BO.LineStation>(listOfLines);
-            //ListLinesStation.ItemsSource = listLineStationsObs; 
-
+            
             InitializeComponent();
             this.DataContext = this;
             
@@ -53,10 +50,7 @@ namespace PL
             TbArea.DataContext = Line;
             TbArea.Text = Line.Area.ToString();
             CurrentLine = Line;
-            //Window3 win3 = new Window3();
-            //Application.Current.MainWindow = win3;
-            //Line = (BO.Line)win3.ListLines.SelectedItem;
-
+          
         }
         private void RemoveLineStation_button(object sender, RoutedEventArgs e)
         {
@@ -66,8 +60,7 @@ namespace PL
                 CurrentLineStation = (BO.LineStation)btn.DataContext;
 
             
-             bl2.RemoveLineStation(Line, CurrentLineStation.Station);
-                //Line = bl2.GetLine(Line.Id);
+             bl2.RemoveLineStation(Line, CurrentLineStation.Station);   
             IEnumerable<BO.LineStation> ListLineStation = bl2.GetAllLinesStation(Line.Id);
             if (ListLineStation.Any())
             {

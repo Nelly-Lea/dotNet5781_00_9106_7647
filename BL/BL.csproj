@@ -54,6 +54,7 @@
     <Compile Include="BO\LineTrip.cs" />
     <Compile Include="BO\ShowStations.cs" />
     <Compile Include="BO\ShowStationsLine.cs" />
+    <Compile Include="BO\Simulator.cs" />
     <Compile Include="BO\Station.cs" />
     <Compile Include="BO\TravelBetween2Stations.cs" />
     <Compile Include="BO\Trip.cs" />

@@ -43,7 +43,7 @@ namespace PL
         private void Button_ClickEnter(object sender, RoutedEventArgs e)
         {
             
-            //double longitude, latitude;
+           
             try
             {
                 

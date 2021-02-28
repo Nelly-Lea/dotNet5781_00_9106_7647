@@ -29,7 +29,7 @@ namespace PL
         }
          public void init()
         {
-           // TbUserName.DataContext = CurrentUser;
+           
             TbUserName.Text = CurrentUser;
             CbStartStation.ItemsSource=bl.ShowBusStations().stations;
           
@@ -51,6 +51,14 @@ namespace PL
         private void CbStartStation_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
            CbFinishStation.ItemsSource= bl.GetAllStationWithoutStartStation((BO.Station)CbStartStation.SelectedItem);
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            Window18 win18 = new Window18();
+            win18.CurrentStation = (BO.Station)CbStartStation.SelectedItem;
+            win18.init();
+            win18.Show();
         }
     }
 }

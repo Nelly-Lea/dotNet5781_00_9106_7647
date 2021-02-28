@@ -32,8 +32,6 @@ namespace PL
         {
             try
             {
-                //  List<List<BO.Station>> L = bl.ShowTravelsBetween2Stations(CurrentStationStart, CurrentStationFinish);
-                //   BO.TravelBetween2Stations T = bl.ShowTravelsBetween2Stations(CurrentStationStart, CurrentStationFinish);
                 LvListLinesNumber.ItemsSource = bl.ShowTravelsBetween2Stations(CurrentStationStart, CurrentStationFinish).ListLines;
                 LbLastStation.ItemsSource = bl.ShowTravelsBetween2Stations(CurrentStationStart, CurrentStationFinish).ListLastStation;
                 LbNumberOfStations.ItemsSource = bl.ShowTravelsBetween2Stations(CurrentStationStart, CurrentStationFinish).ListNumberStationBetween2Stations;

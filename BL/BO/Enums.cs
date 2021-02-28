@@ -12,7 +12,7 @@ namespace BO
 
     {
 
-        General, north, south, west, east, center, Rehovot, KfarSabba, KyriatEkron, RishonLetsion, Lod, Guedera, TsourMoshe, Gueoulim
+        General, North, South, West, East, Center, Rehovot, KfarSabba, KyriatEkron, RishonLetsion, Lod, Guedera, TsourMoshe, Gueoulim
 
     }
 }

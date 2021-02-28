@@ -61,8 +61,6 @@ namespace PL
             }
 
 
-            // this.Close();
-
             Window3 win3 = new Window3();
             Application.Current.MainWindow = win3;
             win3.ListLines.ItemsSource = bl4.GetAllLines();

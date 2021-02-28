@@ -38,23 +38,6 @@ namespace PL
             XMLTools.SaveListToXMLSerializer<User>(DS.DataSource.ListUsers, @"UserXml1.xml");
             XMLTools.SaveListToXMLSerializer<LineTrip>(DS.DataSource.ListLineTrip, @"LineTripXml1.xml");
 
-            //  BL.BLImp b1 = new BL.BLImp();
-            //  //bl = BLFactory.GetBL("1");
-            //  IDL d = DLFactory.GetDL();
-            //var v =   d.GetAllLines();
-
-            //  DO.Line l = d.GetLine(1);
-            //  BO.Line lineBO = new BO.Line();
-            //  lineBO.Area = (BO.Areas)l.Area;
-            //  lineBO.Code = l.Code;
-            //  lineBO.FirstStation = l.FirstStation;
-            //  lineBO.Id = l.Id;
-            //  lineBO.LastStation = l.LastStation;
-
-
-            //  BO.ShowStationsLine s = b1.ShowStations(lineBO);
-
-            //  BO.ShowStations ss = b1.ShowBusStations();
         }
 
       

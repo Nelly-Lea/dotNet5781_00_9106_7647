@@ -69,8 +69,7 @@ namespace PL
                 CurrentLine1 = (BO.Line)btn.DataContext;
            
             Window4 win4 = new Window4();
-            this.Close();
-            // win4.Line = CurrentLine1;
+            this.Close();     
             List<BO.LineStation> L = new List<BO.LineStation>();
             L= bl1.GetLineStation(CurrentLine1.Id).ToList();
             win4.ListLineStations = bl1.GetLineStation(CurrentLine1.Id).ToList();
@@ -175,6 +174,14 @@ namespace PL
         {
             Window15 win15 = new Window15();
             win15.Show();
+        }
+
+        private void Button_SearchLineArea(object sender, RoutedEventArgs e)
+        {
+            Window17 win17 = new Window17();
+            win17.Show();
+            this.Close();
+
         }
     }
 

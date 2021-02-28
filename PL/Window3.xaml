@@ -14,7 +14,7 @@
                 <Grid Margin="0,0,0,56.2">
 
 
-                    <ListView Background="AliceBlue"  Name="ListLines" HorizontalAlignment="Left" Margin="111,0,0,0" Width="795" Grid.Row="0" RenderTransformOrigin="0.5,0.5" MouseDoubleClick="MouseDoubleClick_ShowLine" FontSize="16" FontStyle="Italic" FontWeight="Bold" Height="335" VerticalAlignment="Top" >
+                    <ListView Background="AliceBlue"  Name="ListLines" HorizontalAlignment="Left" Margin="60.6,0,0,0" Width="795" Grid.Row="0" RenderTransformOrigin="0.5,0.5" MouseDoubleClick="MouseDoubleClick_ShowLine" FontSize="16" FontStyle="Italic" FontWeight="Bold" Height="335" VerticalAlignment="Top" Grid.Column="1" Grid.ColumnSpan="2" >
 
                         <ListView.View>
                             <GridView>
@@ -45,13 +45,14 @@
 
 
                     </ListView>
-                    <Button  Background="#FF4496CF"  Width="141" Height="32"  FontFamily="Kristen ITC" Content="Add Line" Click="Button_Click" FontSize="16" FontWeight="Bold" Margin="632,342,215,-39"/>
-                    <Button Background="#FF4496CF" Height="32"  FontFamily="Kristen ITC" Content="See the Schedule" Margin="195,342,618,-39" RenderTransformOrigin="0.842,0.369" Click="Button_Click_SeeTheSchedule"/>
+                    <Button  Background="#FF4496CF"  Width="141" Height="32"  FontFamily="Kristen ITC" Content="Add Line" Click="Button_Click" FontSize="16" FontWeight="Bold" Margin="597,342,82,-39" Grid.Column="2"/>
+                    <Button Background="#FF4496CF" Width="278" Height="32"  FontFamily="Kristen ITC" Content="Search line according to area" HorizontalAlignment="Left" Margin="338,342,0,-39" VerticalAlignment="Top" Click="Button_SearchLineArea" FontWeight="Bold" FontStyle="Normal"/>
+                    <Button Background="#FF4496CF" Height="32"  FontFamily="Kristen ITC" Content="See the Schedule" Margin="32.6,342,730,-39" RenderTransformOrigin="0.842,0.369" Click="Button_Click_SeeTheSchedule" Grid.Column="1" Grid.ColumnSpan="2"/>
                 </Grid>
 
             </TabItem>
 
-            <TabItem Background="#FF9DE2FC" Width="100"  Header="Stations" FontSize="16" Margin="0,-2,0,2.6" FontWeight="Bold" FontStyle="Italic">
+            <TabItem Background="#FF9DE2FC" Width="100"  Header="Stations" FontSize="16" Margin="0,-2,0,2.6" FontWeight="Bold" FontStyle="Italic" HorizontalAlignment="Left">
                 <Grid>
 
                     <ListView Background="AliceBlue"  x:Name="ListViewStations" Margin="-4,0,-3,56.2" Grid.RowSpan="2" MouseDoubleClick="MouseDoubleClick_ShowLineInStation" Grid.ColumnSpan="2">
@@ -83,7 +84,7 @@
                         </ListView.View>
 
                     </ListView>
-                    <Button Background="#FF4496CF" Width="141" Height="32"  FontFamily="Kristen ITC" Content="Add Station" HorizontalAlignment="Left" Margin="403,342,0,0" VerticalAlignment="Top" Click="Button_AddStation" FontWeight="Bold" FontStyle="Normal"/>
+                    <Button Background="#FF4496CF" Width="278" Height="32"  FontFamily="Kristen ITC" Content="Add Station" HorizontalAlignment="Left" Margin="153,342,0,0" VerticalAlignment="Top" Click="Button_AddStation" FontWeight="Bold" FontStyle="Normal"/>
 
                 </Grid>
             </TabItem>
@@ -115,6 +116,7 @@
 
                 </Grid>
             </TabItem>
+
 
         </TabControl>
 

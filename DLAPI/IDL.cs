@@ -17,7 +17,7 @@ namespace DLAPI
         void AddStation(DO.Station Station);
         void UpdateStation(DO.Station Station);
       
-        void DeleteStation(int code); // removes only Station, does not remove the appropriate Person...
+        void DeleteStation(int code);
         #endregion
         #region Line
         
@@ -28,7 +28,7 @@ namespace DLAPI
         void AddLine(DO.Line Line);
         void UpdateLine(DO.Line Line);
        
-        void DeleteLine(int id); // removes only Line, does not remove the appropriate Person...
+        void DeleteLine(int id);
 
         #endregion Line
 
@@ -41,7 +41,7 @@ namespace DLAPI
         void AddLineStation(DO.LineStation LineStation);
         void UpdateLineStation(DO.LineStation LineStation);
   
-        void DeleteLineStation(int id); // removes only LineStation, does not remove the appropriate Person...
+        void DeleteLineStation(int id);
         void DeleteListLineStations(int station);
         #endregion LineStationStation
         #region AdjacentStation
@@ -53,7 +53,7 @@ namespace DLAPI
         void AddAdjacentStations(DO.AdjacentStations AdjStation);
         void UpdateAdjacentStations(DO.AdjacentStations AdjacentStations);
         
-        void DeleteAdjacentStations(int id); // removes only AdjacentStations, does not remove the appropriate Person...
+        void DeleteAdjacentStations(int id); 
 
         #endregion AdjacentStation
 

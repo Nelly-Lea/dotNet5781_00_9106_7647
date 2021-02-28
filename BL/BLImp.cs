@@ -4,14 +4,14 @@ using DLAPI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-//using BO;
+
 
 namespace BL
 {
-    class BLImp : IBL //internal pas publiccccc
+    class BLImp : IBL 
     {
         IDL dl = DLFactory.GetDL();
-        public List<BO.Areas> GetAreas()
+        public List<BO.Areas> GetAreas() // return a list of all the areas in the window 8 and window 12
         {
             IEnumerable<DO.Areas> ListAreas = dl.GetAllAreas();
             BO.Areas AreaBO = new BO.Areas();
@@ -25,12 +25,11 @@ namespace BL
 
         }
         #region Line 
-        public BO.ShowStationsLine ShowStations(BO.Line line)// pas public!!!
+        public BO.ShowStationsLine ShowStations(BO.Line line)// this function receives a line and return a object ShowStationLine with all the stations in this line,
+                                                             // distances and times with the next stations
         {
             BO.ShowStationsLine stationslineBO = new BO.ShowStationsLine();
             BO.Station stationBO = new BO.Station();
-
-
 
             IEnumerable<DO.Line> ListofLines = dl.GetAllLines();
             IEnumerable<DO.Line> linesDO = (IEnumerable<DO.Line>)ListofLines.Where(x => x.Id == line.Id);
@@ -39,10 +38,10 @@ namespace BL
             currentstation = linesDO.FirstOrDefault().FirstStation;
             IEnumerable<DO.LineStation> linestationsDO = dl.GetAllLineStations();
             IEnumerable<DO.LineStation> linestationDO;
-            while (currentstation != linesDO.FirstOrDefault().LastStation)
+            while (currentstation != linesDO.FirstOrDefault().LastStation) // we pass on the list of line stations to get all the stations in the line sending ,
+                                                                           // we change all the stations from DO.Station to BO.Station
+                                                                           // and with adjacent stations we know distances and times with the next station
             {
-                //DO.LineStation linestationDO = dl.GetLineStation(id);
-
                 linestationDO = linestationsDO.Where(x => (x.LineId == id) && (x.Station == currentstation));
                 DO.Station stationDO = dl.GetStation(linestationDO.FirstOrDefault().Station);
                 stationBO.Address = stationDO.Address;
@@ -73,31 +72,22 @@ namespace BL
             return stationslineBO;
 
         }
-        //public List<int> GetAllLineInStation(int index)
-
-        //{
-
-        //    BO.ShowStations SS = ShowBusStations();
-        //    return SS.linesNumbers[index];
-
-        //}
-        public List<BO.Line> GetAllLineInStation(int index)
-
+        
+        public List<BO.Line> GetAllLineInStation(int index) // we return a list of all line numbers passing in a station according to the index received 
         {
 
             BO.ShowStations SS = ShowBusStations();
             return SS.linesNumbers[index];
 
         }
-        public List<BO.Station> GetAllStationInATravel(int index, BO.Station StationStart, BO.Station StationFinish)
-
+        public List<BO.Station> GetAllStationInATravel(int index, BO.Station StationStart, BO.Station StationFinish) // we return a list of all stations between StationStart
+                                                                                                                     // and StationFinish
         {
 
             BO.TravelBetween2Stations TB=ShowTravelsBetween2Stations(StationStart,StationFinish);
             return TB.ListStations[index];
-
         }
-        public List<string> GetAllLastStationInLine(int index)
+        public List<string> GetAllLastStationInLine(int index) // we return a list of all last stations names of the line passing in a station according to the index received 
 
         {
 
@@ -106,13 +96,13 @@ namespace BL
 
         }
 
-        public BO.ShowStations ShowBusStations()
+        public BO.ShowStations ShowBusStations()// This function return an object ShowStations with 4 lists
         {
             BO.ShowStations ss = new BO.ShowStations();
             List<BO.Station> listStationBO = new List<BO.Station>();
             IEnumerable<DO.Station> listStationDO = dl.GetAllStations();
 
-            foreach (var item in listStationDO)
+            foreach (var item in listStationDO) // we convert all stations from DO.Station to BO.Station
             {
                 BO.Station StationBO = new BO.Station();
                 StationBO.Code = item.Code;
@@ -125,13 +115,13 @@ namespace BL
                 StationBO = new BO.Station();
 
             }
-            listStationBO = listStationBO.OrderBy(x => x.Area.ToString()).ToList();
-
+            listStationBO = listStationBO.OrderBy(x => x.Area.ToString()).ToList(); 
             ss.stations = listStationBO;
+
             List<BO.AdjacentStations> listAdjStationBO = new List<BO.AdjacentStations>();
             IEnumerable<DO.AdjacentStations> listAdjStationDO = dl.GetAllAdjacentStations();
 
-            foreach (var item in listAdjStationDO)
+            foreach (var item in listAdjStationDO)   // we convert all adjacent stations from DO.AdjacentStations to BO.AdjacentStations
             {
                 BO.AdjacentStations AdjStationBO = new BO.AdjacentStations();
                 AdjStationBO.Distance = item.Distance;
@@ -144,21 +134,18 @@ namespace BL
 
             }
             ss.adjStations = listAdjStationBO;
-            int codeLine, lineId, codeLastStation;
-           // List<int> listinterieurcode = new List<int>();
 
-            List<BO.Line> ListInterieurCode = new List<BO.Line>();//ajout
+            int codeLine, lineId, codeLastStation; 
+            List<BO.Line> ListCodeLines = new List<BO.Line>();
 
-            List<string> listinterieurname = new List<string>();
+            List<string> ListNameOfLastStations = new List<string>();
 
             IEnumerable<DO.LineStation> listLineStationDO = dl.GetAllLineStations();
-            //int i = 0;
-            foreach (var item in listStationBO)
+            foreach (var item in listStationBO)  // we pass from list of stations to list of line stations to get all lines and their last stations passing throught station
             {
-                codeLine = item.Code;
-                //listinterieurcode = new List<int>();
-                 ListInterieurCode = new List<BO.Line>();//ajout
-                listinterieurname = new List<string>();
+                codeLine = item.Code;  
+                 ListCodeLines = new List<BO.Line>();
+                ListNameOfLastStations = new List<string>();
                 foreach (var item1 in listLineStationDO)
                 {
 
@@ -167,31 +154,24 @@ namespace BL
                         lineId = item1.LineId;
 
 
-                        foreach (var item2 in dl.GetAllLines())
+                        foreach (var item2 in dl.GetAllLines())  // we convert all lines from DO.Line to BO.Line
                         {
                             if (item2.Id == lineId)
                             {
-
-                                //ss.linesNumbers[i] = new List<int>();
-                                //ss.linesNumbers[i].Add(item2.Code);
-                                BO.Line LineBO = new BO.Line();//ajout
-                                LineBO.Id = item2.Id;//ajout
-                                LineBO.Code = item2.Code;//ajout
-                                LineBO.Area = (BO.Areas)item2.Area;//ajout
-                                LineBO.FirstStation = item2.FirstStation;//ajout
-                                LineBO.LastStation = item2.LastStation;//ajout
-                                LineBO.CountStation = item2.CountStation;//ajout
-                                ListInterieurCode.Add(LineBO);//ajout
-
-                              //  listinterieurcode.Add(item2.Code);
+                                BO.Line LineBO = new BO.Line();
+                                LineBO.Id = item2.Id;
+                                LineBO.Code = item2.Code;
+                                LineBO.Area = (BO.Areas)item2.Area;
+                                LineBO.FirstStation = item2.FirstStation;
+                                LineBO.LastStation = item2.LastStation;
+                                LineBO.CountStation = item2.CountStation;
+                                ListCodeLines.Add(LineBO);
                                 codeLastStation = item2.LastStation;
                                 foreach (var item3 in dl.GetAllStations())
                                 {
                                     if (item3.Code == codeLastStation)
                                     {
-                                        //ss.lastStationNames[i].Add(item3.Name);
-
-                                        listinterieurname.Add(item3.Name);
+                                        ListNameOfLastStations.Add(item3.Name);
                                     }
                                 }
                             }
@@ -203,18 +183,15 @@ namespace BL
                     }
 
                 }
-                // i++;
-                ss.linesNumbers.Add(ListInterieurCode);//ajout
-               // ss.linesNumbers.Add(listinterieurcode);
-                ss.lastStationNames.Add(listinterieurname);
-
+                ss.linesNumbers.Add(ListCodeLines);
+                ss.lastStationNames.Add(ListNameOfLastStations);
 
             }
             return ss;
 
 
         }
-        public void UpdateLineCode(BO.Line Line, int code)
+        public void UpdateLineCode(BO.Line Line, int code) // we use this function in window 6 to update line code
         {
             DO.Line LineDO = dl.GetLine(Line.Id);
             DO.Line NewLine = new DO.Line();
@@ -227,14 +204,14 @@ namespace BL
             IEnumerable<DO.Line> listLines = dl.GetAllLines().Where(x => (x.Code == code) && (x.Area == (DO.Areas)Line.Area));
 
 
-            if ((Line.Code != NewLine.Code) && (listLines.FirstOrDefault() == null) || (Line.Code == NewLine.Code))
+            if ((Line.Code != NewLine.Code) && (listLines.FirstOrDefault() == null) || (Line.Code == NewLine.Code)) 
                 dl.UpdateLine(NewLine);
             else
-                throw new BO.BadLineIdException(NewLine.Code, "Bad Line code");
+                throw new BO.BadLineIdException(NewLine.Code, "Bad Line code"); // we can't update line code with same code and same area
             
         }
           
-        public IEnumerable<BO.Line> GetAllLines()
+        public IEnumerable<BO.Line> GetAllLines() //return all the lines
         {
             BO.Line LineBO = new BO.Line();
             return from LineDO in dl.GetAllLines()
@@ -244,7 +221,9 @@ namespace BL
 
         }
 
-        public IEnumerable<BO.Station> AddLineFirst(int code, BO.Areas area, BO.Station firstStation)
+        public IEnumerable<BO.Station> AddLineFirst(int code, BO.Areas area, BO.Station firstStation)// we use this function in window 8 to add new line
+                                                                                                     // As soon as we choose a first station this function creates a line 
+                                                                                                     // and return a list of all stations the area received without the first station
         {
             BO.Line Line = new BO.Line();
             Line.Id = dl.Countplus();
@@ -275,20 +254,19 @@ namespace BL
             {
                 dl.AddLine(LineDO);
             }
-            catch (DO.BadLineIdException ex)
+            catch (DO.BadLineIdException ex) // if we can't add the line as we delete the line station that we create at the line 235
             {
                 dl.DeleteLineStation(FirstLineStation.Id);
                 throw new BO.BadLineIdException(LineDO.Id, "Bad line Id", ex);
             }
-            //dl.AddLine(LineDO);
-            IEnumerable<BO.Station> listStation = ShowStationArea(Line);
+            IEnumerable<BO.Station> listStation = ShowStationArea(Line); 
             return listStation;
         }
-        public void AddLine(int code, BO.Station FirstStation, BO.Station LastStation)
+        public void AddLine(int code, BO.Station FirstStation, BO.Station LastStation)// this function add a line
         {
 
             DO.Line Line = new DO.Line();
-            Line = dl.GetAllLines().Where(x => (x.Code == code) && (x.FirstStation == FirstStation.Code) && (x.LastStation == -1)).FirstOrDefault();
+            Line = dl.GetAllLines().Where(x => (x.Code == code) && (x.FirstStation == FirstStation.Code) && (x.LastStation == -1)).FirstOrDefault();// we search the line that we created in the function AddLine First
             DO.Line line = new DO.Line();
             line.Area = Line.Area;
             line.Code = Line.Code;
@@ -298,7 +276,7 @@ namespace BL
             line.CountStation = 2;
             try
             {
-                dl.UpdateLine(line);
+                dl.UpdateLine(line); // we add all missing informations
             }
             catch (DO.BadLineIdException ex)
             {
@@ -327,25 +305,26 @@ namespace BL
             DO.AdjacentStations adjacentStation = new DO.AdjacentStations();
 
             adjacentStation.Distance = (dl.CalculateDist(dl.GetStation(line.FirstStation), dl.GetStation(LastStation.Code)));
+            //speed=20km/h=>333.33m/min
+
             double time = adjacentStation.Distance / 333.33;
             double timeinseconds = time * 60;
             int m = (int)time;
             int s = (int)timeinseconds - m * 60;
             
             adjacentStation.Time = new TimeSpan(0, m, s);
-            ////vitesse=20km/h=>333.33m/min
-           
+          
             adjacentStation.id = dl.CountplusAdjacentStation();
             adjacentStation.Station1 = line.FirstStation;
             adjacentStation.Station2 = LastStation.Code;
             dl.AddAdjacentStations(adjacentStation);
         }
 
-        public void UpdateLine(BO.Line Line, BO.LineStation DeletedStation, BO.Station NewStation)
+        public void UpdateLine(BO.Line Line, BO.LineStation DeletedStation, BO.Station NewStation)// we change the DeletedStation by the NewStation
         {
 
             IEnumerable<DO.LineStation> ListLineStations = dl.GetAllLineStations();
-            // IEnumerable<DO.LineStation> LineStations = ListLineStations.Where(x => (x.LineId == Line.Id) && (x.Station == DeletedStation.Station));
+           
             DO.LineStation NewLineStation = new DO.LineStation();
 
             NewLineStation.Id = DeletedStation.Id;
@@ -353,7 +332,6 @@ namespace BL
             NewLineStation.LineStationIndex = DeletedStation.LineStationIndex;
             NewLineStation.NextStation = DeletedStation.NextStation;
             NewLineStation.PrevStation = DeletedStation.PrevStation;
-
             NewLineStation.Station = NewStation.Code;
             dl.UpdateLineStation(NewLineStation);
             DO.Line NewLine = new DO.Line();
@@ -362,23 +340,19 @@ namespace BL
             NewLine.Id = Line.Id;
             NewLine.CountStation = Line.CountStation;
             BO.AdjacentStations adjacentStationsBO1 = new BO.AdjacentStations();
-            //  DO.AdjacentStations adjacentStationsDO1 = new DO.AdjacentStations();
-
+           
             BO.AdjacentStations adjacentStationsBO2 = new BO.AdjacentStations();
-            //  DO.AdjacentStations adjacentStationsDO2 = new DO.AdjacentStations();
-
-
-
+            
             if ((NewLineStation.PrevStation == -1) || (NewLineStation.NextStation == -1))
             {
-                if (NewLineStation.PrevStation == -1)
+                if (NewLineStation.PrevStation == -1)  // if the station that we updated is a first station
                 {
-                    NewLine.FirstStation = NewStation.Code;
+                    NewLine.FirstStation = NewStation.Code; // we change the first station by the NewStation
                     NewLine.LastStation = Line.LastStation;
                     adjacentStationsBO1.Station1 = NewLineStation.Station;
                     adjacentStationsBO1.Station2 = NewLineStation.NextStation;
                    
-                    AddAdjacentStations(adjacentStationsBO1);
+                    AddAdjacentStations(adjacentStationsBO1); 
                     DO.LineStation nextLineStation = new DO.LineStation();
                     nextLineStation = dl.GetAllLineStations().Where(x => x.LineId == Line.Id && x.Station == DeletedStation.NextStation).FirstOrDefault();
                     DO.LineStation stationDO = new DO.LineStation();
@@ -393,9 +367,9 @@ namespace BL
 
                 }
 
-                else
+                else // if the station that we updated is a last station
                 {
-                    NewLine.LastStation = NewStation.Code;
+                    NewLine.LastStation = NewStation.Code; // we change the last station by the NewStation
                     NewLine.FirstStation = Line.FirstStation;
                     adjacentStationsBO1.Station1 = NewLineStation.PrevStation;
                     adjacentStationsBO1.Station2 = NewLineStation.Station;
@@ -414,7 +388,7 @@ namespace BL
 
                 }
             }
-            else
+            else // if the station that we update is between 2 stations
             {
                 NewLine.FirstStation = Line.FirstStation;
                 NewLine.LastStation = Line.LastStation;
@@ -462,18 +436,16 @@ namespace BL
 
            
         }
-        public void DeleteLine(int id)
+        public void DeleteLine(int id) // this function delete a line
         {
 
-
             dl.DeleteLineStation(id);
-
             dl.DeleteLine(id);
             dl.DeleteLineTrip(id);
 
         }
 
-        public BO.Line GetLine(int id)
+        public BO.Line GetLine(int id) // this function return a line according to an id 
         {
             DO.Line LineDO = dl.GetLine(id);
             BO.Line LineBO = new BO.Line();
@@ -485,10 +457,86 @@ namespace BL
             LineBO.Id = LineDO.Id;
             return LineBO;
         }
-       
+
+        public Simulator LinesFromStation(BO.Station Station)
+        {
+            Simulator sim = new Simulator();
+            IEnumerable<BO.Line> listLine= from lineStation in dl.GetAllLineStations()
+                   where lineStation.Station == Station.Code
+                   let line = dl.GetLine(lineStation.LineId)
+                   select new BO.Line
+                   {
+                       Id = line.Id,
+                       Code = line.Code,
+                       Area = (BO.Areas)line.Area,
+                       FirstStation = line.FirstStation,
+                       LastStation = line.LastStation,
+                       CountStation = line.CountStation
+                   };
+            sim.ListLines = listLine;
+            double dist=0;
+            DO.Station station1 = new DO.Station();
+            DO.Station station2 = new DO.Station();
+            List<double> listDistance = new List<double>();
+            List<TimeSpan> listTimes = new List<TimeSpan>();
+            foreach (var item in listLine)
+            {
+                foreach (var item1 in dl.GetAllLineStations().Where(x => x.LineId == item.Id))
+                {
+                    if (item1.NextStation != Station.Code)
+                    {
+                        station1 = new DO.Station();
+                        station1 = dl.GetStation(item1.Station);
+                        station2 = new DO.Station();
+                        station2 = dl.GetStation(item1.NextStation);
+                        dist += dl.CalculateDist(station1, station2);
+                       
+                    }
+                    else
+                        break;
+                }
+                //speed=20km/h=>333.33m/min
+
+                double time = dist / 333.33;
+                int timeinseconds =(int) time * 60;
+                TimeSpan t = new TimeSpan();
+                t = new TimeSpan(0, 0, timeinseconds);
+                sim.ListArrivalTimes.Add(t);
+                dist = 0;
+            }
+
+            return sim;
+            
+        }
+        public List<TimeSpan> StartSimulator(int speed, TimeSpan ActualTime, Simulator sim)
+        {
+            List<TimeSpan> listTimes = new List<TimeSpan>();
+            foreach (var item in sim.ListArrivalTimes)
+            {
+                if (ActualTime < item)
+                {
+                    TimeSpan t = new TimeSpan();
+                    t = (item - ActualTime);
+                    int timeInSeconds = (t.Hours * 3600 + t.Minutes * 60 + t.Seconds) / speed;
+                    t = new TimeSpan(0, 0, 0, timeInSeconds);
+                    listTimes.Add(t);
+                }
+                else
+                {
+
+                    TimeSpan t = new TimeSpan();
+                    t = (ActualTime - item);
+                    int timeInSeconds = (t.Hours * 3600 + t.Minutes * 60 + t.Seconds) / speed;
+                    t = new TimeSpan(1, 0, 0, timeInSeconds);
+                    listTimes.Add(t);
+                }
+            }
+            return listTimes;
+        }
+                
         #endregion Line
         #region AdjacentStation
-       public void AddAdjacentStations(BO.AdjacentStations AdjacentStation)
+       public void AddAdjacentStations(BO.AdjacentStations AdjacentStation) // this function add an adjacent station 
         {
             DO.Station station1 = new DO.Station();
             DO.Station station2 = new DO.Station();
@@ -518,7 +566,7 @@ namespace BL
             dl.AddAdjacentStations(adjacentStationsDO);
 
         }
-        public void UpdateTimeAndDistanceAdjStations(BO.AdjacentStations AdjacentStation)
+        public void UpdateTimeAndDistanceAdjStations(BO.AdjacentStations AdjacentStation)// this function calculate the real time and distance from the longitude and latitude
         {
             DO.Station station1 = new DO.Station();
             DO.Station station2 = new DO.Station();
@@ -531,7 +579,7 @@ namespace BL
             }
             double distance = dl.CalculateDist(station1, station2);
             AdjacentStation.Distance = distance;
-            //vitesse=20km/h=>333.33m/min
+            //speed =20km/h=>333.33m/min
             double time = AdjacentStation.Distance / 333.33;
             double timeinseconds = time * 60;
             int m = (int)time;
@@ -549,7 +597,23 @@ namespace BL
         }
         #endregion AdjacentStation
         #region Station
-        public void AddStation(int code, string name, double longitude, double latitude, string address, BO.Areas area)
+        public IEnumerable<BO.Line> ShowLineInArea (BO.Areas Area)//this function return all the lines according to the area sent
+        {
+            IEnumerable<IGrouping<DO.Areas, DO.Line>> liststations = (IEnumerable < IGrouping < DO.Areas, DO.Line>>)dl.GetAllLines().ToList().GroupBy(x => x.Area);
+            List<DO.Line> listlines = new List<DO.Line>();
+            foreach (var item in liststations)
+            {
+                if (item.Key == (DO.Areas)Area)
+                    listlines = item.ToList();
+            }
+            IEnumerable<BO.Line> listLines = from LineDO in listlines
+                                                   select new BO.Line
+
+                                                   { Code = LineDO.Code, Id = LineDO.Id, Area = (BO.Areas)LineDO.Area, FirstStation = LineDO.FirstStation, LastStation =LineDO.LastStation, CountStation=LineDO.CountStation};
+            return listLines;
+
+        }
+        public void AddStation(int code, string name, double longitude, double latitude, string address, BO.Areas area)// this function add a new station
         {
             DO.Station station = new DO.Station();
             station.Code = code;
@@ -562,13 +626,13 @@ namespace BL
             {
                 dl.AddStation(station);
             }
-            catch (DO.BadStationCodeException ex)
+            catch (DO.BadStationCodeException ex)// we can't add a duplicate code station
             {
                 throw new BO.BadStationCodeException(station.Code, "Bad Station code", ex);
             }
-           // dl.AddStation(station);
+         
         }
-        public void DeleteStation(int code)
+        public void DeleteStation(int code) // this function deletes a station
         {
             IEnumerable<DO.LineStation> ListLineStations = dl.GetAllLineStations();
             List<DO.LineStation> ListLineStationsDeleted = dl.GetAllLineStations().Where(x => x.Station == code).ToList();
@@ -577,7 +641,7 @@ namespace BL
             BO.AdjacentStations adjStation = new BO.AdjacentStations();
             foreach (var item in ListLineStationsDeleted)
             {
-                if (item.PrevStation == -1)
+                if (item.PrevStation == -1)// if the station deleted is the first station in a line
                 {
                     IEnumerable<DO.LineStation> lineStation2 = ListLineStations.Where(x => x.LineId == item.LineId && x.LineStationIndex == 2);
 
@@ -585,7 +649,7 @@ namespace BL
                     LineStationDO2.Id = lineStation2.FirstOrDefault().Id;
                     LineStationDO2.LineId = lineStation2.FirstOrDefault().LineId;
                     LineStationDO2.LineStationIndex = 1;
-                    LineStationDO2.PrevStation = item.PrevStation;
+                    LineStationDO2.PrevStation = item.PrevStation; // we update the previous station of the next station of the station deleted
                     LineStationDO2.NextStation = lineStation2.FirstOrDefault().NextStation;
                     LineStationDO2.Station = lineStation2.FirstOrDefault().Station;
 
@@ -601,20 +665,18 @@ namespace BL
                     dl.UpdateLineStation(LineStationDO2);
 
                 }
-                if (item.NextStation == -1)
+                if (item.NextStation == -1) // if the station deleted is the last station in a line
                 {
                     IEnumerable<DO.LineStation> lineStation1 = ListLineStations.Where(x => x.LineId == item.LineId && x.LineStationIndex == item.LineStationIndex - 1);
-                    //lineStation2.FirstOrDefault().NextStation = -1;
-
+                   
                     LineStationDO1.Id = lineStation1.FirstOrDefault().Id;
                     LineStationDO1.LineId = lineStation1.FirstOrDefault().LineId;
                     LineStationDO1.LineStationIndex = lineStation1.FirstOrDefault().LineStationIndex;
                     LineStationDO1.PrevStation = lineStation1.FirstOrDefault().PrevStation;
-                    LineStationDO1.NextStation = item.NextStation;
+                    LineStationDO1.NextStation = item.NextStation; // we update the next station of the previous station of the station deleted
                     LineStationDO1.Station = lineStation1.FirstOrDefault().Station;
 
                     DO.Line line = dl.GetAllLines().Where(x => x.Id == item.LineId).FirstOrDefault();
-                    // line.LastStation = lineStation2.FirstOrDefault().Station;
                     DO.Line Line = new DO.Line();
                     Line.Area = line.Area;
                     Line.Code = line.Code;
@@ -628,7 +690,7 @@ namespace BL
                 }
                 else
                 {
-                    if ((item.PrevStation != -1) && (item.NextStation != -1))
+                    if ((item.PrevStation != -1) && (item.NextStation != -1)) // if the station deleted is between 2 stations
                     {
                         IEnumerable<DO.LineStation> lineStation1 = ListLineStations.Where(x => x.LineId == (item.LineId) && (x.LineStationIndex == item.LineStationIndex - 1));
                         IEnumerable<DO.LineStation> lineStation2 = ListLineStations.Where(x => (x.LineId == item.LineId) && (x.LineStationIndex == item.LineStationIndex + 1));
@@ -660,7 +722,7 @@ namespace BL
                     }
                 }
                 List<DO.LineStation> lineStationsUpdateIndex = ListLineStations.Where(x => x.LineId == item.LineId && x.LineStationIndex > item.LineStationIndex).ToList();
-                foreach (var item1 in lineStationsUpdateIndex)
+                foreach (var item1 in lineStationsUpdateIndex) // we update all the index of line stations after the station deleted
                 {
 
                     DO.LineStation LineStationDO = new DO.LineStation();
@@ -676,7 +738,7 @@ namespace BL
 
             }
 
-            dl.DeleteListLineStations(code);// j'hesite a nettre cette ligne
+            dl.DeleteListLineStations(code);
             IEnumerable<DO.LineStation> L = dl.GetAllLineStations().Where(x => x.Station == code);
             dl.DeleteStation(code);
 
@@ -684,7 +746,8 @@ namespace BL
 
         }
 
-            public IEnumerable<BO.Station> ShowStationArea(BO.Line line)
+            public IEnumerable<BO.Station> ShowStationArea(BO.Line line) // this function return a list of all station with similar area of the line sent 
+                                                                         // without stations that are in this line
         {
            IEnumerable<IGrouping<DO.Areas, DO.Station>> liststations = (IEnumerable <IGrouping< DO.Areas, DO.Station >>) dl.GetAllStations().ToList().GroupBy(x => x.Area);
             List<DO.Station> liststat = new List<DO.Station>();
@@ -701,24 +764,10 @@ namespace BL
 
                                                    { Code = StationDO.Code, Name = StationDO.Name, Longitude = StationDO.Longitude, Latitude = StationDO.Latitude, Address = StationDO.Address, Area = (BO.Areas)StationDO.Area };
 
-            //from StationDO in dl.GetAllStations()
-            //                                   let Area = (DO.Areas)line.Area
-            //                                   where Area == StationDO.Area
-            //                                   //where StationDO.Area == (DO.Areas)line.Area
-            //                                   select new BO.Station
-            //                                   { Code = StationDO.Code, Name = StationDO.Name, Longitude = StationDO.Longitude, Latitude = StationDO.Latitude, Address = StationDO.Address, Area = (BO.Areas)StationDO.Area };
-
-
-            //IEnumerable<BO.Station> listStations = from StationDO in dl.GetAllStations()
-            //                                       let Area=(DO.Areas)line.Area
-            //                                       where Area==StationDO.Area
-            //                                       //where StationDO.Area == (DO.Areas)line.Area
-            //                                       select new BO.Station
-            //                                       { Code = StationDO.Code, Name = StationDO.Name, Longitude = StationDO.Longitude, Latitude = StationDO.Latitude, Address = StationDO.Address, Area = (BO.Areas)StationDO.Area };
-
+           
             IEnumerable<DO.LineStation> ListLineStation = dl.GetAllLineStations().Where(x => x.LineId == line.Id);
 
-            IEnumerable<BO.Station> ListStationLine = from StationLineDO in dl.GetAllStations()
+            IEnumerable<BO.Station> ListStationLine = from StationLineDO in dl.GetAllStations() // we convert the list of line stations to list of stations
                                                       from LineStationDO in ListLineStation
                                                       where StationLineDO.Code == LineStationDO.Station
                                                       select new BO.Station
@@ -731,7 +780,7 @@ namespace BL
 
         }
 
-        public void UpdateStation(BO.Station StationToUpdate,  string name, string address)
+        public void UpdateStation(BO.Station StationToUpdate,  string name, string address) // this function updates the name and the address of a station
         {
             DO.Station StationDO = new DO.Station();
             StationDO.Area = (DO.Areas)StationToUpdate.Area;
@@ -752,7 +801,7 @@ namespace BL
 
         }
 
-        public IEnumerable<BO.Station> GetStationWithArea(BO.Areas area)
+        public IEnumerable<BO.Station> GetStationWithArea(BO.Areas area) // this function return a list of all stations according to the area sent
         {
 
             IEnumerable<DO.Station> listStationDO = dl.GetAllStations().Where(x => (BO.Areas)x.Area == area);
@@ -762,7 +811,7 @@ namespace BL
 
             return ListStationBO;
         }
-        public List<BO.Station> GetAllStationWithoutStartStation(BO.Station StationStart)
+        public List<BO.Station> GetAllStationWithoutStartStation(BO.Station StationStart) // this function the stations without the StationStart
         {
             IEnumerable<BO.Station> listStations = from StationDO in dl.GetAllStations()
                                                    let Code=StationStart.Code
@@ -772,7 +821,8 @@ namespace BL
 
             return listStations.ToList();
         }
-        public TravelBetween2Stations ShowTravelsBetween2Stations(BO.Station StationStart, BO.Station StationFinish)
+        public TravelBetween2Stations ShowTravelsBetween2Stations(BO.Station StationStart, BO.Station StationFinish) // this function returns an object TravelBetweem2Stations
+                                                                                                                     // with all possible routes between 2 stations 
         {
             TravelBetween2Stations Travel = new TravelBetween2Stations();
             BO.ShowStations ShowStations = new ShowStations();
@@ -808,8 +858,7 @@ namespace BL
                 }
             }
             List<BO.Line> listLinesFinal = new List<BO.Line>();
-            //List<BO.Line> listLines = LineStations1.Where(p => LineStations2.All(p2 => p2.Id == p.Id));
-            // listLines = LineStations1.Except(LineStations2).Union(LineStations2).Except(LineStations1).ToList();
+          
             try
             {
                 if (listLines != null)
@@ -831,7 +880,7 @@ namespace BL
 
                                 if (LineStation1.LineStationIndex < LineStation2.LineStationIndex)
                                 {
-                                    //ListStations[i] = new List<BO.Station>();
+                                   
                                     LB.Add(StationStart);
                                     listLinesFinal.Add(item1);
 
@@ -847,8 +896,7 @@ namespace BL
                                         StationNextBO.Code = StationNext.Code;
                                         StationNextBO.Latitude = StationNext.Latitude;
                                         StationNextBO.Longitude = StationNext.Longitude;
-                                        StationNextBO.Name = StationNext.Name;
-                                        //LB = new List<BO.Station>();
+                                        StationNextBO.Name = StationNext.Name;            
                                         LB.Add(StationNextBO);
                                        
                                     }
@@ -893,10 +941,10 @@ namespace BL
         }
         
 
-        //FONCTION UPDATE
+        
         #endregion Station
         #region LineStation
-        public IEnumerable<BO.LineStation> GetLineStation(int LineId)
+        public IEnumerable<BO.LineStation> GetLineStation(int LineId) // this function returns a line station in line according to the line id
         {
            
             return from LineStationDO in dl.GetAllLineStations()
@@ -906,16 +954,7 @@ namespace BL
                    { LineId = LineStationDO.LineId, Station = LineStationDO.Station, LineStationIndex = LineStationDO.LineStationIndex, PrevStation = LineStationDO.PrevStation, NextStation = LineStationDO.NextStation, Id = LineStationDO.Id };
         }
 
-        public IEnumerable<BO.LineStation> GetAllLinesStation(int lineid)
-        {
-            BO.Line LineStationBO = new BO.Line();
-            return from LineStationDO in dl.GetAllLineStations()
-                   where LineStationDO.LineId == lineid
-                   orderby LineStationDO.LineStationIndex
-                   select new BO.LineStation
-                   { Id = LineStationDO.Id, LineId = LineStationDO.LineId, Station = LineStationDO.Station, PrevStation = LineStationDO.PrevStation, NextStation = LineStationDO.NextStation, LineStationIndex = LineStationDO.LineStationIndex };
-        }
-        public BO.Line AddLineStation(BO.Line Line, BO.Station Station)
+        public BO.Line AddLineStation(BO.Line Line, BO.Station Station)//this function adds a line station at the end of list of line station in line
         {
             DO.LineStation lineStation = new DO.LineStation();
             lineStation.Id = dl.CountplusLineStation();
@@ -934,8 +973,7 @@ namespace BL
             LastStation.NextStation = Station.Code;
             LastStation.Station = lastStation.Station;
             
-            
-           // lastStation.NextStation = Station.Code;
+          
             dl.UpdateLineStation(LastStation);
             DO.Line LineDO = new DO.Line();
             LineDO.Area = (DO.Areas)Line.Area;
@@ -965,12 +1003,12 @@ namespace BL
             LineBO.Code = LineDO.Code;
             LineBO.CountStation = LineDO.CountStation;
             LineBO.FirstStation = LineDO.FirstStation;
-            LineBO.LastStation = LineDO.LastStation;
+            LineBO.LastStation = LineDO.LastStation; 
             LineBO.Id = LineDO.Id;
             return LineBO;
 
         }
-        public void RemoveLineStation(BO.Line Line, int code)
+        public void RemoveLineStation(BO.Line Line, int code) // this function remove a line station
         {
             
                 IEnumerable<DO.LineStation> ListLineStations = dl.GetAllLineStations().Where(x => x.LineId == Line.Id);
@@ -985,14 +1023,14 @@ namespace BL
                 {
                     if ((LineStationsDeleted.FirstOrDefault().PrevStation == -1))
                     {
-                        if (item.PrevStation == -1)
+                        if (item.PrevStation == -1) // if we remove a first station 
                         {
                             IEnumerable<DO.LineStation> lineStation2 = ListLineStations.Where(x => x.LineStationIndex == 2);
                             lineStationDO2.Id = lineStation2.FirstOrDefault().Id;
                             lineStationDO2.LineId = lineStation2.FirstOrDefault().LineId;
                             lineStationDO2.LineStationIndex = 1;
-                            lineStationDO2.NextStation = lineStation2.FirstOrDefault().NextStation;
-                            lineStationDO2.PrevStation = -1;
+                            lineStationDO2.NextStation = lineStation2.FirstOrDefault().NextStation; 
+                            lineStationDO2.PrevStation = -1; //we update the previous station of the next station of the line station deleted
                             lineStationDO2.Station = lineStation2.FirstOrDefault().Station;
                             Line.FirstStation = lineStation2.FirstOrDefault().Station;
                             DO.Line lineDO = new DO.Line();
@@ -1011,13 +1049,13 @@ namespace BL
                     }
                     if ((LineStationsDeleted.FirstOrDefault().NextStation == -1))
                     {
-                        if (item.NextStation == -1)
+                        if (item.NextStation == -1) // if we remove a last station 
                         {
                             IEnumerable<DO.LineStation> lineStation2 = ListLineStations.Where(x => x.LineStationIndex == item.LineStationIndex - 1);
                             lineStationDO2.Id = lineStation2.FirstOrDefault().Id;
                             lineStationDO2.LineId = lineStation2.FirstOrDefault().LineId;
                             lineStationDO2.LineStationIndex = lineStation2.FirstOrDefault().LineStationIndex;
-                            lineStationDO2.NextStation = -1;
+                            lineStationDO2.NextStation = -1;  //we update the next station of the previous station of the line station deleted
                             lineStationDO2.PrevStation = lineStation2.FirstOrDefault().PrevStation;
                             lineStationDO2.Station = lineStation2.FirstOrDefault().Station;
 
@@ -1035,7 +1073,7 @@ namespace BL
 
                         }
                     }
-                    else
+                    else // if the station deleted is between 2 stations, we update the previous and the next station
                     {
                         if ((item.Station == LineStationsDeleted.FirstOrDefault().Station) && (LineStationsDeleted.FirstOrDefault().PrevStation != -1) && (LineStationsDeleted.FirstOrDefault().NextStation != -1))
                         {
@@ -1110,10 +1148,19 @@ namespace BL
 
 
         }
+        public IEnumerable<BO.LineStation> GetAllLinesStation(int lineid)// this function returns a line station in line according to the line id
+        {
+            BO.Line LineStationBO = new BO.Line();
+            return from LineStationDO in dl.GetAllLineStations()
+                   where LineStationDO.LineId == lineid
+                   orderby LineStationDO.LineStationIndex
+                   select new BO.LineStation
+                   { Id = LineStationDO.Id, LineId = LineStationDO.LineId, Station = LineStationDO.Station, PrevStation = LineStationDO.PrevStation, NextStation = LineStationDO.NextStation, LineStationIndex = LineStationDO.LineStationIndex };
+        }
         #endregion LineStation
         #region User
 
-        public void AddUser(string username, string password, bool admin)
+        public void AddUser(string username, string password, bool admin) // this function adds a new user
         {
             DO.User user = new DO.User();
             user.UserName = username;
@@ -1121,16 +1168,16 @@ namespace BL
             user.Admin = admin;
             try
             {
-                dl.AddUser(user);
+                dl.AddUser(user); 
             }
-            catch (DO.BadUserNameException ex)
+            catch (DO.BadUserNameException ex)// we can't add an user with a duplicate user name 
             {
                 throw new BO.BadUserNameException(user.UserName, "Bad user name", ex);
             }
            
         }
 
-        public void CheckUserWorker(string UserName, string password)
+        public void CheckUserWorker(string UserName, string password) // this function checks if the user name and the password match and if the user is a director/worker
         {
             
             try
@@ -1149,7 +1196,7 @@ namespace BL
            
         }
 
-        public void  CheckPassword(string password, string password1)
+        public void  CheckPassword(string password, string password1) // this function checks if the password and the confirmation password match 
         {
              if (password == password1)
                     return;
@@ -1160,10 +1207,9 @@ namespace BL
 
         }
 
-        public void CheckUserPassenger(string UserName,string password)
+        public void CheckUserPassenger(string UserName,string password) //this function checks if the user name and password match and if the user is a passenger 
         {
-           
-
+          
             try
             {
                 DO.User user = dl.GetUser(UserName);
@@ -1179,7 +1225,7 @@ namespace BL
         }
         #endregion User
         #region LineTrip
-        public IEnumerable<BO.LineTrip> GetAllLineTrips(BO.Line Line)
+        public IEnumerable<BO.LineTrip> GetAllLineTrips(BO.Line Line) //this function return all the line trips according to the line sent
         {
             
                  BO.LineTrip LineTripBO = new BO.LineTrip();
@@ -1189,12 +1235,12 @@ namespace BL
                    { Id = LineTripDO.Id, LineId = LineTripDO.LineId, StartAt= LineTripDO.StartAt, Frequency = LineTripDO.Frequency, FinishAt = LineTripDO.FinishAt };
 
         }
-        public void RemoveLineTrip (BO.LineTrip LineTrip)
+        public void RemoveLineTrip (BO.LineTrip LineTrip) // this function removes a line trip
         {
             DO.LineTrip LineTripDO = dl.GetLineTrip(LineTrip.Id);
             dl.DeleteLineTrip(LineTripDO.Id);
         }
-        public List<BO.LineTrip> ShowLineTrips(BO.Line Line)
+        public List<BO.LineTrip> ShowLineTrips(BO.Line Line) //this function return a list all the line trips according to the line sent
         {
             List<DO.LineTrip> ListLineTripsDO = dl.GetAllLineTrips().Where(x => x.LineId == Line.Id).ToList();
             List<BO.LineTrip> ListLineTripsBO = new List<BO.LineTrip>();
@@ -1210,7 +1256,7 @@ namespace BL
             }
             return ListLineTripsBO;
         }
-        public TimeSpan UpdateFinishAt(BO.LineTrip LineTrip)
+        public TimeSpan UpdateFinishAt(BO.LineTrip LineTrip) // this function calculates the finish time according the travel of a line
         {
             DO.LineTrip LineTripDO = new DO.LineTrip();
             LineTripDO.Id = LineTrip.Id;
@@ -1233,7 +1279,7 @@ namespace BL
             dl.UpdateLineTrip(LineTripDO);
             return TimeFinal;
         }
-        public List<string> Listhours()
+        public List<string> Listhours() // this function returns a list of all possible hours 
         {
             List<string> ListHours = new List<string>();
             for(int i=0;i<24;i++)
@@ -1250,7 +1296,7 @@ namespace BL
             }
             return ListHours;
         }
-       public  List<string > ListMinOrSec()
+       public  List<string > ListMinOrSec()  // this function returns a list of all possible minutes or seconds 
         {
             List<string> ListMinOrSec = new List<string>();
             for(int i=0;i<60;i++)
@@ -1265,7 +1311,7 @@ namespace BL
             }
             return ListMinOrSec;
         }
-        public void AddLineTrip(BO.Line Line, TimeSpan StartAt)
+        public void AddLineTrip(BO.Line Line, TimeSpan StartAt) // this function add a new line trip
         {
           
 

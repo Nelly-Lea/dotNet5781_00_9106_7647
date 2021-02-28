@@ -20,6 +20,9 @@ namespace BLAPI
         void DeleteLine(int id);
         void UpdateLine(BO.Line Line, BO.LineStation DeletedStation, BO.Station NewStation);
         void UpdateLineCode(BO.Line Line, int code);
+        IEnumerable<BO.Line> ShowLineInArea(BO.Areas Area);
+        BO.Simulator LinesFromStation(BO.Station Station);
+        List<TimeSpan> StartSimulator(int speed, TimeSpan ActualTime, BO.Simulator sim);
         #endregion Line
         #region LineStation
         IEnumerable<BO.LineStation> GetLineStation(int LineId);
@@ -32,7 +35,7 @@ namespace BLAPI
         #region Station
         List<BO.Station> GetAllStationInATravel(int index, BO.Station StationStart, BO.Station StationFinish);
         BO.ShowStations ShowBusStations();
-        //List<int> GetAllLineInStation(int index);
+        
         List<BO.Line> GetAllLineInStation(int index);
         List<string> GetAllLastStationInLine(int index);
         IEnumerable<BO.Station> ShowStationArea(BO.Line line);
@@ -66,36 +69,7 @@ namespace BLAPI
         void AddLineTrip(BO.Line Line, TimeSpan StartAt);
         #endregion LineTrip 
 
-        //Add Person to Course
-        //get all courses for student
-        //etc...
-        //#region Student
-        //BO.Student GetStudent(int id);
-        //IEnumerable<BO.Student> GetAllStudents();
-        //IEnumerable<BO.ListedPerson> GetStudentIDNameList();
-
-        //IEnumerable<BO.Student> GetStudentsBy(Predicate<BO.Student> predicate);
-
-        //void UpdateStudentPersonalDetails(BO.Student student);
-
-        //void DeleteStudent(int id);
-
-        //#endregion
-
-        //#region StudentInCourse
-        //void AddStudentInCourse(int perID, int courseID, float grade = 0);
-        //void UpdateStudentGradeInCourse(int perID, int courseID, float grade);
-        //void DeleteStudentInCourse(int perID, int courseID);
-
-        //#endregion
-
-        //#region Course
-        //IEnumerable<BO.Course> GetAllCourses();
-        //#endregion
-
-        //#region StudentCourse
-        //IEnumerable<BO.StudentCourse> GetAllCoursesPerStudent(int id);
-        //#endregion
+      
 
     }
 }

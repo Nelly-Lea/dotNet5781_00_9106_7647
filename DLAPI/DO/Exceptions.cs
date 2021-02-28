@@ -23,11 +23,7 @@ namespace DO
         public int CODE;
 
         public BadLineCodeException(int code) : base() => CODE = code;
-        //public BadLineCodeException(int id, string message) :
-        //    base(message) => ID = id;
-        //public BadLineCodeException(int id, string message, Exception innerException) :
-        //    base(message, innerException) => ID = id;
-
+    
         public override string ToString() => base.ToString() + $", impossibke to add this line: {CODE}"; //if we add a line that already exist but with wrong first and last station
                                                                                                          //or if we add a line that already exits with same first and last station 
     }
@@ -99,12 +95,9 @@ namespace DO
     public class BadLineTripLineIdException : Exception
     {
         public int LINEID;
-        // public BadLineTripIdException(int id) : base() => ID = id;
         public BadLineTripLineIdException(int lineid, string message) :
             base(message) => LINEID = lineid;
-        //public BadLineTripIdException(int id, string message, Exception innerException) :
-        //    base(message, innerException) => ID = id;
-
+     
         public override string ToString() => base.ToString() + $", bad linetrip line id: {LINEID}";
     }
     public class BadUserNameException : Exception
