@@ -508,49 +508,109 @@ namespace BL
             return sim;
             
         }
-        public List<TimeSpan> StartSimulator(int speed, TimeSpan ActualTime, Simulator sim)
+        public List<List<TimeSpan>> StartSimulator(TimeSpan ActualTime, Simulator sim)
         {
-            List<TimeSpan> listTimes = new List<TimeSpan>();
+            List<TimeSpan> listTimesInside = new List<TimeSpan>();
             List<List<TimeSpan>> lineTripTimes = new List<List<TimeSpan>>();
+            List<List<TimeSpan>> listTimes = new List<List<TimeSpan>>();
             List<TimeSpan> listTripInside = new List<TimeSpan>();
             int i = 0;
            foreach(var item in sim.ListLines)
             {
-                foreach(var item1 in dl.GetAllLineTrips())
+                listTripInside = new List<TimeSpan>();
+                foreach (var item1 in dl.GetAllLineTrips())
                 {
                     if (item1.LineId == item.Id)
+                    {
+                        
                         listTripInside.Add(item1.StartAt + sim.ListArrivalTimes[i]);
+                    }
                 }
                 i ++;
-                listTripInside = new List<TimeSpan>();
+                
                 lineTripTimes.Add(listTripInside);
             }
             for (int j = 0; j < lineTripTimes.Count; j++)
             {
+                listTimesInside = new List<TimeSpan>();
                 foreach (var item in lineTripTimes[j])
                 {
+                   
                     if (ActualTime < item)
                     {
                         TimeSpan t = new TimeSpan();
                         t = (item - ActualTime);
-                        int timeInSeconds = (t.Hours * 3600 + t.Minutes * 60 + t.Seconds) / speed;
-                        t = new TimeSpan(0, 0, 0, timeInSeconds);
-                        listTimes.Add(t);
+
+                        listTimesInside.Add(t);
                     }
                     else
                     {
 
                         TimeSpan t = new TimeSpan();
-                        t = (ActualTime - item);
-                        int timeInSeconds = (t.Hours * 3600 + t.Minutes * 60 + t.Seconds) / speed;
-                        t = new TimeSpan(1, 0, 0, timeInSeconds);
-                        listTimes.Add(t);
+                        TimeSpan day = new TimeSpan(1, 0, 0, 0);
+
+                        t = (day- ActualTime)+item;
+
+                        listTimesInside.Add(t);
                     }
 
                 }
+                listTimes.Add(listTimesInside);
             }
             return listTimes;
         }
+        public List<List<TimeSpan>> ListTimer(List<List<TimeSpan>> listTimeSpan, TimeSpan t)
+        {
+            TimeSpan template = new TimeSpan();
+            List<TimeSpan> ListInside = new List<TimeSpan>();
+            List < List < TimeSpan >> ListFinal = new List<List<TimeSpan>>();
+            for (int i = 0; i < listTimeSpan.Count(); i++)
+            {
+                ListInside = new List<TimeSpan>();
+                foreach (var item in listTimeSpan[i])
+                {
+                    template = item;
+                    template -= t;
+                    ListInside.Add(template);
+                }
+                ListFinal.Add(ListInside);
+            }
+            return ListFinal;
+        }
+        public ListTimer ListTimerMinimun(List<List<TimeSpan>> ListFinal,IEnumerable<BO.Line> ListLines)
+        {
+            ListTimer ListTimerObject = new ListTimer();
+            List<TimeSpan> ListMin = new List<TimeSpan>();
+            
+            List<BO.Line> ListLinesNumber = new List<BO.Line>();
+            ListLinesNumber = ListLines.ToList();
+            TimeSpan timeZero = new TimeSpan(0, 0, 0);
+            for (int i = 0; i < ListFinal.Count(); i++)
+            {
+               
+                if ((ListFinal[i].Count != 0)&&(ListFinal[i].Min() > timeZero))
+                      ListMin.Add(ListFinal[i].Min());
+                
+                if ((ListFinal[i].Count != 0)&& (ListFinal[i].Min() < timeZero))
+                {
+
+                    ListFinal[i].Remove(ListFinal[i].Min());
+                    if (ListFinal[i].Count != 0)
+                        ListMin.Add(ListFinal[i].Min());
+                    else
+                        ListLinesNumber.RemoveAt(i);
+
+                }
+               
+                
+            }
+            ListTimerObject.listTimer= ListMin;
+            ListTimerObject.ListLines = ListLinesNumber;
+            return ListTimerObject;
+
+        }
+
+       
                 
         #endregion Line
         #region AdjacentStation

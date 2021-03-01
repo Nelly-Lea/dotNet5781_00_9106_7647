@@ -22,7 +22,9 @@ namespace BLAPI
         void UpdateLineCode(BO.Line Line, int code);
         IEnumerable<BO.Line> ShowLineInArea(BO.Areas Area);
         BO.Simulator LinesFromStation(BO.Station Station);
-        List<TimeSpan> StartSimulator(int speed, TimeSpan ActualTime, BO.Simulator sim);
+        List<List<TimeSpan>> StartSimulator(TimeSpan ActualTime, BO.Simulator sim);
+        List<List<TimeSpan>> ListTimer(List<List<TimeSpan>> listTimeSpan, TimeSpan t);
+        BO.ListTimer ListTimerMinimun(List<List<TimeSpan>> ListFinal,IEnumerable<BO.Line> ListLines);
         #endregion Line
         #region LineStation
         IEnumerable<BO.LineStation> GetLineStation(int LineId);
