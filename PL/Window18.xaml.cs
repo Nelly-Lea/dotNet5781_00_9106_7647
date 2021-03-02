@@ -129,8 +129,6 @@ namespace PL
 
 
 
-
-
         void timer_Tick(object sender, EventArgs e)
         {
             if (Int32.Parse(TbSpeed.Text) == 0)
