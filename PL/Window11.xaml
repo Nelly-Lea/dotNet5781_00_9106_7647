@@ -28,7 +28,7 @@
         <Label Content="Address :" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Margin="100,29.6,0,0" Grid.Row="2" VerticalAlignment="Top" Width="155" Height="44" FontSize="18"/>
 
 
-        <TextBox x:Name="TbName" Grid.Column="1" HorizontalAlignment="Left"  Height="44" Margin="0.2,31.4,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="223" FontSize="16"/>
+        <TextBox x:Name="TbName" Grid.Column="1" HorizontalAlignment="Left"  Height="44" Margin="0.2,31.4,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="223" FontSize="16" />
         <TextBox x:Name="TbAddress" HorizontalAlignment="Left" Height="43" Margin="0.2,30.6,0,0" Grid.Row="2" TextWrapping="Wrap" VerticalAlignment="Top" Width="223" FontSize="16" Grid.Column="1"/>
         <Button Background="#FF4496CF"  FontFamily="Kristen ITC" Content="Enter" HorizontalAlignment="Left" Margin="36.2,28.8,0,0" Grid.Row="3" VerticalAlignment="Top" Width="157" Height="44" Click="Button_ClickEnter" Grid.Column="1" FontSize="16" FontWeight="Bold"/>
         <Button Background="#FF4496CF"  FontFamily="Kristen ITC" Content="Return" HorizontalAlignment="Left" Margin="131,28.8,0,0" Grid.Row="3" VerticalAlignment="Top" Width="149" Height="44" Click="Button_Click" FontSize="16" FontWeight="Bold"/>

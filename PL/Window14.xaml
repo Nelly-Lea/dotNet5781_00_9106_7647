@@ -41,13 +41,13 @@
 
         <Button  FontFamily="Kristen ITC" Background="#FF4496CF" Content="Return" HorizontalAlignment="Left" Margin="409,377,0,0" VerticalAlignment="Top" Width="106" Height="29" Click="Button_ClickReturn" FontSize="16" FontWeight="Bold"/>
         <ListBox  Background="AliceBlue" x:Name="LbLastStation" HorizontalAlignment="Left" Height="120" Margin="368,54,0,0" VerticalAlignment="Top" Width="228" RenderTransformOrigin="0.5,0.5" FontWeight="Bold" FontStyle="Italic" FontSize="14"/>
-        <Label Background="#FFF2F5F7"  HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Content="Last Station" Margin="368,11,307,351" FontSize="16" FontWeight="Bold" FontStyle="Italic" RenderTransformOrigin="0.49,0.521">
+        <Label Background="#FFF2F5F7" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Content="Last Stations" Margin="368,10,348,357" FontSize="16" FontWeight="Bold" FontStyle="Italic"/>
 
-        </Label>
+
 
         <ListBox Background="AliceBlue" x:Name="LbNumberOfStations" HorizontalAlignment="Left" Height="120" Margin="596,54,0,0" VerticalAlignment="Top" Width="202" FontWeight="Bold" FontStyle="Italic" FontSize="14"/>
-        <Label Background="#FFF2F5F7" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Content="Number of stations" Margin="596,11,132,351" FontSize="16" FontWeight="Bold" FontStyle="Italic"/>
-        <Label Background="#FFF2F5F7"  HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="16" FontWeight="Bold" FontStyle="Italic" Content="Line Number" HorizontalAlignment="Left" Margin="168,12,0,0" VerticalAlignment="Top" Width="202" Height="44"/>
+        <Label Background="#FFF2F5F7" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Content="Number of stations" Margin="580,10,137,357" FontSize="16" FontWeight="Bold" FontStyle="Italic"/>
+        <Label Background="#FFF2F5F7"  HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="16" FontWeight="Bold" FontStyle="Italic" Content="Line Number" HorizontalAlignment="Left" Margin="168,10,0,0" VerticalAlignment="Top" Width="202" Height="44"/>
 
 
     </Grid>

@@ -42,10 +42,7 @@ namespace PL
         {
             InitializeComponent();
 
-            //DataContext = new CurrentTimeViewModel();
-            //CurrentTimeViewModel.button1 = StartStop.Content.ToString();
-
-           
+            
 
         }
         void timer_Tick1(object sender, EventArgs e)
@@ -66,113 +63,59 @@ namespace PL
 
         }
 
-        //private void timer1_Elapsed(/*object sender, EventArgs e*/)
-        //{
-        //    BO.Simulator S = bl.LinesFromStation(CurrentStation);
-        //    TimeSpan t = new TimeSpan();
-        //    t = new TimeSpan(Int32.Parse((string)CbHours.SelectedItem), Int32.Parse((string)CbMin.SelectedItem), Int32.Parse((string)CbSec.SelectedItem));
-        //    List<TimeSpan> listtimespan = new List<TimeSpan>();
-        //    listtimespan = bl.StartSimulator(Int32.Parse(TbSpeed.Text), t, S);
-        //    ListBoxLineNumber.ItemsSource = S.ListLines;
-        //    ListBoxTime.ItemsSource = listtimespan;
-        //    ListBoxTime.Items.Refresh();
-
-        //}
-
-        //public class CurrentTimeViewModel : INotifyPropertyChanged
-        //{
-        //    private string _currentTime;
-        //    public static string button1;
-        //    //public void f()
-        //    public  CurrentTimeViewModel()
-        //    {
-
-        //        UpdateTime();
-        //    }
-
-        //    private async  void UpdateTime()
-        //    {
-
-        //        CurrentTime = DateTime.Now.TimeOfDay.ToString("G");
-
-        //        await Task.Delay(1000);
-        //        if (CurrentTimeViewModel.button1 == "Start")
-        //        {
-        //            UpdateTime();
-                    
-                    
-        //        }
-
-
-        //    }
-
-
-        //    public event PropertyChangedEventHandler PropertyChanged;
-
-        //    protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        //    {
-        //        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        //    }
-
-        //    public string CurrentTime
-        //    {
-        //        get { return _currentTime; }
-        //        set { _currentTime = value; OnPropertyChanged(); }
-        //    }
-        //}
-
-        //public void GetLabelTime(TimeSpan t)
-        //{
-        //    LabelTimer.Content = t;
-        //}
-
+        
         private void Button_ClickStartStop(object sender, RoutedEventArgs e)
         {
-            if (StartStop.Content.ToString() == "Start")
-            {
-                StartStop.Content = "Stop";
-               
-                  
-                  //  CurrentTimeViewModel.button1 = StartStop.Content.ToString();
+            
+                if (!(string.IsNullOrEmpty(TbSpeed.Text)))
+                {
+                    if (StartStop.Content.ToString() == "Start")
+                    {
 
-                    ((ComboBox)CbHours).IsEnabled = false;
-                    ((ComboBox)CbMin).IsEnabled = false;
-                    ((ComboBox)CbSec).IsEnabled = false;
-                    ((TextBox)TbSpeed).IsEnabled = false;
-                    IEnumerable<BO.Line> listLine = bl.LinesFromStation(CurrentStation).ListLines;
-                /// InitTimer();
-                //  timer1_Elapsed();
-                LiveTime.Stop();
-                    TimeSpan startTime = new TimeSpan(Int32.Parse(CbHours.Text), Int32.Parse(CbMin.Text), Int32.Parse(CbSec.Text));
-                    timeNow = startTime;
-                    
-                    timer.Interval = TimeSpan.FromSeconds(1);
-                    timer.Tick += timer_Tick;
-                    timer.Start();
-                    S = bl.LinesFromStation(CurrentStation);
+                        StartStop.Content = "Stop";
 
 
-                    listtimespan = bl.StartSimulator(startTime, S);
-                    ListBoxLineNumber.ItemsSource = S.ListLines;
-                    ListBoxTime.ItemsSource = listtimespan;
-                    ListBoxTime.Items.Refresh();
-                
 
-            }
-            else
-            {
-                ListBoxLineNumber.ItemsSource = null;
-                ListBoxTime.ItemsSource = null;
-                StartStop.Content = "Start";
-                //CurrentTimeViewModel.button1 = StartStop.Content.ToString();
-                //CurrentTimeViewModel c = new CurrentTimeViewModel();
-                ((ComboBox)CbHours).IsEnabled = true;
-                ((ComboBox)CbMin).IsEnabled = true;
-                ((ComboBox)CbSec).IsEnabled = true;
-                ((TextBox)TbSpeed).IsEnabled = true;
-                timer.Stop();
-                init();
-            }
+                        ((ComboBox)CbHours).IsEnabled = false;
+                        ((ComboBox)CbMin).IsEnabled = false;
+                        ((ComboBox)CbSec).IsEnabled = false;
+                        ((TextBox)TbSpeed).IsEnabled = false;
+                        IEnumerable<BO.Line> listLine = bl.LinesFromStation(CurrentStation).ListLines;
+
+                        LiveTime.Stop();
+                        TimeSpan startTime = new TimeSpan(Int32.Parse(CbHours.Text), Int32.Parse(CbMin.Text), Int32.Parse(CbSec.Text));
+                        timeNow = startTime;
+
+                        timer.Interval = TimeSpan.FromSeconds(1);
+                        timer.Tick += timer_Tick;
+                        timer.Start();
+                        S = bl.LinesFromStation(CurrentStation);
+
+
+                        listtimespan = bl.StartSimulator(startTime, S);
+                        ListBoxLineNumber.ItemsSource = S.ListLines;
+                        ListBoxTime.ItemsSource = listtimespan;
+                        ListBoxTime.Items.Refresh();
+
+
+                    }
+                    else
+                    {
+                        ListBoxLineNumber.ItemsSource = null;
+                        ListBoxTime.ItemsSource = null;
+                      lbLastStations.ItemsSource = null;
+                        StartStop.Content = "Start";
+
+                        ((ComboBox)CbHours).IsEnabled = true;
+                        ((ComboBox)CbMin).IsEnabled = true;
+                        ((ComboBox)CbSec).IsEnabled = true;
+                        ((TextBox)TbSpeed).IsEnabled = true;
+                        timer.Stop();
+                        init();
+                    }
+                }
+                else
+                    MessageBox.Show("Speed is missing");
 
 
         }
@@ -190,6 +133,8 @@ namespace PL
 
         void timer_Tick(object sender, EventArgs e)
         {
+            if (Int32.Parse(TbSpeed.Text) == 0)
+                TbSpeed.Text = "1";
             TimeSpan t = new TimeSpan(0, 0, Int32.Parse(TbSpeed.Text));
 
             timeNow += t;
@@ -197,16 +142,13 @@ namespace PL
             TimeSpan sec = new TimeSpan(0, 0, 1);
             listtimespan = bl.ListTimer(listtimespan, t);
 
-            //ListBoxTime.ItemsSource = bl.ListTimerMinimun(listtimespan, S.ListLines).listTimer;
-            //ListTimer= bl.ListTimerMinimun(listtimespan, S.ListLines);
-            // S.ListLines = ListTimer.ListLines;
-            // ListBoxTime.ItemsSource = ListTimer.listTimer;
-
-            // ListBoxLineNumber.ItemsSource
             ListTimer = bl.ListTimerMinimun(listtimespan, S.ListLines);
             S.ListLines = ListTimer.ListLines;
             ListBoxLineNumber.ItemsSource = S.ListLines;
             ListBoxTime.ItemsSource = ListTimer.listTimer;
+            lbLastStations.ItemsSource = ListTimer.listLastStation;
+
+
         }
     }
 

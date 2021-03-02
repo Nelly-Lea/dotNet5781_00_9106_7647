@@ -8,29 +8,27 @@
         mc:Ignorable="d"
         Title="Window18" Height="450" Width="800" Background="#FF9DE2FC">
 
-  
 
-    <Grid>
-        <ListBox  Background="AliceBlue"  x:Name="ListBoxLineNumber" DisplayMemberPath="Code" HorizontalAlignment="Left" Height="194" VerticalAlignment="Top" Width="382" Margin="0,231,0,-5" FontSize="16"/>
-        <ListBox  Background="AliceBlue"  x:Name="ListBoxTime" HorizontalAlignment="Left" Height="189" Margin="382,231,-0.4,0" VerticalAlignment="Top" Width="412" FontSize="16"/>
 
-        <Label x:Name="LabelTimer" FontFamily="Kristen ITC" Content="{Binding CurrentTime}" Margin="236,10,305.6,352" FontWeight="Bold" FontSize="20" />
+    <Grid RenderTransformOrigin="0.627,0.495">
+        <ListBox  Background="AliceBlue"  x:Name="ListBoxLineNumber" DisplayMemberPath="Code" HorizontalAlignment="Left" Height="194" VerticalAlignment="Top" Width="110" Margin="0,231,0,-5" FontSize="16"/>
+        <ListBox  Background="AliceBlue"  x:Name="ListBoxTime" HorizontalAlignment="Left" Height="189" Margin="530,231,-0.4,0" VerticalAlignment="Top" Width="264" FontSize="16"/>
+
+        <Label x:Name="LabelTimer" FontFamily="Kristen ITC" Content="{Binding CurrentTime}" Margin="300,10,241.6,352" HorizontalContentAlignment="Center" FontWeight="Bold" FontSize="20" />
 
         <ComboBox  x:Name="CbHours" SelectedIndex="0" HorizontalAlignment="Left" Margin="290,85,0,0" VerticalAlignment="Top" Width="54" Height="28" RenderTransformOrigin="0.561,-1.182" />
-
-
-
-        <ComboBox x:Name="CbMin" SelectedIndex="0" HorizontalAlignment="Left" Margin="363,89,0,0" VerticalAlignment="Top" Width="54" Height="28" RenderTransformOrigin="0.509,-0.368"/>
-        <ComboBox x:Name="CbSec" SelectedIndex="0" HorizontalAlignment="Left" Margin="440,89,0,0" VerticalAlignment="Top" Width="54" Height="28" RenderTransformOrigin="0.472,-0.711"/>
+        <ComboBox x:Name="CbMin" SelectedIndex="0" HorizontalAlignment="Left" Margin="356,85,0,0" VerticalAlignment="Top" Width="54" Height="28" RenderTransformOrigin="0.509,-0.368"/>
+        <ComboBox x:Name="CbSec" SelectedIndex="0" HorizontalAlignment="Left" Margin="421,85,0,0" VerticalAlignment="Top" Width="54" Height="28" RenderTransformOrigin="0.472,-0.711"/>
         <Label Content=":" HorizontalAlignment="Left" Height="26" Margin="343,85,0,0" VerticalAlignment="Top" Width="15" RenderTransformOrigin="7.906,2.362"/>
-        <Label Content=":" HorizontalAlignment="Left" Margin="422,85,0,0" VerticalAlignment="Top"/>
+        <Label Content=":" HorizontalAlignment="Left"  Height="26"  Width="15" Margin="409,85,0,0" VerticalAlignment="Top"/>
         <Label Content="Enter time to travel" HorizontalAlignment="Left" Margin="83,85,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.477,0.566" Width="163" FontSize="16"/>
         <Label Content="Station :" HorizontalAlignment="Left" Margin="83,139,0,0" VerticalAlignment="Top" Height="38" Width="134" FontSize="16"/>
-        <TextBlock x:Name="tbStation" HorizontalAlignment="Left" Margin="258,122,0,0"  TextWrapping="Wrap"  VerticalAlignment="Top" Height="38" Width="303" FontSize="16"/>
-        <Button x:Name="StartStop" Background="#FF4496CF"  FontFamily="Kristen ITC" Content="Start" HorizontalAlignment="Left" Margin="662,195,0,0" VerticalAlignment="Top" Width="79" Height="28" FontSize="16" FontWeight="Bold" Click="Button_ClickStartStop"/>
+        <TextBlock x:Name="tbStation"  HorizontalAlignment="Left" Margin="270,144,0,0"  TextWrapping="Wrap"  VerticalAlignment="Top" Height="38" Width="303" FontSize="16"/>
+        <Button x:Name="StartStop" Background="#FF4496CF"  FontFamily="Kristen ITC" Content="Start" HorizontalAlignment="Left" Margin="656,195,0,0" VerticalAlignment="Top" Width="79" Height="28" FontSize="16" FontWeight="Bold" Click="Button_ClickStartStop" RenderTransformOrigin="0.487,0.561"/>
 
         <Label Content="Enter the speed for the simulator :" HorizontalAlignment="Left" Margin="83,195,0,0" VerticalAlignment="Top" Height="31" Width="261" FontSize="16"/>
         <TextBox x:Name="TbSpeed" PreviewTextInput="NumberValidationTextBox" HorizontalAlignment="Left" Margin="422,195,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="31" Width="161" FontSize="16"/>
+        <ListBox  Background="AliceBlue" Name="lbLastStations" HorizontalAlignment="Left" Height="192" Margin="110,231,0,-3" VerticalAlignment="Top" Width="420" FontSize="16"/>
 
 
 

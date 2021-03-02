@@ -508,7 +508,7 @@ namespace BL
             return sim;
             
         }
-        public List<List<TimeSpan>> StartSimulator(TimeSpan ActualTime, Simulator sim)
+        public List<List<TimeSpan>> StartSimulator(TimeSpan ActualTime, Simulator sim) //return a 2 dimensions list with the arrival times of lines at the station
         {
             List<TimeSpan> listTimesInside = new List<TimeSpan>();
             List<List<TimeSpan>> lineTripTimes = new List<List<TimeSpan>>();
@@ -523,7 +523,7 @@ namespace BL
                     if (item1.LineId == item.Id)
                     {
                         
-                        listTripInside.Add(item1.StartAt + sim.ListArrivalTimes[i]);
+                        listTripInside.Add(item1.StartAt + sim.ListArrivalTimes[i]);//we add to all start times the travell to arrive at the station
                     }
                 }
                 i ++;
@@ -536,14 +536,14 @@ namespace BL
                 foreach (var item in lineTripTimes[j])
                 {
                    
-                    if (ActualTime < item)
+                    if (ActualTime < item)//if the line has not yet passed today
                     {
                         TimeSpan t = new TimeSpan();
                         t = (item - ActualTime);
 
                         listTimesInside.Add(t);
                     }
-                    else
+                    else//if the line has already passed today
                     {
 
                         TimeSpan t = new TimeSpan();
@@ -559,7 +559,7 @@ namespace BL
             }
             return listTimes;
         }
-        public List<List<TimeSpan>> ListTimer(List<List<TimeSpan>> listTimeSpan, TimeSpan t)
+        public List<List<TimeSpan>> ListTimer(List<List<TimeSpan>> listTimeSpan, TimeSpan t)//return a 2 dimensions list with the the remaining time until the line arrives at the station  
         {
             TimeSpan template = new TimeSpan();
             List<TimeSpan> ListInside = new List<TimeSpan>();
@@ -570,18 +570,19 @@ namespace BL
                 foreach (var item in listTimeSpan[i])
                 {
                     template = item;
-                    template -= t;
+                    template -= t;//we substract the speed to the time
                     ListInside.Add(template);
                 }
                 ListFinal.Add(ListInside);
             }
             return ListFinal;
         }
-        public ListTimer ListTimerMinimun(List<List<TimeSpan>> ListFinal,IEnumerable<BO.Line> ListLines)
+        public ListTimer ListTimerMinimun(List<List<TimeSpan>> ListFinal,IEnumerable<BO.Line> ListLines) //return an object of ListTimer(list of lines,list of last stations ans list of timers)
         {
             ListTimer ListTimerObject = new ListTimer();
             List<TimeSpan> ListMin = new List<TimeSpan>();
-            
+            List<string> listLastStation = new List<string>();
+              
             List<BO.Line> ListLinesNumber = new List<BO.Line>();
             ListLinesNumber = ListLines.ToList();
             TimeSpan timeZero = new TimeSpan(0, 0, 0);
@@ -589,21 +590,26 @@ namespace BL
             {
                
                 if ((ListFinal[i].Count != 0)&&(ListFinal[i].Min() > timeZero))
-                      ListMin.Add(ListFinal[i].Min());
+                      ListMin.Add(ListFinal[i].Min());//we show the next line which arrives at the station
                 
                 if ((ListFinal[i].Count != 0)&& (ListFinal[i].Min() < timeZero))
                 {
 
-                    ListFinal[i].Remove(ListFinal[i].Min());
+                    ListFinal[i].Remove(ListFinal[i].Min());//we remove the time when the line arrived at the station
                     if (ListFinal[i].Count != 0)
                         ListMin.Add(ListFinal[i].Min());
                     else
-                        ListLinesNumber.RemoveAt(i);
+                        ListLinesNumber.RemoveAt(i);//we remove the line number when the line arrived at the station
 
                 }
                
                 
             }
+            foreach (var item in ListLines)
+            {
+                listLastStation.Add(dl.GetStation(item.LastStation).Name);
+            }
+            ListTimerObject.listLastStation = listLastStation;
             ListTimerObject.listTimer= ListMin;
             ListTimerObject.ListLines = ListLinesNumber;
             return ListTimerObject;
