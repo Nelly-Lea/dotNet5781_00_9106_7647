@@ -66,9 +66,11 @@ namespace PL
         
         private void Button_ClickStartStop(object sender, RoutedEventArgs e)
         {
-            
+            try
+            {
                 if (!(string.IsNullOrEmpty(TbSpeed.Text)))
                 {
+
                     if (StartStop.Content.ToString() == "Start")
                     {
 
@@ -98,12 +100,13 @@ namespace PL
                         ListBoxTime.Items.Refresh();
 
 
+
                     }
                     else
                     {
                         ListBoxLineNumber.ItemsSource = null;
                         ListBoxTime.ItemsSource = null;
-                      lbLastStations.ItemsSource = null;
+                        lbLastStations.ItemsSource = null;
                         StartStop.Content = "Start";
 
                         ((ComboBox)CbHours).IsEnabled = true;
@@ -116,7 +119,12 @@ namespace PL
                 }
                 else
                     MessageBox.Show("Speed is missing");
-
+            }
+            catch (BO.BadLineIdException ex)
+            {
+                MessageBox.Show("Error");
+                this.Close();
+            }
 
         }
 

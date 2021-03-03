@@ -171,6 +171,10 @@ namespace DL
         public int Countplus() //this function return the id for a new line
         {
             List<Line> ListLines = XMLTools.LoadListFromXMLSerializer<Line>(LinePath);
+            if (ListLines.Count()==0)
+            {
+                return 1;
+            }
             int max = ListLines.Max(p => p.Id);
             return ++max;
            
@@ -239,6 +243,10 @@ namespace DL
         public int CountplusLineStation()// this function returns the id for s new ine station
         {
             List<LineStation> ListLineStations = XMLTools.LoadListFromXMLSerializer<LineStation>(LineStationPath);
+            if(ListLineStations.Count()==0)
+            {
+                return 1;
+            }
             int max = ListLineStations.Max(p => p.Id);
             return ++max;
            
@@ -355,6 +363,10 @@ namespace DL
     public int CountplusIdLineTrip() // this function returns the id for a new line trip
         {
             List<LineTrip> ListLineTrips = XMLTools.LoadListFromXMLSerializer<LineTrip>(LineTripPath);
+            if(ListLineTrips.Count()==0)
+            {
+                return 1;
+            }
             int max=ListLineTrips.Max(p => p.Id);
             return ++max;
             

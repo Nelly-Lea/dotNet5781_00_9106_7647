@@ -461,19 +461,24 @@ namespace BL
         public Simulator LinesFromStation(BO.Station Station)
         {
             Simulator sim = new Simulator();
-            IEnumerable<BO.Line> listLine= from lineStation in dl.GetAllLineStations()
-                   where lineStation.Station == Station.Code
-                   let line = dl.GetLine(lineStation.LineId)
-                   select new BO.Line
-                   {
-                       Id = line.Id,
-                       Code = line.Code,
-                       Area = (BO.Areas)line.Area,
-                       FirstStation = line.FirstStation,
-                       LastStation = line.LastStation,
-                       CountStation = line.CountStation
-                   };
-            sim.ListLines = listLine;
+            try
+            {
+                IEnumerable<BO.Line> listLine = from lineStation in dl.GetAllLineStations()
+                                                where lineStation.Station == Station.Code
+                                                let line = dl.GetLine(lineStation.LineId)
+                                                select new BO.Line
+                                                {
+                                                    Id = line.Id,
+                                                    Code = line.Code,
+                                                    Area = (BO.Areas)line.Area,
+                                                    FirstStation = line.FirstStation,
+                                                    LastStation = line.LastStation,
+                                                    CountStation = line.CountStation
+                                                };
+                sim.ListLines = listLine;
+            
+           
+            
             double dist=0;
             DO.Station station1 = new DO.Station();
             DO.Station station2 = new DO.Station();
@@ -506,7 +511,12 @@ namespace BL
             }
 
             return sim;
-            
+        }
+            catch (DO.BadLineIdException ex)
+            {
+                throw new BO.BadLineIdException(1, "Bad line Code", ex);
+            }
+
         }
         public List<List<TimeSpan>> StartSimulator(TimeSpan ActualTime, Simulator sim) //return a 2 dimensions list with the arrival times of lines at the station
         {

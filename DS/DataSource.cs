@@ -591,7 +591,7 @@ namespace DS
                     Code=103,
                     Area=Areas.Guedera,
                     FirstStation=38887,
-                    LastStation=38893,
+                    LastStation=38883,
                      CountStation=10,
                 },
                 new Line//5
@@ -1099,7 +1099,7 @@ namespace DS
                 {
                               id=++(idAdjStation),
                     Station1=38891,
-                    Station2=38892,
+                    Station2=38881,
                            Distance=4,
                     Time=new TimeSpan(0,10,0)
 
@@ -1107,8 +1107,8 @@ namespace DS
              new AdjacentStations
                 {
                  id=++(idAdjStation),
-                    Station1=38892,
-                    Station2=38898,
+                    Station1=38881,
+                    Station2=38878,
                            Distance=4,
                     Time=new TimeSpan(0,10,0)
 
@@ -1116,8 +1116,8 @@ namespace DS
               new AdjacentStations
                 {
                   id=++(idAdjStation),
-                    Station1=38898,
-                    Station2=38895,
+                    Station1=38878,
+                    Station2=38885,
                            Distance=2,
                     Time=new TimeSpan(0,5,0)
 
@@ -1125,8 +1125,8 @@ namespace DS
                new AdjacentStations
                 {
                    id=++(idAdjStation),
-                    Station1=38895,
-                    Station2=38894,
+                    Station1=38885,
+                    Station2=38884,
                                 Distance=2,
                     Time=new TimeSpan(0,5,0)
 
@@ -1134,8 +1134,8 @@ namespace DS
                 new AdjacentStations
                 {
                     id=++(idAdjStation),
-                    Station1=38894,
-                    Station2=38893,
+                    Station1=38884,
+                    Station2=38883,
                                 Distance=2,
                     Time=new TimeSpan(0,5,0)
 
@@ -1898,56 +1898,56 @@ namespace DS
                         Station=38891,
                         LineStationIndex=5,
                         PrevStation=38890,
-                        NextStation=38892,
+                        NextStation=38881,
                 },
 
                 new LineStation
                 {
                       Id=++(idLineStation),
                         LineId=4,
-                        Station=38892,
+                        Station=38881,
                         LineStationIndex=6,
                         PrevStation=38891,
-                        NextStation=38898,
+                        NextStation=38878,
                 },
 
                 new LineStation
                 {
                       Id=++(idLineStation),
                         LineId=4,
-                        Station=38898,
+                        Station=38878,
                         LineStationIndex=7,
-                        PrevStation=38892,
-                        NextStation=38895,
+                        PrevStation=38881,
+                        NextStation=38885,
                 },
 
                 new LineStation
                 {
                       Id=++(idLineStation),
                         LineId=4,
-                        Station=38895,
+                        Station=38885,
                         LineStationIndex=8,
-                        PrevStation=38898,
-                        NextStation=38894,
+                        PrevStation=38878,
+                        NextStation=38884,
                 },
 
                 new LineStation
                 {
                       Id=++(idLineStation),
                         LineId=4,
-                        Station=38894,
+                        Station=38884,
                         LineStationIndex=9,
-                        PrevStation=38895,
-                        NextStation=38893,
+                        PrevStation=38885,
+                        NextStation=38883,
                 },
 
                 new LineStation
                 {
                       Id=++(idLineStation),
                         LineId=4,
-                        Station=38893,
+                        Station=38883,
                         LineStationIndex=10,
-                        PrevStation=38894,
+                        PrevStation=38884,
                         NextStation=-1,
                 },
                  new LineStation
