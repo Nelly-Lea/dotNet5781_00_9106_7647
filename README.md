@@ -1,7 +1,7 @@
 # Bus Management System Application
 
 ## Small Overview
-![Director Login](https://github.com/Nelly-Lea/dotNet5781_00_9106_7647/blob/main/assets/73136068/ffe6bbee-c94b-4ee1-a850-19326b694764.png)
+![director login](https://github.com/Nelly-Lea/dotNet5781_00_9106_7647/assets/73136068/d208c9ba-b312-4531-b9e5-121f4213d57f)
 ![Bus Line Management](https://github.com/Nelly-Lea/dotNet5781_00_9106_7647/blob/main/assets/73136068/5ff32daa-468e-4257-8ecb-9f306d4b0f95.png)
 ![Bus Line Details](https://github.com/Nelly-Lea/dotNet5781_00_9106_7647/blob/main/assets/73136068/61896055-268e-46c9-91ff-0696aabcd961.png)
 ![Simulator](https://github.com/Nelly-Lea/dotNet5781_00_9106_7647/blob/main/assets/73136068/a7a8d911-1331-4c0c-a021-5c37c3109290.png)
