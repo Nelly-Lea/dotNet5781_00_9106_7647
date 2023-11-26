@@ -1,8 +1,15 @@
 # Bus Management System Application
 
 ## Small Overview
-![director login](https://github.com/Nelly-Lea/dotNet5781_00_9106_7647/assets/73136068/d208c9ba-b312-4531-b9e5-121f4213d57f) ![bus line management](https://github.com/Nelly-Lea/dotNet5781_00_9106_7647/assets/73136068/369461b9-7aeb-4a36-afdc-7f313ccfb6da)
-![bus line details](https://github.com/Nelly-Lea/dotNet5781_00_9106_7647/assets/73136068/e244aecf-6820-44cc-9612-b9e92e4bbf3d) ![simulator](https://github.com/Nelly-Lea/dotNet5781_00_9106_7647/assets/73136068/267c8105-261c-45d5-8b70-ca39576b87e5)
+<div align="center">
+  <img src="https://github.com/Nelly-Lea/dotNet5781_00_9106_7647/assets/73136068/d208c9ba-b312-4531-b9e5-121f4213d57f" alt="Director Login" width="400"/>
+  <img src="https://github.com/Nelly-Lea/dotNet5781_00_9106_7647/assets/73136068/369461b9-7aeb-4a36-afdc-7f313ccfb6da" alt="Bus Line Management" width="400"/>
+</div>
+
+<div align="center">
+  <img src="https://github.com/Nelly-Lea/dotNet5781_00_9106_7647/assets/73136068/e244aecf-6820-44cc-9612-b9e92e4bbf3d" alt="Bus Line Details" width="400"/>
+  <img src="https://github.com/Nelly-Lea/dotNet5781_00_9106_7647/assets/73136068/267c8105-261c-45d5-8b70-ca39576b87e5" alt="Simulator" width="400"/>
+</div>
 
 ## Description
 This application serves as a bus management system with two distinct interfaces: one for passengers and another for bus company to manage the bus line system. 
