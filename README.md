@@ -31,4 +31,4 @@ This application serves as a bus management system with two distinct interfaces:
   
 ## Credits
 
-This project was co-developed with [csfez](https://github.com/csfez/).
+This project was co-developed by [Chirly Sfez](https://github.com/csfez/) and [Nelly Lea Amar](https://github.com/Nelly-Lea).
